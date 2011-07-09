@@ -4,10 +4,9 @@ class SessionsController < ApplicationController
     redirect_to '/auth/twitter'
   end
 
-
   def create
     auth = request.env["omniauth.auth"]
-    user = User.where(:provider => auth['provider'], 
+    user = User.where(:provider => auth['provider'],
                       :uid => auth['uid']).first || User.create_with_omniauth(auth)
     session[:user_id] = user.id
     if !user.email
@@ -15,7 +14,6 @@ class SessionsController < ApplicationController
     else
       redirect_to root_url, :notice => 'Signed in!'
     end
-
   end
 
   def destroy

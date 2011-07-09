@@ -11,9 +11,10 @@ gem 'uglifier'
 gem 'jquery-rails'
 
 gem "haml"
-gem "bson_ext"
 gem "mongoid"
-gem "omniauth"
+gem "bson_ext"
+gem 'mongoid_slug'
+gem 'oa-oauth'
 
 gem "rspec-rails", :group => [:development, :test]
 
