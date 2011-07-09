@@ -1,10 +1,14 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :provider, :type => String
   field :uid, :type => String
   field :name, :type => String
   field :email, :type => String
   attr_accessible :provider, :uid, :name, :email
+
+  references_many :albums
 
   def self.create_with_omniauth(auth)
     begin
