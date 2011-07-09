@@ -1,5 +1,4 @@
 Picawing::Application.routes.draw do
-  #get \"users\/show\"
 
   root :to => "home#index"
 
@@ -12,6 +11,8 @@ Picawing::Application.routes.draw do
   match '/signout' => 'sessions#destroy', :as => :signout
 
   match '/auth/failure' => 'sessions#failure'
+
+  resources :albums
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
