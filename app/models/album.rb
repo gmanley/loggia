@@ -7,5 +7,5 @@ class Album
 
   slug :title
   referenced_in :user
-  embeds_many :photos
+  embeds_many :images
 end

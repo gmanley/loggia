@@ -1,3 +1,32 @@
+GIT
+  remote: git://github.com/thedarkone/rails-dev-boost.git
+  revision: 8ea07ebee74d9f2879f074c307890997b1f34f03
+  specs:
+    rails-dev-boost (0.1.1)
+
+GIT
+  remote: https://github.com/jnicklas/carrierwave.git
+  revision: 3850f67ce1b7d25db595c3e2ec28b81ac172467c
+  specs:
+    carrierwave (0.5.4)
+      activesupport (~> 3.0)
+
+GIT
+  remote: https://github.com/josevalim/rails-footnotes.git
+  revision: 05920ef3cd1edd62ca2d27faafe0dcaaa2c27bd4
+  specs:
+    rails-footnotes (3.7.4)
+      rails (>= 3.0.0)
+
+GIT
+  remote: https://github.com/skinandbones/rack-gridfs.git
+  revision: 873fd8e9225b9359d4f468d6d715e30c7eedab11
+  specs:
+    rack-gridfs (0.4.1)
+      mime-types
+      mongo (~> 1.2)
+      rack
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -43,6 +72,7 @@ GEM
     coffee-script-source (1.1.1)
     database_cleaner (0.6.7)
     diff-lcs (1.1.2)
+    ejs (1.0.0)
     erubis (2.7.0)
     execjs (1.2.0)
       multi_json (~> 1.0)
@@ -115,8 +145,10 @@ GEM
       activesupport (= 3.1.0.rc4)
       bundler (~> 1.0)
       railties (= 3.1.0.rc4)
-    rails-footnotes (3.7.4)
-      rails (>= 3.0.0)
+    rails-backbone (0.5.1)
+      coffee-script (~> 2.2.0)
+      ejs (~> 1.0.0)
+      rails (~> 3.1.0.rc4)
     railties (3.1.0.rc4)
       actionpack (= 3.1.0.rc4)
       activesupport (= 3.1.0.rc4)
@@ -164,18 +196,21 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
+  carrierwave!
   coffee-script
   database_cleaner
   factory_girl_rails (>= 1.1.rc)
-  haml
   haml-rails
   jquery-rails
   mongoid
   mongoid-rspec
   mongoid_slug
   oa-oauth
+  rack-gridfs!
   rails (>= 3.1.0.rc)
-  rails-footnotes
+  rails-backbone
+  rails-dev-boost!
+  rails-footnotes!
   rspec-rails
   sass-rails (>= 3.1.0.rc)
   uglifier

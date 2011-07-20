@@ -40,5 +40,9 @@ module Picawing
 
     # Enable the asset pipeline
     config.assets.enabled = true
+
+    config.generators.orm = :mongoid
+
+    config.middleware.insert_after Rack::Runtime, Rack::GridFS, :prefix => 'uploads', :lookup => :path, :database => "picawing_rails_#{Rails.env}"
   end
 end

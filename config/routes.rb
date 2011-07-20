@@ -12,7 +12,9 @@ Picawing::Application.routes.draw do
 
   match '/auth/failure' => 'sessions#failure'
 
-  resources :albums
+  resources :albums do
+    resources :images
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
