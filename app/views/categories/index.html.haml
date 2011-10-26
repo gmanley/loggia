@@ -1,0 +1,9 @@
+%h3 Categories
+- @categories.each do |category|
+  %p=link_to category.title, category
+  %ul.actions
+    %li= link_to 'Show', category
+    %li= link_to 'Edit', edit_category_path(category)
+    %li= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete
+%br
+= link_to 'New Category', new_category_path

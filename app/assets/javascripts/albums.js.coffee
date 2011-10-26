@@ -1,3 +1,21 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  colorbox_init()
+  $(".pagination a").live "click", (e) ->
+    url = $(this).attr("href").replace(/^.*\/page\//, "#/page/")
+    AjaxLinks.setLocation url
+    e.preventDefault()
+
+  AjaxLinks.run()
+
+AjaxLinks = $.sammy("#content", ->
+  @get "#/page/:page_number", ->
+    $("#loading").fadeIn "fast"
+    $("#content").load "/page/" + @params.page_number + " #content > *", ->
+      $("#loading").fadeOut "fast"
+      colorbox_init()
+)
+
+colorbox_init = ->
+  $(".thumbnail").colorbox
+    maxWidth: "95%"
+    maxHeight: "95%"

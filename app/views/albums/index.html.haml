@@ -1,9 +1,9 @@
 %h3 Albums
 - @albums.each do |album|
-  %p=link_to album.title, album
+  %p=link_to album.title, category_album_path
   %ul.actions
-    %li= link_to 'Show', album
-    %li= link_to 'Edit', edit_album_path(album)
+    %li= link_to 'Show', category_album_path
+    %li= link_to 'Edit', edit_category_album_path(album)
     %li= link_to 'Destroy', album, :confirm => 'Are you sure?', :method => :delete
 %br
 = link_to 'New Album', new_album_path

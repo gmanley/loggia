@@ -1,18 +1,17 @@
 class ImagesController < ApplicationController
 
   def show
-    @album = Album.find_by_slug(params[:album_id])
+    @category = Category.find_by_slug(params[:category_id])
+    @album = @category.albums.find_by_slug(params[:album_id])
     @image = @album.images.find(params[:id])
   end
 
   def create
-    @album = Album.find_by_slug(params[:album_id])
-    @image = @album.images.create!(params[:image])
+    @category = Category.find_by_slug(params[:category_id])
+    @album = @category.albums.find_by_slug(params[:album_id])
 
-    if @image.save
-      redirect_to @album, notice: 'Image was successfully uploaded.'
-    else
-      render action: "new"
+    if @image = @album.images.create!(params[:image])
+      render json: @image
     end
   end
 
@@ -33,4 +32,3 @@ class ImagesController < ApplicationController
     @image.destroy
   end
 end
-

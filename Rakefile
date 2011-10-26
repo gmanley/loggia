@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Picawing::Application.load_tasks
+Soshigal::Application.load_tasks

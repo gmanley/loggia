@@ -1,0 +1,9 @@
+%h1 Editing Category
+
+= form_for(@category) do |f|
+  = f.label :title
+  = f.text_field :title
+  %br/
+  = f.submit "Save"
+
+= link_to 'Show', @category

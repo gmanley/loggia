@@ -1,4 +1,4 @@
-Picawing::Application.routes.draw do
+Soshigal::Application.routes.draw do
 
   root :to => "home#index"
 
@@ -12,8 +12,10 @@ Picawing::Application.routes.draw do
 
   match '/auth/failure' => 'sessions#failure'
 
-  resources :albums do
-    resources :images
+  resources :categories do
+    resources :albums do
+      resources :images
+    end
   end
 
   # The priority is based upon order of creation:

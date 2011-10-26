@@ -1,10 +1,10 @@
 development:
   host: localhost
-  database: picawing_rails_development
+  database: soshigal_rails_development
 
 test:
   host: localhost
-  database: picawing_rails_test
+  database: soshigal_rails_test
 
 # set these environment variables on your prod server
 production:

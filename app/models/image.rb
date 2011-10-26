@@ -5,6 +5,6 @@ class Image
   field :url
   field :thumb
 
-  embedded_in :album, :inverse_of => :images
+  embedded_in :album
   mount_uploader :image, ImageUploader
 end

@@ -1,0 +1,26 @@
+%h3= @category.title
+
+%p Add Albums:
+= form_for [@category, Album.new] do |f|
+  = f.label :title
+  = f.text_field :title
+  %br/
+  = f.submit "Save"
+
+%p Add Categories
+= form_for(Category.new) do |f|
+  = f.label :title
+  = f.text_field :title
+  = f.label :parent_id
+  = f.collection_select :parent_id, Category.all.order(:title), :id, :title, { :include_blank => true}
+  %br/
+  = f.submit "Save"
+
+- unless @category.children.empty?
+  - @category.children.each do |child|
+    %p=link_to child.title, child
+    - unless child.thumbnail.blank?
+      %p=image_tag(child.thumbnail)
+= link_to 'Edit', edit_category_path(@category)
+\|
+= link_to 'Destroy', @category, :confirm => 'Are you sure?', :method => :delete

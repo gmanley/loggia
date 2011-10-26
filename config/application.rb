@@ -3,12 +3,11 @@ require File.expand_path('../boot', __FILE__)
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
+require "sprockets/railtie"
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require(*Rails.groups(:assets => %w(development test))) if defined?(Bundler)
 
-module Picawing
+module Soshigal
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -41,8 +40,11 @@ module Picawing
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+
     config.generators.orm = :mongoid
 
-    config.middleware.insert_after Rack::Runtime, Rack::GridFS, :prefix => 'uploads', :lookup => :path, :database => "picawing_rails_#{Rails.env}"
+    config.middleware.insert_after Rack::Runtime, Rack::GridFS, :prefix => 'uploads', :lookup => :path, :database => "soshigal_rails_#{Rails.env}"
   end
 end

@@ -2,8 +2,9 @@
 %h3= @album.title
 %p Add Images:
 = render 'images/form'
-- @album.images.each do |image|
-  %p=image_tag(image.image_url)
-= link_to 'Edit', edit_album_path(@album)
+- unless @album.images.empty?
+  - @album.images.each do |image|
+    %p=image_tag(image.image_url)
+= link_to 'Edit', edit_category_album_path(@album)
 \|
 = link_to 'Destroy', @album, :confirm => 'Are you sure?', :method => :delete

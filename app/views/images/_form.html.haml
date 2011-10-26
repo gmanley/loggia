@@ -1,11 +1,6 @@
-= form_for [@album, Image.new], :html => { :multipart => true } do |f|
-  -if @album.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@album.errors.count, "error")} prohibited this image from being saved:"
-      %ul
-        - @album.errors.full_messages.each do |msg|
-          %li= msg
-  = f.label :image
-  = f.file_field :image
-  .actions
-    = f.submit 'Save'
+= form_for @album, :url => category_album_images_path, :html => { :multipart => true, :id => "image_upload"}, :remote => true do |f|
+  #image_upload_container
+    = f.label :image
+    = f.file_field :image
+    .actions
+      = f.submit 'Save'

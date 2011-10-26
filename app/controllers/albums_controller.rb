@@ -5,8 +5,8 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find_by_slug(params[:id])
-    @image = @album.images.new
+    @category = Category.find_by_slug(params[:category_id])
+    @album = @category.albums.find_by_slug(params[:id])
   end
 
   def new
@@ -18,20 +18,21 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = current_user.albums.new(params[:album])
+    @category = Category.find_by_slug(params[:category_id])
+    @album = @category.albums.new(params[:album])
 
     if @album.save
-      redirect_to @album, notice: "Album was successfully created."
+      redirect_to category_album_url, notice: "Album was successfully created."
     else
       render action: "new"
     end
   end
 
   def update
-    @album = current_user.albums.find_by_slug(params[:id])
+    @album = @category.albums.find_by_slug(params[:id])
 
     if @album.update_attributes(params[:album])
-      redirect_to @album, notice: "Album was successfully updated."
+      redirect_to category_albums_url, notice: "Album was successfully updated."
     else
       render action: "edit"
     end
@@ -41,6 +42,6 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.find_by_slug(params[:id])
     @album.destroy
 
-    redirect_to albums_url
+    redirect_to category_albums_url
   end
 end
