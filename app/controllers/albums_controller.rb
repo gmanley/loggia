@@ -22,7 +22,7 @@ class AlbumsController < ApplicationController
     @album = @category.albums.create(params[:album])
 
     if @album.persisted?
-      redirect_to category_album_url, notice: "Album was successfully created."
+      redirect_to category_album_url(@category, @album), notice: "Album was successfully created."
     else
       render action: "new"
     end

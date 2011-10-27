@@ -1,5 +1,9 @@
 %h3= @category.title
 
+= link_to 'Edit', edit_category_path(@category)
+\|
+= link_to 'Destroy', @category, :confirm => 'Are you sure?', :method => :delete
+
 %p Add Albums:
 = form_for [@category, Album.new] do |f|
   = f.label :title
@@ -24,8 +28,4 @@
 
 - unless @category.albums.empty?
   - @category.albums.each do |album|
-    %p=link_to album.title, category_album_path(album)
-
-= link_to 'Edit', edit_category_path(@category)
-\|
-= link_to 'Destroy', @category, :confirm => 'Are you sure?', :method => :delete
+    %p=link_to album.title, category_album_path(@category, album)
