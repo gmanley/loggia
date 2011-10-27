@@ -1,14 +1,20 @@
-.fill
+.topbar-inner
   .container
-    %a.brand{href: "#"} SoshiGal
+    %a.brand{href: "/"} SoshiGal
     %ul.nav
       %li.active
-        %a{href: "#"} Home
-      %li
-        %a{href: "#about"} About
-      %li
-        %a{href: "#contact"} Contact
-    - if user_signed_in?
-      %a.pull-right{href: signout_path} Logout
-    - else
-      %a.pull-right{href: signin_path} Login
+        %a{href: "/"} Home
+    %ul.nav.secondary-nav
+      - if user_signed_in?
+        %li.dropdown{data: {dropdown: "dropdown"}}
+          %a.dropdown-toggle{href: "#"}=current_user.name
+          %ul.dropdown-menu
+            %li
+              %a{href: user_path(current_user)} My Profile
+            %li.divider
+            %li
+              %a{href: signin_path} Logout
+      - else
+        %li.pull-right
+          %a{href: signin_path} Login
+

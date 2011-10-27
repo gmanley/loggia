@@ -1,6 +1,8 @@
-%h1 New category
-= form_for(@category) do |f|
-  = f.label :title
-  = f.text_field :title
-  %br/
-  = f.submit "Save"
+%fieldset
+  %legend New category
+  = form_for(@category) do |f|
+    = f.label :title
+    .input
+      = f.text_field :title
+    .actions
+      = f.submit "Save", :class => "btn primary"
