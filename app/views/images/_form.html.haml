@@ -1,4 +1,4 @@
-= form_for @album, :url => category_album_images_path, :html => { :multipart => true, :id => "image_upload"}, :remote => true do |f|
+= form_for [@category, @album, Image.new], :html => { :multipart => true, :id => "image_upload"}, :remote => true do |f|
   #image_upload_container
     = f.label :image
     = f.file_field :image

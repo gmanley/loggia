@@ -1,0 +1,14 @@
+.fill
+  .container
+    %a.brand{href: "#"} SoshiGal
+    %ul.nav
+      %li.active
+        %a{href: "#"} Home
+      %li
+        %a{href: "#about"} About
+      %li
+        %a{href: "#contact"} Contact
+    - if user_signed_in?
+      %a.pull-right{href: signout_path} Logout
+    - else
+      %a.pull-right{href: signin_path} Login

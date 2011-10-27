@@ -4,9 +4,12 @@ class CategoriesController < ApplicationController
     @categories = Category.roots
   end
 
+  def new
+    @category = Category.new
+  end
+
   def show
     @category = Category.find_by_slug(params[:id])
-    @album = @category.albums.new
   end
 
   def edit
@@ -14,13 +17,9 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    if params[:category][:parent_id].blank?
-         @page.parent_id = nil
-    else
-      @page.parent_id = Category.find_by_slug(params[:page][:parent_id]).id
-    end
+    @category = Category.create(params[:category])
 
-    if @category = Category.create(params[:category])
+    if @category.persisted?
       redirect_to @category, notice: "Category was successfully created."
     else
       render action: "new"

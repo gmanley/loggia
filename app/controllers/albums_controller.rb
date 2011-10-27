@@ -19,9 +19,9 @@ class AlbumsController < ApplicationController
 
   def create
     @category = Category.find_by_slug(params[:category_id])
-    @album = @category.albums.new(params[:album])
+    @album = @category.albums.create(params[:album])
 
-    if @album.save
+    if @album.persisted?
       redirect_to category_album_url, notice: "Album was successfully created."
     else
       render action: "new"

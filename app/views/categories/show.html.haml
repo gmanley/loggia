@@ -12,7 +12,7 @@
   = f.label :title
   = f.text_field :title
   = f.label :parent_id
-  = f.collection_select :parent_id, Category.all.order(:title), :id, :title, { :include_blank => true}
+  = f.collection_select :parent_id, Category.all.excludes(:id => @category.id).order(:title), :id, :title, { :include_blank => true}
   %br/
   = f.submit "Save"
 
@@ -21,6 +21,11 @@
     %p=link_to child.title, child
     - unless child.thumbnail.blank?
       %p=image_tag(child.thumbnail)
+
+- unless @category.albums.empty?
+  - @category.albums.each do |album|
+    %p=link_to album.title, category_album_path(album)
+
 = link_to 'Edit', edit_category_path(@category)
 \|
 = link_to 'Destroy', @category, :confirm => 'Are you sure?', :method => :delete

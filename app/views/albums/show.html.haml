@@ -1,5 +1,7 @@
-%p#notice= notice
-%h3= @album.title
+.page-header
+  %h3
+    = @album.title
+    %small A Realtime Chat Application
 %p Add Images:
 = render 'images/form'
 - unless @album.images.empty?
@@ -7,4 +9,4 @@
     %p=image_tag(image.image_url)
 = link_to 'Edit', edit_category_album_path(@album)
 \|
-= link_to 'Destroy', @album, :confirm => 'Are you sure?', :method => :delete
+= link_to 'Destroy', category_album_path(@album), :confirm => 'Are you sure?', :method => :delete
