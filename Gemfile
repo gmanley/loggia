@@ -23,9 +23,12 @@ gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'rack-gridfs', :git => 'git://github.com/skinandbones/rack-gridfs.git', :require => 'rack/gridfs'
 gem 'remotipart', :git => 'git://github.com/leppert/remotipart.git'
+gem 'mini_magick'
+
+gem 'kaminari'
 
 group :development do
-  gem 'active_reload'
   gem 'pry', :git => 'git://github.com/pry/pry.git'
   gem 'itslog'
+  gem 'rails-dev-tweaks'
 end

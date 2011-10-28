@@ -7,6 +7,7 @@ class AlbumsController < ApplicationController
   def show
     @category = Category.find_by_slug(params[:category_id])
     @album = @category.albums.find_by_slug(params[:id])
+    @images = @album.images.page(params[:page])
   end
 
   def new

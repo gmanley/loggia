@@ -1,12 +1,12 @@
 .page-header
-  %h3
-    = @album.title
-    %small A Realtime Chat Application
+  %h3= @album.title
 %p Add Images:
 = render 'images/form'
-- unless @album.images.empty?
-  - @album.images.each do |image|
-    %p=image_tag(image.image_url)
+- unless @images.empty?
+  %ul.media-grid
+    = render :partial => 'images/image', :collection => @images
+= paginate @images, :remote => true
+
 = link_to 'Edit', edit_category_album_path(@album)
 \|
 = link_to 'Destroy', category_album_path(@album), :confirm => 'Are you sure?', :method => :delete

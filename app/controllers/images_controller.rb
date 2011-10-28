@@ -10,8 +10,10 @@ class ImagesController < ApplicationController
     @category = Category.find_by_slug(params[:category_id])
     @album = @category.albums.find_by_slug(params[:album_id])
 
-    if @image = @album.images.create!(params[:image])
-      render json: @image
+    respond_to do |format|
+      if @image = @album.images.create!(params[:image])
+        format.js
+      end
     end
   end
 

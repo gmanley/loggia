@@ -27,4 +27,6 @@ Soshigal::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.dev_tweaks.log_autoload_notice = false
 end
