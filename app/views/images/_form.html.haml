@@ -1,6 +1,29 @@
-= form_for [@category, @album, Image.new], :html => { :multipart => true, :id => "image_upload"}, :remote => true do |f|
-  #image_upload_container
-    = f.label :image
-    = f.file_field :image
-    .actions
-      = f.submit 'Save'
+#uploader
+  #filelist
+  %br/
+  %a#pickfiles{:href => "#"} [Select files]
+  %a#uploadfiles{:href => "#"} [Upload files]
+
+:coffeescript
+  $ ->
+    uploader = new plupload.Uploader(
+      runtimes: "html5,flash"
+      browse_button: "pickfiles"
+      max_file_size: "10mb"
+      url: "#{url_for [@category, @album, Image.new]}.js"
+      file_data_name: 'image[image]'
+      flash_swf_url: "#{asset_path("plupload.flash.swf")}"
+      multipart: true
+      multipart_params:
+        "#{request_forgery_protection_token}": "#{form_authenticity_token}"
+        "#{request.session_options[:key]}": "#{request.session_options[:id]}"
+      )
+    uploader.bind "FilesAdded", (up, files) ->
+      $.each files, (i, file) ->
+        $("#filelist").append "<div id=\"" + file.id + "\">" + "File: " + file.name + " (" + plupload.formatSize(file.size) + ") <b></b>" + "</div>"
+    uploader.bind "UploadProgress", (up, file) ->
+      $("#" + file.id + " b").html file.percent + "%"
+    $("#uploadfiles").click (e) ->
+      uploader.start()
+      e.preventDefault()
+    uploader.init()

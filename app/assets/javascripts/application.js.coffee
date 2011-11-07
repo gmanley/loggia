@@ -6,8 +6,9 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require jquery.form
-#= require jquery.remotipart
+#= require plupload
+#= require plupload.flash
+#= require plupload.html5
 #= require_tree .
 
 colorbox_init = ->

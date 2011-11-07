@@ -2,9 +2,8 @@
   %h3= @album.title
 %p Add Images:
 = render 'images/form'
-- unless @images.empty?
-  %ul.media-grid
-    = render :partial => 'images/image', :collection => @images
+%ul.media-grid
+  = render :partial => 'images/image', :collection => @images
 = paginate @images, :remote => true
 
 = link_to 'Edit', edit_category_album_path(@album)
