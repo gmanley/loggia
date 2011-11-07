@@ -26,4 +26,6 @@
     $("#uploadfiles").click (e) ->
       uploader.start()
       e.preventDefault()
+    uploader.bind 'FileUploaded', (up, file, response) ->
+      eval(response.response)
     uploader.init()

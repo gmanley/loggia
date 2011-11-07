@@ -12,9 +12,12 @@
 #= require_tree .
 
 colorbox_init = ->
-  $(".thumbnail").colorbox
-    maxWidth: "95%"
-    maxHeight: "95%"
+  $(".thumbnail").live 'click', (e) ->
+    e.preventDefault();
+    $.colorbox
+      href: @href
+      maxWidth: "95%"
+      maxHeight: "95%"
 
 $ ->
   colorbox_init()
