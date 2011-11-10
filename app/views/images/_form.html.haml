@@ -5,6 +5,11 @@
   %a#uploadfiles{:href => "#"} [Upload files]
 
 :coffeescript
+  colorbox_init = ->
+    $(".thumbnail").colorbox
+      maxWidth: "95%"
+      maxHeight: "95%"
+      rel: 'gallery'
   $ ->
     uploader = new plupload.Uploader(
       runtimes: "html5,flash"
@@ -28,4 +33,6 @@
       e.preventDefault()
     uploader.bind 'FileUploaded', (up, file, response) ->
       eval(response.response)
+      colorbox_init()
     uploader.init()
+    colorbox_init()

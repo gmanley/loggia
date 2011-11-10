@@ -10,14 +10,3 @@
 #= require plupload.flash
 #= require plupload.html5
 #= require_tree .
-
-colorbox_init = ->
-  $(".thumbnail").live 'click', (e) ->
-    e.preventDefault();
-    $.colorbox
-      href: @href
-      maxWidth: "95%"
-      maxHeight: "95%"
-
-$ ->
-  colorbox_init()
