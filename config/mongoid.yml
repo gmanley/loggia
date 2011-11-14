@@ -1,20 +1,21 @@
+shared: &shared_settings
+  identity_map_enabled: true
+
 development:
+  <<: *shared_settings
   host: localhost
   database: soshigal_rails_development
 
 test:
+  <<: *shared_settings
   host: localhost
   database: soshigal_rails_test
 
 # set these environment variables on your prod server
 production:
+  <<: *shared_settings
   host: <%= ENV['MONGOID_HOST'] %>
   port: <%= ENV['MONGOID_PORT'] %>
   username: <%= ENV['MONGOID_USERNAME'] %>
   password: <%= ENV['MONGOID_PASSWORD'] %>
   database: <%= ENV['MONGOID_DATABASE'] %>
-  # slaves:
-  #   - host: slave1.local
-  #     port: 27018
-  #   - host: slave2.local
-  #     port: 27019
