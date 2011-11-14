@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = Category.roots
+    @categories = Category.all
   end
 
   def new
@@ -17,9 +17,13 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.create(params[:category])
+    @category = Category.new(params[:category])
 
-    if @category.persisted?
+    if parent_category = Category.find_by_slug(params[:category_id])
+      @category.parent_category = parent_category
+    end
+
+    if @category.save
       redirect_to @category, notice: "Category was successfully created."
     else
       render action: "new"

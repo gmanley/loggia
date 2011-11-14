@@ -13,6 +13,7 @@ Soshigal::Application.routes.draw do
   match '/auth/failure' => 'sessions#failure'
 
   resources :categories do
+    resources :categories
     resources :albums do
       resources :images
     end

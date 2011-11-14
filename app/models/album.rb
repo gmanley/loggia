@@ -2,7 +2,6 @@ class Album
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
-  include Mongoid::Tree
 
   field :title, type: String
 

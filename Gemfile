@@ -15,7 +15,6 @@ gem 'jquery-rails'
 
 gem 'mongoid'
 gem 'bson_ext'
-gem 'mongoid-tree', :require => 'mongoid/tree'
 gem 'mongoid_slug'
 gem 'kaminari'
 
