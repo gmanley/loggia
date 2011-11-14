@@ -4,8 +4,15 @@ class Category
   include Mongoid::Tree
 
   field :title
-  field :thumbnail
 
   slug :title
   references_many :albums
+
+  def thumbnail_url
+    if albums.empty?
+      "/assets/placeholder.png"
+    else
+      albums.with_images.first.thumbnail_url
+    end
+  end
 end
