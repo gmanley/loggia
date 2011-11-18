@@ -3,6 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body.albums {
-  // Add the albums class to your body tag
-  // Then, place scoped styles here.
+  #upload_box {
+    border: 3px dashed #888888;
+    cursor: pointer;
+    height: 80px;
+    text-align: center;
+    width: 240px;
+
+    #upload_box_message_container {
+      display: inline-block;
+      margin-top: 18px;
+      width: 160px;
+    }
+
+    #upload_box_message {
+      color: #555555;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+  }
 }

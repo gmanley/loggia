@@ -1,8 +1,9 @@
 #uploader
-  #filelist
-  %br/
-  %a#pickfiles{:href => "#"} [Select files]
-  %a#uploadfiles{:href => "#"} [Upload files]
+  #upload_box
+    #upload_box_message_container
+      %p#upload_box_message Drag & Drop Files Here
+  %ul.unstyled#file_list
+  %button.btn.large.primary#start_upload{:data => {:'loading-text' => 'Uploading', :'complete-text' => 'Uploaded!'}} Upload
 
 :coffeescript
   colorbox_init = ->
@@ -11,6 +12,7 @@
       maxHeight: "95%"
       rel: 'gallery'
   $ ->
+    $('#start_upload').button()
     uploader = new plupload.Uploader(
       runtimes: "html5,flash"
       browse_button: "pickfiles"
@@ -18,6 +20,7 @@
       url: "#{url_for [@category, @album, Image.new]}.js"
       file_data_name: 'image[image]'
       flash_swf_url: "#{asset_path("plupload.flash.swf")}"
+      drop_element: 'upload_box'
       multipart: true
       multipart_params:
         "#{request_forgery_protection_token}": "#{form_authenticity_token}"
@@ -25,14 +28,17 @@
       )
     uploader.bind "FilesAdded", (up, files) ->
       $.each files, (i, file) ->
-        $("#filelist").append "<div id=\"" + file.id + "\">" + "File: " + file.name + " (" + plupload.formatSize(file.size) + ") <b></b>" + "</div>"
+        $("#file_list").append "<li id=\"" + file.id + "\">" + "File: " + file.name + " (" + plupload.formatSize(file.size) + ") <b></b>" + "</li>"
     uploader.bind "UploadProgress", (up, file) ->
       $("#" + file.id + " b").html file.percent + "%"
-    $("#uploadfiles").click (e) ->
+    $("#start_upload").click (e) ->
       uploader.start()
+      $(this).button('loading')
       e.preventDefault()
     uploader.bind 'FileUploaded', (up, file, response) ->
       eval(response.response)
       colorbox_init()
+    uploader.bind 'UploadComplete', (up, files) ->
+      $('#start_upload').button('complete')
     uploader.init()
     colorbox_init()

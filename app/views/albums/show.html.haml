@@ -4,7 +4,7 @@
 = render 'images/form'
 %ul.media-grid
   = render :partial => 'images/image', :collection => @images
-= paginate @images, :remote => true
+= paginate @images
 
 = link_to 'Edit', edit_category_album_path(@album)
 \|
