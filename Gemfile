@@ -16,7 +16,7 @@ gem 'jquery-rails'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'mongoid_slug'
-gem 'kaminari'
+gem 'kaminari', :git => 'git://github.com/amatsuda/kaminari.git'
 
 gem 'oa-oauth'
 
