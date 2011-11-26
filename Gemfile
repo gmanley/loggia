@@ -18,15 +18,25 @@ gem 'bson_ext'
 gem 'mongoid_slug'
 gem 'kaminari', :git => 'git://github.com/amatsuda/kaminari.git'
 
-gem 'oa-oauth'
+gem 'devise'
+gem 'cancan'
 
 gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'rack-gridfs', :git => 'git://github.com/skinandbones/rack-gridfs.git', :require => 'rack/gridfs'
 gem 'mini_magick'
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 group :development do
   gem 'pry', :git => 'git://github.com/pry/pry.git'
   gem 'itslog'
   gem 'rails-dev-tweaks'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
 end
