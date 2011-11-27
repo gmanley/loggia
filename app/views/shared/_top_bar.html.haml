@@ -4,8 +4,8 @@
     %ul.nav
       %li.active
         %a{href: '/'} Home
-    %ul.nav.secondary-nav
-      - if user_signed_in?
+    - if user_signed_in?
+      %ul.nav.secondary-nav
         %li.dropdown{data: {dropdown: 'dropdown'}}
           %a.dropdown-toggle{href: '#'}=current_user.email
           %ul.dropdown-menu
@@ -14,10 +14,10 @@
             %li.divider
             %li
               = link_to 'Logout', destroy_user_session_path, :method => 'delete'
-      - else
-        = form_for(user_session_path, :remote => true, html: {class: 'pull-right', id: 'login'}) do |f|
-          = f.email_field :email, placeholder: 'Email', :class => 'input-small'
-          = f.password_field :password, placeholder: 'Password', :class => 'input-small'
-          = f.hidden_field :remember_me, value: true
-          %button.btn.primary{type: 'submit'} Sign In
-          %a#register-link.btn{href: new_user_registration_path} Register
+    - elsif !controller_path.start_with?('devise')
+      = form_for('user', :url => user_session_path, html: {class: 'pull-right', id: 'login'}) do |f|
+        = f.email_field :email, placeholder: 'Email', :class => 'input-small'
+        = f.password_field :password, placeholder: 'Password', :class => 'input-small'
+        = f.hidden_field :remember_me, value: 1
+        %button.btn.primary{type: 'submit'} Sign in
+        %a#register-link.btn{href: new_user_registration_path} Sign up
