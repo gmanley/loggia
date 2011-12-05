@@ -1,3 +1,22 @@
+:coffeescript
+  $ ->
+    $('.page-header h3').editable "#{url_for([@category, @album])}",
+      method: 'PUT'
+      indicator: 'Saving...'
+      tooltip: 'Click to edit...'
+      callback: (value, settings) ->
+        $(self).html(value)
+      ajaxoptions:
+        dataType: 'json'
+      submitdata: (value, settings) ->
+        console.log(this)
+        console.log(value)
+        console.log(settings)
+        "#{request_forgery_protection_token}": "#{form_authenticity_token}"
+        "#{request.session_options[:key]}": "#{request.session_options[:id]}"
+        album:
+          title: value
+
 .page-header
   %h3= @album.title
 %p Add Images:
@@ -6,6 +25,8 @@
   = render :partial => 'images/image', :collection => @images
 = paginate @images
 
-= link_to 'Edit', edit_category_album_path(@album)
+= link_to 'Edit', edit_category_album_path(@category, @album)
 \|
-= link_to 'Destroy', category_album_path(@album), :confirm => 'Are you sure?', :method => :delete
+= link_to 'Destroy', category_album_path(@category, @album), :confirm => 'Are you sure?', :method => :delete
+
+

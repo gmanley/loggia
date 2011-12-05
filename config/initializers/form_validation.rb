@@ -2,7 +2,6 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
   if html_tag.start_with?('<label')
     %(<div class=\"error clearfix\">#{html_tag}).html_safe
   else
-
     if html_tag.include?('class=')
       html_tag = html_tag.gsub('class="', 'class="error ')
     else

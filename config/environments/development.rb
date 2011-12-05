@@ -29,4 +29,6 @@ Soshigal::Application.configure do
   config.assets.debug = true
 
   config.dev_tweaks.log_autoload_notice = false
+
+  config.action_mailer.default_url_options = { :host => "soshigal.dev" }
 end

@@ -1,8 +1,5 @@
 class AlbumsController < ApplicationController
-
-  def index
-    @albums = Album.all
-  end
+  respond_to :html, :js, :json
 
   def show
     @category = Category.find_by_slug(params[:category_id])
@@ -11,11 +8,13 @@ class AlbumsController < ApplicationController
   end
 
   def new
+    @category = Category.find_by_slug(params[:category_id])
     @album = current_user.albums.new
   end
 
   def edit
-    @album = current_user.albums.find_by_slug(params[:id])
+    @category = Category.find_by_slug(params[:category_id])
+    @album = @category.albums.find_by_slug(params[:id])
   end
 
   def create
@@ -30,12 +29,17 @@ class AlbumsController < ApplicationController
   end
 
   def update
+    @category = Category.find_by_slug(params[:category_id])
     @album = @category.albums.find_by_slug(params[:id])
 
-    if @album.update_attributes(params[:album])
-      redirect_to category_albums_url, notice: "Album was successfully updated."
-    else
-      render action: "edit"
+    respond_with(@album) do |format|
+      if @album.update_attributes(params[:album])
+        format.html { redirect_to category_albums_url, notice: "Album was successfully updated." }
+        format.json { render text: @album.title }
+      else
+        format.html { render action: "edit", notice: "There was an issue updating the album." }
+        format.json { render json: { sucess: false, errors: @album.errors.full_messages } }
+      end
     end
   end
 

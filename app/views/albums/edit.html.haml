@@ -1,9 +1,7 @@
 %h1 Editing album
 
-= form_for(@album) do |f|
+= form_for([@category, @album]) do |f|
   = f.label :title
   = f.text_field :title
   %br/
   = f.submit "Save"
-
-= link_to 'Show', @album
