@@ -31,7 +31,11 @@ module Soshigal
     # Don't initilize the app when precompiling assets
     config.assets.initialize_on_precompile = false
 
-    config.generators.orm = :mongoid
+    config.generators do |g|
+      g.orm                 :mongoid
+      g.test_framework      :rspec, :fixture => true
+      g.fixture_replacement :fabrication
+    end
 
     config.middleware.insert_after Rack::Runtime, Rack::GridFS, :prefix => 'uploads', :lookup => :path, :database => "soshigal_rails_#{Rails.env}"
   end

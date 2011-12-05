@@ -1,21 +1,28 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
+require 'spork'
 
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Spork.prefork do
+  ENV["RAILS_ENV"] ||= 'test'
+  require File.expand_path("../../config/environment", __FILE__)
+  require 'rspec/rails'
 
-RSpec.configure do |config|
-  config.mock_with :rspec
+  RSpec.configure do |config|
+    config.mock_with :rspec
 
-  # Clean up the database
-  require 'database_cleaner'
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.orm = "mongoid"
-  end
+    config.include Mongoid::Matchers
 
-  config.before(:each) do
-    DatabaseCleaner.clean
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.orm = "mongoid"
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.clean
+    end
   end
 end
+
+Spork.each_run do
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  Fabrication.clear_definitions
+end
+

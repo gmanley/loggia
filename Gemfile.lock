@@ -6,6 +6,15 @@ GIT
       railties (>= 3.0.0)
 
 GIT
+  remote: git://github.com/evansagge/mongoid-rspec.git
+  revision: c6e4ca867788fcb4678e46dec64961e8835780e4
+  specs:
+    mongoid-rspec (1.4.4)
+      mongoid (~> 2.0)
+      rake
+      rspec (~> 2)
+
+GIT
   remote: git://github.com/jnicklas/carrierwave.git
   revision: e9260c93f3b92ccf686e0cd43203619b26b9ef8c
   specs:
@@ -103,6 +112,7 @@ GEM
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    fabrication (1.2.0)
     ffi (1.0.11)
     haml (3.1.4)
     haml-rails (0.3.4)
@@ -197,6 +207,7 @@ GEM
       rubyzip
     sexp_processor (3.0.8)
     slop (2.2.0)
+    spork (0.9.0.rc9)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -231,12 +242,14 @@ DEPENDENCIES
   coffeebeans
   database_cleaner
   devise
+  fabrication
   haml-rails
   itslog
   jquery-rails
   kaminari!
   mini_magick
   mongoid
+  mongoid-rspec!
   mongoid_slug
   pry!
   rack-gridfs!
@@ -244,4 +257,5 @@ DEPENDENCIES
   rails-dev-tweaks
   rspec-rails
   sass-rails (~> 3.1)
+  spork (~> 0.9.0.rc)
   uglifier

@@ -26,10 +26,6 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'rack-gridfs', :git => 'git://github.com/skinandbones/rack-gridfs.git', :require => 'rack/gridfs'
 gem 'mini_magick'
 
-group :development, :test do
-  gem 'rspec-rails'
-end
-
 group :development do
   gem 'pry', :git => 'git://github.com/pry/pry.git'
   gem 'itslog'
@@ -39,4 +35,11 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'mongoid-rspec', :git => 'git://github.com/evansagge/mongoid-rspec.git'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'fabrication'
+  gem 'spork', '~> 0.9.0.rc'
 end
