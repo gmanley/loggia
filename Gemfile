@@ -41,5 +41,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
+  gem 'ffaker'
   gem 'spork', '~> 0.9.0.rc'
 end
