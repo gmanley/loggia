@@ -10,9 +10,8 @@
   %body{:class => controller.controller_name}
     .topbar
       = render 'shared/top_bar'
-    - flash.each do |name, msg|
-      = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
     .container
       .content
+        - flash_messages
         = yield
         = render 'shared/footer'
