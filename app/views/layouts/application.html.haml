@@ -15,3 +15,6 @@
         - flash_messages
         = yield
         = render 'shared/footer'
+        :javascript
+          authenticity_token = "#{form_authenticity_token}";
+          session_token = "#{request.session_options[:id]}";
