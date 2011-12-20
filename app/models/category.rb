@@ -4,7 +4,8 @@ class Category
   include Mongoid::Slug
 
   field :title, type: String
-  field :previous_slugs, :type => Array
+  field :description, type: String
+  field :previous_slugs, type: Array
 
   slug :title
   references_many :albums
@@ -18,7 +19,7 @@ class Category
   end
 
   def thumbnail_url
-    if albums.empty?
+    if albums.empty? or albums.with_images.empty?
       "/assets/placeholder.png"
     else
       albums.with_images.first.thumbnail_url

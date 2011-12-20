@@ -1,0 +1,6 @@
+ipgallery:
+  user: root
+  password:
+  adapter: mysql
+  host: localhost
+  database: soshigal_legacy

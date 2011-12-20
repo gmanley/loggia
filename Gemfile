@@ -44,3 +44,9 @@ group :development, :test do
   gem 'ffaker'
   gem 'spork', '~> 0.9.0.rc'
 end
+
+group :importer do
+  gem 'dm-core', :require => false
+  gem 'dm-mysql-adapter', :require => false
+  gem 'progressbar', :require => false
+end

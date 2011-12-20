@@ -4,6 +4,7 @@ class Album
   include Mongoid::Slug
 
   field :title, type: String
+  field :description, type: String
   field :previous_slugs, type: Array
 
   slug :title
