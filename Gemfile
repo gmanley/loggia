@@ -1,16 +1,17 @@
-source 'http://rubygems.org'
+source :rubygems
 
-gem 'rails', '~> 3.1'
+gem 'rails', '~> 3.2.0.rc'
 
 gem 'haml-rails'
 gem 'coffee-filter'
 gem 'coffeebeans'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.1'
-  gem 'coffee-rails', '~> 3.1'
+  gem 'sass-rails',   '~> 3.2'
+  gem 'coffee-rails', '~> 3.2'
   gem 'uglifier'
 end
+
 gem 'jquery-rails'
 
 gem 'mongoid'
@@ -29,7 +30,6 @@ gem 'mini_magick'
 group :development do
   gem 'pry', :git => 'git://github.com/pry/pry.git'
   gem 'itslog'
-  gem 'rails-dev-tweaks'
 end
 
 group :test do

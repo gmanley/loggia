@@ -28,7 +28,5 @@ Soshigal::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.dev_tweaks.log_autoload_notice = false
-
   config.action_mailer.default_url_options = { :host => "soshigal.dev" }
 end
