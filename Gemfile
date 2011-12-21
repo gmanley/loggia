@@ -46,7 +46,8 @@ group :development, :test do
 end
 
 group :importer do
-  gem 'dm-core', :require => false
-  gem 'dm-mysql-adapter', :require => false
-  gem 'progressbar', :require => false
+  gem 'dm-core', :git => 'git://github.com/gmanley/dm-core.git'
+  gem 'dm-do-adapter', :git => 'git://github.com/datamapper/dm-do-adapter.git'
+  gem 'dm-mysql-adapter', :git => 'git://github.com/datamapper/dm-mysql-adapter.git'
+  gem 'progressbar'
 end
