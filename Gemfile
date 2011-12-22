@@ -28,7 +28,6 @@ gem 'rack-gridfs', :git => 'git://github.com/skinandbones/rack-gridfs.git', :req
 gem 'mini_magick'
 
 group :development do
-  gem 'pry', :git => 'git://github.com/pry/pry.git'
   gem 'itslog'
 end
 
@@ -45,9 +44,10 @@ group :development, :test do
   gem 'spork', '~> 0.9.0.rc'
 end
 
-group :importer do
-  gem 'dm-core', :git => 'git://github.com/gmanley/dm-core.git'
-  gem 'dm-do-adapter', :git => 'git://github.com/datamapper/dm-do-adapter.git'
-  gem 'dm-mysql-adapter', :git => 'git://github.com/datamapper/dm-mysql-adapter.git'
-  gem 'progressbar'
-end
+# Unccomment this and run bundle if you need to run the importer.
+# Make sure to comment it again and bundle after your done or you will run into issues.
+# group :importer do
+#   gem 'dm-core'
+#   gem 'dm-mysql-adapter'
+#   gem 'progressbar'
+# end
