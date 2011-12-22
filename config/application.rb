@@ -36,7 +36,5 @@ module Soshigal
       g.test_framework      :rspec, :fixture => true
       g.fixture_replacement :fabrication
     end
-
-    config.middleware.insert_after Rack::Runtime, Rack::GridFS, :prefix => 'uploads', :lookup => :path, :database => "soshigal_rails_#{Rails.env}"
   end
 end

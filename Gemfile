@@ -14,7 +14,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'mongoid'
+gem 'mongoid', :git => 'git://github.com/mongoid/mongoid.git'
 gem 'bson_ext'
 gem 'mongoid_slug'
 gem 'kaminari', :git => 'git://github.com/amatsuda/kaminari.git'
@@ -24,8 +24,8 @@ gem 'cancan'
 
 gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-gem 'rack-gridfs', :git => 'git://github.com/skinandbones/rack-gridfs.git', :require => 'rack/gridfs'
 gem 'mini_magick'
+gem 'fog'
 
 group :development do
   gem 'itslog'
