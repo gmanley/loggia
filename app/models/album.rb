@@ -6,6 +6,8 @@ class Album
   field :title, type: String
   field :description, type: String
   field :previous_slugs, type: Array
+  field :legacy_id, type: Integer
+  index :legacy_id, unique: true
 
   slug :title
 

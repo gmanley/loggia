@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: aa99b78c1bdd71c637da10ffba53c0d9affbb8a0
+  revision: 17ff52788323fce598597cdeffa121fc3d9fd965
   specs:
-    kaminari (0.12.4)
+    kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: feb0a15a04a7317a9344b5fceb6cd61f08a37cc6
+  revision: 09789220fff7bcfc9c52a037ceb3c5657f577e7e
   specs:
     mongoid (2.4.0)
       activemodel (~> 3.1)
@@ -129,7 +129,7 @@ GEM
     hike (1.2.1)
     i18n (0.6.0)
     itslog (0.6.1)
-    journey (1.0.0.rc1)
+    journey (1.0.0.rc3)
     jquery-rails (2.0.0)
       railties (>= 3.2.0.beta, < 5.0)
       thor (~> 0.14)
@@ -194,7 +194,7 @@ GEM
     ruby-hmac (0.4.0)
     rubyzip (0.9.5)
     sass (3.1.12)
-    sass-rails (3.2.1)
+    sass-rails (3.2.2)
       railties (~> 3.2.0.beta)
       sass (>= 3.1.10)
       tilt (~> 1.3)

@@ -16,7 +16,8 @@ module IPGallery
     property :parent, Integer
 
     def attr_to_be_imported
-      self.attributes.select{|k,v| [:title, :description].include?(k)}.merge(:legacy_id => self.id)
+      attributes = self.attributes.extract!(:title, :description)
+      attributes.each {|key, value| attributes[key] = CGI.unescape_html(value)}.merge(:legacy_id => self.id)
     end
   end
 
@@ -34,7 +35,8 @@ module IPGallery
     property :category_id, Integer
 
     def attr_to_be_imported
-      self.attributes.select{|k,v| [:title, :description].include?(k)}.merge(:legacy_id => self.id)
+      attributes = self.attributes.extract!(:title, :description)
+      attributes.each {|key, value| attributes[key] = CGI.unescape_html(value)}.merge(:legacy_id => self.id)
     end
   end
 
@@ -54,7 +56,7 @@ module IPGallery
 
     def file_path(upload_root)
       path = File.join(upload_root, directory, file_name)
-      File.file?(path) && %w(.jpg .jpeg .gif .png).include?(File.extname) ? path : nil
+      File.file?(path) && %w(.jpg .jpeg .gif .png).include?(File.extname(path)) ? path : nil
     end
   end
 
@@ -74,7 +76,6 @@ module IPGallery
       puts 'Import Successful!'
     rescue Exception => e
       Category.destroy_all(:conditions => {:legacy_id.exists => true})
-      Album.destroy_all(:conditions => {:legacy_id.exists => true})
       raise e
     end
 
@@ -83,11 +84,12 @@ module IPGallery
       categories = Category.where(:legacy_id.exists => true)
       progress_bar = ProgressBar.new('Category Import', categories.count)
       categories.each do |category|
+        category.send(:generate_slug!)
         legacy_category = LegacyCategory.get(category.legacy_id)
         unless legacy_category.parent.eql?(0)
-          category.parent_category = Category.where(:legacy_id => legacy_category.id).first
-          category.save
+          category.parent_category = Category.where(:legacy_id => legacy_category.parent).first
         end
+        category.save
         progress_bar.inc
       end
       progress_bar.finish
@@ -98,26 +100,30 @@ module IPGallery
       albums = Album.where(:legacy_id.exists => true)
       progress_bar = ProgressBar.new('Album Import', albums.count)
       albums.each do |album|
+        album.send(:generate_slug!)
         legacy_album = LegacyAlbum.get(album.legacy_id)
         unless legacy_album.category_id.eql?(0)
           album.category = Category.where(:legacy_id => legacy_album.category_id).first
-          album.save
         end
+        album.save
         progress_bar.inc
       end
       progress_bar.finish
     end
 
     def import_images
-      legacy_images = LegacyImage.all
-      progress_bar = ProgressBar.new('Image Import', legacy_images.count)
-      legacy_images.each do |legacy_image|
-        image = Image.new
+      progress_bar = ProgressBar.new('Image Import', LegacyImage.count(:album_id.not => 0))
+      LegacyImage.all(:album_id.not => 0).each do |legacy_image|
         if image_file_path = legacy_image.file_path(@upload_root)
           if image_album = Album.where(:legacy_id => legacy_image.album_id).first
-            image.album = image_album
-            image.image = File.open(image_file_path)
-            image.save
+            begin
+              image = Image.new
+              image.album = image_album
+              image.image = File.open(image_file_path)
+              image.save
+            rescue Exception => e
+              puts e.message
+            end
           end
         end
         progress_bar.inc

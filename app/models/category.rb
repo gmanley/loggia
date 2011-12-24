@@ -6,9 +6,11 @@ class Category
   field :title, type: String
   field :description, type: String
   field :previous_slugs, type: Array
+  field :legacy_id, type: Integer
+  index :legacy_id, unique: true
 
   slug :title
-  references_many :albums
+  references_many :albums, :dependent => :destroy
   references_many :child_categories, :class_name => self.name, :foreign_key => :parent_category_id, :inverse_of => :parent_category
   referenced_in :parent_category, :class_name => self.name, :inverse_of => :child_categories, :index => true
 
