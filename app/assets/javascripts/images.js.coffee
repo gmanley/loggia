@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 colorbox_init = ->
-  $(".thumbnail").colorbox
+  $(".colorbox").colorbox
     maxWidth: "95%"
     maxHeight: "95%"
     rel: 'gallery'
