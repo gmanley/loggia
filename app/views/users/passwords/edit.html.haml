@@ -1,4 +1,4 @@
-= form_for('user', :url => edit_user_password_path, html: {class: 'form-stacked'}) do |f|
+= form_for('user', url: edit_user_password_path, html: {class: 'form-stacked'}) do |f|
   %fieldset
     %legend Change password
     = f.hidden_field :reset_password_token
@@ -10,5 +10,5 @@
       = f.label :password_confirmation, 'Confirm new password'
       .input
         = f.password_field :password_confirmation
-    = f.submit 'Change password', :class => 'btn primary'
-  = render :partial => "users/shared/links"
+    = f.submit 'Change password', class: 'btn primary'
+  = render partial: 'users/shared/links'

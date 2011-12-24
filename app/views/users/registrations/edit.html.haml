@@ -1,4 +1,4 @@
-= form_for('user', :url => edit_user_registration_path, html: {class: 'form-stacked'}) do |f|
+= form_for('user', url: edit_user_registration_path, html: {class: 'form-stacked'}) do |f|
   %fieldset
     %legend Edit user
     .clearfix
@@ -19,5 +19,5 @@
       .input
         = f.password_field :current_password
         %span.help-inline (we need your current password to confirm your changes)
-    = f.submit 'Update', :class => 'btn primary'
-= link_to "Back", :back
+    = f.submit 'Update', class: 'btn primary'
+= link_to 'Back', :back

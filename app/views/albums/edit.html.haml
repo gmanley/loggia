@@ -1,7 +1,6 @@
 %h1 Editing album
-
 = form_for([@category, @album]) do |f|
   = f.label :title
   = f.text_field :title
   %br/
-  = f.submit "Save"
+  = f.submit 'Save'

@@ -8,14 +8,15 @@ class Category
   field :previous_slugs, type: Array
 
   slug :title
-  references_many :albums, :dependent => :destroy
-  references_many :child_categories, :class_name => self.name, :foreign_key => :parent_category_id, :inverse_of => :parent_category
-  referenced_in :parent_category, :class_name => self.name, :inverse_of => :child_categories, :index => true
+
+  references_many :albums, dependent: :destroy
+  references_many :child_categories, class_name: self.name, foreign_key: :parent_category_id, inverse_of: :parent_category
+  referenced_in :parent_category, class_name: self.name, inverse_of: :child_categories, index: true
 
   scope :roots, where(parent_category_id: nil)
 
   def self.find_by_slug(slug)
-    any_of({:slug => slug}, {:previous_slugs.in => slug.to_a}).first
+    any_of({slug: slug}, {:previous_slugs.in => slug.to_a}).first
   end
 
   def thumbnail_url

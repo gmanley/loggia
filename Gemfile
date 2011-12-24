@@ -14,16 +14,16 @@ end
 
 gem 'jquery-rails'
 
-gem 'mongoid', :git => 'git://github.com/mongoid/mongoid.git'
+gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 gem 'bson_ext'
 gem 'mongoid_slug'
-gem 'kaminari', :git => 'git://github.com/amatsuda/kaminari.git'
+gem 'kaminari', git: 'git://github.com/amatsuda/kaminari.git'
 
 gem 'devise'
 gem 'cancan'
 
-gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'mini_magick'
 gem 'fog'
 
@@ -34,7 +34,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'mongoid-rspec', :git => 'git://github.com/evansagge/mongoid-rspec.git'
+  gem 'mongoid-rspec', git: 'git://github.com/evansagge/mongoid-rspec.git'
 end
 
 group :development, :test do

@@ -1,34 +1,34 @@
 %h2.page-header= @category.title
 = link_to 'Edit', edit_category_path(@category)
 \|
-= link_to 'Destroy', @category, :confirm => 'Are you sure?', :method => :delete
+= link_to 'Destroy', @category, confirm: 'Are you sure?', method: :delete
 
 %hr/
 
 %h3.page-header Subcategories
 %ul.media-grid
-  = render :partial => 'categories/category', :collection => @category.child_categories
+  = render partial: 'categories/category', collection: @category.child_categories
 
 %hr/
 
 %h3.page-header Albums
 %ul.media-grid
-  = render :partial => 'albums/album', :collection => @category.albums
+  = render partial: 'albums/album', collection: @category.albums
 
 %hr/
 
-= form_for [@category, Category.new], :html => {:class => 'new_category form-stacked'} do |f|
+= form_for [@category, Category.new], html: {class: 'new_category form-stacked'} do |f|
   %fieldset
     %legend New Subcategory
     = f.label :title
     = f.text_field :title
-    = f.submit "Add"
+    = f.submit 'Add'
 
 %hr/
 
-= form_for [@category, Album.new], :html => {:class => 'new_album form-stacked'} do |f|
+= form_for [@category, Album.new], html: {class: 'new_album form-stacked'} do |f|
   %fieldset
     %legend New Sub-Album:
     = f.label :title
     = f.text_field :title
-    = f.submit "Add"
+    = f.submit 'Add'

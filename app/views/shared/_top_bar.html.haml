@@ -13,11 +13,11 @@
               = link_to 'My Profile', edit_user_registration_path
             %li.divider
             %li
-              = link_to 'Logout', destroy_user_session_path, :method => 'delete'
+              = link_to 'Logout', destroy_user_session_path, method: 'delete'
     - elsif !controller_path.start_with?('devise')
-      = form_for('user', :url => user_session_path, html: {class: 'pull-right', id: 'login'}) do |f|
-        = f.email_field :email, placeholder: 'Email', :class => 'input-small'
-        = f.password_field :password, placeholder: 'Password', :class => 'input-small'
+      = form_for('user', url: user_session_path, html: {class: 'pull-right', id: 'login'}) do |f|
+        = f.email_field :email, placeholder: 'Email', class: 'input-small'
+        = f.password_field :password, placeholder: 'Password', class: 'input-small'
         = f.hidden_field :remember_me, value: 1
         %button.btn.primary{type: 'submit'} Sign in
         %a#register-link.btn{href: new_user_registration_path} Sign up

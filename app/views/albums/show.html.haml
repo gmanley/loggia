@@ -3,11 +3,11 @@
 %p Add Images:
 = render 'images/form'
 %ul.media-grid
-  = render :partial => 'images/image', :collection => @images
+  = render partial: 'images/image', collection: @images
 = paginate @images
 
 = link_to 'Edit', edit_category_album_path(@category, @album)
 \|
-= link_to 'Destroy', category_album_path(@category, @album), :confirm => 'Are you sure?', :method => :delete
+= link_to 'Destroy', category_album_path(@category, @album), confirm: 'Are you sure?', method: :delete
 
 

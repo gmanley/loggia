@@ -5,19 +5,19 @@ module IPGallery
 
     storage_names[:default] = "gallery_categories"
 
-    has n, :albums, 'LegacyAlbum', :child_key => [ :category_id ]
+    has n, :albums, 'LegacyAlbum', child_key: [:category_id]
     has n, :images, 'LegacyImage'
-    has n, :child_categories, self.name, :child_key => [ :parent ]
-    belongs_to :parent_category, self.name, :child_key => [ :parent ]
+    has n, :child_categories, self.name, child_key: [:parent]
+    belongs_to :parent_category, self.name, child_key: [:parent]
 
     property :id, Serial
-    property :title, String, :field => 'name'
+    property :title, String, field: 'name'
     property :description, String
     property :parent, Integer
 
     def attr_to_be_imported
       attributes = self.attributes.extract!(:title, :description)
-      attributes.each {|key, value| attributes[key] = CGI.unescape_html(value)}.merge(:legacy_id => self.id)
+      attributes.each {|key, value| attributes[key] = CGI.unescape_html(value)}.merge(legacy_id: self.id)
     end
   end
 
@@ -30,13 +30,13 @@ module IPGallery
     belongs_to :category, 'LegacyCategory'
 
     property :id, Serial
-    property :title, String, :field => 'name'
+    property :title, String, field: 'name'
     property :description, String
     property :category_id, Integer
 
     def attr_to_be_imported
       attributes = self.attributes.extract!(:title, :description)
-      attributes.each {|key, value| attributes[key] = CGI.unescape_html(value)}.merge(:legacy_id => self.id)
+      attributes.each {|key, value| attributes[key] = CGI.unescape_html(value)}.merge(legacy_id: self.id)
     end
   end
 
@@ -52,7 +52,7 @@ module IPGallery
     property :category_id, Integer
     property :album_id, Integer
     property :directory, String
-    property :file_name, String, :field => 'masked_file_name'
+    property :file_name, String, field: 'masked_file_name'
 
     def file_path(upload_root)
       path = File.join(upload_root, directory, file_name)
@@ -75,7 +75,7 @@ module IPGallery
       import_images
       puts 'Import Successful!'
     rescue Exception => e
-      Category.destroy_all(:conditions => {:legacy_id.exists => true})
+      Category.destroy_all(conditions: {:legacy_id.exists => true})
       raise e
     end
 
@@ -87,7 +87,7 @@ module IPGallery
         category.send(:generate_slug!)
         legacy_category = LegacyCategory.get(category.legacy_id)
         unless legacy_category.parent.eql?(0)
-          category.parent_category = Category.where(:legacy_id => legacy_category.parent).first
+          category.parent_category = Category.where(legacy_id: legacy_category.parent).first
         end
         category.save
         progress_bar.inc
@@ -103,7 +103,7 @@ module IPGallery
         album.send(:generate_slug!)
         legacy_album = LegacyAlbum.get(album.legacy_id)
         unless legacy_album.category_id.eql?(0)
-          album.category = Category.where(:legacy_id => legacy_album.category_id).first
+          album.category = Category.where(legacy_id: legacy_album.category_id).first
         end
         album.save
         progress_bar.inc
@@ -115,7 +115,7 @@ module IPGallery
       progress_bar = ProgressBar.new('Image Import', LegacyImage.count(:album_id.not => 0))
       LegacyImage.all(:album_id.not => 0).each do |legacy_image|
         if image_file_path = legacy_image.file_path(@upload_root)
-          if image_album = Album.where(:legacy_id => legacy_image.album_id).first
+          if image_album = Album.where(legacy_id: legacy_image.album_id).first
             begin
               image = Image.new
               image.album = image_album

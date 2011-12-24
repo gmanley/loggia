@@ -1,4 +1,4 @@
-= form_for('user', :url => user_session_path, html: {class: 'form-stacked'}) do |f|
+= form_for('user', url: user_session_path, html: {class: 'form-stacked'}) do |f|
   %fieldset
     %legend Sign in
     .clearfix
@@ -13,5 +13,5 @@
       %label
         = f.check_box :remember_me
         %span Remember me
-    = f.submit 'Sign In', :class => 'btn primary'
-  = render :partial => "users/shared/links"
+    = f.submit 'Sign In', class: 'btn primary'
+  = render partial: 'users/shared/links'

@@ -5,7 +5,7 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
 
-Bundler.require(*Rails.groups(:assets => %w(development test))) if defined?(Bundler)
+Bundler.require(*Rails.groups(assets: %w(development test))) if defined?(Bundler)
 
 module Soshigal
   class Application < Rails::Application
@@ -33,7 +33,7 @@ module Soshigal
 
     config.generators do |g|
       g.orm                 :mongoid
-      g.test_framework      :rspec, :fixture => true
+      g.test_framework      :rspec, fixture: true
       g.fixture_replacement :fabrication
     end
   end

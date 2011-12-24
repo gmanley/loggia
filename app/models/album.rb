@@ -14,7 +14,7 @@ class Album
   embeds_many :images
 
   def self.find_by_slug(slug)
-    any_of({:slug => slug}, {:previous_slugs.in => slug.to_a}).first
+    any_of({slug: slug}, {:previous_slugs.in => slug.to_a}).first
   end
 
   def self.with_images

@@ -2,12 +2,12 @@
 %html
   %head
     %title Soshi Gallery
-    = stylesheet_link_tag "application"
+    = stylesheet_link_tag 'application'
     /[if lt IE 9]
-      = stylesheet_link_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
-    = javascript_include_tag "application"
+      = stylesheet_link_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body{:class => controller.controller_name}
+  %body{class: controller.controller_name}
     .topbar
       = render 'shared/top_bar'
     .container
@@ -15,6 +15,6 @@
         - flash_messages
         = yield
         = render 'shared/footer'
-        :javascript
-          authenticity_token = "#{form_authenticity_token}";
-          session_token = "#{request.session_options[:id]}";
+    :javascript
+      authenticity_token = "#{form_authenticity_token}";
+      session_token = "#{request.session_options[:id]}";

@@ -1,9 +1,9 @@
 %ul.unstyled
   - if controller_name != 'sessions'
-    %li= link_to("Sign in", new_user_session_path)
+    %li= link_to('Sign in', new_user_session_path)
   - if controller_name != 'registrations'
-    %li= link_to("Sign up", new_user_registration_path)
+    %li= link_to('Sign up', new_user_registration_path)
   - if controller_name != 'passwords'
-    %li= link_to("Forgot your password?", new_user_password_path)
+    %li= link_to('Forgot your password?', new_user_password_path)
   - if controller_name != 'confirmations'
     %li= link_to( "Didn't receive confirmation instructions?", new_user_confirmation_path)
