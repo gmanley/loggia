@@ -6,6 +6,9 @@ class Album
   field :title, type: String
   field :description, type: String
   field :previous_slugs, type: Array
+  field :image_count, type: Integer, default: 0
+
+  index :image_count
 
   slug :title
 
@@ -13,20 +16,14 @@ class Album
   referenced_in :category
   embeds_many :images
 
+  scope :with_images, where(:image_count.gt => 0)
+
   def self.find_by_slug(slug)
     any_of({slug: slug}, {:previous_slugs.in => slug.to_a}).first
   end
 
-  def self.with_images
-    all.select { |album| album.images.exists? }
-  end
-
   def thumbnail_url
-    if images.empty?
-      "/assets/placeholder.png"
-    else
-      images.first.image_url(:thumb)
-    end
+    images.empty? ? '/assets/placeholder.png' : images.sample.image_url(:thumb)
   end
 
   private

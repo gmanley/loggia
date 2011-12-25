@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find_by_slug(params[:id])
     if @category.destroy
-      redirect_to categories_url, notice: "Category was succesfully destroyed."
+      redirect_to root_url, notice: "Category was succesfully destroyed."
     else
       redirect_to @category
     end

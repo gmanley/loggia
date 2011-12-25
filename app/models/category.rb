@@ -21,9 +21,13 @@ class Category
 
   def thumbnail_url
     if albums.empty? or albums.with_images.empty?
-      "/assets/placeholder.png"
+      if child_categories.empty? or child_categories.all? {|c| c.albums.empty? or c.albums.with_images.empty? }
+        "/assets/placeholder.png"
+      else
+        child_categories.select { |cc| cc.albums.with_images.count > 0 }.sample.thumbnail_url
+      end
     else
-      albums.with_images.first.thumbnail_url
+     albums.with_images.sample.thumbnail_url
     end
   end
 
