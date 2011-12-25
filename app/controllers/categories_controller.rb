@@ -2,18 +2,22 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    authorize! :new, @category
   end
 
   def show
     @category = Category.find_by_slug(params[:id])
+    authorize! :show, @categroy
   end
 
   def edit
     @category = Category.find_by_slug(params[:id])
+    authorize! :edit, @category
   end
 
   def create
     @category = Category.new(params[:category])
+    authorize! :create, @category
 
     if parent_category = Category.find_by_slug(params[:category_id])
       @category.parent_category = parent_category
@@ -28,6 +32,7 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find_by_slug(params[:id])
+    authorize! :update, @category
 
     if @category.update_attributes(params[:category])
       redirect_to @category, notice: "Category was successfully updated."
@@ -38,6 +43,8 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find_by_slug(params[:id])
+    authorize! :destroy, @category
+
     if @category.destroy
       redirect_to root_url, notice: "Category was succesfully destroyed."
     else

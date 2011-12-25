@@ -1,13 +1,11 @@
 .page-header
   %h3= @album.title
-%p Add Images:
-= render 'images/form'
+- if can? :create, Image
+  %p Add Images:
+  = render 'images/form'
 %ul.media-grid
   = render partial: 'images/image', collection: @images
 = paginate @images
 
-= link_to 'Edit', edit_category_album_path(@category, @album)
-\|
-= link_to 'Destroy', category_album_path(@category, @album), confirm: 'Are you sure?', method: :delete
-
-
+= link_to('Edit |', edit_category_album_path(@category, @album)) if can? :edit, Album
+= link_to('Destroy', category_album_path(@category, @album), confirm: 'Are you sure?', method: :delete) if can? :destroy, Album
