@@ -7,8 +7,6 @@ class User
 
   field :admin, type: Boolean
 
-  references_many :albums
-
   def admin?
     admin
   end

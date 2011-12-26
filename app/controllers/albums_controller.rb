@@ -10,7 +10,7 @@ class AlbumsController < ApplicationController
 
   def new
     @category = Category.find_by_slug(params[:category_id])
-    @album = current_user.albums.new
+    @album = @category.albums.new
     authorize! :new, @album
   end
 
@@ -49,7 +49,7 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = current_user.albums.find_by_slug(params[:id])
+    @album = Album.find_by_slug(params[:id])
     authorize! :destroy, @album
 
     @album.destroy
