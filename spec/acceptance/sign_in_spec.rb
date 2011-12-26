@@ -1,8 +1,8 @@
 require 'acceptance_helper'
 
-feature "Person signs in" do
+feature "User signs in" do
   let(:user) { Fabricate(:confirmed_user) }
-  let(:form) { find "form#login" }
+  let(:form) { find("form#login") }
 
   background do
     visit destroy_user_session_path

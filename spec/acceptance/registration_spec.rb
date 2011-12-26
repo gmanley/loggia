@@ -1,6 +1,6 @@
 require 'acceptance_helper'
 
-feature "Person signs in" do
+feature "User registers an account" do
   let(:user) { Fabricate.build(:user) }
   let(:form) { find "form" }
 
