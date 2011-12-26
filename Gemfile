@@ -24,6 +24,7 @@ gem 'cancan'
 
 gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'carrierwave_backgrounder'
 gem 'mini_magick'
 gem 'fog'
 
@@ -33,6 +34,7 @@ gem 'delayed_job_mongoid' # Make sure to run: script/rails runner 'Delayed::Back
 group :development do
   gem 'itslog'
   gem 'foreman'
+  gem 'guard'
 end
 
 group :test do

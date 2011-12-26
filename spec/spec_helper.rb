@@ -2,6 +2,8 @@ require 'spork'
 
 Spork.prefork do
   ENV['RAILS_ENV'] ||= 'test'
+  require 'rails/application'
+  Spork.trap_method(Rails::Application, :reload_routes!)
   require File.expand_path('../../config/environment', __FILE__)
   require 'rspec/rails'
 
@@ -12,7 +14,7 @@ Spork.prefork do
 
     config.include Mongoid::Matchers
     config.include Devise::TestHelpers, type: :controller
-
+    config.include Rails.application.routes.url_helpers, type: :acceptance
     config.extend ControllerMacros, type: :controller
 
     config.before(:suite) do
@@ -21,6 +23,10 @@ Spork.prefork do
     end
 
     config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
       DatabaseCleaner.clean
     end
   end
@@ -28,5 +34,4 @@ end
 
 Spork.each_run do
   Fabrication.clear_definitions
-end
-
+end if Spork.using_spork?
