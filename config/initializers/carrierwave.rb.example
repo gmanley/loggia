@@ -7,3 +7,4 @@
 #   config.s3_bucket = 'cdn.example.com'
 #   config.s3_region = 'us-west-1'
 # end
+# Mongoid::Document::ClassMethods.send(:include, ::CarrierWave::Backgrounder::ORM::Base)

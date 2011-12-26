@@ -3,11 +3,9 @@ class Image
   include Mongoid::Timestamps
 
   embedded_in :album
-  mount_uploader :image, ImageUploader do
-    def store_dir
-      File.join(['uploads', 'images', model.album.category.slug, model.album.slug, model.id.to_s].compact)
-    end
-  end
+  mount_uploader :image, ImageUploader
+
+  process_in_background :image
 
   def after_create(image)
     album.inc(:image_count, 1) unless album.nil?

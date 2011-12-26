@@ -27,8 +27,12 @@ gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'mini_magick'
 gem 'fog'
 
+gem 'delayed_job'
+gem 'delayed_job_mongoid' # Make sure to run: script/rails runner 'Delayed::Backend::Mongoid::Job.create_indexes'
+
 group :development do
   gem 'itslog'
+  gem 'foreman'
 end
 
 group :test do
