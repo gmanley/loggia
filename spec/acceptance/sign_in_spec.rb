@@ -5,8 +5,8 @@ feature "User signs in" do
   let(:form) { find("form#login") }
 
   background do
-    visit destroy_user_session_path
-    visit root_path
+    reset!
+    visit homepage
   end
 
   scenario "with invalid credentials" do

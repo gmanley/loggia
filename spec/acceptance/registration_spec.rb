@@ -5,8 +5,8 @@ feature "User registers an account" do
   let(:form) { find "form" }
 
   background do
-    visit destroy_user_session_path
-    visit root_path
+    reset!
+    visit homepage
   end
 
   scenario "with valid information" do
