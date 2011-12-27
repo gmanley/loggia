@@ -1,18 +1,18 @@
 source :rubygems
 
-gem 'rails', '~> 3.2.0.rc'
+gem 'rails', git: 'https://github.com/rails/rails.git', branch: '3-2-stable'
 
 gem 'haml-rails'
 gem 'coffee-filter'
 gem 'coffeebeans'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2'
-  gem 'coffee-rails', '~> 3.2'
+  gem 'sass-rails', git: 'https://github.com/rails/sass-rails.git', branch: '3-2-stable'
+  gem 'coffee-rails', git: 'https://github.com/rails/coffee-rails.git', branch: '3-2-stable'
   gem 'uglifier'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', git: 'git://github.com/rails/jquery-rails.git'
 
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 gem 'bson_ext'
