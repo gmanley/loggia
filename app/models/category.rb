@@ -5,7 +5,6 @@ class Category
 
   field :title, type: String
   field :description, type: String
-  field :previous_slugs, type: Array
 
   slug :title
 
@@ -14,10 +13,6 @@ class Category
   referenced_in :parent_category, class_name: self.name, inverse_of: :child_categories, index: true
 
   scope :roots, where(parent_category_id: nil)
-
-  def self.find_by_slug(slug)
-    any_of({slug: slug}, {:previous_slugs.in => slug.to_a}).first
-  end
 
   def thumbnail_url
     if albums.empty? or albums.with_images.empty?
@@ -29,11 +24,5 @@ class Category
     else
      albums.with_images.sample.thumbnail_url
     end
-  end
-
-  private
-  def generate_slug
-    push(:previous_slugs, read_attribute(slug_name)) if slugged_fields_changed?
-    super
   end
 end
