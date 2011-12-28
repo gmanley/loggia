@@ -13,3 +13,7 @@ Fabricator(:confirmed_user, from: :user) do
   confirmed_at { Time.now }
   confirmation_token nil
 end
+
+Fabricator(:admin, from: :confirmed_user) do
+  admin true
+end
