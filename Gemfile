@@ -41,6 +41,8 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'mongoid-rspec', git: 'git://github.com/evansagge/mongoid-rspec.git'
+  gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git'
+  gem 'headless' # sudo aptitude install xvfb
 end
 
 group :development, :test do

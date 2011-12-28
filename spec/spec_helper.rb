@@ -14,7 +14,6 @@ Spork.prefork do
 
     config.include Mongoid::Matchers
     config.include Devise::TestHelpers, type: :controller
-    config.include Rails.application.routes.url_helpers, type: :acceptance
     config.extend ControllerMacros, type: :controller
 
     config.before(:suite) do

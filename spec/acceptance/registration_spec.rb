@@ -5,7 +5,6 @@ feature "User registers an account" do
   let(:form) { find "form" }
 
   background do
-    reset!
     visit homepage
   end
 

@@ -5,7 +5,6 @@ feature "User signs in" do
   let(:form) { find("form#login") }
 
   background do
-    reset!
     visit homepage
   end
 

@@ -4,7 +4,6 @@ feature "User that is logged in" do
   let(:user) { Fabricate(:confirmed_user) }
 
   background do
-    reset!
     visit root_path
     sign_in user
   end

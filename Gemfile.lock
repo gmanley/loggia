@@ -41,6 +41,13 @@ GIT
       thor (~> 0.14)
 
 GIT
+  remote: git://github.com/thoughtbot/capybara-webkit.git
+  revision: 5adab74465f42efcf286f0f94ed5a5d1a04ce6cd
+  specs:
+    capybara-webkit (0.7.2)
+      capybara (>= 1.0.0, < 1.2)
+
+GIT
   remote: https://github.com/rails/coffee-rails.git
   revision: a0de3bbcd333666c3e03b0ab1b232c7e647b1667
   branch: 3-2-stable
@@ -186,6 +193,7 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
+    headless (0.2.2)
     hike (1.2.1)
     i18n (0.6.0)
     itslog (0.6.1)
@@ -270,6 +278,7 @@ DEPENDENCIES
   bson_ext
   cancan
   capybara
+  capybara-webkit!
   carrierwave!
   carrierwave-mongoid
   carrierwave_backgrounder
@@ -286,6 +295,7 @@ DEPENDENCIES
   foreman
   guard
   haml-rails
+  headless
   itslog
   jquery-rails!
   kaminari!
