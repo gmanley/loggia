@@ -1,4 +1,5 @@
 %li
   %a{href: category_album_url(album.category, album)}
     %img.thumbnail{src: album.thumbnail_url}
-    %h3.album-title=truncate(album.title, length: 20)
+    %h5.album-title=truncate(album.title, length: 30)
+    %h6.album-description=truncate(album.description, length: 20)

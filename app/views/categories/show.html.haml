@@ -19,15 +19,23 @@
   = form_for [@category, Category.new], html: {class: 'new_category form-stacked'} do |f|
     %fieldset
       %legend New Subcategory
-      = f.label :title
-      = f.text_field :title
-      = f.submit 'Add'
+      .clearfix
+        = f.label :title
+        = f.text_field :title
+      .clearfix
+        = f.label :description
+        = f.text_field :description
+      = f.submit 'Create', class: 'btn primary'
 
 - if can? :create, Album
   %hr/
   = form_for [@category, Album.new], html: {class: 'new_album form-stacked'} do |f|
     %fieldset
       %legend New Sub-Album:
-      = f.label :title
-      = f.text_field :title
-      = f.submit 'Add'
+      .clearfix
+        = f.label :title
+        = f.text_field :title
+      .clearfix
+        = f.label :description
+        = f.text_field :description
+      = f.submit 'Create', class: 'btn primary'

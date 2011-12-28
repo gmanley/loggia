@@ -1,8 +1,13 @@
-%fieldset
-  %legend New category
-  = form_for(@category) do |f|
-    = f.label :title
-    .input
-      = f.text_field :title
+= form_for(@category) do |f|
+  %fieldset
+    %legend New root category
+    .clearfix
+      = f.label :title
+      .input
+        = f.text_field :title
+    .clearfix
+      = f.label :description
+      .input
+        = f.text_field :description
     .actions
       = f.submit 'Save', class: 'btn primary'

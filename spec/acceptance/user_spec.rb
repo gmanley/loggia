@@ -4,7 +4,7 @@ feature "User that is logged in" do
   let(:user) { Fabricate(:confirmed_user) }
 
   background do
-    visit root_path
+    visit homepage
     sign_in user
   end
 

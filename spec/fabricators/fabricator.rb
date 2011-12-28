@@ -1,5 +1,6 @@
 Fabricator(:category) do
   title { Faker::Lorem.words.collect {|w| w.titlecase}.join(' ') }
+  description { Faker::Lorem.sentence }
 end
 
 Fabricator(:user) do
