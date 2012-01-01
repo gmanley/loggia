@@ -1,14 +1,14 @@
 source :rubygems
 
-gem 'rails', git: 'https://github.com/rails/rails.git', branch: '3-2-stable'
+gem 'rails', git: 'git://github.com/rails/rails.git', branch: '3-2-stable'
 
 gem 'haml-rails'
 gem 'coffee-filter'
 gem 'coffeebeans'
 
 group :assets do
-  gem 'sass-rails', git: 'https://github.com/rails/sass-rails.git', branch: '3-2-stable'
-  gem 'coffee-rails', git: 'https://github.com/rails/coffee-rails.git', branch: '3-2-stable'
+  gem 'sass-rails', git: 'git://github.com/rails/sass-rails.git', branch: '3-2-stable'
+  gem 'coffee-rails', git: 'git://github.com/rails/coffee-rails.git', branch: '3-2-stable'
   gem 'uglifier'
 end
 
@@ -24,16 +24,11 @@ gem 'cancan'
 
 gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
-gem 'carrierwave_backgrounder'
 gem 'mini_magick'
 gem 'fog'
 
-gem 'delayed_job'
-gem 'delayed_job_mongoid' # Make sure to run: script/rails runner 'Delayed::Backend::Mongoid::Job.create_indexes'
-
 group :development do
   gem 'itslog'
-  gem 'foreman'
   gem 'guard'
 end
 
@@ -41,8 +36,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'mongoid-rspec', git: 'git://github.com/evansagge/mongoid-rspec.git'
-  gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git'
-  gem 'headless' # sudo aptitude install xvfb
+  # gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git' # brew install qt
 end
 
 group :development, :test do
@@ -53,9 +47,11 @@ group :development, :test do
 end
 
 # Unccomment this and run bundle if you need to run the importer.
-# Make sure to comment it again and bundle after your done or you will run into issues.
+# After your done using the importer make sure to comment this block out
+# again and run `bundle` or you may run into issues.
 # group :importer do
 #   gem 'dm-core'
 #   gem 'dm-mysql-adapter'
 #   gem 'progressbar'
+#   gem 'parallel'
 # end

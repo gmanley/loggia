@@ -1,7 +1,44 @@
-Gallery9
+Soshigal
 ========
 
-Gallery9 will be a photo gallery built on Rails 3.1, mongoid & GridFS.
-Still in the development phase, but stay tuned.
+Soshigal is a photo gallery built with Rails.
 
-**Note: If you are attempting to run the app you need to first rename omniauth.rb.example to omniauth.rb & add your auth provider's api keys**
+Features
+-------
+
+* Drag and Drop Image Uploading
+* Simultaneous Uploading of Images
+* Ajax Image Updating after Upload
+* Nested Categories & Albums
+* Basic Admin Role Based Permissions
+
+To Do
+-----
+* More tests!
+
+How?
+----
+Here is a list of some key components used in the application:
+* [Rails](http://rubyonrails.org) (Web framework)
+* [MongoDB](http://www.mongodb.org) (Document-oriented NoSQL Database)
+* [Mongoid](http://mongoid.org) (Object-Document-Mapper)
+* [jQuery](http://jquery.com) (Javascript Framework)
+* [HAML](http://haml-lang.com) (Markup)
+* [Carrierwave](https://github.com/jnicklas/carrierwave) (Rails File Uploading)
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap) (Base CSS/Design)
+
+Setup
+-----
+__Requirements:__
+
+* Ruby (>= 1.9.2)
+* MongoDB
+* Graphicsmagick (ie. `brew install graphicsmagick` on OSX)
+* Bundler
+* A Javascript Runtime - For Rails asset pipeline (Builtin on OSX / Install node on other OSes)
+
+__Steps:__
+
+1. Clone repository
+2. Run `bundle install` in app directory
+3. `bundle exec rails server`
