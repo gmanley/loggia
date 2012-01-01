@@ -12,7 +12,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    File.join(['uploads', 'images', model.album.category.slug, model.album.slug, model.id.to_s].compact)
+    File.join('uploads', 'images', model.id.to_s)
   end
 
   def default_url

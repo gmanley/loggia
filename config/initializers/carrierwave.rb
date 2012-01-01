@@ -10,6 +10,5 @@ CarrierWave.configure do |config|
 #   config.fog_host = 'http://cdn.example.com'
   config.storage :file # Can also be overwritten in uploaders
 end
-
 CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
-Mongoid::Document::ClassMethods.send(:include, ::CarrierWave::Backgrounder::ORM::Base)
+MiniMagick.processor = :gm

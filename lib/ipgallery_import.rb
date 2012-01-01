@@ -1,38 +1,18 @@
 module IPGallery
-
-  class LegacyCategory
-    include DataMapper::Resource
-
-    storage_names[:default] = "gallery_categories"
-
-    has n, :albums, 'LegacyAlbum', child_key: [:category_id]
-    has n, :images, 'LegacyImage'
-    has n, :child_categories, self.name, child_key: [:parent]
-    belongs_to :parent_category, self.name, child_key: [:parent]
-
-    property :id, Serial
-    property :title, String, field: 'name'
-    property :description, String
-    property :parent, Integer
-
-    def attr_to_be_imported
-      attributes = self.attributes.extract!(:title, :description)
-      attributes.each {|key, value| attributes[key] = CGI.unescape_html(value)}.merge(legacy_id: self.id)
-    end
-  end
-
   class LegacyAlbum
     include DataMapper::Resource
 
-    storage_names[:default] = "gallery_albums"
+    storage_names[:default] = "gallery_albums_main"
 
     has n, :images, 'LegacyImage'
-    belongs_to :category, 'LegacyCategory'
+    has n, :child_albums, self.name, child_key: [:parent_id]
+    belongs_to :parent_album, self.name, child_key: [:parent_id]
 
-    property :id, Serial
-    property :title, String, field: 'name'
-    property :description, String
-    property :category_id, Integer
+    property :id, Serial, field: 'album_id'
+    property :title, String, field: 'album_name'
+    property :description, String, field: 'album_description'
+    property :parent_id, Integer, field: 'album_parent_id'
+    property :is_global, Integer, field: 'album_is_global'
 
     def attr_to_be_imported
       attributes = self.attributes.extract!(:title, :description)
@@ -50,7 +30,7 @@ module IPGallery
 
     property :id, Serial
     property :category_id, Integer
-    property :album_id, Integer
+    property :album_id, Integer, field: 'img_album_id'
     property :directory, String
     property :file_name, String, field: 'masked_file_name'
 
@@ -80,14 +60,14 @@ module IPGallery
     end
 
     def import_categories
-      Category.collection.insert(LegacyCategory.all.collect {|lc| lc.attr_to_be_imported})
+      Category.collection.insert(LegacyAlbum.all(is_global: 1).collect {|lc| lc.attr_to_be_imported})
       categories = Category.where(:legacy_id.exists => true)
       progress_bar = ProgressBar.new('Category Import', categories.count)
       categories.each do |category|
         category.send(:generate_slug!)
-        legacy_category = LegacyCategory.get(category.legacy_id)
-        unless legacy_category.parent.eql?(0)
-          category.parent_category = Category.where(legacy_id: legacy_category.parent).first
+        legacy_category = LegacyAlbum.get(category.legacy_id)
+        unless legacy_category.parent_id.eql?(0)
+          category.parent_category = Category.where(legacy_id: legacy_category.parent_id).first
         end
         category.save
         progress_bar.inc
@@ -96,14 +76,14 @@ module IPGallery
     end
 
     def import_albums
-      Album.collection.insert(LegacyAlbum.all.collect {|la| la.attr_to_be_imported})
+      Album.collection.insert(LegacyAlbum.all(is_global: 0).collect {|la| la.attr_to_be_imported})
       albums = Album.where(:legacy_id.exists => true)
       progress_bar = ProgressBar.new('Album Import', albums.count)
       albums.each do |album|
         album.send(:generate_slug!)
         legacy_album = LegacyAlbum.get(album.legacy_id)
-        unless legacy_album.category_id.eql?(0)
-          album.category = Category.where(legacy_id: legacy_album.category_id).first
+        unless legacy_album.parent_id.eql?(0)
+          album.category = Category.where(legacy_id: legacy_album.parent_id).first
         end
         album.save
         progress_bar.inc
@@ -112,8 +92,9 @@ module IPGallery
     end
 
     def import_images
-      progress_bar = ProgressBar.new('Image Import', LegacyImage.count(:album_id.not => 0))
-      LegacyImage.all(:album_id.not => 0).each do |legacy_image|
+      legacy_images = LegacyImage.all(:album_id.not => 0).to_a
+      progress_bar = ProgressBar.new('Image Import', legacy_images.count)
+      Parallel.each(legacy_images, :in_threads => 10) do |legacy_image|
         if image_file_path = legacy_image.file_path(@upload_root)
           if image_album = Album.where(legacy_id: legacy_image.album_id).first
             begin

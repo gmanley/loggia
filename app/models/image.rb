@@ -5,8 +5,6 @@ class Image
   embedded_in :album
   mount_uploader :image, ImageUploader
 
-  process_in_background :image
-
   def after_create(image)
     album.inc(:image_count, 1) unless album.nil?
   end

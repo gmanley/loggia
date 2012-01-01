@@ -1,4 +1,4 @@
-if defined?(DataMapper)
+if Bundler.definition.groups.include?(:importer) # Check if the importer section of gemfile is uncommented.
   Bundler.require(:importer)
   require File.expand_path('../../ipgallery_import',  __FILE__)
 
