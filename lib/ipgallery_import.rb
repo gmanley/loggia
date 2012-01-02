@@ -92,10 +92,9 @@ module IPGallery
     end
 
     def import_images
-      legacy_images = LegacyImage.all(:album_id.not => 0)#.to_a
+      legacy_images = LegacyImage.all(:album_id.not => 0)
       progress_bar = ProgressBar.new('Image Import', legacy_images.count)
-      # Parallel.each(legacy_images, :in_processes => 8) do |legacy_image|
-      legacy_images.each do |legacy_image|
+      Parallel.each(legacy_images, :in_processes => 8) do |legacy_image|
         if image_file_path = legacy_image.file_path(@upload_root)
           if image_album = Album.where(legacy_id: legacy_image.album_id).first
             begin
