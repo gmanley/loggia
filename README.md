@@ -41,5 +41,12 @@ __Requirements:__
 __Steps:__
 
 1. Clone repository
-2. Run `bundle install` in app directory
-3. `bundle exec rails server`
+2. CD into the app directory
+2. `bundle install`
+3. `rake db:seed`
+4. `bundle exec rails server`
+5. Login with the seed admin user (See Below).
+
+#### Admin User: ####
+Email: admin@example.com
+Password: password
