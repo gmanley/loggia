@@ -24,7 +24,7 @@ gem 'cancan'
 
 gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
-gem 'mini_magick'
+gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
 gem 'fog'
 
 group :development do

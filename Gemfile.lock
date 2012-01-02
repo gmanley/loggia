@@ -17,6 +17,14 @@ GIT
       rspec (~> 2)
 
 GIT
+  remote: git://github.com/gmanley/mini_magick.git
+  revision: 4f25e64937d270f2232001541b50e21519aa7a33
+  branch: graphicsmagick-fix
+  specs:
+    mini_magick (3.4)
+      subexec (~> 0.2.1)
+
+GIT
   remote: git://github.com/jnicklas/carrierwave.git
   revision: bc03d8c90de7216c0191430779d4fa2cc3016da6
   specs:
@@ -184,8 +192,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
-    mini_magick (3.4)
-      subexec (~> 0.2.1)
     mongo (1.5.2)
       bson (= 1.5.2)
     mongoid_slug (0.8.3)
@@ -272,7 +278,7 @@ DEPENDENCIES
   itslog
   jquery-rails!
   kaminari!
-  mini_magick
+  mini_magick!
   mongoid!
   mongoid-rspec!
   mongoid_slug

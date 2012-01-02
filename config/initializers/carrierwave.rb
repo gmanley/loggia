@@ -1,3 +1,4 @@
+require 'carrierwave/processing/mini_magick'
 CarrierWave.configure do |config|
 # Example settings for s3/cloudfront
 #   config.fog_credentials = {
