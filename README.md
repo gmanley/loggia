@@ -19,6 +19,7 @@ To Do
 How?
 ----
 Here is a list of some key components used in the application:
+
 * [Rails](http://rubyonrails.org) (Web framework)
 * [MongoDB](http://www.mongodb.org) (Document-oriented NoSQL Database)
 * [Mongoid](http://mongoid.org) (Object-Document-Mapper)
