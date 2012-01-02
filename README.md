@@ -48,5 +48,5 @@ __Steps:__
 5. Login with the seed admin user (See Below).
 
 #### Admin User: ####
-Email: admin@example.com
-Password: password
+    Email: admin@example.com
+    Password: password 
