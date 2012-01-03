@@ -6,6 +6,7 @@ class Album
   field :title, type: String
   field :description, type: String
   field :image_count, type: Integer, default: 0
+  field :hidden, type: Boolean, default: false
 
   index :image_count
 

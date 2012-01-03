@@ -1,9 +1,19 @@
-%h1 Editing Category
-
 = form_for(@category) do |f|
-  = f.label :title
-  = f.text_field :title
-  %br/
-  = f.submit 'Save'
+  %fieldset
+    %legend Editing Category
+    .clearfix
+      = f.label :title
+      .input
+        = f.text_field :title
+    .clearfix
+      = f.label :description
+      .input
+        = f.text_field :description
+    .clearfix
+      = f.label :hidden
+      .input
+        = f.check_box :hidden
+    .actions
+      = f.submit 'Save', class: 'btn primary'
 
 = link_to 'Show', @category

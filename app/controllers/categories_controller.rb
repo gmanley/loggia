@@ -7,6 +7,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by_slug(params[:id])
+    @child_categories = @category.child_categories.accessible_by(current_ability)
+    @category_albums = @category.albums.accessible_by(current_ability)
     authorize! :show, @categroy
   end
 

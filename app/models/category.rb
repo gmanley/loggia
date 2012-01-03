@@ -5,6 +5,7 @@ class Category
 
   field :title, type: String
   field :description, type: String
+  field :hidden, type: Boolean, default: false
 
   slug :title
 

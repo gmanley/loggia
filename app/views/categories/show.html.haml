@@ -6,13 +6,13 @@
   %hr/
   %h3.page-header Subcategories
   %ul.media-grid
-    = render partial: 'categories/category', collection: @category.child_categories
+    = render partial: 'categories/category', collection: @child_categories
 
 %hr/
 
 %h3.page-header Albums
 %ul.media-grid
-  = render partial: 'albums/album', collection: @category.albums
+  = render partial: 'albums/album', collection: @category_albums
 
 - if can? :create, Category
   %hr/
@@ -25,6 +25,9 @@
       .clearfix
         = f.label :description
         = f.text_field :description
+      .clearfix
+        = f.label :hidden
+        = f.check_box :hidden
       = f.submit 'Create', class: 'btn primary'
 
 - if can? :create, Album
@@ -38,4 +41,7 @@
       .clearfix
         = f.label :description
         = f.text_field :description
+      .clearfix
+        = f.label :hidden
+        = f.check_box :hidden
       = f.submit 'Create', class: 'btn primary'
