@@ -1,7 +1,4 @@
-.DS_Store
-.bundle
-db/*.sqlite3
-log/*.log
-tmp/
-.sass-cache/
+/.bundle
+/log/*.log
+/tmp
 public/uploads

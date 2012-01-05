@@ -1,14 +1,14 @@
 source :rubygems
 
-gem 'rails', git: 'git://github.com/rails/rails.git', branch: '3-2-stable'
+gem 'rails', '~> 3.2.0.rc2'
 
 gem 'haml-rails'
 gem 'coffee-filter'
 gem 'coffeebeans'
 
 group :assets do
-  gem 'sass-rails', git: 'git://github.com/rails/sass-rails.git', branch: '3-2-stable'
-  gem 'coffee-rails', git: 'git://github.com/rails/coffee-rails.git', branch: '3-2-stable'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.0'
   gem 'uglifier'
 end
 
