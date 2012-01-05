@@ -6,6 +6,9 @@ colorbox_init = ->
   $(".colorbox").colorbox
     maxWidth: "95%"
     maxHeight: "95%"
+    scrolling: false
+    current: '{current} / {total}'
+    fixed: true
     rel: 'gallery'
 $ ->
   $('#start_upload').button()
