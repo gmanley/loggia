@@ -6,7 +6,7 @@ $ ->
     ajaxoptions:
       dataType: 'json'
     submitdata: (value, settings) ->
-      "authenticity_token": authenticity_token
-      "_soshigal_session": session_token
+      authenticity_token: authenticity_token
+      _soshigal_session: session_token
       album:
         title: value

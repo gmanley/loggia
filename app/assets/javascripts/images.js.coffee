@@ -15,18 +15,18 @@ $ ->
     max_file_size: "10mb"
     url: "#{window.location.pathname}/images.js"
     file_data_name: 'image[image]'
-    flash_swf_url: "/assets/plupload.flash.swf"
+    flash_swf_url: '/assets/plupload.flash.swf'
     drop_element: 'upload_box'
     multipart: true
     multipart_params:
-      "authenticity_token": authenticity_token
-      "_soshigal_session": session_token
+      authenticity_token: authenticity_token
+      _soshigal_session: session_token
     )
   uploader.bind "FilesAdded", (up, files) ->
     $.each files, (i, file) ->
-      $("#file_list").append "<li id=\"" + file.id + "\">" + "File: " + file.name + " (" + plupload.formatSize(file.size) + ") <b></b>" + "</li>"
+      $("#file_list").append("<li id='#{file.id}'>File: #{file.name} (#{plupload.formatSize(file.size)})<b></b></li>")
   uploader.bind "UploadProgress", (up, file) ->
-    $("#" + file.id + " b").html file.percent + "%"
+    $("##{file.id} b").html(file.percent + "%")
   $("#start_upload").click (e) ->
     uploader.start()
     $(this).button('loading')
