@@ -7,6 +7,7 @@ class Album
   field :description, type: String
   field :image_count, type: Integer, default: 0
   field :hidden, type: Boolean, default: false
+  field :thumbnail_url, type: String
 
   index :image_count
 
@@ -18,7 +19,9 @@ class Album
 
   scope :with_images, where(:image_count.gt => 0)
 
-  def thumbnail_url
-    images.empty? ? '/assets/placeholder.png' : images.sample.image_url(:thumb)
+  before_save :set_thumbnail_url
+
+  def set_thumbnail_url
+    self.thumbnail_url = images.empty? ? '/assets/placeholder.png' : images.sample.image_url(:thumb)
   end
 end

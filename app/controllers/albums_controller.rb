@@ -39,7 +39,7 @@ class AlbumsController < ApplicationController
 
     respond_with(@album) do |format|
       if @album.update_attributes(params[:album])
-        format.html { redirect_to category_albums_url, notice: "Album was successfully updated." }
+        format.html { redirect_to @album, notice: "Album was successfully updated." }
         format.json { render text: @album.title }
       else
         format.html { render action: "edit", notice: "There was an issue updating the album." }
@@ -53,6 +53,6 @@ class AlbumsController < ApplicationController
     authorize! :destroy, @album
 
     @album.destroy
-    redirect_to category_albums_url
+    redirect_to root_url
   end
 end
