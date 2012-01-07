@@ -6,9 +6,9 @@ namespace :soshigal do
     end
   end
 
-  desc 'Recache the number of images per album'
+  desc 'Recache all album thumbnails'
   task :recache_thumbnails => :environment do
-    Album.skip_callback(:save, :before, :ensure_foo_is_not_bar)
+    Album.skip_callback(:save, :before, :set_thumbnail_url)
     Album.all.each do |album|
       album.set_thumbnail_url
       album.save
