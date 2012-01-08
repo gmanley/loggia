@@ -30,6 +30,10 @@ gem 'fog'
 group :development do
   gem 'itslog'
   gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'rb-fsevent', :require => false # Only works on mac
+  gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
 end
 
 group :test do
@@ -40,10 +44,11 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails',  '~> 2.8.0.rc'
+  gem 'rspec-rails', '~> 2.8.0.rc'
   gem 'fabrication'
   gem 'ffaker'
   gem 'spork', '~> 0.9.0.rc'
+  gem 'launchy'
 end
 
 # Unccomment this and run bundle if you need to run the importer.
