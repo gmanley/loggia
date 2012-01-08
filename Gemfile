@@ -14,7 +14,7 @@ end
 
 gem 'jquery-rails', git: 'git://github.com/rails/jquery-rails.git'
 
-gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
+gem 'mongoid', '~> 2.4'
 gem 'bson_ext'
 gem 'mongoid_slug'
 gem 'kaminari', git: 'git://github.com/amatsuda/kaminari.git'
