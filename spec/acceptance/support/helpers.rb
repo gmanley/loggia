@@ -20,7 +20,7 @@ module HelperMethods
       fill_in 'Title', with: root_category.title
       fill_in 'Description', with: root_category.description
     end
-    click_button 'Save'
+    click_button 'Create'
   end
 
 
