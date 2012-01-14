@@ -17,6 +17,7 @@ gem 'jquery-rails', git: 'git://github.com/rails/jquery-rails.git'
 gem 'mongoid', '~> 2.4'
 gem 'bson_ext'
 gem 'mongoid_slug'
+gem 'mongoid-tree', :require => 'mongoid/tree'
 gem 'kaminari', git: 'git://github.com/amatsuda/kaminari.git'
 
 gem 'devise'
@@ -34,6 +35,7 @@ group :development do
   gem 'guard-spork'
   gem 'rb-fsevent', :require => false # Only works on mac
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
+  gem 'pry', :git => 'git://github.com/pry/pry.git'
 end
 
 group :test do

@@ -7,8 +7,10 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by_slug(params[:id])
-    @child_categories = @category.child_categories.accessible_by(current_ability)
+
+    @child_categories = @category.children.accessible_by(current_ability)
     @category_albums = @category.albums.accessible_by(current_ability)
+
     authorize! :show, @categroy
   end
 
@@ -22,7 +24,7 @@ class CategoriesController < ApplicationController
     authorize! :create, @category
 
     if parent_category = Category.find_by_slug(params[:category_id])
-      @category.parent_category = parent_category
+      @category.parent = parent_category
     end
 
     if @category.save

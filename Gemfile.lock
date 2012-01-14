@@ -32,6 +32,15 @@ GIT
       activesupport (>= 3.0)
 
 GIT
+  remote: git://github.com/pry/pry.git
+  revision: 437da22b4a565234f60d8f6ea862e5e351ae56e8
+  specs:
+    pry (0.9.8pre4)
+      coderay (~> 1.0.5)
+      method_source (~> 0.7)
+      slop (>= 2.4.1, < 3)
+
+GIT
   remote: git://github.com/rails/jquery-rails.git
   revision: 74997e62ab10698995f02fd75c2f18208d19a6f3
   specs:
@@ -89,6 +98,7 @@ GEM
       mongoid (~> 2.1)
     childprocess (0.2.8)
       ffi (~> 1.0.6)
+    coderay (1.0.5)
     coffee-filter (0.1.1)
       coffee-script (>= 2.2.0)
       haml (>= 3.0.18)
@@ -152,6 +162,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.7.0)
     mime-types (1.17.2)
     mongo (1.5.2)
       bson (= 1.5.2)
@@ -159,6 +170,8 @@ GEM
       activemodel (~> 3.1)
       mongo (~> 1.3)
       tzinfo (~> 0.3.22)
+    mongoid-tree (0.6.2)
+      mongoid (~> 2.0)
     mongoid_slug (0.8.3)
       mongoid (~> 2.0)
       stringex (~> 1.3)
@@ -220,6 +233,7 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
+    slop (2.4.2)
     spork (0.9.0.rc9)
     sprockets (2.1.2)
       hike (~> 1.2)
@@ -270,7 +284,9 @@ DEPENDENCIES
   mini_magick!
   mongoid (~> 2.4)
   mongoid-rspec!
+  mongoid-tree
   mongoid_slug
+  pry!
   rails (~> 3.2.0.rc2)
   rb-fsevent
   rspec-rails (~> 2.8.0.rc)

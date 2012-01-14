@@ -67,7 +67,7 @@ module IPGallery
         category.send(:generate_slug!)
         legacy_category = LegacyAlbum.get(category.legacy_id)
         unless legacy_category.parent_id.eql?(0)
-          category.parent_category = Category.where(legacy_id: legacy_category.parent_id).first
+          category.parent = Category.where(legacy_id: legacy_category.parent_id).first
         end
         category.save
         progress_bar.inc
