@@ -1,13 +1,15 @@
-.topbar-inner
-  .container
+.navbar-inner
+  .fluid-container
     %a.brand{href: '/'} SoshiGal
     %ul.nav
       %li.active
         %a{href: '/'} Home
     - if user_signed_in?
-      %ul.nav.secondary-nav
-        %li.dropdown{data: {dropdown: 'dropdown'}}
-          %a.dropdown-toggle{href: '#'}=current_user.email
+      %ul.nav.pull-right
+        %li.dropdown
+          %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+            =current_user.email
+            %b.caret
           %ul.dropdown-menu
             %li
               = link_to 'My Profile', edit_user_registration_path
@@ -15,7 +17,7 @@
             %li
               = link_to 'Logout', destroy_user_session_path, method: 'delete'
     - elsif !controller_path.start_with?('devise')
-      = form_for('user', url: user_session_path, html: {class: 'pull-right', id: 'login'}) do |f|
+      = form_for('user', url: user_session_path, html: {class: 'pull-right navbar-form', id: 'login'}) do |f|
         = f.email_field :email, placeholder: 'Email', class: 'input-small'
         = f.password_field :password, placeholder: 'Password', class: 'input-small'
         = f.hidden_field :remember_me, value: 1

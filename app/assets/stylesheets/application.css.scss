@@ -57,7 +57,28 @@ body {
   border: 0;
 }
 
-.thumbnail {
-  width:200px;
-  height:200px;
+.home, .categories {
+  .thumbnail {
+    padding: 15px 15px 0px 15px;
+
+    img {
+      border: 1px solid #D3D3D3;
+      width: 200px;
+      height: 200px;
+    }
+
+    .category-title, .album-title {
+      text-align: center;
+      padding: 8px 0px;
+    }
+  }
+}
+
+.header-actions {
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.plupload.html5 {
+  display:none;
 }
