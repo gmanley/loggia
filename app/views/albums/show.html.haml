@@ -1,5 +1,6 @@
 .page-header
   %h3= @album.title
+- breadcrumbs(breadcrumb_paths)
 - if can? :create, Image
   %p Add Images:
   = render 'images/form'

@@ -9,4 +9,25 @@ module ApplicationHelper
       end
     end
   end
+
+  def breadcrumbs(elements = [])
+    haml_tag 'ul.breadcrumb' do
+      breadcrumb('Home', root_path)
+      elements.each do |element|
+        breadcrumb(element[:title], element[:url])
+      end
+    end
+  end
+
+  private
+  def breadcrumb(text, link = nil)
+    if link
+      haml_tag :li do
+        haml_tag :a, text, href: link
+        haml_tag 'span.divider', '/'
+      end
+    else
+      haml_tag 'li.active', text
+    end
+  end
 end

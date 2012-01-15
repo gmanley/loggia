@@ -1,4 +1,5 @@
 %h3 Home
 %ul.media-grid
+- breadcrumbs
   = render partial: 'categories/category', collection: @root_categories
 = link_to('New Category', new_category_path, class: 'btn primary') if can? :create, Category
