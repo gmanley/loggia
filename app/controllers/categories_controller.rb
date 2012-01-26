@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find_by_slug(params[:id])
+    @category = Category.find_by_slug!(params[:id])
 
     @child_categories = @category.children.accessible_by(current_ability)
     @category_albums = @category.albums.accessible_by(current_ability)
@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find_by_slug(params[:id])
+    @category = Category.find_by_slug!(params[:id])
     authorize! :edit, @category
   end
 
@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(params[:category])
     authorize! :create, @category
 
-    if parent_category = Category.find_by_slug(params[:category_id])
+    if parent_category = Category.find_by_slug!(params[:category_id])
       @category.parent = parent_category
     end
 
@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find_by_slug(params[:id])
+    @category = Category.find_by_slug!(params[:id])
     authorize! :update, @category
 
     if @category.update_attributes(params[:category])
@@ -46,7 +46,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find_by_slug(params[:id])
+    @category = Category.find_by_slug!(params[:id])
     authorize! :destroy, @category
 
     if @category.destroy

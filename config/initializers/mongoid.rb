@@ -1,0 +1,1 @@
+ActionDispatch::ShowExceptions.rescue_responses['Mongoid::Errors::DocumentNotFound'] = :not_found

@@ -1,15 +1,15 @@
 class ImagesController < ApplicationController
 
   def show
-    @category = Category.find_by_slug(params[:category_id])
-    @album = @category.albums.find_by_slug(params[:album_id])
+    @category = Category.find_by_slug!(params[:category_id])
+    @album = @category.albums.find_by_slug!(params[:album_id])
     @image = @album.images.find(params[:id])
     authorize! :show, @image
   end
 
   def create
-    @category = Category.find_by_slug(params[:category_id])
-    @album = @category.albums.find_by_slug(params[:album_id])
+    @category = Category.find_by_slug!(params[:category_id])
+    @album = @category.albums.find_by_slug!(params[:album_id])
     @image = @album.images.new(params[:image])
     authorize! :create, @image
 
@@ -21,7 +21,7 @@ class ImagesController < ApplicationController
   end
 
   def update
-    @album = Album.find_by_slug(params[:album_id])
+    @album = Album.find_by_slug!(params[:album_id])
     @image = @album.images.find(params[:id])
     authorize! :update, @image
 
@@ -33,7 +33,7 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    @album = Album.find_by_slug(params[:album_id])
+    @album = Album.find_by_slug!(params[:album_id])
     @image = @album.images.find(params[:id])
     authorize! :destroy, @image
 

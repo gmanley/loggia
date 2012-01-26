@@ -2,26 +2,26 @@ class AlbumsController < ApplicationController
   respond_to :html, :js, :json
 
   def show
-    @category = Category.find_by_slug(params[:category_id])
-    @album = @category.albums.find_by_slug(params[:id])
-    @images = @album.images.page(params[:page]).per(20)
+    @category = Category.find_by_slug!(params[:category_id])
+    @album = @category.albums.find_by_slug!(params[:id])
+    @images = @album.images.page(params[:page]).per(100)
     authorize! :show, @album
   end
 
   def new
-    @category = Category.find_by_slug(params[:category_id])
+    @category = Category.find_by_slug!(params[:category_id])
     @album = @category.albums.new
     authorize! :new, @album
   end
 
   def edit
-    @category = Category.find_by_slug(params[:category_id])
-    @album = @category.albums.find_by_slug(params[:id])
+    @category = Category.find_by_slug!(params[:category_id])
+    @album = @category.albums.find_by_slug!(params[:id])
     authorize! :edit, @album
   end
 
   def create
-    @category = Category.find_by_slug(params[:category_id])
+    @category = Category.find_by_slug!(params[:category_id])
     @album = @category.albums.create(params[:album])
     authorize! :create, @album
 
@@ -33,8 +33,8 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @category = Category.find_by_slug(params[:category_id])
-    @album = @category.albums.find_by_slug(params[:id])
+    @category = Category.find_by_slug!(params[:category_id])
+    @album = @category.albums.find_by_slug!(params[:id])
     authorize! :update, @album
 
     respond_with(@album) do |format|
@@ -49,7 +49,7 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = Album.find_by_slug(params[:id])
+    @album = Album.find_by_slug!(params[:id])
     authorize! :destroy, @album
 
     @album.destroy
