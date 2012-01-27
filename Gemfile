@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '~> 3.2.0.rc2'
+gem 'rails', '~> 3.2.1'
 
 gem 'haml-rails'
 gem 'coffee-filter'
@@ -8,11 +8,11 @@ gem 'coffeebeans'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.0'
-  gem 'uglifier'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier',     '>= 1.0.3'
 end
 
-gem 'jquery-rails', git: 'git://github.com/rails/jquery-rails.git'
+gem 'jquery-rails'
 
 gem 'mongoid', '~> 2.4'
 gem 'bson_ext'
@@ -35,7 +35,7 @@ group :development do
   gem 'guard-spork'
   gem 'rb-fsevent', :require => false # Only works on mac
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
-  gem 'pry', :git => 'git://github.com/pry/pry.git'
+  gem 'pry'
 end
 
 group :test do
@@ -46,10 +46,10 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.8.0.rc'
+  gem 'rspec-rails', '~> 2.8'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'spork', '~> 0.9.0.rc'
+  gem 'spork'
   gem 'launchy'
 end
 
