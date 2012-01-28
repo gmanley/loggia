@@ -16,7 +16,7 @@ class Album
 
   slug :title
 
-  scope :with_images, where(:image_count.gt => 0)
+  scope :with_images, excludes(image_count: 0)
 
   before_save :set_thumbnail_url
 
