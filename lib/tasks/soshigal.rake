@@ -1,6 +1,7 @@
 namespace :soshigal do
   desc 'Recache the number of images per album'
   task :recache_image_count => :environment do
+    Album.skip_callback(:save, :before, :set_thumbnail_url)
     Album.all.each do |album|
       album.update_attribute(:image_count, album.images.count)
     end
