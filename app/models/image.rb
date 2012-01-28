@@ -5,11 +5,11 @@ class Image
   embedded_in :album
   mount_uploader :image, ImageUploader
 
-  def after_create(image)
+  set_callback(:create, :after) do
     album.inc(:image_count, 1) unless album.nil?
   end
 
-  def after_destroy(image)
+  set_callback(:destroy, :after) do
     album.inc(:image_count, -1) unless album.nil?
   end
 end
