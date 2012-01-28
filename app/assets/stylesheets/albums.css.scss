@@ -4,27 +4,54 @@
 
 body.albums {
 
-  #colorbox {
-    margin-top:15px;
+  .thumbnails {
+    clear: both;
   }
 
-  #upload_box {
-    border: 3px dashed #888888;
-    cursor: pointer;
-    height: 80px;
-    text-align: center;
-    width: 240px;
+  #colorbox {
+    margin-top: 15px;
+  }
 
-    #upload_box_message_container {
-      display: inline-block;
-      margin-top: 18px;
-      width: 160px;
+  #uploader {
+    #upload_box {
+      border: 3px dashed #888888;
+      cursor: pointer;
+      height: 80px;
+      text-align: center;
+      width: 240px;
+
+      #upload_box_message_container {
+        display: inline-block;
+        margin-top: 18px;
+        width: 160px;
+      }
+
+      #upload_box_message {
+        color: #555555;
+        font-size: 16px;
+        margin: 5px 0;
+      }
     }
 
-    #upload_box_message {
-      color: #555555;
-      font-size: 16px;
-      margin: 5px 0;
+    #start_upload {
+      margin-top: 10px;
+    }
+
+    #file_list {
+      margin-top: 20px;
+      width: 30%;
+
+      li {
+        border-bottom: 1px solid #ddd;
+
+        .file_info {
+          margin: 10px;
+        }
+
+        .progress {
+          margin: 10px;
+        }
+      }
     }
   }
 }
