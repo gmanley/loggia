@@ -1,58 +1,39 @@
 class CategoriesController < ApplicationController
+  respond_to :html, :json, :js
+  load_and_authorize_resource find_by: :slug
+
+  def index
+    @categories = @categories.roots
+    respond_with(@categories)
+  end
 
   def new
-    @category = Category.new
-    authorize! :new, @category
+    respond_with(@category)
   end
 
   def show
-    @category = Category.find_by_slug!(params[:id])
-
-    @child_categories = @category.children.accessible_by(current_ability)
-    @category_albums = @category.albums.accessible_by(current_ability)
-
-    authorize! :show, @categroy
+    @child_categories = @category.children
+    @category_albums = @category.albums
+    respond_with(@category)
   end
 
   def edit
-    @category = Category.find_by_slug!(params[:id])
-    authorize! :edit, @category
+    respond_with(@category)
   end
 
   def create
-    @category = Category.new(params[:category])
-    authorize! :create, @category
-
-    if parent_category = Category.find_by_slug!(params[:category_id])
-      @category.parent = parent_category
-    end
-
-    if @category.save
-      redirect_to @category, notice: "Category was successfully created."
-    else
-      render action: "new"
-    end
+    @category.parent = Category.find_by_slug(params[:category_id])
+    @category.save
+    respond_with(@category)
   end
 
   def update
-    @category = Category.find_by_slug!(params[:id])
-    authorize! :update, @category
-
-    if @category.update_attributes(params[:category])
-      redirect_to @category, notice: "Category was successfully updated."
-    else
-      render action: "edit"
-    end
+    @category.update_attributes(params[:category])
+    respond_with(@category)
   end
 
   def destroy
-    @category = Category.find_by_slug!(params[:id])
-    authorize! :destroy, @category
-
-    if @category.destroy
-      redirect_to root_url, notice: "Category was succesfully destroyed."
-    else
-      redirect_to @category
-    end
+    @category.destroy
+    respond_with(@category)
   end
 end

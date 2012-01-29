@@ -1,12 +1,12 @@
 Soshigal::Application.routes.draw do
 
-  root to: "home#index"
+  root to: "categories#index"
 
-  resources :categories, except: [:index] do
+  resources :categories do
     resources :categories, except: [:index]
 
     resources :albums, except: [:index] do
-      resources :images
+      resources :images, only: [:create, :destroy]
     end
   end
 
