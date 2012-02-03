@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource find_by: :slug
 
   def index
-    @categories = @categories.roots
+    @categories = @categories.roots.asc(:title)
     respond_with(@categories)
   end
 
@@ -12,8 +12,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @child_categories = @category.children
-    @category_albums = @category.albums
+    @child_categories = @category.children.asc(:title)
+    @category_albums = @category.albums.asc(:title)
     respond_with(@category)
   end
 
