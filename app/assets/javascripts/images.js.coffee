@@ -59,3 +59,6 @@ $ ->
 
   uploader.init()
   colorbox_init()
+
+  $("#content").bind "pjax:end", ->
+    colorbox_init()

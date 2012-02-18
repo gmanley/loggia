@@ -11,5 +11,5 @@
 //= require_tree .
 
 $(function() {
-  $('a').pjax('#content').on('click');
+  $('a:not(.colorbox)').pjax('#content').on('click');
 });
