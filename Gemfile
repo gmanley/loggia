@@ -33,7 +33,6 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'rb-fsevent', :require => false # Only works on mac
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
   gem 'pry'
 end

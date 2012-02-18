@@ -11,8 +11,8 @@
     .navbar.navbar-fixed
       = render 'shared/top_bar'
     .fluid-container
-      .content
-        - flash_messages
+      - flash_messages
+      #content
         = yield
         %hr/
         %footer

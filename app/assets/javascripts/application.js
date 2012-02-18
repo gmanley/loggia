@@ -9,3 +9,7 @@
 //
 //= require libraries
 //= require_tree .
+
+$(function() {
+  $('a').pjax('#content').on('click');
+});
