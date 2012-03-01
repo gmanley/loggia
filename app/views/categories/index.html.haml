@@ -2,4 +2,4 @@
 - breadcrumbs
 %ul.thumbnails
   = render partial: 'categories/category', collection: @categories
-= link_to('New Category', new_category_path, class: 'btn primary') if can? :create, Category
+= link_to('New Category', new_category_path, class: 'btn btn-primary') if can? :create, Category

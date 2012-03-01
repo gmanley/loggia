@@ -8,9 +8,8 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body{class: controller_name}
-    .navbar.navbar-fixed
-      = render 'shared/top_bar'
-    .fluid-container
+    = render 'shared/top_bar'
+    .container-fluid
       - flash_messages
       #content
         = yield

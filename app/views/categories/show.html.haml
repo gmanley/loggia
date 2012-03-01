@@ -36,7 +36,7 @@
           .clearfix
             = f.label :hidden
             = f.check_box :hidden
-          = f.submit 'Create', class: 'btn primary'
+          = f.submit 'Create', class: 'btn btn-primary'
   .span3
     - if can? :create, Album
       = form_for [@category, Album.new], html: {class: 'form-stacked'} do |f|
@@ -51,4 +51,4 @@
           .clearfix
             = f.label :hidden
             = f.check_box :hidden
-          = f.submit 'Create', class: 'btn primary'
+          = f.submit 'Create', class: 'btn btn-primary'

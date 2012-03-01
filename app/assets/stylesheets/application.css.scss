@@ -24,7 +24,7 @@ body {
   padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
 }
 
-.container > footer p {
+.container-fluid > footer p {
   text-align: center; /* center align it with the container */
 }
 
@@ -53,7 +53,7 @@ body {
   text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);
 }
 
-.topbar .btn {
+.navbar .btn {
   border: 0;
 }
 
