@@ -4,15 +4,15 @@ shared: &shared_settings
 development:
   <<: *shared_settings
   host: localhost
-  database: soshigal_rails_development
+  database: soshigal_development
 
 test:
   <<: *shared_settings
   host: localhost
-  database: soshigal_rails_test
+  database: soshigal_test
 
 # set these environment variables on your prod server
 production:
   <<: *shared_settings
   host: localhost
-  database: soshigal_rails_production
+  database: soshigal_production

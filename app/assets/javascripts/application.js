@@ -9,7 +9,3 @@
 //
 //= require libraries
 //= require_tree .
-
-$(function() {
-  $('a:not(.colorbox)').pjax('#content').on('click');
-});

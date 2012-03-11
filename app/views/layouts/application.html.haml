@@ -10,8 +10,8 @@
   %body{class: controller_name}
     = render 'shared/top_bar'
     .container-fluid
-      - flash_messages
       #content
+        - flash_messages
         = yield
         %hr/
         %footer
