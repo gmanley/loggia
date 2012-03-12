@@ -1,15 +1,6 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
-colorbox_init = ->
-  $(".colorbox").colorbox
-    maxWidth: "95%"
-    maxHeight: "95%"
-    scrolling: false
-    current: '{current} / {total}'
-    fixed: true
-    rel: 'gallery'
 $ ->
   $('#start_upload').button()
   uploader = new plupload.Uploader(
@@ -47,7 +38,6 @@ $ ->
 
   uploader.bind 'FileUploaded', (up, file, response) ->
     eval(response.response)
-    colorbox_init()
     $("##{file.id} .progress")
       .toggleClass('active')
       .prev('.file_info b').text('Done')
@@ -58,4 +48,3 @@ $ ->
     $('#start_upload').button('complete')
 
   uploader.init()
-  colorbox_init()
