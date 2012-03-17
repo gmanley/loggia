@@ -3,9 +3,9 @@ module ApplicationHelper
 
   def flash_messages
     flash.select{|name, msg| msg.is_a?(String)}.each do |name, msg|
-      haml_tag :div, class: "alert-message #{name} fade in", data: {alert: 'alert'} do
-        haml_tag 'a.close', '×', href: '#'
-        haml_tag :p, msg
+      haml_tag :div, class: "alert #{name} fade in", data: {alert: 'alert'} do
+        haml_tag 'a.close', '×', data: {dismiss: 'alert'}
+        haml_concat(msg)
       end
     end
   end

@@ -23,6 +23,8 @@ gem 'kaminari', git: 'git://github.com/amatsuda/kaminari.git'
 gem 'devise'
 gem 'cancan'
 
+gem 'responders'
+
 gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
