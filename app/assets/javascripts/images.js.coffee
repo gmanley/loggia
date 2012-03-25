@@ -1,21 +1,22 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
   $('#start_upload').button()
   uploader = new plupload.Uploader(
-    runtimes: "html5,flash"
-    browse_button: "upload_box"
-    max_file_size: "10mb"
+    runtimes: 'html5,flash'
+    browse_button: 'upload_box'
+    max_file_size: '10mb'
+    chunk_size : '1mb',
     url: "#{window.location.pathname}/images.js"
     file_data_name: 'image[image]'
     flash_swf_url: '/assets/plupload.flash.swf'
     drop_element: 'upload_box'
+    filters:
+      {title: "Image files", extensions: "jpg,gif,png"}
     multipart: true
     multipart_params:
       authenticity_token: authenticity_token
       _soshigal_session: session_token
     )
+
   uploader.bind "FilesAdded", (up, files) ->
     $.each files, (i, file) ->
       $("#file_list").append("""
@@ -27,11 +28,11 @@ $ ->
         </li>
       """)
 
-  uploader.bind "UploadProgress", (up, file) ->
+  uploader.bind 'UploadProgress', (up, file) ->
     $("##{file.id} b").html("#{file.percent}%")
     $("##{file.id} .progress .bar").css('width', "#{file.percent}%")
 
-  $("#start_upload").click (e) ->
+  $('#start_upload').click (e) ->
     uploader.start()
     $(this).button('loading')
     e.preventDefault()
