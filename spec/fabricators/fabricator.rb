@@ -1,4 +1,4 @@
-Fabricator(:category) do
+Fabricator(:container, aliases: [:album, :category]) do
   title { Faker::Lorem.words.collect {|w| w.titlecase}.join(' ') }
   description { Faker::Lorem.sentence }
 end
