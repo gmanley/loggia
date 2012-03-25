@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Category do
-  it { should have_many(:albums) }
-
   context 'that exists' do
     let(:category) { Fabricate(:category) }
 

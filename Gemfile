@@ -1,15 +1,15 @@
 source :rubygems
 
-gem 'rails', '~> 3.2.1'
+gem 'rails', '~> 3.2'
 
 gem 'haml-rails'
 gem 'coffee-filter'
 gem 'coffeebeans'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier',     '>= 1.0.3'
+  gem 'sass-rails',   '~> 3.2'
+  gem 'coffee-rails', '~> 3.2'
+  gem 'uglifier',     '>= 1'
 end
 
 gem 'jquery-rails'
@@ -17,8 +17,8 @@ gem 'jquery-rails'
 gem 'mongoid', '~> 2.4'
 gem 'bson_ext'
 gem 'mongoid_slug'
-gem 'mongoid-tree', :require => 'mongoid/tree'
-gem 'kaminari', git: 'git://github.com/amatsuda/kaminari.git'
+gem 'mongoid-tree'
+gem 'kaminari'
 
 gem 'devise'
 gem 'cancan'
@@ -36,7 +36,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
-  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :test do
@@ -47,7 +47,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.8'
+  gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
   gem 'spork'

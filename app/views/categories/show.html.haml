@@ -6,25 +6,15 @@
 
 - breadcrumbs(breadcrumb_paths)
 
-- unless @child_categories.empty?
-  %hr/
-  %h3 Subcategories
-  %hr/
+- unless @children.empty?
   %ul.thumbnails
-    = render partial: 'categories/category', collection: @child_categories
-
-- unless @category_albums.empty?
-  %hr/
-  %h3 Albums
-  %hr/
-  %ul.thumbnails
-    = render partial: 'albums/album', collection: @category_albums
+    = render partial: 'shared/container', collection: @children
 
 %hr/
 .row
   .span3
     - if can? :create, Category
-      = form_for [@category, Category.new], html: {class: 'form-stacked'} do |f|
+      = form_for(Category.new, html: {class: 'form-stacked'}) do |f|
         %fieldset
           %legend New Subcategory
           .clearfix
@@ -36,10 +26,12 @@
           .clearfix
             = f.label :hidden
             = f.check_box :hidden
-          = f.submit 'Create', class: 'btn btn-primary'
+            = f.hidden_field :parent_id, value: @category.id
+            = f.submit 'Create', class: 'btn btn-primary'
+
   .span3
     - if can? :create, Album
-      = form_for [@category, Album.new], html: {class: 'form-stacked'} do |f|
+      = form_for(Album.new, html: {class: 'form-stacked'}) do |f|
         %fieldset
           %legend New Sub-album:
           .clearfix
@@ -51,4 +43,5 @@
           .clearfix
             = f.label :hidden
             = f.check_box :hidden
+            = f.hidden_field :parent_id, value: @category.id
           = f.submit 'Create', class: 'btn btn-primary'

@@ -3,8 +3,8 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource find_by: :slug
 
   def index
-    @categories = @categories.roots.asc(:title)
-    respond_with(@categories)
+    @containers = @categories.roots.asc(:title)
+    respond_with(@containers)
   end
 
   def new
@@ -12,8 +12,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @child_categories = @category.children.asc(:title)
-    @category_albums = @category.albums.asc(:title)
+    @children = @category.children.asc(:title)
     respond_with(@category)
   end
 
@@ -22,7 +21,6 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category.parent = Category.find_by_slug(params[:category_id])
     @category.save
     respond_with(@category)
   end
@@ -34,6 +32,6 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    respond_with(@category)
+    respond_with(@category, location: root_path)
   end
 end

@@ -6,7 +6,10 @@ class Image
   mount_uploader :image, ImageUploader
 
   set_callback(:create, :after) do
-    album.inc(:image_count, 1) unless album.nil?
+    unless album.nil?
+      album.inc(:image_count, 1)
+      album.ancestors_and_self.each {|a| a.set_thumbnail_url}
+    end
   end
 
   set_callback(:destroy, :after) do

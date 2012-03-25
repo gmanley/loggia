@@ -1,8 +1,8 @@
 %h2.page-header
   = @album.title
   %span.header-actions
-    = link_to('Edit', edit_category_album_path(@category, @album)) + " | " if can? :edit, Album
-    = link_to('Destroy', category_album_path(@category, @album), confirm: 'Are you sure?', method: :delete) if can? :destroy, Album
+    = link_to('Edit', edit_album_path(@album)) + " | " if can? :edit, Album
+    = link_to('Destroy', album_path(@album), confirm: 'Are you sure?', method: :delete) if can? :destroy, Album
 
 - breadcrumbs(breadcrumb_paths)
 

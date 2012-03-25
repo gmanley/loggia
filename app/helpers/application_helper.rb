@@ -10,6 +10,13 @@ module ApplicationHelper
     end
   end
 
+  def breadcrumb_paths
+    current_resource = instance_variable_get("@#{controller_name.singularize}") || []
+    current_resource.ancestors_and_self.collect do |e|
+      {title: e.title, url: url_for(e)}
+    end
+  end
+
   def breadcrumbs(elements = [])
     haml_tag 'ul.breadcrumb' do
       breadcrumb('Home', root_path)
