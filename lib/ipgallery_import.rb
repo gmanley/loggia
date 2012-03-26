@@ -25,7 +25,6 @@ module IPGallery
 
     storage_names[:default] = "gallery_images"
 
-    belongs_to :category, 'LegacyCategory'
     belongs_to :album, 'LegacyAlbum'
 
     property :id, Serial
@@ -60,11 +59,11 @@ module IPGallery
     end
 
     def import_categories
-      Category.collection.insert(LegacyAlbum.all(is_global: 1).collect {|lc| lc.attr_to_be_imported})
+      Category.collection.insert(LegacyAlbum.all(is_global: 1).collect {|lc| lc.attr_to_be_imported.merge(_type: 'Category')})
       categories = Category.where(:legacy_id.exists => true)
       progress_bar = ProgressBar.new('Category Import', categories.count)
       categories.each do |category|
-        category.send(:generate_slug!)
+        category.build_slug
         legacy_category = LegacyAlbum.get(category.legacy_id)
         unless legacy_category.parent_id.eql?(0)
           category.parent = Category.where(legacy_id: legacy_category.parent_id).first
@@ -76,14 +75,14 @@ module IPGallery
     end
 
     def import_albums
-      Album.collection.insert(LegacyAlbum.all(is_global: 0).collect {|la| la.attr_to_be_imported})
+      Album.collection.insert(LegacyAlbum.all(is_global: 0).collect {|la| la.attr_to_be_imported.merge(_type: 'Album')})
       albums = Album.where(:legacy_id.exists => true)
       progress_bar = ProgressBar.new('Album Import', albums.count)
       albums.each do |album|
-        album.send(:generate_slug!)
+        album.build_slug
         legacy_album = LegacyAlbum.get(album.legacy_id)
         unless legacy_album.parent_id.eql?(0)
-          album.category = Category.where(legacy_id: legacy_album.parent_id).first
+          album.parent = Category.where(legacy_id: legacy_album.parent_id).first
         end
         album.save
         progress_bar.inc
@@ -92,7 +91,7 @@ module IPGallery
     end
 
     def import_images
-      legacy_images = LegacyImage.all(:album_id.not => 0)
+      legacy_images = LegacyImage.all
       progress_bar = ProgressBar.new('Image Import', legacy_images.count)
       Parallel.each(legacy_images, :in_processes => Parallel.processor_count * 2) do |legacy_image|
         if image_file_path = legacy_image.file_path(@upload_root)
