@@ -10,3 +10,5 @@ $ ->
       _soshigal_session: session_token
       album:
         title: value
+
+  $('li.active a, li.disabled a').on('click', false)

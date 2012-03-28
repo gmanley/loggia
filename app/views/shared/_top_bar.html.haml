@@ -2,9 +2,6 @@
   .navbar-inner
     .container-fluid
       %a.brand{href: '/'} SoshiGal
-      %ul.nav
-        %li.active
-          %a{href: '/'} Home
       - if user_signed_in?
         %ul.nav.pull-right
           %li.dropdown
