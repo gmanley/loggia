@@ -3,6 +3,7 @@ Soshigal::Application.routes.draw do
   root to: "categories#index"
   resources :categories, except: [:index]
   resources :albums, except: [:index] do
+    get 'page/:page', :action => :show, :on => :member
     resources :images, only: [:create, :destroy]
   end
 
