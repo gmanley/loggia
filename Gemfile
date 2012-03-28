@@ -31,7 +31,7 @@ gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'gra
 gem 'fog'
 
 group :development do
-  gem 'itslog'
+  gem 'thin'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
