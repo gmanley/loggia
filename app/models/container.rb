@@ -11,6 +11,8 @@ class Container
 
   validates_presence_of :title
 
+  default_scope asc(:title)
+
   slug :title, :parent do |doc|
     doc.ancestors_and_self.collect(&:title).join(' ')
   end
