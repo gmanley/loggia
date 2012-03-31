@@ -31,7 +31,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = User.new(params[:category])
+    @category = Category.new(params[:category])
     authorize!(:create, @category)
 
     @category.save
