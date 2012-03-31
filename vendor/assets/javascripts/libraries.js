@@ -3,4 +3,7 @@
 //= require bootstrap
 //= require load-image
 //= require bootstrap-image-gallery
-//= require_tree .
+//= require jquery.jeditable
+//= require plupload.base
+//= require plupload.flash
+//= require plupload.html5
