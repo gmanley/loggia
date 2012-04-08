@@ -18,10 +18,15 @@
 
 html, body {
   background-color: #eee;
+  height: 100%;
 }
 
 body {
   padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+
+.container-fluid {
+  height:100%;
 }
 
 .container-fluid > footer p {
@@ -30,6 +35,7 @@ body {
 
 /* The white background content wrapper */
 #content {
+  min-height:100%;
   background-color: #fff;
   padding: 20px;
   margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
