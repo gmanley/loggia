@@ -10,6 +10,7 @@ class Container
   field :thumbnail_url, type: String, default: '/assets/placeholder.png'
 
   index :hidden
+  index :title
 
   validates_presence_of :title
 
