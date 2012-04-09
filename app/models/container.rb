@@ -9,6 +9,8 @@ class Container
   field :hidden, type: Boolean, default: false
   field :thumbnail_url, type: String, default: '/assets/placeholder.png'
 
+  index :hidden
+
   validates_presence_of :title
 
   default_scope asc(:title)
