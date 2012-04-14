@@ -1,23 +1,21 @@
-= form_for(@user, url: user_registration_path, method: :put, html: {class: 'form-stacked'}) do |f|
+= form_for(@user, url: user_registration_path, method: :put) do |f|
   %fieldset
     %legend Edit user
-    .clearfix
-      = f.label :email
-      .input
-        = f.email_field :email
-    .clearfix
-      = f.label :password
-      .input
-        = f.password_field :password
-        %span.help-inline (leave blank if you don't want to change it)
-    .clearfix
-      = f.label :password_confirmation
-      .input
-        = f.password_field :password_confirmation
-    .clearfix
-      = f.label :current_password
-      .input
-        = f.password_field :current_password
-        %span.help-inline (we need your current password to confirm your changes)
-    = f.submit 'Update', class: 'btn btn-primary'
-= link_to 'Back', :back
+    = f.label :email
+    = f.email_field :email
+
+    = f.label :password
+    = f.password_field :password
+    %span.help-inline (leave blank if you don't want to change it)
+
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+
+    = f.label :current_password
+    = f.password_field :current_password
+
+    .form-actions
+      = f.submit 'Update', class: 'btn btn-primary'
+      = link_to 'Cancel', :back, class: 'btn'
+
+  = render partial: 'users/shared/links'

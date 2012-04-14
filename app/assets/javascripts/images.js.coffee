@@ -2,7 +2,7 @@ $ ->
   $('#start_upload').button()
   uploader = new plupload.Uploader(
     runtimes: 'html5,flash'
-    browse_button: 'upload_box'
+    browse_button: 'select_files'
     max_file_size: '10mb'
     chunk_size : '1mb',
     url: "#{window.location.pathname}/images.js"

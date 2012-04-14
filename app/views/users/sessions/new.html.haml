@@ -1,17 +1,17 @@
-= form_for(@user, url: user_session_path, html: {class: 'form-stacked'}) do |f|
+= form_for(@user, url: user_session_path) do |f|
   %fieldset
     %legend Sign in
-    .clearfix
-      = f.label :email
-      .input
-        = f.email_field :email, placeholder: 'Email'
-    .clearfix
-      = f.label :password
-      .input
-        = f.password_field :password, placeholder: 'Password'
-    .clearfix
-      %label
-        = f.check_box :remember_me
-        %span Remember me
-    = f.submit 'Sign In', class: 'btn btn-primary'
-  = render partial: 'users/links'
+    = f.label :email
+    = f.email_field :email
+
+    = f.label :password
+    = f.password_field :password
+
+    = f.label :remember_me, class: 'checkbox' do
+      = f.check_box :remember_me
+      Remember Me
+
+    .form-actions
+      = f.submit 'Sign In', class: 'btn btn-primary'
+
+  = render partial: 'users/shared/links'

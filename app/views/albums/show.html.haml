@@ -1,34 +1,14 @@
 %h2.page-header
   = @album.title
-  %span.header-actions
-    = link_to('Edit', edit_album_path(@album)) + " | " if can? :edit, Album
-    = link_to('Destroy', album_path(@album), confirm: 'Are you sure?', method: :delete) if can? :destroy, Album
+  - if can?(:edit, @album) or can?(:destroy, @album)
+    = render partial: 'containers/header_actions', locals: {container: @album}
 
 - breadcrumbs(breadcrumb_paths)
 
-- if can? :create, Image
-  %p Add Images:
-  = render 'images/form'
+= render 'images/form' if can? :create, Image
+
 %ul.thumbnails{data: {toggle: 'modal-gallery', target: '#modal-gallery'}}
   = render partial: 'images/image', collection: @images
 = paginate @images
 
-#modal-gallery.modal.modal-gallery.hide.fade
-  .modal-header
-    %a.close{data: {dismiss: 'modal'}} ×
-    %h3.modal-title
-  .modal-body
-    .modal-image
-  .modal-footer
-    %a.btn.btn-primary.modal-next
-      Next
-      %i.icon-arrow-right.icon-white
-    %a.btn.btn-info.modal-prev
-      %i.icon-arrow-left.icon-white
-      Previous
-    %a.btn.btn-success.modal-play.modal-slideshow{data: {slideshow: '5000'}}
-      %i.icon-play.icon-white
-      Slideshow
-    %a.btn.modal-download{target: '_blank'}
-      %i.icon-download
-      Download
+= render 'images/modal'

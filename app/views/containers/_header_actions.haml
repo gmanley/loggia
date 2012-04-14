@@ -1,0 +1,4 @@
+%span.header-actions
+  = link_to_if(can?(:edit, container), 'Edit', edit_polymorphic_path(container))
+  |
+  = link_to_if(can?(:destroy, container), 'Destroy', container, confirm: 'Are you sure?', method: :delete)

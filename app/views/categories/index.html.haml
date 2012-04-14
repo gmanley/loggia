@@ -1,5 +1,7 @@
 %h2.page-header Home
 - breadcrumbs
+
 %ul.thumbnails
-  = render partial: 'shared/container', collection: @categories
-= link_to('New Category', new_category_path, class: 'btn btn-primary') if can? :create, Category
+  = render partial: 'containers/container', collection: @categories
+
+= link_to_if(can?(:create, Category), 'New Category', new_category_path, class: 'btn btn-primary')

@@ -1,9 +1,10 @@
-= form_for(@user, url: user_password_path, html: {class: 'form-stacked'}) do |f|
+= form_for(@user, url: user_password_path) do |f|
   %fieldset
     %legend Forgot your password?
-    .clearfix
-      = f.label :email
-      .input
-        = f.email_field :email, placeholder: 'Email'
-    = f.submit 'Reset password', class: 'btn btn-primary'
-  = render partial: 'users/links'
+    = f.label :email
+    = f.email_field :email
+
+    .form-actions
+      = f.submit 'Reset password', class: 'btn btn-primary'
+
+  = render partial: 'users/shared/links'

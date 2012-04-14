@@ -1,17 +1,6 @@
 = form_for(@category) do |f|
   %fieldset
     %legend New root category
-    .clearfix
-      = f.label :title
-      .input
-        = f.text_field :title
-    .clearfix
-      = f.label :description
-      .input
-        = f.text_field :description
-    .clearfix
-      = f.label :hidden
-      .input
-        = f.check_box :hidden
-    .actions
+    = render partial: 'containers/form', locals: {f: f}
+    .form-actions
       = f.submit 'Create', class: 'btn btn-primary'
