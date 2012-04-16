@@ -12,7 +12,7 @@ feature "User signs in" do
     form.fill_in "user_email", with: "invalid@email.com"
     form.fill_in "user_password", with: "wrong"
 
-    click_button "Sign in"
+    click_button "Sign In"
 
     page.should have_content "Invalid email or password"
   end
@@ -21,7 +21,7 @@ feature "User signs in" do
     form.fill_in "user_email", with: user.email
     form.fill_in "user_password", with: user.password
 
-    click_button "Sign in"
+    click_button "Sign In"
 
     page.should have_content 'Signed in successfully.'
   end
