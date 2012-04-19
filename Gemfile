@@ -9,7 +9,7 @@ gem 'coffeebeans'
 group :assets do
   gem 'sass-rails',   '~> 3.2'
   gem 'coffee-rails', '~> 3.2'
-  gem 'uglifier',     '>= 1'
+  gem 'uglifier'
 end
 
 gem 'jquery-rails'
@@ -25,7 +25,7 @@ gem 'cancan'
 
 gem 'responders'
 
-gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
+gem 'carrierwave'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
 gem 'fog'
@@ -42,7 +42,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'mongoid-rspec', git: 'git://github.com/evansagge/mongoid-rspec.git'
+  gem 'mongoid-rspec'
   # gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git' # brew install qt
 end
 
