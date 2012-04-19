@@ -280,6 +280,7 @@ DEPENDENCIES
   mongoid_slug
   pry-rails
   rails (~> 3.2)
+  rake
   responders
   rspec-rails
   sass-rails (~> 3.2)

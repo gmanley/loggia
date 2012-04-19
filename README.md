@@ -3,6 +3,8 @@ Soshigal
 
 Soshigal is a photo gallery built with Rails.
 
+[![Build Status](https://secure.travis-ci.org/gmanley/soshigal.png?branch=master)](http://travis-ci.org/gmanley/soshigal)
+
 Features
 -------
 

@@ -2,6 +2,8 @@ source :rubygems
 
 gem 'rails', '~> 3.2'
 
+gem 'rake'
+
 gem 'haml-rails'
 gem 'coffee-filter'
 gem 'coffeebeans'
@@ -39,6 +41,7 @@ group :development do
   gem 'guard-spork'
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
   gem 'pry-rails'
+  gem 'launchy'
 end
 
 group :test do
@@ -53,7 +56,6 @@ group :development, :test do
   gem 'fabrication'
   gem 'ffaker'
   gem 'spork'
-  gem 'launchy'
 end
 
 # Unccomment this and run bundle if you need to run the importer.

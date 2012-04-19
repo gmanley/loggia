@@ -1,0 +1,10 @@
+bundler_args: --without development
+language: ruby
+rvm:
+  - 1.9.2
+  - 1.9.3
+  - rbx-19mode
+  - ruby-head
+notifications:
+  recipients:
+    - gray.manley@gmail.com
