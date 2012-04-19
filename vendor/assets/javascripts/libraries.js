@@ -7,3 +7,4 @@
 //= require plupload.base
 //= require plupload.flash
 //= require plupload.html5
+//= require hamlcoffee

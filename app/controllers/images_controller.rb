@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  respond_to :html, :json, :js
+  respond_to :js, :json
 
   def create
     @album = Album.find_by_slug(params[:album_id])
@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
     authorize!(:create, @image)
 
     @image.save
-    respond_with(@image)
+    respond_with(@image, location: nil) # set location to nil as the image resource has no show
   end
 
   def destroy
