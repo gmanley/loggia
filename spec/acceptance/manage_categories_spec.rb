@@ -52,7 +52,7 @@ feature 'Admin destroys categories' do
 
     click_link root_category.title
 
-    click_link 'Destroy'
+    click_link 'Delete'
 
     page.should have_content 'Category was successfully destroyed.'
     page.should have_no_content root_category.title
@@ -66,7 +66,7 @@ feature 'Admin destroys categories' do
     click_link root_category.title
     click_link child_category.title
 
-    click_link 'Destroy'
+    click_link 'Delete'
 
     page.should have_content 'Category was successfully destroyed.'
 

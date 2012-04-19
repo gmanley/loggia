@@ -40,7 +40,7 @@ feature 'Admin destroys album' do
     click_link category.title
     click_link album.title
 
-    click_link 'Destroy'
+    click_link 'Delete'
 
     page.should have_content 'Album was successfully destroyed.'
 
