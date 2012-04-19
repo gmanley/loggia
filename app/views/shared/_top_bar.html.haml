@@ -1,4 +1,4 @@
-.navbar.navbar-fixed-top
+.navbar
   .navbar-inner
     .container-fluid
       %a.brand{href: '/'} SoshiGal
@@ -16,6 +16,5 @@
         = form_for('user', url: user_session_path, html: {class: 'pull-right navbar-form', id: 'login'}) do |f|
           = f.email_field :email, placeholder: 'Email', class: 'input-small'
           = f.password_field :password, placeholder: 'Password', class: 'input-small'
-          = f.hidden_field :remember_me, value: 1
           = f.submit 'Sign In', class: 'btn btn-primary'
           = link_to 'Sign Up', new_user_registration_path, class: 'btn'

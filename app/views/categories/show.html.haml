@@ -1,9 +1,6 @@
-%h2.page-header
-  = @category.title
-  - if can?(:edit, @category) or can?(:destroy, @category)
-    = render partial: 'containers/header_actions', locals: {container: @category}
-
-- breadcrumbs(breadcrumb_paths)
+%header.page-header
+  %h2= @category.title
+  = render partial: 'containers/header_actions', locals: {container: @category} if can?(:manage, @category)
 
 - unless @children.empty?
   %ul.thumbnails

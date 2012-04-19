@@ -17,9 +17,13 @@ module ApplicationHelper
   end
 
   def breadcrumb_paths
-    current_resource = instance_variable_get("@#{controller_name.singularize}") || []
-    current_resource.ancestors_and_self.collect do |e|
-      {title: e.title, url: url_for(e)}
+
+    if current_resource = instance_variable_get("@#{controller_name.singularize}")
+      current_resource.ancestors_and_self.collect do |e|
+        {title: e.title, url: url_for(e)}
+      end
+    else
+      []
     end
   end
 
@@ -39,7 +43,6 @@ module ApplicationHelper
       haml_concat(message)
     end
   end
-
 
   def breadcrumb(text, link = nil)
     if link

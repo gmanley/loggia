@@ -1,11 +1,10 @@
-%h2.page-header
-  = @album.title
-  - if can?(:edit, @album) or can?(:destroy, @album)
-    = render partial: 'containers/header_actions', locals: {container: @album}
-
-- breadcrumbs(breadcrumb_paths)
+%header.page-header
+  %h2= @album.title
+  = render partial: 'containers/header_actions', locals: {container: @album} if can?(:manage, @album)
 
 = render 'images/form' if can? :create, Image
+
+%hr/
 
 %ul.thumbnails{data: {toggle: 'modal-gallery', target: '#modal-gallery'}}
   = render partial: 'images/image', collection: @images

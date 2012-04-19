@@ -1,57 +1,18 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
  *= require bootstrap
  *= require bootstrap-image-gallery
  *= require_self
  *= require_tree .
 */
 
-/* Override some defaults */
-
-html, body {
-  background-color: #eee;
-  height: 100%;
-}
-
 body {
-  padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+  color:#444;
 }
 
-.container-fluid {
-  height:100%;
-}
-
-.container-fluid > footer p {
-  text-align: center; /* center align it with the container */
-}
-
-/* The white background content wrapper */
-#content {
-  min-height:100%;
-  background-color: #fff;
-  padding: 20px;
-  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-  -webkit-border-radius: 0 0 6px 6px;
-     -moz-border-radius: 0 0 6px 6px;
-          border-radius: 0 0 6px 6px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-          box-shadow: 0 1px 2px rgba(0,0,0,.15);
-}
-
-/* Page header tweaks */
-.page-header {
-  background-color: #f5f5f5;
-  padding: 20px 20px 10px;
-  margin: -20px -20px 20px;
+footer {
+  margin-top:40px;
+  border-top:1px solid #E5E5E5;
+  padding:35px 0 36px;
 }
 
 .home, .categories {
@@ -71,13 +32,4 @@ body {
       padding: 8px 0px;
     }
   }
-}
-
-.header-actions {
-  font-size: 14px;
-  padding-left: 10px;
-}
-
-.plupload.html5, .plupload.flash {
-  display:none;
 }

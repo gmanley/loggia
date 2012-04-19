@@ -1,51 +1,29 @@
-// Place all the styles related to the Albums controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 body.albums {
 
-  .thumbnails {
-    clear: both;
-  }
-
-  #uploader {
-    .actions {
-      margin-top: 10px;
+  &.show {
+    .header-actions {
+      padding-top: 5px;
     }
 
-    #upload_box {
-      border: 3px dashed #888888;
-      height: 80px;
-      text-align: center;
-      width: 240px;
-      margin-top:5px;
-
-      #upload_box_message_container {
-        display: inline-block;
-        margin-top: 18px;
-        width: 160px;
-      }
-
-      #upload_box_message {
-        color: #555555;
-        font-size: 16px;
-        margin: 5px 0;
-      }
+    .thumbnails {
+      clear: both;
     }
 
-    #file_list {
-      margin-top: 20px;
-      width: 30%;
+    #uploader {
+      #file_list {
+        margin-top: 20px;
+        width: 30%;
 
-      li {
-        border-bottom: 1px solid #ddd;
+        li {
+          border-bottom: 1px solid #ddd;
 
-        .file_info {
-          margin: 10px;
-        }
+          .file_info {
+            margin: 10px;
+          }
 
-        .progress {
-          margin: 10px;
+          .progress {
+            margin: 10px;
+          }
         }
       }
     }

@@ -1,9 +1,7 @@
-#uploader
-  %h3 Upload Images
-  #upload_box
-    #upload_box_message_container
-      %p#upload_box_message Drag & Drop Files Here
-  .actions
-    %button.btn#select_files Select Files
-    %button.btn.btn-primary#start_upload{data: {:'loading-text' => 'Uploading', :'complete-text' => 'Uploaded!'}} Upload
+#uploader.row-fluid
+  %strong Drag & drop photos anywhere on the page!
+  .btn-toolbar
+    .btn-group
+      %button.btn#select_files Select Files
+      %button.btn.btn-primary#start_upload{data: {:'loading-text' => 'Uploading', :'complete-text' => 'Uploaded!'}} Upload
   %ul.unstyled#file_list
