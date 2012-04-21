@@ -1,5 +1,5 @@
 %header.page-header
-  %h2= @category.title
+  %h1= @category.title
   = render partial: 'containers/header_actions', locals: {container: @category} if can?(:manage, @category)
 
 - unless @children.empty?
