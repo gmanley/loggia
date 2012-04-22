@@ -23,4 +23,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
+
+  def cached_master
+    @cached_master ||= CarrierWave::SanitizedFile.new(tempfile: StringIO.new(file.read),
+                                                      filename: File.basename(path),
+                                                      content_type: file.content_type)
+  end
 end

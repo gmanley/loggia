@@ -19,14 +19,10 @@ class Album < Container
     zip_temp_file = Tempfile.new(id.to_s, encoding: 'binary')
     Archive::Zip.open(zip_temp_file, :w) do |zip|
       images.each do |image_record|
-        image = image_record.image
-
-        image.class.enable_processing = false
-        image.cache_stored_file! unless image.cached?
-        image.class.enable_processing = true
-
-        image_path = Rails.root.join('public', image.cache_dir, image.cache_name)
-        zip << Archive::Zip::Entry.from_file(image_path)
+        image = image_record.image.cached_master
+        zip_entry = Archive::Zip::Entry::File.new(image.filename)
+        zip_entry.file_data = image.file
+        zip << zip_entry
       end
     end
 
