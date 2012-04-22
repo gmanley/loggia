@@ -34,6 +34,7 @@ gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
 gem 'fog'
 
+gem 'archive-zip', git: 'git://github.com/javanthropus/archive-zip.git'
 group :development do
   gem 'thin'
   gem 'guard'
