@@ -42,6 +42,7 @@ group :development do
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
   gem 'pry-rails'
   gem 'launchy'
+  gem 'quiet_assets'
 end
 
 group :test do
