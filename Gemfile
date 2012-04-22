@@ -35,10 +35,7 @@ gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'gra
 gem 'fog'
 
 gem 'archive-zip', git: 'git://github.com/javanthropus/archive-zip.git'
-gem 'girl_friday'
-
-# Use this, unicorn or raibows in production for girl_friday
-# gem 'puma', group: :production
+gem 'sidekiq'
 
 group :development do
   gem 'thin'

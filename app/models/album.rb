@@ -11,11 +11,11 @@ class Album < Container
     update_attribute(:thumbnail_url, images.sample.image_url(:thumb)) unless images.empty?
   end
 
-  def add_to_archive_queue!
-    ALBUM_ARCHIVE_QUEUE.push(id.to_s)
+  def async_create_archive
+    AlbumArchiver.perform_async(id.to_s)
   end
 
-  def archive!
+  def create_archive
     zip_temp_file = Tempfile.new(id.to_s, encoding: 'binary')
     Archive::Zip.open(zip_temp_file, :w) do |zip|
       images.each do |image_record|

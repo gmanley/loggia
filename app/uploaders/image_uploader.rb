@@ -9,7 +9,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   version :thumb do
-    process resize_to_fill: [200, 200]
+    resize_to_fill(200, 200, 'North')
   end
 
   def store_dir
@@ -17,7 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    image_path("placeholder.png")
+    image_path('placeholder.png')
   end
 
   def extension_white_list
