@@ -22,6 +22,9 @@ module Soshigal
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    # Enable threaded mode for girl_friday
+    config.threadsafe!
+
     # Enable the asset pipeline
     config.assets.enabled = true
 

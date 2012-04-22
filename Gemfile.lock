@@ -80,6 +80,7 @@ GEM
     coffeebeans (1.0.1)
       actionpack (>= 3.0.0)
       coffee-script
+    connection_pool (0.1.0)
     daemons (1.1.8)
     database_cleaner (0.7.2)
     devise (2.0.4)
@@ -107,6 +108,8 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.1)
+    girl_friday (0.9.7)
+      connection_pool (~> 0.1.0)
     growl (1.0.3)
     guard (1.0.1)
       ffi (>= 0.5.0)
@@ -275,6 +278,7 @@ DEPENDENCIES
   fabrication
   ffaker
   fog
+  girl_friday
   growl
   guard
   guard-rspec
