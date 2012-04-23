@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   respond_to :js, :json
 
   def create
-    @album = Album.find_by_slug(params[:album_id])
+    @album = Album.find_by_slug!(params[:album_id])
     @image = @album.images.new(params[:image])
     authorize!(:create, @image)
 
@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    @album = Album.find_by_slug(params[:album_id])
+    @album = Album.find_by_slug!(params[:album_id])
     @image = @album.images.find(params[:id])
     authorize!(:destroy, @image)
 

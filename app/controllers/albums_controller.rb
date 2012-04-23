@@ -2,7 +2,7 @@ class AlbumsController < ApplicationController
   respond_to :html, :json, :js
 
   def show
-    @album = Album.find_by_slug(params[:id])
+    @album = Album.find_by_slug!(params[:id])
     @images = @album.images.page(params[:page]).per(100)
     authorize!(:show, @album)
 
@@ -17,7 +17,7 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @album = Album.find_by_slug(params[:id])
+    @album = Album.find_by_slug!(params[:id])
     authorize!(:edit, @album)
 
     respond_with(@album)
@@ -32,7 +32,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album = Album.find_by_slug(params[:id])
+    @album = Album.find_by_slug!(params[:id])
     authorize!(:update, @album)
 
     @album.update_attributes(params[:album])
@@ -40,7 +40,7 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = Album.find_by_slug(params[:id])
+    @album = Album.find_by_slug!(params[:id])
     authorize!(:destroy, @album)
 
     @album.destroy
