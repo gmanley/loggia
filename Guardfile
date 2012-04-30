@@ -1,8 +1,8 @@
-guard 'spork', :cucumber => false, :rspec_env => { 'RAILS_ENV' => 'test' }, :notify => true, :wait => 30 do
+guard 'spork' do
   watch('spec/spec_helper.rb')
 end
 
-guard 'rspec', :version => 2, :cli => '--color --drb --format documentation', :all_after_pass => false, :keep_failed => false, :notify => true do
+guard 'rspec', all_after_pass: false, cli: '--color --drb --format documentation' do
   watch('spec/spec_helper.rb')                        { "spec" }
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
