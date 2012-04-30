@@ -5,12 +5,9 @@ feature 'Admin creates categories' do
   let(:root_category) { Fabricate.build(:category) }
   let(:child_category) { Fabricate.build(:category) }
 
-  background do
-    sign_in admin
-  end
+  background { sign_in admin }
 
   scenario 'root category' do
-
     visit homepage
 
     click_link 'New Category'
@@ -34,6 +31,8 @@ feature 'Admin creates categories' do
       fill_in 'Description', with: child_category.description
     end
     click_button 'Create'
+
+    page.should have_content 'Category was successfully created.'
   end
 end
 
@@ -42,7 +41,7 @@ feature 'Admin destroys categories' do
   let(:root_category) { Fabricate.build(:category) }
   let(:child_category) { Fabricate.build(:category) }
 
-  background(:each) do
+  background do
     sign_in admin
     create_root_category(root_category)
   end
@@ -77,18 +76,17 @@ end
 
 feature 'Admin edits categories' do
   let(:admin) { Fabricate(:admin) }
-  let!(:root_category) { Fabricate.build(:category) }
-  let!(:edited_root_category) { Fabricate.build(:category) }
-  let!(:child_category) { Fabricate.build(:category) }
-  let!(:edited_child_category) { Fabricate.build(:category) }
+  let(:root_category) { Fabricate.build(:category) }
+  let(:edited_root_category) { Fabricate.build(:category) }
+  let(:child_category) { Fabricate.build(:category) }
+  let(:edited_child_category) { Fabricate.build(:category) }
 
-  background(:each) do
+  background do
     sign_in admin
     create_root_category(root_category)
   end
 
   scenario 'root category' do
-
     visit homepage
 
     click_link root_category.title
@@ -106,7 +104,6 @@ feature 'Admin edits categories' do
   end
 
   scenario 'child category' do
-    create_root_category(root_category)
     create_child_category(root_category, child_category)
 
     visit homepage
