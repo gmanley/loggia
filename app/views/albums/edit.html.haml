@@ -1,8 +1,8 @@
-= form_for([@category, @album]) do |f|
+= simple_form_for([@category, @album]) do |f|
   %fieldset
     %legend Editing Album
     = render partial: 'containers/form', locals: {f: f}
     .form-actions
-      = f.submit 'Save', class: 'btn btn-primary'
+      = f.button :submit, 'Save', class: 'btn-primary'
 
 = link_to 'Show', [@category, @album]

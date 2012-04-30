@@ -1,9 +1,3 @@
-= f.label :title
-= f.text_field :title
-
-= f.label :description
-= f.text_field :description
-
-= f.label :hidden, class: 'checkbox' do
-  = f.check_box :hidden
-  Hidden
+= f.input :title
+= f.input :description
+= f.input :hidden, as: :boolean, label: false, inline_label: true

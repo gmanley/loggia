@@ -1,16 +1,11 @@
-= form_for(@user, url: user_password_path, method: :put) do |f|
+= simple_form_for(@user, url: user_password_path, method: :put) do |f|
   %fieldset
     %legend Change password
     = f.hidden_field :reset_password_token
-
-    = f.label :password, 'New Password'
-    = f.password_field :password
-
-    = f.label :password_confirmation, 'Confirm new password'
-    = f.password_field :password_confirmation
-
+    = f.input :password, label: 'New Password'
+    = f.input :password_confirmation, label: 'Confirm new password'
     .form-actions
-      = f.submit 'Change password', class: 'btn btn-primary'
+      = f.button :submit, 'Change password', class: 'btn-primary'
       = link_to 'Cancel', :back, class: 'btn'
 
   = render partial: 'users/shared/links'

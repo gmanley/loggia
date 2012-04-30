@@ -1,16 +1,10 @@
-= form_for(@user, url: user_registration_path) do |f|
+= simple_form_for(@user, url: user_registration_path) do |f|
   %fieldset
-    %legend Sign up
-    = f.label :email
-    = f.email_field :email
-
-    = f.label :password
-    = f.password_field :password
-
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-
+    %legend Sign Up
+    = f.input :email
+    = f.input :password
+    = f.input :password_confirmation
     .form-actions
-      = f.submit 'Sign Up', class: 'btn btn-primary'
+      = f.button :submit, 'Sign Up', class: 'btn-primary'
 
   = render partial: 'users/shared/links'

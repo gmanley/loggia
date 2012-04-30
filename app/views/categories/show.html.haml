@@ -10,18 +10,18 @@
 .row
   .span3
     - if can? :create, Category
-      = form_for(Category.new) do |f|
+      = simple_form_for(Category.new) do |f|
         %fieldset
           %legend New Subcategory
           = render partial: 'containers/form', locals: {f: f}
           = f.hidden_field :parent_id, value: @category.id
-          = f.submit 'Create', class: 'btn btn-primary'
+          = f.button :submit, 'Create', class: 'btn-primary'
 
   .span3
     - if can? :create, Album
-      = form_for(Album.new) do |f|
+      = simple_form_for(Album.new) do |f|
         %fieldset
           %legend New Child Album:
           = render partial: 'containers/form', locals: {f: f}
           = f.hidden_field :parent_id, value: @category.id
-          = f.submit 'Create', class: 'btn btn-primary'
+          = f.button :submit, 'Create', class: 'btn-primary'

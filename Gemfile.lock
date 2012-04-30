@@ -7,6 +7,15 @@ GIT
       subexec (~> 0.2.1)
 
 GIT
+  remote: git://github.com/gmanley/simple_form.git
+  revision: 0c017e9efb7d3c92efc95cc38668d61b8082bf13
+  branch: inline_label_config_tweak
+  specs:
+    simple_form (2.0.2.dev)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+
+GIT
   remote: git://github.com/javanthropus/archive-zip.git
   revision: 87db96242be22a5813315537e8d6693a4cf53e10
   specs:
@@ -308,6 +317,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2)
   sidekiq
+  simple_form!
   spork
   thin
   uglifier

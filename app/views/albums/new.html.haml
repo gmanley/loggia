@@ -1,6 +1,6 @@
-= form_for([@category, Album.new]) do |f|
+= simple_form_for([@category, Album.new]) do |f|
   %fieldset
     %legend New Album
     = render partial: 'containers/form', locals: {f: f}
     .form-actions
-      = f.submit 'Create', class: 'btn btn-primary'
+      = f.button :submit, 'Create', class: 'btn-primary'

@@ -1,17 +1,10 @@
-= form_for(@user, url: user_session_path) do |f|
+= simple_form_for(@user, url: user_session_path) do |f|
   %fieldset
     %legend Sign in
-    = f.label :email
-    = f.email_field :email
-
-    = f.label :password
-    = f.password_field :password
-
-    = f.label :remember_me, class: 'checkbox' do
-      = f.check_box :remember_me
-      Remember Me
-
+    = f.input :email
+    = f.input :password
+    = f.input :remember_me, as: :boolean, inline_label: true, label: false
     .form-actions
-      = f.submit 'Sign In', class: 'btn btn-primary'
+      = f.button :submit, 'Sign In', class: 'btn-primary'
 
   = render partial: 'users/shared/links'

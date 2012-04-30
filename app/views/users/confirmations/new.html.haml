@@ -1,10 +1,8 @@
-= form_for(@user, url: user_confirmation_path, html: {class: 'form-stacked'}) do |f|
+= simple_form_for(@user, url: user_confirmation_path) do |f|
   %fieldset
     %legend Resend confirmation instructions
-    = f.label :email
-    = f.email_field :email
-
+    = f.input :email
     .form-actions
-      = f.submit 'Resend confirmation', class: 'btn btn-primary'
+      = f.button :submit, 'Resend confirmation', class: 'btn-primary'
 
-    = render partial: 'users/shared/links'
+  = render partial: 'users/shared/links'

@@ -1,21 +1,12 @@
-= form_for(@user, url: user_registration_path, method: :put) do |f|
+= simple_form_for(@user, url: user_registration_path, method: :put) do |f|
   %fieldset
-    %legend Edit user
-    = f.label :email
-    = f.email_field :email
-
-    = f.label :password
-    = f.password_field :password
-    %span.help-inline (leave blank if you don't want to change it)
-
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-
-    = f.label :current_password
-    = f.password_field :current_password
-
+    %legend Edit User
+    = f.input :email
+    = f.input :password, hint: "Leave blank if you don't want to change it."
+    = f.input :password_confirmation
+    = f.input :current_password
     .form-actions
-      = f.submit 'Update', class: 'btn btn-primary'
+      = f.button :submit, 'Update', class: 'btn-primary'
       = link_to 'Cancel', :back, class: 'btn'
 
   = render partial: 'users/shared/links'

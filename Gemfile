@@ -28,6 +28,7 @@ gem 'devise'
 gem 'cancan'
 
 gem 'responders'
+gem 'simple_form', git: 'git://github.com/gmanley/simple_form.git', branch: 'inline_label_config_tweak'
 
 gem 'carrierwave'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
