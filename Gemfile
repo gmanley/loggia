@@ -53,6 +53,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'mongoid-rspec'
+  gem 'simplecov', require: false
   # gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git' # brew install qt
 end
 
@@ -60,7 +61,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'spork'
+  gem 'spork-rails'
 end
 
 # Unccomment this and run bundle if you need to run the importer.

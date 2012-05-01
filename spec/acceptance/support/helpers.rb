@@ -36,7 +36,6 @@ module HelperMethods
     end
   end
 
-
   def create_child_category(root_category, child_category)
     create_root_category(root_category)
 
@@ -50,6 +49,3 @@ module HelperMethods
     end
   end
 end
-
-RSpec.configuration.include(HelperMethods, type: :request)
-RSpec.configuration.include(HelperMethods, type: :acceptance)

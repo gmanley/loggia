@@ -1,6 +1,7 @@
 /.bundle
 /log/*.log
 /tmp
-public/uploads
-.sass-cache
+/public/uploads
+/.sass-cache
 .rbx
+/coverage
