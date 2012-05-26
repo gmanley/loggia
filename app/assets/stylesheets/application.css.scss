@@ -5,15 +5,14 @@
  *= require_tree .
 */
 
-body {
-  color:#444;
-}
+a { color: black }
+
+section { padding-top: 60px }
 
 footer {
-  margin-top:40px;
-  border-top:1px solid #E5E5E5;
-  padding:35px 0 36px;
-}
+  margin-top: 40px;
+  border-top: 1px solid #E5E5E5;
+  padding: 35px 0 36px }
 
 .home, .categories {
   .thumbnail {
@@ -24,16 +23,8 @@ footer {
     img {
       border: 1px solid #D3D3D3;
       width: 200px;
-      height: 200px;
-    }
+      height: 200px }
 
     .thumbnail-title {
       text-align: center;
-      padding: 8px 0px;
-    }
-  }
-}
-
-.plupload.html5, .plupload.flash {
-  display:none;
-}
+      padding: 8px 0px } } }

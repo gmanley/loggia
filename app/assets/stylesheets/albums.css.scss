@@ -1,13 +1,9 @@
 body.albums {
 
   &.show {
-    .header-actions {
-      padding-top: 5px;
-    }
+    .header-actions { padding-top: 5px }
 
-    .thumbnails {
-      clear: both;
-    }
+    .thumbnails { clear: both }
 
     #uploader {
       #file_list {
@@ -17,15 +13,6 @@ body.albums {
         li {
           border-bottom: 1px solid #ddd;
 
-          .file_info {
-            margin: 10px;
-          }
+          .file_info { margin: 10px }
 
-          .progress {
-            margin: 10px;
-          }
-        }
-      }
-    }
-  }
-}
+          .progress { margin: 10px } } } } } }
