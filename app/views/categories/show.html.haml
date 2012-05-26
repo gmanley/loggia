@@ -5,10 +5,10 @@
 - unless @children.empty?
   %ul.thumbnails
     = render partial: 'containers/container', collection: @children
+  %hr
 
-%hr
-.row
-  .span3
+%section.row-fluid
+  .span6
     - if can? :create, Category
       = simple_form_for(Category.new) do |f|
         %fieldset
@@ -17,7 +17,7 @@
           = f.hidden_field :parent_id, value: @category.id
           = f.button :submit, 'Create', class: 'btn-primary'
 
-  .span3
+  .span6
     - if can? :create, Album
       = simple_form_for(Album.new) do |f|
         %fieldset
