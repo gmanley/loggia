@@ -1,5 +1,5 @@
 /*
- * Bootstrap Image Gallery 2.2.2
+ * Bootstrap Image Gallery 2.8
  * https://github.com/blueimp/Bootstrap-Image-Gallery
  *
  * Copyright 2011, Sebastian Tschan
@@ -18,7 +18,7 @@
         // Register as an anonymous AMD module:
         define([
             'jquery',
-            './load-image.js',
+            'load-image',
             'bootstrap'
         ], factory);
     } else {
@@ -39,6 +39,9 @@
         delegate: document,
         // Selector for gallery links:
         selector: null,
+        // The filter for the selected gallery links (e.g. set to ":odd" to
+        // filter out label and thumbnail linking twice to the same image):
+        filter: '*',
         // The index of the first gallery image to show:
         index: 0,
         // The href of the first gallery image to show (overrides index):
@@ -52,7 +55,9 @@
         // Set to true to display images as canvas elements:
         canvas: false,
         // Shows the next image after the given time in ms (0 = disabled):
-        slideshow: 0
+        slideshow: 0,
+        // Defines the image division for previous/next clicks:
+        imageClickDivision: 0.5
     });
     var originalShow = $.fn.modal.Constructor.prototype.show,
         originalHide = $.fn.modal.Constructor.prototype.hide;
@@ -61,24 +66,19 @@
             var $this = this,
                 options = this.options,
                 selector = options.selector ||
-                    'a[data-target=' + options.target + ']',
-                index = 0;
-            $(options.delegate).find(selector).each(function (i, node) {
-                var url = node.href || $(node).data('href');
-                // Check the the previously added url, to account for
-                // thumbnail and name linking twice to the same image:
-                if ($this.urls[$this.urls.length - 1] !== url) {
-                    $this.urls.push(url);
-                    $this.titles.push(node.title);
-                    if (url === options.href) {
+                    'a[data-target=' + options.target + ']';
+            this.$links = $(options.delegate).find(selector)
+                .filter(options.filter).each(function (index) {
+                    if ($this.getUrl(this) === options.href) {
                         options.index = index;
                     }
-                    index += 1;
-                }
-            });
-            if (!this.urls[options.index]) {
+                });
+            if (!this.$links[options.index]) {
                 options.index = 0;
             }
+        },
+        getUrl: function (element) {
+            return element.href || $(element).data('href');
         },
         startSlideShow: function () {
             var $this = this;
@@ -108,12 +108,12 @@
         preloadImages: function () {
             var options = this.options,
                 range = options.index + options.preloadRange + 1,
-                url,
+                link,
                 i;
             for (i = options.index - options.preloadRange; i < range; i += 1) {
-                url = this.urls[i];
-                if (url && i !== options.index) {
-                    $('<img>').prop('src', url);
+                link = this.$links[i];
+                if (link && i !== options.index) {
+                    $('<img>').prop('src', this.getUrl(link));
                 }
             }
         },
@@ -121,9 +121,11 @@
             var $this = this,
                 modal = this.$element,
                 index = this.options.index,
+                url = this.getUrl(this.$links[index]),
                 oldImg;
             this.abortLoad();
             this.stopSlideShow();
+            modal.trigger('beforeLoad');
             // The timeout prevents displaying a loading status,
             // if the image has already been loaded:
             this._loadingTimeout = window.setTimeout(function () {
@@ -134,17 +136,22 @@
             window.setTimeout(function () {
                 oldImg.remove();
             }, 3000);
-            modal.find('.modal-title').text(this.titles[index]);
-            modal.find('.modal-download').prop('href', this.urls[index]);
-            this.loadingImage = loadImage(
-                this.urls[index],
+            modal.find('.modal-title').text(this.$links[index].title);
+            modal.find('.modal-download').prop(
+                'href',
+                url
+            );
+            this._loadingImage = loadImage(
+                url,
                 function (img) {
+                    $this.img = img;
                     window.clearTimeout($this._loadingTimeout);
                     modal.removeClass('modal-loading');
+                    modal.trigger('load');
                     $this.showImage(img);
                     $this.startSlideShow();
                 },
-                $this.loadImageOptions
+                this._loadImageOptions
             );
             this.preloadImages();
         },
@@ -159,6 +166,7 @@
                 width: img.width,
                 height: img.height
             });
+            modal.find('.modal-title').css({ width: Math.max(img.width, 380) });
             if ($(window).width() > 480) {
                 if (transition) {
                     clone = modal.clone().hide().appendTo(document.body);
@@ -173,11 +181,34 @@
             }
             modalImage.append(img);
             forceReflow = img.offsetWidth;
-            $(img).addClass('in');
+            modal.trigger('display');
+            if (transition) {
+                if (modal.is(':visible')) {
+                    $(img).on(
+                        $.support.transition.end,
+                        function (e) {
+                            // Make sure we don't respond to other transitions events
+                            // in the container element, e.g. from button elements:
+                            if (e.target === img) {
+                                $(img).off($.support.transition.end);
+                                modal.trigger('displayed');
+                            }
+                        }
+                    ).addClass('in');
+                } else {
+                    $(img).addClass('in');
+                    modal.one('shown', function () {
+                        modal.trigger('displayed');
+                    });
+                }
+            } else {
+                $(img).addClass('in');
+                modal.trigger('displayed');
+            }
         },
         abortLoad: function () {
-            if (this.loadingImage) {
-                this.loadingImage.onload = this.loadingImage.onerror = null;
+            if (this._loadingImage) {
+                this._loadingImage.onload = this._loadingImage.onerror = null;
             }
             window.clearTimeout(this._loadingTimeout);
         },
@@ -185,14 +216,14 @@
             var options = this.options;
             options.index -= 1;
             if (options.index < 0) {
-                options.index = this.urls.length - 1;
+                options.index = this.$links.length - 1;
             }
             this.loadImage();
         },
         next: function () {
             var options = this.options;
             options.index += 1;
-            if (options.index > this.urls.length - 1) {
+            if (options.index > this.$links.length - 1) {
                 options.index = 0;
             }
             this.loadImage();
@@ -230,10 +261,16 @@
             var $this = this,
                 modal = this.$element;
             modal.find('.modal-image').on('click.modal-gallery', function (e) {
-                if (e.altKey) {
-                    $this.prev(e);
+                var modalImage = $(this);
+                if ($this.$links.length === 1) {
+                    $this.hide();
                 } else {
-                    $this.next(e);
+                    if ((e.pageX - modalImage.offset().left) / modalImage.width() <
+                            $this.options.imageClickDivision) {
+                        $this.prev(e);
+                    } else {
+                        $this.next(e);
+                    }
                 }
             });
             modal.find('.modal-prev').on('click.modal-gallery', function (e) {
@@ -272,18 +309,18 @@
                     options = this.options,
                     windowWidth = $(window).width(),
                     windowHeight = $(window).height();
-                this.urls = [];
-                this.titles = [];
                 if (modal.hasClass('modal-fullscreen')) {
-                    this.loadImageOptions = {
-                        minWidth: windowWidth,
-                        minHeight: windowHeight,
+                    this._loadImageOptions = {
                         maxWidth: windowWidth,
                         maxHeight: windowHeight,
                         canvas: options.canvas
                     };
+                    if (modal.hasClass('modal-fullscreen-stretch')) {
+                        this._loadImageOptions.minWidth = windowWidth;
+                        this._loadImageOptions.minHeight = windowHeight;
+                    }
                 } else {
-                    this.loadImageOptions = {
+                    this._loadImageOptions = {
                         maxWidth: windowWidth - options.offsetWidth,
                         maxHeight: windowHeight - options.offsetHeight,
                         canvas: options.canvas
@@ -297,7 +334,13 @@
                 }
                 this.initGalleryEvents();
                 this.initLinks();
-                if (this.urls.length) {
+                if (this.$links.length) {
+                    modal.find('.modal-slideshow, .modal-prev, .modal-next')
+                        .toggle(this.$links.length !== 1);
+                    modal.toggleClass(
+                        'modal-single',
+                        this.$links.length === 1
+                    );
                     this.loadImage();
                 }
             }
