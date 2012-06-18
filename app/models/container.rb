@@ -4,13 +4,16 @@ class Container
   include Mongoid::Slug
   include Mongoid::Tree
 
-  field :title, type: String
-  field :description, type: String
-  field :hidden, type: Boolean, default: false
-  field :thumbnail_url, type: String, default: '/assets/placeholder.png'
+  field :title,         type: String
+  field :description,   type: String
+  field :hidden,        type: Boolean, default: false
+  field :thumbnail_url, type: String,  default: '/assets/placeholder.png'
+
+  embeds_many :comments, as: :commentable
 
   index :hidden
   index :title
+  index [['comments', Mongo::ASCENDING]]
 
   validates_presence_of :title
 
