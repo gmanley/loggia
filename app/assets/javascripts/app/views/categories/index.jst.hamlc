@@ -1,0 +1,4 @@
+%ul.thumbnails
+  - for category in @categories
+    != JST['app/views/containers/_container'](category)
+%a.btn.btn-primary{data: {action: 'new'}} New Category

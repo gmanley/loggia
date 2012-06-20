@@ -8,4 +8,5 @@
 // the compiled file.
 //
 //= require libraries
+//= require app
 //= require_tree .

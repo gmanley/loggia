@@ -17,10 +17,9 @@ module ApplicationHelper
   end
 
   def breadcrumb_paths
-
     if current_resource = instance_variable_get("@#{controller_name.singularize}")
       current_resource.ancestors_and_self.collect do |e|
-        {title: e.title, url: url_for(e)}
+        { title: e.title, url: url_for(e) }
       end
     else
       []

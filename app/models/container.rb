@@ -9,6 +9,8 @@ class Container
   field :hidden,        type: Boolean, default: false
   field :thumbnail_url, type: String,  default: '/assets/placeholder.png'
 
+  attr_protected :id
+
   embeds_many :comments, as: :commentable
 
   index :hidden

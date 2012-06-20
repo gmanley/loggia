@@ -1,0 +1,4 @@
+%li
+  %a.thumbnail.item{data: {action: 'show', id: @id, type: @type}}
+    %img{src: @thumbnail_url}
+    %h4.thumbnail-title= @title

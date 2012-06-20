@@ -8,9 +8,7 @@ $ ->
     file_data_name: 'image[image]'
     flash_swf_url: '/assets/plupload.flash.swf'
     drop_element: 'content'
-    filters:
-      {title: 'Image files', extensions: 'jpg,jpeg,gif,png'}
-    multipart: true
+    filters: { title: 'Image files', extensions: 'jpg,jpeg,gif,png' }
     multipart_params:
       authenticity_token: authenticity_token
       _soshigal_session: session_token

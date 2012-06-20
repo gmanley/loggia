@@ -1,7 +1,6 @@
 class Category < Container
-
   def album_descendants
-    Album.where(:parent_ids => self.id)
+    Album.where(parent_ids: id)
   end
 
   def set_thumbnail_url

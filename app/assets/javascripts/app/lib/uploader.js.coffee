@@ -1,0 +1,1 @@
+class Uploader extends plupload.Uploader

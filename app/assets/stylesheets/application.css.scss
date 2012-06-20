@@ -5,6 +5,8 @@
  *= require_tree .
 */
 
+.stack > *:not(.active) { display: none }
+
 a { color: black }
 
 section { padding-top: 60px }

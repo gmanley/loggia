@@ -17,12 +17,17 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'spine-rails'
+gem 'eco'
 
 gem 'mongoid', '~> 2.4'
 gem 'bson_ext'
 gem 'mongoid_slug'
 gem 'mongoid-tree'
 gem 'kaminari'
+
+gem 'rabl'
+gem 'yajl-ruby'
 
 gem 'devise'
 gem 'cancan'

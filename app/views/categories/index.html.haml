@@ -1,4 +1,9 @@
-%ul.thumbnails
-  = render partial: 'containers/container', collection: @categories
+/ %ul.thumbnails
+/   = render partial: 'containers/container', collection: @categories
+/
+/ = link_to('New Category', new_category_path, class: 'btn btn-primary') if can?(:create, Category)
+#app
 
-= link_to('New Category', new_category_path, class: 'btn btn-primary') if can?(:create, Category)
+:coffeescript
+  $ ->
+    window.app = new App(el: $("#app"))

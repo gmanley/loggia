@@ -30,6 +30,6 @@ class User
   field :admin, type: Boolean
 
   def admin?
-    admin
+    !!admin
   end
 end

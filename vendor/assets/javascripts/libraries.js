@@ -8,3 +8,9 @@
 //= require plupload.flash
 //= require plupload.html5
 //= require hamlcoffee
+//= require json2
+//= require spine
+//= require spine/manager
+//= require spine/ajax
+//= require spine/route
+//= require spine/relation

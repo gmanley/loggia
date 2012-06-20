@@ -1,3 +1,0 @@
-%li
-  %a.thumbnail{href: @image.url, rel: 'gallery'}
-    %img{src: @image.thumb.url }
