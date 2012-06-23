@@ -1,27 +1,22 @@
-class App.Category extends Spine.Model
-  @configure 'Category', 'title', 'description', 'thumbnail_url', 'type'
-  @extend Spine.Model.Ajax
-  @url: '/categories'
+class App.Models.Category extends Backbone.Model
+  paramRoot: 'category'
+  routingName: 'categories'
 
-  @hasMany 'albums', 'App.Album'
-  @hasMany 'categories', 'App.Category'
-  @belongsTo 'category', 'App.Category'
+  initialize: (args) ->
+    @albums = new App.Collections.AlbumsCollection()
+    @albums.category = this
 
-  children: ->
-    categories = @categories().all()
-    albums = @albums().all()
-    categories.concat(albums)
+  parse: (response) =>
+    unless _.isUndefined(response.children)
+      children = _(response.children).groupBy('type')
+      @collection.add(children['Category'])
+      @albums.add(children['Album'])
+    delete response.children
+    response
 
-  load: (atts) ->
-    unless typeof atts.children is 'undefined'
-      for child in atts.children
-        switch child.type
-          when 'Category'
-            relation = @categories()
-          when 'Album'
-            relation = @albums()
-        child_record = relation.model.fromJSON(child)
-        child_record.newRecord = false
-        child_record[relation.fkey] = atts.id
-        relation.model.records[child_record.id] = child_record
-    super
+  children: =>
+    _.union(@albums.models, @collection.where(parent_id: @id))
+
+class App.Collections.CategoriesCollection extends Backbone.Collection
+  model: App.Models.Category
+  url: '/categories'

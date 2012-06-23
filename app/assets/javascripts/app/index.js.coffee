@@ -1,16 +1,13 @@
-#= require_tree ./lib
 #= require_self
+#= require_tree ./templates
 #= require_tree ./models
-#= require_tree ./controllers
 #= require_tree ./views
+#= require_tree ./routers
 
-class App extends Spine.Controller
-  constructor: ->
-    super
-
-    # Initialize controllers:
-    @append(@categories = new App.Categories)
-
-    Spine.Route.setup()
-
-window.App = App
+window.App =
+  Models: {}
+  Collections: {}
+  Routers: {}
+  Views: {}
+  routingNameFor: (type) ->
+    App.Models[type]::routingName

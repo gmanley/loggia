@@ -4,10 +4,10 @@
     %a.btn.btn-primary.btn-mini{data: {action: 'edit'}} Edit
     %a.btn.btn-danger.btn-mini.destroy{data: {action: 'destroy'}} Delete
 
-!= JST['app/views/images/_form']()
+!= JST['app/templates/images/_form']()
 
 %ul.thumbnails{ data: { toggle: 'modal-gallery', target: '#modal-gallery' } }
   - for image in @album.images().all()
-    != JST['app/views/images/_image'](image)
+    != JST['app/templates/images/_image'](image)
 
-!= JST['app/views/images/_modal']()
+!= JST['app/templates/images/_modal']()

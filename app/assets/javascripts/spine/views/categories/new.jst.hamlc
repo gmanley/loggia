@@ -1,0 +1,4 @@
+%form
+  %fieldset
+    %legend New root category
+    != JST['app/templates/containers/_form'](@category)

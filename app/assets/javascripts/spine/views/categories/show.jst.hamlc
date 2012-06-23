@@ -6,4 +6,4 @@
 
 %ul.thumbnails
   - for child in @category.children()
-    != JST['app/views/containers/_container'](child)
+    != JST['app/templates/containers/_container'](child)

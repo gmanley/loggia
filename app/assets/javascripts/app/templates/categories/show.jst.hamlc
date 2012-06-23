@@ -1,0 +1,7 @@
+%header.page-header
+  %h1= @title
+  .header-actions.btn-toolbar
+    %a.btn.btn-primary.btn-mini{data: {action: 'edit'}} Edit
+    %a.btn.btn-danger.btn-mini.destroy{data: {action: 'destroy'}} Delete
+
+%ul.thumbnails

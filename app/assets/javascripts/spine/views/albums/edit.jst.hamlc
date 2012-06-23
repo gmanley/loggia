@@ -1,0 +1,4 @@
+%form
+  %fieldset
+    %legend Editing Album
+    != JST['app/templates/containers/_form'](@album)

@@ -1,0 +1,6 @@
+%form#edit-album
+  %fieldset
+    %legend Editing Album
+    != JST['app/templates/containers/_form'](@album)
+    .form-actions
+      %button.btn.btn-primary Save

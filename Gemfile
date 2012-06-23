@@ -17,8 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'spine-rails'
-gem 'eco'
+gem 'rails-backbone'
 
 gem 'mongoid', '~> 2.4'
 gem 'bson_ext'
