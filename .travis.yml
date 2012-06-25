@@ -12,3 +12,6 @@ script: bundle exec rake spec
 notifications:
   recipients:
     - gray.manley@gmail.com
+branches:
+  only:
+    - master
