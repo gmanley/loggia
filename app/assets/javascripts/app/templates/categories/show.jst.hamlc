@@ -5,3 +5,11 @@
     %a.btn.btn-danger.btn-mini.destroy{data: {action: 'destroy'}} Delete
 
 %ul.thumbnails
+
+%section.row-fluid
+  .span6
+    %form#new-category
+      %button.btn.btn-primary Create
+  .span6
+    %form#new-album
+      %button.btn.btn-primary Create

@@ -1,4 +1,5 @@
 #= require_self
+#= require_tree ./lib
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views
@@ -9,5 +10,3 @@ window.App =
   Collections: {}
   Routers: {}
   Views: {}
-  routingNameFor: (type) ->
-    App.Models[type]::routingName

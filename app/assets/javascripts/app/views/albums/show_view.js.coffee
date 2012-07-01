@@ -1,8 +1,8 @@
 App.Views.Albums ||= {}
 
 class App.Views.Albums.ShowView extends Backbone.View
-  template: JST["app/templates/albums/show"]
-  fileStatusTemplate: JST["app/templates/images/_status"]
+  template: JST['app/templates/albums/show']
+  fileStatusTemplate: JST['app/templates/images/_file_status']
 
   events:
     'click #start-upload': 'startUpload'
@@ -16,6 +16,7 @@ class App.Views.Albums.ShowView extends Backbone.View
 
   addOne: (image) =>
     return unless image?
+    window.image = image
     view = new App.Views.Images.ImageView(model: image)
     @$('.thumbnails').append(view.render().el)
 
@@ -24,21 +25,21 @@ class App.Views.Albums.ShowView extends Backbone.View
     App.albumsRouter.navigate("/albums/#{album.id}", trigger: true)
 
   render: ->
-    @$el.html(@template(album: @model.toJSON() ))
+    @$el.html(@template(album: @model.toJSON()))
     @addAll()
     this
 
   startUpload: (e) ->
-    uploader.start()
+    @uploader.start()
     @$('#start-upload').button('loading')
 
   initializeUploader: ->
-    @$('#start_upload').button()
+    @$('#start-upload').button()
     @uploader = new plupload.Uploader(
       runtimes: 'html5,flash'
       browse_button: 'select_files'
       max_file_size: '10mb'
-      url: "#{window.location.pathname}/images.json"
+      url: "#{@model.url()}/images.json"
       file_data_name: 'image[image]'
       flash_swf_url: '/assets/plupload.flash.swf'
       drop_element: 'content'
@@ -48,17 +49,17 @@ class App.Views.Albums.ShowView extends Backbone.View
         _soshigal_session: session_token
       )
 
-    @uploader.bind "FilesAdded", (up, files) ->
+    @uploader.bind "FilesAdded", (up, files) =>
       for file in files
-        $("#file_list").append(@fileStatusTemplate(file: file))
+        $("#file_list").append(@fileStatusTemplate(file))
 
     @uploader.bind 'UploadProgress', (up, file) ->
       $("##{file.id} b").html("#{file.percent}%")
       $("##{file.id} .progress .bar").css('width', "#{file.percent}%")
 
-    @uploader.bind 'FileUploaded', (up, file, request) ->
-      response = JSON.parse(request.response)
-      @model.images.add(response.image)
+    @uploader.bind 'FileUploaded', (up, file, request) =>
+      image = JSON.parse(request.response)
+      @model.images.add(image)
       @$("##{file.id} .progress")
         .toggleClass('active')
         .prev('.file_info b').text('Done')
@@ -66,6 +67,6 @@ class App.Views.Albums.ShowView extends Backbone.View
           $(this).parent().css('border', 'none')
 
     @uploader.bind 'UploadComplete', (up, files) ->
-      $('#start_upload').button('complete')
+      $('#start-upload').button('complete')
 
     @uploader.init()

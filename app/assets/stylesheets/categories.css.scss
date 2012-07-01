@@ -1,6 +1,6 @@
 body.categories {
 
   &.show {
-    input.string {
+    input[type='text'] {
       max-width: 250px;
       width:99% } } }

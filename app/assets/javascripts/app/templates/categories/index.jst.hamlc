@@ -1,2 +1,2 @@
 %ul.thumbnails
-%a.btn.btn-primary{href: '#categories/new'} New Category
+%a.btn.btn-primary{href: '#/categories/new'} New Category

@@ -1,6 +1,7 @@
 /*
  *= require bootstrap
  *= require bootstrap-image-gallery
+ *= require bootstrap-backbone-forms
  *= require_self
  *= require_tree .
 */
@@ -16,7 +17,7 @@ footer {
   border-top: 1px solid #E5E5E5;
   padding: 35px 0 36px }
 
-.home, .categories {
+.categories {
   .thumbnail {
     padding: 15px 15px 0px 15px;
     width: 200px;

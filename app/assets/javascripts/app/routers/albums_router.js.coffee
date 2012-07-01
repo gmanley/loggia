@@ -1,5 +1,6 @@
 class App.Routers.AlbumsRouter extends Backbone.Router
   initialize: (options) ->
+    App.albumsRouter = this
     @albums = options.albums
 
   routes:

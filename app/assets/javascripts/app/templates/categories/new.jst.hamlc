@@ -1,6 +1,2 @@
 %form#new-category
-  %fieldset
-    %legend New root category
-    != JST['app/templates/containers/_form'](@category)
-    .form-actions
-      %button.btn.btn-primary Create
+  %button.btn.btn-primary Create

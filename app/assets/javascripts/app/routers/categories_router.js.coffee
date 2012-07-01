@@ -1,20 +1,21 @@
 class App.Routers.CategoriesRouter extends Backbone.Router
   initialize: (options) ->
+    App.categoriesRouter = this
     @categories = new App.Collections.CategoriesCollection()
-    @categories.reset options.categories
+    @categories.reset(options.categories)
 
   routes:
     '.*'                  : 'index'
-    'categories/new'      : 'newCategory'
+    'categories/new'      : 'new'
     'categories/:id/edit' : 'edit'
     'categories/:id'      : 'show'
 
-  newCategory: ->
+  new: ->
     @view = new App.Views.Categories.NewView(collection: @categories)
     $('#content').html(@view.render().el)
 
   index: ->
-    @view = new App.Views.Categories.IndexView(categories: @categories)
+    @view = new App.Views.Categories.IndexView(collection: @categories)
     @view.render()
 
   show: (id) ->

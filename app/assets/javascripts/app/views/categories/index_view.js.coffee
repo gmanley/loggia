@@ -5,16 +5,17 @@ class App.Views.Categories.IndexView extends Backbone.View
   el: '#content'
 
   initialize: ->
-    @options.categories.on('reset', @addAll)
+    @collection.on('reset', @addAll)
 
   addAll: =>
-    @options.categories.each(@addOne)
+    for category in @collection.roots()
+      @addOne(category)
 
   addOne: (category) =>
     view = new App.Views.Categories.CategoryView(model: category)
     @$('.thumbnails').append(view.render().el)
 
   render: =>
-    @$el.html(@template(categories: @options.categories.toJSON()))
+    @$el.html(@template(categories: @collection.toJSON()))
     @addAll()
     this

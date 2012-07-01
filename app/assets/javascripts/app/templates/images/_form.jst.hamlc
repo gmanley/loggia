@@ -3,7 +3,7 @@
   .btn-toolbar
     .btn-group
       %button.btn#select_files Select Files
-      %button.btn.btn-primary#start_upload{data: {:'loading-text' => 'Uploading', :'complete-text' => 'Uploaded!'}} Upload
+      %button.btn.btn-primary#start-upload{data: {:'loading-text' => 'Uploading', :'complete-text' => 'Uploaded!'}} Upload
   %ul.unstyled#file_list
 
 %hr/

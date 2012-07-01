@@ -2,12 +2,19 @@ class App.Models.Category extends Backbone.Model
   paramRoot: 'category'
   routingName: 'categories'
 
+  schema:
+    title:
+      type: 'Text'
+      validators: ['required']
+    description: 'Text'
+    hidden: { type: 'Checkbox', template: 'checkbox' }
+
   initialize: (args) ->
     @albums = new App.Collections.AlbumsCollection()
     @albums.category = this
 
   parse: (response) =>
-    unless _.isUndefined(response.children)
+    unless typeof response is 'null' or response.children is 'undefined'
       children = _(response.children).groupBy('type')
       @collection.add(children['Category'])
       @albums.add(children['Album'])
@@ -20,3 +27,9 @@ class App.Models.Category extends Backbone.Model
 class App.Collections.CategoriesCollection extends Backbone.Collection
   model: App.Models.Category
   url: '/categories'
+
+  roots: ->
+    @where(parent_id: null)
+
+  comparator: (category) ->
+    category.get('title')

@@ -1,4 +1,4 @@
 :coffeescript
   $ ->
-    App.categoriesRouter = new App.Routers.CategoriesRouter(categories: #{render(partial: 'index', formats: :json, object: @categories)})
-    Backbone.history.start()
+    new App.Routers.CategoriesRouter(categories: #{render(partial: 'index', formats: :json, object: @categories)})
+    App.handleHistory()
