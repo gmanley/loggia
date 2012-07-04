@@ -17,7 +17,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'rails-backbone'
 
 gem 'mongoid', '~> 2.4'
 gem 'bson_ext'
@@ -66,6 +65,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'ffaker'
   gem 'spork-rails'
+  gem 'konacha'
 end
 
 # Unccomment this and run bundle if you need to run the importer.

@@ -1,0 +1,6 @@
+%form#edit-category
+  %fieldset
+    %legend Editing Category
+    != JST['templates/containers/_form'](@category)
+    .form-actions
+      %button.btn.btn-primary Save

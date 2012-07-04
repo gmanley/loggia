@@ -1,9 +1,0 @@
-%header.page-header
-  %h1= @category.title
-  .header-actions.btn-toolbar
-    %a.btn.btn-primary.btn-mini{data: {action: 'edit'}} Edit
-    %a.btn.btn-danger.btn-mini.destroy{data: {action: 'destroy'}} Delete
-
-%ul.thumbnails
-  - for child in @category.children()
-    != JST['app/templates/containers/_container'](child)

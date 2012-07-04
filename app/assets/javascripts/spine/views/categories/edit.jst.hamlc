@@ -1,4 +1,0 @@
-%form
-  %fieldset
-    %legend Editing Category
-    != JST['app/templates/containers/_form'](@category)

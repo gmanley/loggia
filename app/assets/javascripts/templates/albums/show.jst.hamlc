@@ -1,0 +1,11 @@
+%header.page-header
+  %h1= @album.title
+  .header-actions.btn-toolbar
+    %a.btn.btn-primary.btn-mini{data: {action: 'edit'}} Edit
+    %a.btn.btn-danger.btn-mini.destroy{data: {action: 'destroy'}} Delete
+
+!= JST['templates/images/_form']()
+
+%ul.thumbnails{ data: { toggle: 'modal-gallery', target: '#modal-gallery' } }
+
+!= JST['templates/images/_modal']()

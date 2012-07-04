@@ -90,7 +90,6 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     diff-lcs (1.1.3)
-    ejs (1.0.0)
     erubis (2.7.0)
     eventmachine (0.12.10)
     excon (0.13.4)
@@ -141,6 +140,11 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
+    konacha (1.3.1)
+      actionpack (~> 3.1)
+      capybara
+      railties (~> 3.1)
+      sprockets
     launchy (2.1.0)
       addressable (~> 2.2.6)
     libwebsocket (0.1.3)
@@ -203,10 +207,6 @@ GEM
       activesupport (= 3.2.6)
       bundler (~> 1.0)
       railties (= 3.2.6)
-    rails-backbone (0.7.2)
-      coffee-script (~> 2.2.0)
-      ejs (~> 1.0.0)
-      railties (>= 3.1.0)
     railties (3.2.6)
       actionpack (= 3.2.6)
       activesupport (= 3.2.6)
@@ -322,6 +322,7 @@ DEPENDENCIES
   haml_coffee_assets
   jquery-rails
   kaminari
+  konacha
   launchy
   mini_magick!
   mongoid (~> 2.4)
@@ -332,7 +333,6 @@ DEPENDENCIES
   quiet_assets
   rabl
   rails (~> 3.2)
-  rails-backbone
   rake
   responders
   rspec-rails
