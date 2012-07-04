@@ -21,6 +21,9 @@ class Container
 
   default_scope asc(:title)
 
+  scope :albums, where(_type: 'Album')
+  scope :categories, where(_type: 'Category')
+
   slug :title, :parent do |doc|
     doc.ancestors_and_self.collect(&:title).join(' ')
   end

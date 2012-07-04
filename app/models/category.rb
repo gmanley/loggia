@@ -1,10 +1,7 @@
 class Category < Container
-  def album_descendants
-    Album.where(parent_ids: id)
-  end
 
   def set_thumbnail_url
-    descendants_with_images = album_descendants.with_images
+    descendants_with_images = descendants.albums.with_images
     unless descendants_with_images.empty?
       thumbnail_url = descendants_with_images.sample.thumbnail_url
       update_attribute(:thumbnail_url, thumbnail_url)
