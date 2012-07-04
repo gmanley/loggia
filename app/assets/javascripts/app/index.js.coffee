@@ -4,6 +4,7 @@
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
+#= require ./boot
 
 window.App =
   Models: {}

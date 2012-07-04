@@ -1,4 +1,4 @@
-class App.Models.Album extends Backbone.Model
+class App.Models.Album extends Backbone.RelationalModel
   paramRoot: 'album'
   routingName: 'albums'
 
@@ -11,7 +11,6 @@ class App.Models.Album extends Backbone.Model
 
   initialize: (args) ->
     @images = new App.Collections.ImagesCollection()
-    @images.category = this
 
   parse: (response) =>
     unless _.isUndefined(response.images)
@@ -21,7 +20,8 @@ class App.Models.Album extends Backbone.Model
 
 class App.Collections.AlbumsCollection extends Backbone.Collection
   model: App.Models.Album
-  url: '/albums'
+  url: ->
+    "#{@category.url()}/albums"
 
   comparator: (category) ->
     category.get('title')

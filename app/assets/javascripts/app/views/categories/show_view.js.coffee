@@ -5,13 +5,13 @@ class App.Views.Categories.ShowView extends Backbone.View
 
   events:
     'click [data-action=destroy]': 'destroy'
-    'click [data-action=create-album]': 'createAlbum'
-    'click [data-action=create-category]': 'createCategory'
+    'submit #new-album': 'createAlbum'
+    'submit #new-category': 'createCategory'
 
   initialize: ->
-    @model.albums.on('add', @addOne)
-    @model.collection.on 'add', (category) =>
-      @addOne(category) if category.get('parent_id') is @model.id
+    @model.get('albums')?.on('add', @addOne)
+    @model.get('categories')?.on 'add', (category) =>
+      @addOne(category) #if category.get('parent_id') is @model.id
 
   addAll: ->
     for child in @model.children()
@@ -32,12 +32,14 @@ class App.Views.Categories.ShowView extends Backbone.View
     App.categoriesRouter.navigate('/', trigger: true)
 
   createCategory: ->
+    e.preventDefault()
     unless @categoryForm.commit()
       category = @categoryForm.model
       category.set(parent_id: @model.id)
       @model.collection.create(category)
 
   createAlbum: ->
+    e.preventDefault()
     unless @albumForm.commit()
       album = @albumForm.model
       album.set(parent_id: @model.id)
@@ -51,7 +53,6 @@ class App.Views.Categories.ShowView extends Backbone.View
     @$('#new-category').prepend(html)
 
   render: ->
-    new App.Routers.AlbumsRouter(albums: @model.albums)
     @$el.html(@template(@model.toJSON()))
     @initForms()
     @addAll()

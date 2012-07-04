@@ -1,4 +1,4 @@
-class App.Models.Category extends Backbone.Model
+class App.Models.Category extends Backbone.RelationalModel
   paramRoot: 'category'
   routingName: 'categories'
 
@@ -9,20 +9,28 @@ class App.Models.Category extends Backbone.Model
     description: 'Text'
     hidden: { type: 'Checkbox', template: 'checkbox' }
 
-  initialize: (args) ->
-    @albums = new App.Collections.AlbumsCollection()
-    @albums.category = this
-
-  parse: (response) =>
-    unless typeof response is 'null' or response.children is 'undefined'
-      children = _(response.children).groupBy('type')
-      @collection.add(children['Category'])
-      @albums.add(children['Album'])
-    delete response.children
-    response
+  relations: [
+    type: 'HasMany'
+    key: 'albums'
+    relatedModel: 'App.Models.Album'
+    collectionType: 'App.Collections.AlbumsCollection'
+    includeInJSON: false
+    reverseRelation:
+      key: 'category'
+      includeInJSON: 'id'
+  ,
+    type: 'HasMany'
+    key: 'categories'
+    relatedModel: 'App.Models.Category'
+    collectionType: 'App.Collections.CategoriesCollection'
+    includeInJSON: false
+    reverseRelation:
+      key: 'category'
+      includeInJSON: 'id'
+  ]
 
   children: =>
-    _.union(@albums.models, @collection.where(parent_id: @id))
+    _.union(@get('categories').models, @get('albums').models)
 
 class App.Collections.CategoriesCollection extends Backbone.Collection
   model: App.Models.Category

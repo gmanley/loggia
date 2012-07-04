@@ -22,7 +22,8 @@ class App.Routers.CategoriesRouter extends Backbone.Router
     category = @categories.get(id)
     category.fetch(
       success: (model, response) =>
-        @view = new App.Views.Categories.ShowView(model: model)
+        @view = new App.Views.Categories.ShowView(model: category)
+        App.albumsRouter.albums = model.get('albums')
         $('#content').html(@view.render().el)
     )
 

@@ -14,3 +14,4 @@
 //= require backbone_datalink
 //= require backbone-forms
 //= require bootstrap-backbone-forms-custom
+//= require backbone-relational

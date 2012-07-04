@@ -1,7 +1,8 @@
 class App.Routers.AlbumsRouter extends Backbone.Router
   initialize: (options) ->
     App.albumsRouter = this
-    @albums = options.albums
+    @albums = new App.Collections.AlbumsCollection()
+    @albums.reset(options.albums) if options and options.albums
 
   routes:
     'album/new'       : 'newAlbum'

@@ -16,13 +16,12 @@ class App.Views.Albums.ShowView extends Backbone.View
 
   addOne: (image) =>
     return unless image?
-    window.image = image
     view = new App.Views.Images.ImageView(model: image)
     @$('.thumbnails').append(view.render().el)
 
   destroy: ->
     @model.destroy()
-    App.albumsRouter.navigate("/albums/#{album.id}", trigger: true)
+    App.albumsRouter.navigate('/', trigger: true)
 
   render: ->
     @$el.html(@template(album: @model.toJSON()))
