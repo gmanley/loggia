@@ -1,4 +1,5 @@
 class App.Models.Album extends Backbone.RelationalModel
+  urlRoot: '/albums'
   paramRoot: 'album'
   routingName: 'albums'
 
@@ -20,8 +21,7 @@ class App.Models.Album extends Backbone.RelationalModel
 
 class App.Collections.AlbumsCollection extends Backbone.Collection
   model: App.Models.Album
-  url: ->
-    "#{@category.url()}/albums"
+  url: '/albums'
 
   comparator: (category) ->
     category.get('title')

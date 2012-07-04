@@ -14,7 +14,7 @@ class App.Routers.AlbumsRouter extends Backbone.Router
     $("#content").html(@view.render().el)
 
   show: (id) ->
-    album = @albums.get(id)
+    album = (@albums.get(id) || new App.Models.Album(id: id))
     album.fetch(
       success: (model, response) =>
         @view = new App.Views.Albums.ShowView(model: model)
