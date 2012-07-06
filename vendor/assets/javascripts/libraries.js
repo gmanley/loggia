@@ -10,7 +10,6 @@
 //= require hamlcoffee
 //= require underscore
 //= require backbone
-//= require backbone_rails_sync
 //= require backbone-forms
 //= require bootstrap-backbone-forms-custom
 //= require backbone-paginated-collection
