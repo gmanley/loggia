@@ -14,9 +14,9 @@ class App.Models.Album extends Backbone.RelationalModel
     @images = new App.Collections.ImagesCollection()
 
   parse: (response) =>
-    unless _.isUndefined(response.images)
+    if response && response.images
       @images.add(response.images)
-    delete response.images
+      delete response.images
     response
 
 class App.Collections.AlbumsCollection extends Backbone.Collection

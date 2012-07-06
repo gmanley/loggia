@@ -27,7 +27,7 @@ class App.Views.Albums.ShowView extends Backbone.View
     App.albumsRouter.navigate('/', trigger: true)
 
   render: ->
-    @$el.html(@template(album: @model.toJSON()))
+    @$el.html(@template(@model.toJSON()))
     @paginatedView = new App.Views.Albums.PaginatorView(collection: @paginatedImages)
     @$el.append(@paginatedView.render().el)
     @addAll()

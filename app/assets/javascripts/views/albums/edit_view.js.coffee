@@ -9,14 +9,13 @@ class App.Views.Albums.EditView extends Backbone.View
   update: (e) ->
     e.preventDefault()
     e.stopPropagation()
-
-    @model.save(null,
-      success: (album) =>
-        @model = album
-        App.albumsRouter.navigate("/categories/#{album.id}", trigger: true)
-    )
+    errors = @form.commit()
+    unless errors
+      @model.save().done =>
+        App.albumsRouter.navigate("/albums/#{@model.id}", trigger: true)
 
   render: ->
-    @$el.html(@template(@model.toJSON()))
-    @$('form').backboneLink(@model)
+    @$el.html(@template())
+    [html, @form] = App.formsetFor(@model, legend: 'Edit Album')
+    @$('#edit-album').prepend(html)
     this
