@@ -24,6 +24,7 @@ class App.Views.Albums.ShowView extends Backbone.View
 
   destroy: ->
     @model.destroy()
+    @remove()
     App.albumsRouter.navigate('/', trigger: true)
 
   render: ->

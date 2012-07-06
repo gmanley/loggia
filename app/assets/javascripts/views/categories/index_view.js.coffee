@@ -12,7 +12,7 @@ class App.Views.Categories.IndexView extends Backbone.View
       @addOne(category)
 
   addOne: (category) =>
-    view = new App.Views.Categories.CategoryView(model: category)
+    view = new App.Views.Containers.ContainerView(model: category)
     @$('.thumbnails').append(view.render().el)
 
   render: =>

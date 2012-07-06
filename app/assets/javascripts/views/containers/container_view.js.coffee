@@ -1,12 +1,8 @@
-App.Views.Albums ||= {}
+App.Views.Containers ||= {}
 
-class App.Views.Albums.AlbumView extends Backbone.View
+class App.Views.Containers.ContainerView extends Backbone.View
   template: JST['templates/containers/_container']
   tagName: 'li'
-
-  destroy: ->
-    @model.destroy()
-    @remove()
 
   render: ->
     $(@el).html(@template(@model.toJSON()))
