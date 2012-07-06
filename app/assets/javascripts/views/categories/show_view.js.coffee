@@ -5,8 +5,8 @@ class App.Views.Categories.ShowView extends Backbone.View
 
   events:
     'click [data-action=destroy]': 'destroy'
-    'submit #new-album':    'createAlbum'
-    'submit #new-category': 'createCategory'
+    'submit #new-album':           'createAlbum'
+    'submit #new-category':        'createCategory'
 
   initialize: ->
     @model.get('albums')?.on('add', @addOne)

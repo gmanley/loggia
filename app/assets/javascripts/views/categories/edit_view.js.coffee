@@ -4,19 +4,18 @@ class App.Views.Categories.EditView extends Backbone.View
   template: JST['templates/categories/edit']
 
   events:
-    "submit #edit-category" : "update"
+    'submit #edit-category': 'update'
 
   update: (e) ->
     e.preventDefault()
     e.stopPropagation()
-
-    @model.save(null,
-      success: (category) =>
-        @model = category
-        App.categoriesRouter.navigate("/categories/#{category.id}", trigger: true)
-    )
+    errors = @form.commit()
+    unless errors
+      @model.save().done =>
+        App.categoriesRouter.navigate("/categories/#{@model.id}", trigger: true)
 
   render: ->
-    @$el.html(@template(@model.toJSON()))
-    @$('form').backboneLink(@model)
+    @$el.html(@template())
+    [html, @form] = App.formsetFor(@model, legend: 'Edit Category')
+    @$('#edit-category').prepend(html)
     this
