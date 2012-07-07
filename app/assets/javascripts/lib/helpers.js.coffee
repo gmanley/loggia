@@ -1,7 +1,7 @@
 _.extend App,
-  routingNameFor: (type) ->
+  routingUrlFor: (type) ->
     if modelClass = App.Models[type]
-      modelClass::routingName
+      modelClass::urlRoot
 
   formsetFor: (model, options) ->
     model = new App.Models[model]() if typeof model is 'string'
@@ -17,3 +17,6 @@ _.extend App,
       resource_name = router.constructor.name.replace('Router', '').toLowerCase()
       $('body').attr('class', "#{resource_name} #{route}")
     Backbone.history.start()
+
+  flashMessage: (message, type) ->
+    $('#container').prepend("<div class='alert alert-#{type} fade in'><a class='close' data-dismiss='alert' href='#'>&times;</a>#{message}</div>")

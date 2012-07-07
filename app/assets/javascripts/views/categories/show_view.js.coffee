@@ -19,9 +19,12 @@ class App.Views.Categories.ShowView extends Backbone.View
     @$('.thumbnails').append(view.render().el)
 
   destroy: ->
-    @model.destroy()
-    @remove()
-    App.categoriesRouter.navigate('/', trigger: true)
+    @model.destroy(
+      success: =>
+        @remove()
+        Backbone.history.navigate('/', trigger: true)
+        App.flashMessage('Category was successfully deleted.')
+    )
 
   createCategory: (e) ->
     e.preventDefault()
@@ -29,7 +32,8 @@ class App.Views.Categories.ShowView extends Backbone.View
     unless @categoryForm.commit()
       category = @categoryForm.model
       category.set(parent_id: @model.id)
-      @model.get('categories').create(category)
+      if @model.get('categories').create(category, wait: true)
+        App.flashMessage('Category was successfully created.')
 
   createAlbum: (e) ->
     e.preventDefault()
@@ -37,13 +41,14 @@ class App.Views.Categories.ShowView extends Backbone.View
     unless @albumForm.commit()
       album = @albumForm.model
       album.set(parent_id: @model.id)
-      @model.get('albums').create(album)
+      if @model.get('albums').create(album, wait: true)
+        App.flashMessage('Album was successfully created.')
 
   initForms: ->
     [html, @albumForm] = App.formsetFor('Album', legend: 'New Child Album')
     @$('#new-album').prepend(html)
 
-    [html, @categoryForm] = App.formsetFor('Category', legend: 'New Subcategory')
+    [html, @categoryForm] = App.formsetFor('Category', legend: 'New Child Category')
     @$('#new-category').prepend(html)
 
   render: ->

@@ -5,11 +5,11 @@ class App.Routers.AlbumsRouter extends Backbone.Router
     @albums.reset(options.albums) if options and options.albums
 
   routes:
-    'album/new'       : 'newAlbum'
+    'album/new'       : 'new'
     'albums/:id/edit' : 'edit'
     'albums/:id'      : 'show'
 
-  newAlbum: ->
+  new: ->
     @view = new App.Views.Albums.NewView(collection: @albums)
     $("#content").html(@view.render().el)
 
@@ -23,6 +23,9 @@ class App.Routers.AlbumsRouter extends Backbone.Router
     )
 
   edit: (id) ->
-    album = @albums.get(id)
-    @view = new App.Views.Albums.EditView(model: album)
-    $("#content").html(@view.render().el)
+    album = (@albums.get(id) || new App.Models.Album(id: id))
+    album.fetch(
+      success: (model, response) ->
+        @view = new App.Views.Albums.EditView(model: model)
+        $('#content').html(@view.render().el)
+    )

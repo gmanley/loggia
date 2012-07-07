@@ -9,8 +9,10 @@ class App.Views.Albums.EditView extends Backbone.View
     e.stopPropagation()
     errors = @form.commit()
     unless errors
-      @model.save().done =>
-        App.albumsRouter.navigate("/albums/#{@model.id}", trigger: true)
+      if request = @model.save()
+        request.done =>
+          Backbone.history.navigate("/albums/#{@model.id}", trigger: true)
+          App.flashMessage('Album was successfully updated.')
 
   render: ->
     @$el.html(@template())

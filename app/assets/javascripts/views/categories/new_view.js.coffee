@@ -4,16 +4,18 @@ class App.Views.Categories.NewView extends Backbone.View
   events:
     'submit #new-category': 'save'
 
+  initialize: ->
+    @model = new App.Models.Category()
+
   save: (e) ->
     e.preventDefault()
     unless @form.commit()
-      @collection.create(@form.model,
-        success: (category) =>
-          App.categoriesRouter.navigate("/categories/#{category.id}", trigger: true)
-      )
+      if @collection.create(@model)
+        Backbone.history.navigate("/categories/#{@model.id}", trigger: true)
+        App.flashMessage('Category was successfully created.')
 
   render: ->
     @$el.html(@template())
-    [html, @form] = App.formsetFor('Category', legend: 'New Category')
+    [html, @form] = App.formsetFor(@model, legend: 'New Category')
     @$('#new-category').prepend(html)
     this

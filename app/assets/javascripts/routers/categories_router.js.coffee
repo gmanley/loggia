@@ -19,15 +19,18 @@ class App.Routers.CategoriesRouter extends Backbone.Router
     @view.render()
 
   show: (id) ->
-    category = @categories.get(id)
+    category = (@categories.get(id) || new App.Models.Category(id: id))
     category.fetch(
       success: (model, response) =>
-        @view = new App.Views.Categories.ShowView(model: category)
+        @view = new App.Views.Categories.ShowView(model: model)
         App.albumsRouter.albums = model.get('albums')
         $('#content').html(@view.render().el)
     )
 
   edit: (id) ->
-    category = @categories.get(id)
-    @view = new App.Views.Categories.EditView(model: category)
-    $('#content').html(@view.render().el)
+    category = (@categories.get(id) || new App.Models.Category(id: id))
+    category.fetch(
+      success: (model, response) ->
+        @view = new App.Views.Categories.EditView(model: model)
+        $('#content').html(@view.render().el)
+    )

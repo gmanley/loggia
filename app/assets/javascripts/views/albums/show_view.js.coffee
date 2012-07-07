@@ -1,9 +1,9 @@
 class App.Views.Albums.ShowView extends Backbone.View
-  template: JST['templates/albums/show']
+  template:           JST['templates/albums/show']
   fileStatusTemplate: JST['templates/images/_file_status']
 
   events:
-    'click #start-upload': 'startUpload'
+    'click #start-upload':         'startUpload'
     'click [data-action=destroy]': 'destroy'
 
   initialize: ->
@@ -21,9 +21,10 @@ class App.Views.Albums.ShowView extends Backbone.View
     @$('.thumbnails').append(view.render().el)
 
   destroy: ->
-    @model.destroy()
-    @remove()
-    App.albumsRouter.navigate('/', trigger: true)
+    @model.destroy().done ->
+      @remove()
+      Backbone.history.navigate('/', trigger: true)
+      App.flashMessage('Album was successfully deleted.')
 
   render: ->
     @$el.html(@template(@model.toJSON()))

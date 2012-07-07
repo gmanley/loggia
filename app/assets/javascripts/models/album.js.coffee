@@ -1,7 +1,6 @@
 class App.Models.Album extends Backbone.RelationalModel
   urlRoot: '/albums'
   paramRoot: 'album'
-  routingName: 'albums'
 
   schema:
     title:

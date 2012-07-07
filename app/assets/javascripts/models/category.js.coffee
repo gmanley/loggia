@@ -1,6 +1,6 @@
 class App.Models.Category extends Backbone.RelationalModel
+  urlRoot: '/categories'
   paramRoot: 'category'
-  routingName: 'categories'
 
   schema:
     title:

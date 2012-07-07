@@ -9,8 +9,10 @@ class App.Views.Categories.EditView extends Backbone.View
     e.stopPropagation()
     errors = @form.commit()
     unless errors
-      @model.save().done =>
-        App.categoriesRouter.navigate("/categories/#{@model.id}", trigger: true)
+      if request = @model.save()
+        request.done =>
+          Backbone.history.navigate("/categories/#{@model.id}", trigger: true)
+          App.flashMessage('Category was successfully updated.')
 
   render: ->
     @$el.html(@template())
