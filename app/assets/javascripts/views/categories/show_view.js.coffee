@@ -14,7 +14,7 @@ class App.Views.Categories.ShowView extends Backbone.View
     for child in @model.children()
       @addOne(child)
 
-  addOne: (child) ->
+  addOne: (child) =>
     view = new App.Views.Containers.ContainerView(model: child)
     @$('.thumbnails').append(view.render().el)
 
@@ -29,7 +29,7 @@ class App.Views.Categories.ShowView extends Backbone.View
     unless @categoryForm.commit()
       category = @categoryForm.model
       category.set(parent_id: @model.id)
-      @model.collection.create(category)
+      @model.get('categories').create(category)
 
   createAlbum: (e) ->
     e.preventDefault()
@@ -37,13 +37,13 @@ class App.Views.Categories.ShowView extends Backbone.View
     unless @albumForm.commit()
       album = @albumForm.model
       album.set(parent_id: @model.id)
-      @model.albums.create(album)
+      @model.get('albums').create(album)
 
   initForms: ->
     [html, @albumForm] = App.formsetFor('Album', legend: 'New Child Album')
     @$('#new-album').prepend(html)
 
-    [html, @categoryform] = App.formsetFor('Category', legend: 'New Subcategory')
+    [html, @categoryForm] = App.formsetFor('Category', legend: 'New Subcategory')
     @$('#new-category').prepend(html)
 
   render: ->

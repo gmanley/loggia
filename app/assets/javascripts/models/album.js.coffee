@@ -10,6 +10,12 @@ class App.Models.Album extends Backbone.RelationalModel
     description: 'Text'
     hidden: { type: 'Checkbox', template: 'checkbox' }
 
+  defaults:
+    title:         null
+    description:   null
+    type:          'Album'
+    thumbnail_url: '/assets/placeholder.png'
+
   initialize: (args) ->
     @images = new App.Collections.ImagesCollection()
 

@@ -29,6 +29,12 @@ class App.Models.Category extends Backbone.RelationalModel
       includeInJSON: 'id'
   ]
 
+  defaults:
+    title:         null
+    description:   null
+    type:          'Category'
+    thumbnail_url: '/assets/placeholder.png'
+
   children: =>
     _.union(@get('categories').models, @get('albums').models)
 
