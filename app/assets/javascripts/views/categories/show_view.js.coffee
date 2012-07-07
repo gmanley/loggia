@@ -1,5 +1,3 @@
-App.Views.Categories ||= {}
-
 class App.Views.Categories.ShowView extends Backbone.View
   template: JST['templates/categories/show']
 

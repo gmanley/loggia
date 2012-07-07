@@ -1,5 +1,3 @@
-App.Views.Albums ||= {}
-
 class App.Views.Albums.ShowView extends Backbone.View
   template: JST['templates/albums/show']
   fileStatusTemplate: JST['templates/images/_file_status']

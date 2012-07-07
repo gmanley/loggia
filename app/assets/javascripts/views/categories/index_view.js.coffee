@@ -1,5 +1,3 @@
-App.Views.Categories ||= {}
-
 class App.Views.Categories.IndexView extends Backbone.View
   template: JST['templates/categories/index']
   el: '#content'

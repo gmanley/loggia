@@ -11,4 +11,9 @@ window.App =
   Models: {}
   Collections: {}
   Routers: {}
-  Views: {}
+  Views: {
+    Albums: {}
+    Categories: {}
+    Images: {}
+    Containers: {}
+  }
