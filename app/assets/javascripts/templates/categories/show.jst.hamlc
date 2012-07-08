@@ -2,7 +2,7 @@
   %h1= @title
   .header-actions.btn-toolbar
     %a.btn.btn-primary.btn-mini{href: "#/categories/#{@id}/edit"} Edit
-    %a.btn.btn-danger.btn-mini.destroy{data: {action: 'destroy'}} Delete
+    %a.btn.btn-danger.btn-mini.destroy{href: '', data: {action: 'destroy'}} Delete
 
 %ul.thumbnails
 

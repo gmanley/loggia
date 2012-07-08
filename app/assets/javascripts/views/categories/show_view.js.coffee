@@ -18,13 +18,13 @@ class App.Views.Categories.ShowView extends Backbone.View
     view = new App.Views.Containers.ContainerView(model: child)
     @$('.thumbnails').append(view.render().el)
 
-  destroy: ->
-    @model.destroy(
-      success: =>
-        @remove()
-        Backbone.history.navigate('/', trigger: true)
-        App.flashMessage('Category was successfully deleted.')
-    )
+  destroy: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    @model.destroy().done =>
+      @remove()
+      Backbone.history.navigate('/', trigger: true)
+      App.flashMessage('Category was successfully deleted.')
 
   createCategory: (e) ->
     e.preventDefault()

@@ -11,7 +11,7 @@ feature 'Admin creates categories' do
     visit homepage
 
     click_link 'New Category'
-    within('#new_category') do
+    within('#new-category') do
       fill_in 'Title', with: root_category.title
       fill_in 'Description', with: root_category.description
     end
@@ -26,7 +26,7 @@ feature 'Admin creates categories' do
     visit homepage
 
     click_link root_category.title
-    within('#new_category') do
+    within('#new-category') do
       fill_in 'Title', with: child_category.title
       fill_in 'Description', with: child_category.description
     end
@@ -53,7 +53,7 @@ feature 'Admin destroys categories' do
 
     click_link 'Delete'
 
-    page.should have_content 'Category was successfully destroyed.'
+    page.should have_content 'Category was successfully deleted.'
     page.should have_no_content root_category.title
   end
 
@@ -67,7 +67,7 @@ feature 'Admin destroys categories' do
 
     click_link 'Delete'
 
-    page.should have_content 'Category was successfully destroyed.'
+    page.should have_content 'Category was successfully deleted.'
 
     click_link root_category.title
     page.should have_no_content child_category.title
@@ -93,7 +93,7 @@ feature 'Admin edits categories' do
 
     click_link 'Edit'
 
-    within('.edit_category') do
+    within('#edit-category') do
        fill_in 'Title', with: edited_root_category.title
        fill_in 'Description', with: edited_root_category.description
      end
@@ -113,7 +113,7 @@ feature 'Admin edits categories' do
 
     click_link 'Edit'
 
-    within('.edit_category') do
+    within('#edit-category') do
        fill_in 'Title', with: edited_child_category.title
        fill_in 'Description', with: edited_child_category.description
      end

@@ -20,8 +20,10 @@ class App.Views.Albums.ShowView extends Backbone.View
     view = new App.Views.Images.ImageView(model: image)
     @$('.thumbnails').append(view.render().el)
 
-  destroy: ->
-    @model.destroy().done ->
+  destroy: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    @model.destroy().done =>
       @remove()
       Backbone.history.navigate('/', trigger: true)
       App.flashMessage('Album was successfully deleted.')

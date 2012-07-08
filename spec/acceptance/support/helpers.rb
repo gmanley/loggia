@@ -18,7 +18,7 @@ module HelperMethods
     visit homepage
 
     click_link category.title
-    within('form#new_album') do
+    within('form#new-album') do
       fill_in 'Title', with: album.title
       fill_in 'Description', with: album.description
       click_button 'Create'
@@ -29,7 +29,7 @@ module HelperMethods
     visit homepage
 
     click_link 'New Category'
-    within('form#new_category') do
+    within('form#new-category') do
       fill_in 'Title', with: root_category.title
       fill_in 'Description', with: root_category.description
       click_button 'Create'
@@ -42,7 +42,7 @@ module HelperMethods
     visit homepage
 
     click_link root_category.title
-    within('form#new_category') do
+    within('form#new-category') do
       fill_in 'Title', with: child_category.title
       fill_in 'Description', with: child_category.description
       click_button 'Create'

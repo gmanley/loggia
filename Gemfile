@@ -57,7 +57,7 @@ group :test do
   gem 'database_cleaner'
   gem 'mongoid-rspec'
   gem 'simplecov', require: false
-  # gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git' # brew install qt
+  gem 'poltergeist' # brew install phantomjs
 end
 
 group :development, :test do

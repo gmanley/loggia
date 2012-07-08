@@ -13,7 +13,7 @@ feature 'Admin creates albums' do
     visit homepage
 
     click_link category.title
-    within('#new_album') do
+    within('#new-album') do
       fill_in 'Title', with: album.title
       fill_in 'Description', with: album.description
     end
@@ -39,7 +39,7 @@ feature 'Admin destroys albums' do
 
     click_link 'Delete'
 
-    page.should have_content 'Album was successfully destroyed.'
+    page.should have_content 'Album was successfully deleted.'
 
     click_link category.title
     page.should have_no_content album.title
@@ -65,7 +65,7 @@ feature 'Admin edits albums' do
 
     click_link 'Edit'
 
-    within('.edit_album') do
+    within('#edit-album') do
       fill_in 'Title', with: edited_album.title
       fill_in 'Description', with: edited_album.description
     end
