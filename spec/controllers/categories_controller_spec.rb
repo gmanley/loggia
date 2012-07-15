@@ -22,8 +22,13 @@ describe CategoriesController do
 
   describe 'GET #show' do
     let(:category) { Fabricate(:category) }
+    let(:children) { FabricateMany(3, :category).concat(FabricateMany(3, :album)) }
 
-    before { Category.should_receive(:find_by_slug).and_return(category) }
+
+    before do
+      Category.should_receive(:find_by_slug!).and_return(category)
+      category.stub_chain(:children, :accessible_by).and_return(children)
+    end
 
     it 'should be successful' do
       get :show, id: category.slug
@@ -97,12 +102,12 @@ describe CategoriesController do
 
       before do
         sign_in(admin)
-        Category.should_receive(:find_by_slug).and_return(category)
+        Category.should_receive(:find_by_slug!).and_return(category)
       end
 
       it 'updates the category' do
-        Category.any_instance.should_receive(:update_attributes).with(updated_category_params)
-        put 'update', category: updated_category_params
+        category.should_receive(:update_attributes).with(updated_category_params)
+        put 'update', id: category.slug, category: updated_category_params
       end
 
       it 'redirects user to updated category and displays flash message' do
@@ -120,14 +125,14 @@ describe CategoriesController do
 
       before do
         sign_in(admin)
-        Category.should_receive(:find_by_slug).and_return(category)
+        Category.should_receive(:find_by_slug!).and_return(category)
       end
 
       it 'should be successful' do
         delete 'destroy', id: category.slug
 
-        assert_redirected_to root_url
-        assert_equal 'Category was successfully destroyed.', flash[:notice]
+        response.should redirect_to(root_url)
+        flash[:notice].should eq('Category was successfully destroyed.')
       end
     end
   end
