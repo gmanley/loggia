@@ -8,7 +8,9 @@ class Album < Container
   scope :with_images, excludes(image_count: 0)
 
   def set_thumbnail_url
-    update_attribute(:thumbnail_url, images.sample.image_url(:thumb)) unless images.empty?
+    unless images.empty?
+      update_attribute(:thumbnail_url, images.sample.image_url(:thumb))
+    end
   end
 
   def async_create_archive
