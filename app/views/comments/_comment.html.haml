@@ -1,0 +1,6 @@
+%li.comment
+  .info
+    %img{src: user_avatar_url(comment.user)}
+    %span= comment.user.email
+    #{time_ago_in_words(comment.created_at)} ago
+  .body= comment.body

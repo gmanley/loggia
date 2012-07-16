@@ -9,11 +9,11 @@ class Container
   field :hidden,        type: Boolean, default: false
   field :thumbnail_url, type: String,  default: '/assets/placeholder.png'
 
-  embeds_many :comments, as: :commentable
+  embeds_many :comments, as: :commentable, order: :created_at.desc
 
   index :hidden
   index :title
-  index [['comments', Mongo::ASCENDING]]
+  index [['comments.created_at', Mongo::DESCENDING]]
 
   validates_presence_of :title
 

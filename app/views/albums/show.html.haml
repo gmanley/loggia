@@ -8,4 +8,10 @@
   = render partial: 'images/image', collection: @images
 = paginate @images
 
+#comments.row-fluid
+  %header.page-header
+    %h3 Comments
+  = render 'comments/form'
+  %ol.unstyled#comments-list= render partial: 'comments/comment', collection: @album.comments
+
 = render 'images/modal'

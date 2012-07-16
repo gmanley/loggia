@@ -26,3 +26,7 @@ end
 Fabricator(:admin, from: :confirmed_user) do
   admin true
 end
+
+Fabricator(:comment) do
+  body { Faker::Lorem.sentence }
+end

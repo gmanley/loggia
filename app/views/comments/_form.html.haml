@@ -1,0 +1,4 @@
+= simple_form_for([current_resource, Comment.new]) do |f|
+  = f.input :body, as: :text, label: false, input_html: { class: 'input-xlarge expand', placeholder: 'Add a comment...' }
+  = f.hidden_field :comment_type, value: current_resource.class.name
+  = f.button :submit, 'Post', class: 'btn-primary'

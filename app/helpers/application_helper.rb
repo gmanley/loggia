@@ -1,5 +1,6 @@
 # encoding: UTF-8
 module ApplicationHelper
+  GRAVATAR_URL_FORMAT = "https://secure.gravatar.com/avatar/%s.png?s=%i&d=%s"
 
   BOOTSTRAP_FLASH_CLASS = {
     alert:   'warning',
@@ -16,9 +17,18 @@ module ApplicationHelper
     end
   end
 
-  def breadcrumb_paths
+  def user_avatar_url(user, size = 16)
+    default_url = "#{root_url}/assets/placeholder_16.png"
+    gravatar_id = Digest::MD5.hexdigest(user.email).downcase
+    GRAVATAR_URL_FORMAT % [gravatar_id, size, CGI.escape(default_url)]
+  end
 
-    if current_resource = instance_variable_get("@#{controller_name.singularize}")
+  def current_resource
+    instance_variable_get("@#{controller_name.singularize}")
+  end
+
+  def breadcrumb_paths
+    if current_resource
       current_resource.ancestors_and_self.collect do |e|
         {title: e.title, url: url_for(e)}
       end
