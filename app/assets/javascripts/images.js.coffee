@@ -1,5 +1,6 @@
 $ ->
   $('#start_upload').button()
+
   uploader = new plupload.Uploader(
     runtimes: 'html5,flash'
     browse_button: 'select_files'
@@ -9,16 +10,16 @@ $ ->
     flash_swf_url: '/assets/plupload.flash.swf'
     drop_element: 'content'
     filters:
-      {title: 'Image files', extensions: 'jpg,jpeg,gif,png'}
+      title: 'Image files', extensions: 'jpg,jpeg,gif,png'
     multipart: true
     multipart_params:
       authenticity_token: authenticity_token
       _soshigal_session: session_token
-    )
+  )
 
-  uploader.bind "FilesAdded", (up, files) ->
-    $.each files, (i, file) ->
-      $("#file_list").append(JST['templates/file'](file: file))
+  uploader.bind 'FilesAdded', (up, files) ->
+    for file in files
+      $('#file_list').append(JST['templates/file'](file: file))
 
   uploader.bind 'UploadProgress', (up, file) ->
     $("##{file.id} b").html("#{file.percent}%")
@@ -31,7 +32,7 @@ $ ->
 
   uploader.bind 'FileUploaded', (up, file, request) ->
     response = JSON.parse(request.response)
-    $(".thumbnails").append(JST['templates/image'](image: response.image))
+    $('.thumbnails').append(JST['templates/image'](image: response.image))
     $("##{file.id} .progress")
       .toggleClass('active')
       .prev('.file_info b').text('Done')
