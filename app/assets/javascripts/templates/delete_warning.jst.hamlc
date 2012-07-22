@@ -1,0 +1,7 @@
+.alert.alert-block.alert-error.fade.in#delete_warning
+  %button.close{data: {dismiss: 'alert'}} ×
+  %h4.alert-heading Are you sure?
+  %p This will delete the selected images. Are you sure you want to continue?
+  %p
+    %button.btn.btn-danger#yes_delete Yes
+    %button.btn#no_delete No

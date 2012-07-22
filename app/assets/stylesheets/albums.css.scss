@@ -1,6 +1,21 @@
 body.albums {
 
   &.show {
+    .selection {
+      position: absolute;
+      border: 1px solid #89B;
+      background: #BCE;
+      background-color: #BEC;
+      border-color: #8B9 }
+
+    .selected {
+      background-color: #EBC;
+      border-color: #B89 }
+
+    .selecting {
+      background-color: #CEB;
+      border-color: #9B8 }
+
     .header-actions { padding-top: 5px }
 
     .thumbnails { clear: both }
