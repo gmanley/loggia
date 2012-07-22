@@ -5,3 +5,4 @@
 /.sass-cache
 .rbx
 /coverage
+/config/initializers/carrierwave_personal.rb
