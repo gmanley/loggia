@@ -5,8 +5,6 @@ class Album < Container
   field :image_count, type: Integer, default: 0
   index :image_count
 
-  scope :with_images, excludes(image_count: 0)
-
   def set_thumbnail_url
     unless images.empty?
       update_attribute(:thumbnail_url, images.sample.image_url(:thumb))
