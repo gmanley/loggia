@@ -10,7 +10,7 @@ class Ability
       cannot :read, [Album, Category], hidden: true
 
       if user # registered user?
-        # Can create and manager their own comments
+        # Can create and manage their own comments
         can :manage, Comment, user_id: user.id
       end
     end

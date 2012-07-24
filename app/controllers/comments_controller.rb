@@ -29,11 +29,8 @@ class CommentsController < ApplicationController
 
   private
   def set_parent_resource
-    parent_resource_id = params[:"#{parent_resource_class.to_s.downcase}_id"]
+    parent_resource_id = params[params.keys.grep(/(.+)_id$/).first]
+    parent_resource_class = $1.classify.constantize
     @parent_resource = parent_resource_class.find_by_slug!(parent_resource_id)
-  end
-
-  def parent_resource_class
-    params[:comment][:comment_type].constantize
   end
 end
