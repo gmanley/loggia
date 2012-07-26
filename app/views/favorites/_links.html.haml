@@ -1,0 +1,4 @@
+- if favorite = parent_resource.favorite_by(current_user)
+  = link_to(image_tag('favorited.png'), [parent_resource, favorite], remote: true, method: :delete, class: 'favorited favorite-toggle')
+- else
+  = link_to(image_tag('favorite.png'), [parent_resource, Favorite], remote: true, method: :post, class: 'favorite favorite-toggle')

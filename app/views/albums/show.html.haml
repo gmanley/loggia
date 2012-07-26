@@ -1,5 +1,7 @@
 %header.page-header
-  %h1= @album.title
+  %h1
+    = @album.title
+    = render partial: 'favorites/links', locals: {parent_resource: @album} if can? :manage, Favorite
   = render partial: 'containers/header_actions', locals: {container: @album} if can? :manage, @album
 
 = render 'images/form' if can? :create, Image

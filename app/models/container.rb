@@ -10,6 +10,7 @@ class Container
   field :thumbnail_url, type: String,  default: '/assets/placeholder.png'
 
   embeds_many :comments, as: :commentable, order: :created_at.desc
+  has_many :favorites, as: :favoritable
 
   index :hidden
   index :title
@@ -21,5 +22,9 @@ class Container
 
   slug :title, :parent do |doc|
     doc.ancestors_and_self.collect(&:title).join(' ')
+  end
+
+  def favorite_by(user)
+    favorites.where(user_id: user.id).first
   end
 end
