@@ -29,8 +29,10 @@ class CommentsController < ApplicationController
 
   private
   def set_parent_resource
-    parent_resource_id = params[params.keys.grep(/(.+)_id$/).first]
-    parent_resource_class = $1.classify.constantize
-    @parent_resource = parent_resource_class.find_by_slug!(parent_resource_id)
+    params.keys.grep(/(.+)_id$/) do |parent_resource_id_key|
+      parent_resource_id = params[parent_resource_id_key]
+      parent_resource_class = $1.classify.constantize
+      @parent_resource = parent_resource_class.find_by_slug!(parent_resource_id)
+    end
   end
 end
