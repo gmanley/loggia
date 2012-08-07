@@ -53,6 +53,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'mongoid-rspec'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
   # gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git' # brew install qt
 end

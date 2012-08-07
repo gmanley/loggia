@@ -1,123 +1,192 @@
 require 'spec_helper'
 
 describe CategoriesController do
+  let(:category) { mock_model(Category, slug: 'cool-album', hidden: false) }
+  let(:admin) { Fabricate(:admin) }
 
-  describe 'GET #index' do
-    let(:categories) { FabricateMany(3, :category) }
-
-    before { Category.stub_chain(:roots, :accessible_by).and_return(categories) }
-
-    it 'should be successful' do
-      get :index
-      response.should be_success
-    end
-
-    it 'should assign @categories' do
-      get :index
-      assigns[:categories].should eql(categories)
-    end
-  end
-
-  describe 'GET #show' do
-    let(:category) { Fabricate(:category) }
-    let(:children) { FabricateMany(3, :category).concat(FabricateMany(3, :album)) }
+  describe '#index' do
+    let(:categories) { mock_models(3, Category) }
 
     before do
-      Category.should_receive(:find_by_slug!).and_return(category)
-      category.stub_chain(:children, :accessible_by).and_return(children)
+      Category.stub_chain(:roots, :accessible_by).and_return(categories)
+      get :index
     end
 
-    it 'should be successful' do
-      get :show, id: category.slug
-      response.should be_success
+    it { should assign_to(:categories).with(categories) }
+    it { should respond_with(:success) }
+    it { should render_template(:index) }
+  end
+
+  describe '#show' do
+    let(:children) { mock_models(3, Album) }
+
+    context 'when category is not hidden' do
+      before do
+        Category.should_receive(:find_by_slug!).and_return(category)
+        category.stub_chain(:children, :accessible_by).and_return(children)
+        get :show, id: category.slug
+      end
+
+      it { should assign_to(:category).with(category) }
+      it { should assign_to(:children).with(children) }
+      it { should respond_with(:success) }
+      it { should render_template(:show) }
     end
 
-    it 'should assign @category' do
-      get :show, id: category.slug
-      assigns[:category].should eql(category)
+    context 'when category is hidden' do
+      let(:hidden_category) { mock_model(Category, slug: 'hidden-cool-album', hidden: true)  }
+
+      before do
+        Category.should_receive(:find_by_slug!).and_return(hidden_category)
+        hidden_category.stub_chain(:children, :accessible_by).and_return(children)
+      end
+
+      context 'as an admin' do
+        before do
+          sign_in(admin)
+          get :show, id: hidden_category.slug
+        end
+
+        it { should respond_with(:success) }
+      end
+
+      context 'as a non-admin' do
+        before { get :show, id: hidden_category.slug }
+
+        it_has_behavior('access denied')
+      end
     end
   end
 
-  context 'when signed in as a admin' do
-    let(:admin) { Fabricate(:admin) }
-    before { sign_in(admin) }
+  describe '#new' do
+    let(:new_category) { mock_model(Category) }
 
-    describe 'GET #new' do
-      it 'should be successful' do
+    before { Category.should_receive(:new).and_return(new_category) }
+
+    context 'as an admin' do
+      before do
+        sign_in(admin)
         get :new
-        response.should be_success
       end
+
+      it { should assign_to(:category).with(new_category) }
+      it { should respond_with(:success) }
+      it { should render_template(:new) }
     end
 
-    describe 'GET #edit' do
-      let(:category) { Fabricate(:category) }
+    context 'as a non-admin' do
+      before { get :new }
 
-      it 'should be successful' do
+      it_has_behavior('access denied')
+    end
+  end
+
+  describe '#edit' do
+    before { Category.should_receive(:find_by_slug!).and_return(category) }
+
+    context 'as an admin' do
+      before do
+        sign_in(admin)
         get :edit, id: category.slug
-        response.should be_success
       end
+
+      it { should assign_to(:category).with(category) }
+      it { should respond_with(:success) }
+      it { should render_template(:edit) }
     end
 
-    describe 'POST #create' do
-      context 'with valid attributes' do
-        let(:category_hash) { Fabricate.attributes_for(:category) }
+    context 'as a non-admin' do
+      before { get :edit, id: category.slug }
 
-        it 'should create a new category with the provided attributes' do
-          -> { post :create, category: category_hash }.should change(Category, :count).by(1)
-        end
+      it_has_behavior('access denied')
+    end
+  end
 
-        it 'should redirect to the created category' do
-          post :create, category: category_hash
-          response.should redirect_to(category_url(assigns[:category]))
-        end
+  describe 'POST #create' do
+    let(:category_hash) { Fabricate.attributes_for(:category) }
 
-        it 'should display a flash message' do
-          post :create, category: category_hash
-          flash[:notice].should eq('Category was successfully created.')
-        end
+    context 'as an admin' do
+      before do
+        sign_in(admin)
+        post :create, category: category_hash
       end
+
+      it 'should create a new category' do
+        Category.should_receive(:new).with(category_hash).and_return(category)
+        category.should_receive(:save)
+        post :create, category: category_hash
+      end
+
+      it { should redirect_to(category_url(assigns[:category])) }
+      it { should set_the_flash.to('Category was successfully created.') }
     end
 
-    describe 'PUT #update' do
-      let(:category) { Fabricate(:category) }
-      let(:updated_category_params) { Fabricate.attributes_for(:category) }
+    context 'as a non-admin' do
+      before { post :create, category: category_hash }
 
-      before { Category.should_receive(:find_by_slug!).and_return(category) }
+      it_has_behavior('access denied')
+    end
+  end
 
-      it 'should update the category' do
-        category.should_receive(:update_attributes).with(updated_category_params)
-        put :update, id: category.slug, category: updated_category_params
-      end
+  describe 'PUT #update' do
+    let(:updated_category_hash) { Fabricate.attributes_for(:category) }
 
-      it 'should redirect to updated category' do
-        put :update, id: category.slug, category: updated_category_params
-        response.should redirect_to(category_url(assigns[:category]))
-      end
+    before { Category.should_receive(:find_by_slug!).any_number_of_times.and_return(category) }
 
-      it 'should display a flash message' do
-        put :update, id: category.slug, category: updated_category_params
-        flash[:notice].should eq('Category was successfully updated.')
-      end
+    def do_put
+      put :update, id: category.slug, category: updated_category_hash
     end
 
-    describe 'DELETE #destroy' do
-      let(:category) { Fabricate(:category) }
+    context 'as an admin' do
+      before do
+        sign_in(admin)
+        category.stub(:update_attributes).with(updated_category_hash)
+        do_put
+      end
 
-      before { Category.should_receive(:find_by_slug!).and_return(category) }
+      it 'should update specied category' do
+        category.should_receive(:update_attributes).with(updated_category_hash)
+        do_put
+      end
+
+      it { should redirect_to(category_url(category)) }
+      it { should set_the_flash.to('Category was successfully updated.') }
+    end
+
+    context 'as a non-admin' do
+      before { do_put }
+
+      it_has_behavior('access denied')
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before { Category.should_receive(:find_by_slug!).any_number_of_times.and_return(category) }
+
+    def do_delete
+      delete :destroy, id: category.slug
+    end
+
+    context 'as an admin' do
+      before do
+        sign_in(admin)
+        category.stub(:destroy)
+        do_delete
+      end
 
       it 'should destroy the specified category' do
-        -> { delete :destroy, id: category.slug }.should change(Category, :count).by(-1)
+        category.should_receive(:destroy)
+        do_delete
       end
 
-      it 'should redirect to home page' do
-        delete :destroy, id: category.slug
-        response.should redirect_to(root_url)
-      end
+      it { should redirect_to(root_url) }
+      it { should set_the_flash.to('Category was successfully destroyed.') }
+    end
 
-      it 'should display a flash message' do
-        delete :destroy, id: category.slug
-        flash[:notice].should eq('Category was successfully destroyed.')
-      end
+    context 'as a non-admin' do
+      before { do_delete }
+
+      it_has_behavior('access denied')
     end
   end
 end

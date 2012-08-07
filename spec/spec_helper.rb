@@ -1,4 +1,5 @@
 require 'spork'
+require 'pry'
 
 ENV['RAILS_ENV'] ||= 'test'
 
@@ -30,6 +31,8 @@ Spork.prefork do
     config.include Mongoid::Matchers
     config.include Devise::TestHelpers, type: :controller
     config.extend ControllerMacros, type: :controller
+    config.alias_it_should_behave_like_to :it_has_behavior, 'has behavior:'
+
 
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
