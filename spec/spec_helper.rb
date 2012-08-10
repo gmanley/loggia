@@ -1,5 +1,4 @@
 require 'spork'
-require 'pry'
 
 ENV['RAILS_ENV'] ||= 'test'
 
