@@ -2,47 +2,60 @@ module IPGallery
   class LegacyAlbum
     include DataMapper::Resource
 
-    storage_names[:default] = "gallery_albums_main"
+    storage_names[:default] = 'gallery_albums_main'
 
-    has n, :images, 'LegacyImage'
-    has n, :child_albums, self.name, child_key: [:parent_id]
-    belongs_to :parent_album, self.name, child_key: [:parent_id]
+    has n,     :images,      'LegacyImage'
+    has n,     :child_albums, name, child_key: [:parent_id]
+    belongs_to :parent_album, name, child_key: [:parent_id]
 
-    property :id, Serial, field: 'album_id'
-    property :title, String, field: 'album_name'
-    property :description, String, field: 'album_description'
-    property :parent_id, Integer, field: 'album_parent_id'
-    property :is_global, Integer, field: 'album_is_global'
+    property :id,          Serial,  field: 'album_id'
+    property :title,       String,  field: 'album_name'
+    property :description, String,  field: 'album_description'
+    property :parent_id,   Integer, field: 'album_parent_id'
+    property :is_global,   Integer, field: 'album_is_global'
 
-    def attr_to_be_imported
-      attributes = self.attributes.extract!(:title, :description)
-      attributes.each {|key, value| attributes[key] = CGI.unescape_html(value)}.merge(legacy_id: self.id)
+    alias_method :is_global, :global?
+
+    def import_type
+      global? ? 'Category' : 'Album'
+    end
+
+    def importable_attributes
+      attrs = attributes.extract!(:title, :description)
+      attrs.each { |key, value| attrs[key] = CGI.unescape_html(value) }
+      attrs.merge(legacy_id: id, _type: import_type)
     end
   end
 
   class LegacyImage
     include DataMapper::Resource
 
-    storage_names[:default] = "gallery_images"
+    VALID_EXTENSIONS = %w(.jpg .jpeg .gif .png)
+
+    storage_names[:default] = 'gallery_images'
 
     belongs_to :album, 'LegacyAlbum'
 
-    property :id, Serial
+    property :id,          Serial
     property :category_id, Integer
-    property :album_id, Integer, field: 'img_album_id'
-    property :directory, String
-    property :file_name, String, field: 'masked_file_name'
+    property :album_id,    Integer, field: 'img_album_id'
+    property :directory,   String
+    property :file_name,   String,  field: 'masked_file_name'
+
+    def valid_image?(path)
+      File.file?(path) && VALID_EXTENSIONS.include?(File.extname(path))
+    end
 
     def file_path(upload_root)
       path = File.join(upload_root, directory, file_name)
-      File.file?(path) && %w(.jpg .jpeg .gif .png).include?(File.extname(path)) ? path : nil
+      valid_image?(upload_root) ? path : nil
     end
   end
 
   class Import
 
     def initialize(upload_root)
-      config = YAML.load_file(File.join(Rails.root, 'config/legacy_import.yml'))
+      config = YAML.load_file(Rails.root.join('config/legacy_import.yml'))
       DataMapper::Logger.new(STDOUT, :warn)
       DataMapper.setup(:default, config['ipgallery'])
       @upload_root = upload_root
@@ -54,61 +67,57 @@ module IPGallery
       import_images
       puts 'Import Successful!'
     rescue StandardError => e
-      Category.destroy_all(conditions: {:legacy_id.exists => true})
+      Category.destroy_all(conditions: { :legacy_id.exists => true })
       raise e
     end
 
-    def import_categories
-      Category.collection.insert(LegacyAlbum.all(is_global: 1).collect {|lc| lc.attr_to_be_imported.merge(_type: 'Category')})
-      categories = Category.where(:legacy_id.exists => true)
-      progress_bar = ProgressBar.new('Category Import', categories.count)
-      categories.each do |category|
-        category.build_slug
-        legacy_category = LegacyAlbum.get(category.legacy_id)
-        unless legacy_category.parent_id.eql?(0)
-          category.parent = Category.where(legacy_id: legacy_category.parent_id).first
-        end
-        category.save
+    def import_containers
+      legacy_containers = LegacyAlbum.all.collect(&:attr_to_be_imported)
+      Container.collection.insert(legacy_containers)
+
+      containers = Container.where(:legacy_id.exists => true)
+      progress_bar = ProgressBar.new('Category/Album Import', containers.count)
+      containers.each do |container|
+        proccess_container(container)
         progress_bar.inc
       end
+
       progress_bar.finish
     end
 
-    def import_albums
-      Album.collection.insert(LegacyAlbum.all(is_global: 0).collect {|la| la.attr_to_be_imported.merge(_type: 'Album')})
-      albums = Album.where(:legacy_id.exists => true)
-      progress_bar = ProgressBar.new('Album Import', albums.count)
-      albums.each do |album|
-        album.build_slug
-        legacy_album = LegacyAlbum.get(album.legacy_id)
-        unless legacy_album.parent_id.eql?(0)
-          album.parent = Category.where(legacy_id: legacy_album.parent_id).first
-        end
-        album.save
-        progress_bar.inc
+    def proccess_container(container)
+      container.build_slug
+      legacy_container = LegacyAlbum.get(container.legacy_id)
+
+      unless legacy_container.parent_id.eql?(0)
+        container.parent = Container.where(legacy_id: legacy_container.parent_id).first
       end
-      progress_bar.finish
+
+      container.save
     end
 
     def import_images
       legacy_images = LegacyImage.all
       progress_bar = ProgressBar.new('Image Import', legacy_images.count)
-      Parallel.each(legacy_images, :in_processes => Parallel.processor_count * 2) do |legacy_image|
-        if image_file_path = legacy_image.file_path(@upload_root)
-          if image_album = Album.where(legacy_id: legacy_image.album_id).first
-            begin
-              image = Image.new
-              image.album = image_album
-              image.image = File.open(image_file_path)
-              image.save
-            rescue StandardError => e
-              puts e.message
-            end
-          end
-        end
+
+      Parallel.each(legacy_images, in_processes: Parallel.processor_count * 2) do |legacy_image|
+        import_image(legacy_image)
         progress_bar.inc
       end
+
       progress_bar.finish
+    end
+
+    def import_image(legacy_image)
+      if image_file_path = legacy_image.file_path(@upload_root)
+        if album = Album.where(legacy_id: legacy_image.album_id).first
+          image = album.images.new
+          image.image = File.open(image_file_path)
+          image.save
+        end
+      end
+    rescue StandardError => e
+      puts e.message
     end
   end
 end
