@@ -46,7 +46,7 @@ feature 'Admin destroys albums' do
   end
 end
 
-feature 'Admin edits albums' do
+feature 'Admin updates albums' do
   let(:admin) { Fabricate(:admin) }
   let(:category) { Fabricate.build(:category) }
   let(:album) { Fabricate.build(:category) }
