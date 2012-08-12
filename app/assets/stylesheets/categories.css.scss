@@ -2,6 +2,6 @@ body.categories {
 
   &.show {
     #new_category, #new_album {
-      &input.string {
+      &.string {
         max-width: 250px;
         width:99% } } } }
