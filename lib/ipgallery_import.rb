@@ -13,8 +13,15 @@ module IPGallery
     property :description, String,  field: 'album_description'
     property :parent_id,   Integer, field: 'album_parent_id'
     property :is_global,   Integer, field: 'album_is_global'
+    property :is_public,   Integer, field: 'album_is_public'
 
-    alias_method :is_global, :global?
+    def self.public
+      all(is_public: 1)
+    end
+
+    def global?
+      is_global.eql?(1)
+    end
 
     def import_type
       global? ? 'Category' : 'Album'
@@ -62,17 +69,16 @@ module IPGallery
     end
 
     def start
-      import_categories
-      import_albums
+      import_containers
       import_images
       puts 'Import Successful!'
     rescue StandardError => e
-      Category.destroy_all(conditions: { :legacy_id.exists => true })
+      Container.destroy_all(conditions: { :legacy_id.exists => true })
       raise e
     end
 
     def import_containers
-      legacy_containers = LegacyAlbum.all.collect(&:attr_to_be_imported)
+      legacy_containers = LegacyAlbum.public.collect(&:importable_attributes)
       Container.collection.insert(legacy_containers)
 
       containers = Container.where(:legacy_id.exists => true)
