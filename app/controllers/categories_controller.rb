@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find_by_slug!(params[:id])
+    @category = Category.find(params[:id])
     @children = @category.children.accessible_by(current_ability)
     authorize!(:show, @category)
 
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find_by_slug!(params[:id])
+    @category = Category.find(params[:id])
     authorize!(:edit, @category)
 
     respond_with(@category)
@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find_by_slug!(params[:id])
+    @category = Category.find(params[:id])
     authorize!(:update, @category)
 
     @category.update_attributes(params[:category])
@@ -47,7 +47,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find_by_slug!(params[:id])
+    @category = Category.find(params[:id])
     authorize!(:destroy, @category)
 
     @category.destroy

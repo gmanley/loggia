@@ -39,6 +39,7 @@ Spork.prefork do
     end
 
     config.before(:each) do
+      Mongoid::IdentityMap.clear
       DatabaseCleaner.start
     end
 

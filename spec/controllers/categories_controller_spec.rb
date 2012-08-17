@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CategoriesController do
-  let(:category) { mock_model(Category, slug: 'cool-album', hidden: false) }
+  let(:category) { mock_model(Category, slugs: %w[cool-category], hidden: false) }
   let(:admin) { Fabricate(:admin) }
 
   describe '#index' do
@@ -22,9 +22,9 @@ describe CategoriesController do
 
     context 'when category is not hidden' do
       before do
-        Category.should_receive(:find_by_slug!).and_return(category)
+        Category.should_receive(:find).and_return(category)
         category.stub_chain(:children, :accessible_by).and_return(children)
-        get :show, id: category.slug
+        get :show, id: category.slugs.first
       end
 
       it { should assign_to(:category).with(category) }
@@ -34,24 +34,24 @@ describe CategoriesController do
     end
 
     context 'when category is hidden' do
-      let(:hidden_category) { mock_model(Category, slug: 'hidden-cool-album', hidden: true)  }
+      let(:hidden_category) { mock_model(Category, slugs: %w[hidden-cool-category], hidden: true)  }
 
       before do
-        Category.should_receive(:find_by_slug!).and_return(hidden_category)
+        Category.should_receive(:find).and_return(hidden_category)
         hidden_category.stub_chain(:children, :accessible_by).and_return(children)
       end
 
       context 'as an admin' do
         before do
           sign_in(admin)
-          get :show, id: hidden_category.slug
+          get :show, id: hidden_category.slugs.first
         end
 
         it { should respond_with(:success) }
       end
 
       context 'as a non-admin' do
-        before { get :show, id: hidden_category.slug }
+        before { get :show, id: hidden_category.slugs.first }
 
         it_has_behavior('access denied')
       end
@@ -82,12 +82,12 @@ describe CategoriesController do
   end
 
   describe '#edit' do
-    before { Category.should_receive(:find_by_slug!).and_return(category) }
+    before { Category.should_receive(:find).and_return(category) }
 
     context 'as an admin' do
       before do
         sign_in(admin)
-        get :edit, id: category.slug
+        get :edit, id: category.slugs.first
       end
 
       it { should assign_to(:category).with(category) }
@@ -96,7 +96,7 @@ describe CategoriesController do
     end
 
     context 'as a non-admin' do
-      before { get :edit, id: category.slug }
+      before { get :edit, id: category.slugs.first }
 
       it_has_behavior('access denied')
     end
@@ -131,10 +131,10 @@ describe CategoriesController do
   describe 'PUT #update' do
     let(:updated_category_hash) { Fabricate.attributes_for(:category) }
 
-    before { Category.should_receive(:find_by_slug!).any_number_of_times.and_return(category) }
+    before { Category.should_receive(:find).any_number_of_times.and_return(category) }
 
     def do_put
-      put :update, id: category.slug, category: updated_category_hash
+      put :update, id: category.slugs.first, category: updated_category_hash
     end
 
     context 'as an admin' do
@@ -161,10 +161,10 @@ describe CategoriesController do
   end
 
   describe 'DELETE #destroy' do
-    before { Category.should_receive(:find_by_slug!).any_number_of_times.and_return(category) }
+    before { Category.should_receive(:find).any_number_of_times.and_return(category) }
 
     def do_delete
-      delete :destroy, id: category.slug
+      delete :destroy, id: category.slugs.first
     end
 
     context 'as an admin' do

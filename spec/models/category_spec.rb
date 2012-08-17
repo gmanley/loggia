@@ -13,7 +13,7 @@ describe Category do
     end
 
     it "should have a valid url slug" do
-      ERB::Util.url_encode(category.slug).should == category.slug
+      ERB::Util.url_encode(category.slugs.first).should eql(category.slugs.first)
     end
   end
 end

@@ -7,11 +7,13 @@ GIT
       subexec (~> 0.2.1)
 
 GIT
-  remote: git://github.com/javanthropus/archive-zip.git
-  revision: 87db96242be22a5813315537e8d6693a4cf53e10
+  remote: git://github.com/hakanensari/mongoid-slug.git
+  revision: 4160f5029a779f045338ee3adf0bc3e52adad92f
+  branch: 0.20.0
   specs:
-    archive-zip (0.0.0)
-      io-like (>= 0.3.0)
+    mongoid_slug (0.20.0)
+      mongoid (~> 3.0.0)
+      stringex (~> 1.4)
 
 GEM
   remote: http://rubygems.org/
@@ -44,11 +46,10 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
+    archive-zip (0.5.0)
+      io-like (>= 0.3.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bson (1.6.4)
-    bson_ext (1.6.4)
-      bson (~> 1.6.4)
     builder (3.0.0)
     cancan (1.6.8)
     capybara (1.1.2)
@@ -61,9 +62,9 @@ GEM
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    carrierwave-mongoid (0.2.0)
-      carrierwave (~> 0.6.1)
-      mongoid (~> 2.1)
+    carrierwave-mongoid (0.1.0)
+      carrierwave
+      mongoid
     celluloid (0.11.1)
       timers (>= 1.0.0)
     childprocess (0.3.5)
@@ -93,7 +94,7 @@ GEM
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
-    excon (0.15.5)
+    excon (0.16.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     fabrication (2.2.2)
@@ -111,7 +112,7 @@ GEM
       ruby-hmac
     formatador (0.2.3)
     growl (1.0.3)
-    guard (1.3.0)
+    guard (1.3.2)
       listen (>= 0.4.2)
       thor (>= 0.14.6)
     guard-rspec (1.2.1)
@@ -155,26 +156,24 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8)
     mime-types (1.19)
-    mongo (1.6.2)
-      bson (~> 1.6.2)
-    mongoid (2.4.12)
+    mongoid (3.0.4)
       activemodel (~> 3.1)
-      mongo (<= 1.6.2)
+      moped (~> 1.1)
+      origin (~> 1.0)
       tzinfo (~> 0.3.22)
-    mongoid-rspec (1.4.5)
-      mongoid (>= 2.4.6)
+    mongoid-rspec (1.5.1)
+      mongoid (>= 3.0.1)
       rake
       rspec (>= 2.9)
-    mongoid-tree (0.7.0)
-      mongoid (~> 2.0)
-    mongoid_slug (0.10.0)
-      mongoid (~> 2.0)
-      stringex (~> 1.3)
+    mongoid-tree (1.0.0)
+      mongoid (>= 3.0, <= 4.0)
+    moped (1.2.0)
     multi_json (1.3.6)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.5.2)
     nokogiri (1.5.5)
+    origin (1.0.6)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
     pry (0.9.10)
@@ -235,7 +234,7 @@ GEM
       rspec (~> 2.11.0)
     ruby-hmac (0.4.0)
     rubyzip (0.9.9)
-    sass (3.2.0)
+    sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -275,7 +274,7 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    thor (0.15.4)
+    thor (0.16.0)
     tilt (1.3.3)
     timers (1.0.1)
     treetop (1.4.10)
@@ -294,8 +293,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  archive-zip!
-  bson_ext
+  archive-zip
   cancan
   capybara
   carrierwave
@@ -319,10 +317,10 @@ DEPENDENCIES
   kaminari
   launchy
   mini_magick!
-  mongoid (~> 2.4)
+  mongoid
   mongoid-rspec
   mongoid-tree
-  mongoid_slug
+  mongoid_slug!
   pry-rails
   quiet_assets
   rails (~> 3.2)

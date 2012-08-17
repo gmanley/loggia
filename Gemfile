@@ -18,10 +18,10 @@ end
 
 gem 'jquery-rails'
 
-gem 'mongoid', '~> 2.4'
-gem 'bson_ext'
-gem 'mongoid_slug'
+gem 'mongoid'
+gem 'mongoid_slug', git: 'git://github.com/hakanensari/mongoid-slug.git', branch: '0.20.0'
 gem 'mongoid-tree'
+
 gem 'kaminari'
 
 gem 'devise'
@@ -31,11 +31,11 @@ gem 'responders'
 gem 'simple_form'
 
 gem 'carrierwave'
-gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'carrierwave-mongoid'
 gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
 gem 'fog'
 
-gem 'archive-zip', git: 'git://github.com/javanthropus/archive-zip.git'
+gem 'archive-zip'
 gem 'sidekiq'
 
 group :development do

@@ -3,7 +3,7 @@ class Album < Container
   mount_uploader :archive, ArchiveUploader
 
   field :image_count, type: Integer, default: 0
-  index :image_count
+  index image_count: 1
 
   scope :with_images, excludes(image_count: 0)
 

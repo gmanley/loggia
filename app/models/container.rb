@@ -12,17 +12,15 @@ class Container
   embeds_many :comments, as: :commentable, order: :created_at.desc
   has_many :favorites, as: :favoritable
 
-  index :hidden
-  index :title
-  index [['comments.created_at', Mongo::DESCENDING]]
+  index hidden: 1
+  index title: 1
+  index 'comments.created_at' => 1
 
   validates_presence_of :title
 
   default_scope asc(:title)
 
-  slug :title, :parent do |doc|
-    doc.ancestors_and_self.collect(&:title).join(' ')
-  end
+  slug :title
 
   def favorite_by(user)
     favorites.where(user_id: user.id).first
