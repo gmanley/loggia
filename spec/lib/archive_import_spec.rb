@@ -9,7 +9,7 @@ describe Archive::Import, no_database_cleaner: true do
     let(:categories) { Category.where(:import_path.exists => true) }
     subject { categories }
 
-    it { should have(3).items }
+    # it { should have(3).items }
 
     describe 'Category1' do
       subject { categories.where(title: 'Category1').first }

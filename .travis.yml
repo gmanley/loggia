@@ -2,12 +2,6 @@ bundler_args: --without development
 language: ruby
 rvm:
   - 1.9.3
-  - ruby-head
-  - rbx-19mode
-matrix:
-  allow_failures:
-    - rvm: rbx-19mode
-    - rvm: ruby-head
 script: bundle exec rake spec
 notifications:
   recipients:
