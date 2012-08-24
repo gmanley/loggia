@@ -38,13 +38,14 @@ gem 'fog'
 gem 'archive-zip'
 gem 'sidekiq'
 
+gem 'pry-rails'
+
 group :development do
   gem 'thin'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
-  gem 'pry-rails'
   gem 'launchy'
   gem 'quiet_assets'
 end

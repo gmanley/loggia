@@ -11,3 +11,7 @@ def mock_models(count, string_or_model_class)
     mock_model(string_or_model_class)
   end
 end
+
+def path_to_fixture(fixture)
+  File.expand_path("../fixtures/#{fixture}", __FILE__)
+end

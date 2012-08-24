@@ -36,15 +36,20 @@ Spork.prefork do
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
       DatabaseCleaner.orm = 'mongoid'
-    end
-
-    config.before(:each) do
-      Mongoid::IdentityMap.clear
-      DatabaseCleaner.start
-    end
-
-    config.after(:each) do
       DatabaseCleaner.clean
+    end
+
+    config.before(:each) do |group|
+      Mongoid::IdentityMap.clear
+      unless group.example.metadata[:no_database_cleaner]
+        DatabaseCleaner.start
+      end
+    end
+
+    config.after(:each) do |group|
+      unless group.example.metadata[:no_database_cleaner]
+        DatabaseCleaner.clean
+      end
     end
   end
 end

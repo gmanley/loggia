@@ -6,6 +6,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
 
+  EXTENSION_WHITE_LIST = %w(jpg jpeg gif png)
+
   process :set_content_type
 
   version :thumb do
@@ -21,7 +23,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg gif png)
+    EXTENSION_WHITE_LIST
   end
 
   def cached_master

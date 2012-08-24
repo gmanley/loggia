@@ -7,6 +7,14 @@ class Album < Container
 
   scope :with_images, excludes(image_count: 0)
 
+  def import_folder(path)
+    allowed_exts = ImageUploader::EXTENSION_WHITE_LIST
+    glob_pattern = "#{path}/*.{#{allowed_exts.join(',')}}"
+    Dir[glob_pattern].each do |file|
+      images.create(image: File.open(file))
+    end
+  end
+
   def set_thumbnail_url
     unless images.empty?
       update_attribute(:thumbnail_url, images.sample.image_url(:thumb))
