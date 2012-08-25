@@ -8,7 +8,7 @@ class Image
   set_callback(:create, :after) do
     unless album.nil?
       album.inc(:image_count, 1)
-      album.ancestors_and_self.each {|a| a.set_thumbnail_url}
+      album.ancestors_and_self.each { |a| a.set_thumbnail_url }
     end
   end
 

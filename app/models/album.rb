@@ -1,11 +1,38 @@
-class Album < Container
-  embeds_many :images
-  mount_uploader :archive, ArchiveUploader
+class Album
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include Mongoid::Slug
+  include Mongoid::Tree
 
-  field :image_count, type: Integer, default: 0
+  field :title,         type: String
+  field :description,   type: String
+  field :hidden,        type: Boolean, default: false
+  field :thumbnail_url, type: String,  default: '/assets/placeholder.png'
+  field :image_count,   type: Integer, default: 0
+
+  embeds_many :images
+  embeds_many :comments, as: :commentable, order: :created_at.desc
+  has_many :favorites, as: :favoritable
+
+  index hidden: 1
   index image_count: 1
+  index title: 1
+  index 'comments.created_at' => 1
+
+  slug :title
+
+  validates_presence_of :title
+
+  default_scope asc(:title)
 
   scope :with_images, excludes(image_count: 0)
+
+  mount_uploader :archive, ArchiveUploader
+
+
+  def favorite_by(user)
+    favorites.where(user_id: user.id).first
+  end
 
   def import_folder(path)
     allowed_exts = ImageUploader::EXTENSION_WHITE_LIST
@@ -16,8 +43,14 @@ class Album < Container
   end
 
   def set_thumbnail_url
-    unless images.empty?
-      update_attribute(:thumbnail_url, images.sample.image_url(:thumb))
+    if images.empty?
+      descendants_with_images = descendants_and_self.with_images
+      unless descendants_with_images.empty?
+        thumbnail_url = descendants_with_images.sample.thumbnail_url
+        update_attributes(thumbnail_url: thumbnail_url)
+      end
+    else
+      update_attributes(thumbnail_url: images.sample.image_url(:thumb))
     end
   end
 

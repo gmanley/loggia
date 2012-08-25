@@ -1,8 +1,16 @@
 class AlbumsController < ApplicationController
   respond_to :html, :json, :js
 
+  def index
+    @albums = Album.roots.accessible_by(current_ability)
+    authorize!(:index, Album)
+
+    respond_with(@albums)
+  end
+
   def show
     @album = Album.find(params[:id])
+    @children = @album.children.accessible_by(current_ability)
     @images = @album.images.page(params[:page]).per(100)
     authorize!(:show, @album)
 

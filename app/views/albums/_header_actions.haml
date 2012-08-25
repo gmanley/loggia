@@ -1,0 +1,3 @@
+.header-actions.btn-toolbar
+  = link_to('Edit', edit_album_path(album), class: 'btn btn-primary btn-mini')
+  = button_to('Delete', album, method: :delete, class: 'btn btn-danger btn-mini', confirm: 'Are you sure?')

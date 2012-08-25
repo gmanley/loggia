@@ -7,7 +7,7 @@ class Ability
     else # Guest or Registered user
       can :read, :all # Can read anything ...
       # except albums or categories that are private
-      cannot :read, [Album, Category], hidden: true
+      cannot :read, Album, hidden: true
       if user # registered user?
         # Can create and manage their own comments
         can :manage, Comment, user_id: user.id

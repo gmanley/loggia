@@ -1,6 +1,11 @@
 body.albums {
 
   &.show {
+    #new_album {
+      &.string {
+        max-width: 250px;
+        width:99% } }
+
     .selection {
       position: absolute;
       border: 1px solid #89B;

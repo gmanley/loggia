@@ -1,19 +1,36 @@
 %header.page-header
   %h1
     = @album.title
-    = render partial: 'favorites/links', locals: {parent_resource: @album} if can? :manage, Favorite
-  = render partial: 'containers/header_actions', locals: {container: @album} if can? :manage, @album
+    = render('favorites/links', parent_resource: @album) if can?(:manage, Favorite)
+  = render('albums/header_actions', album: @album) if can?(:manage, @album)
 
-= render 'images/form' if can? :create, Image
+= render('images/form') if can?(:create, Image)
 
-%ul.thumbnails{data: {toggle: 'modal-gallery', target: '#modal-gallery'}}
-  = render partial: 'images/image', collection: @images
-= paginate @images
+- unless @children.empty?
+  %ul.thumbnails
+    = render partial: 'albums/album', collection: @children
+
+- unless @images.empty?
+  %ul.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
+    = render partial: 'images/image', collection: @images
+  = paginate @images
+  %hr
+
+%section.row-fluid
+  .span6
+    - if can?(:create, Album)
+      = simple_form_for(Album.new) do |f|
+        %fieldset
+          %legend New Child Album
+          = render 'albums/form', f: f
+          = f.hidden_field :parent_id, value: @album.id
+          = f.button :submit, 'Create', class: 'btn-primary'
 
 #comments.row-fluid
   %header.page-header
     %h3 Comments
-  = render 'comments/form' if can? :create, Comment
-  %ol.unstyled#comments-list= render partial: 'comments/comment', collection: @album.comments
+  = render 'comments/form' if can?(:create, Comment)
+  %ol.unstyled#comments-list
+    = render partial: 'comments/comment', collection: @album.comments
 
 = render 'images/modal'
