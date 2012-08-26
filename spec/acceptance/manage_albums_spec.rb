@@ -1,77 +1,72 @@
 require 'acceptance_helper'
 
-feature 'Admin creates albums' do
+feature 'Admin manages albums' do
   let(:admin) { Fabricate(:admin) }
-  let(:album) { Fabricate.build(:album) }
-  let(:category) { Fabricate.build(:category) }
+  let(:root_album) { Fabricate.build(:album) }
+  let(:child_album) { Fabricate.build(:album) }
 
   background { sign_in admin }
 
-  scenario 'one nested album' do
-    create_root_category(category)
-
+  scenario 'create a root album' do
     visit homepage
 
-    click_link category.title
+    click_link 'New Album'
     within('#new_album') do
-      fill_in 'Title', with: album.title
-      fill_in 'Description', with: album.description
+      fill_in 'Title', with: root_album.title
+      fill_in 'Description', with: root_album.description
     end
     click_button 'Create'
+
+    page.should have_content 'Album was successfully created.'
   end
-end
 
-feature 'Admin destroys albums' do
-  let(:admin) { Fabricate(:admin) }
-  let(:album) { Fabricate.build(:album) }
-  let(:category) { Fabricate.build(:category) }
+  let!(:root_album) { Fabricate(:album) }
 
-  background { sign_in admin }
-
-  scenario 'one nested album' do
-    create_root_category(category)
-    create_album(category, album)
-
+  scenario 'create a child album' do
     visit homepage
 
-    click_link category.title
-    click_link album.title
+    click_link root_album.title
+    within('#new_album') do
+      fill_in 'Title', with: child_album.title
+      fill_in 'Description', with: child_album.description
+    end
+    click_button 'Create'
 
-    click_link 'Delete'
-
-    page.should have_content 'Album was successfully destroyed.'
-
-    click_link category.title
-    page.should have_no_content album.title
+    page.should have_content 'Album was successfully created.'
   end
-end
 
-feature 'Admin updates albums' do
-  let(:admin) { Fabricate(:admin) }
-  let(:category) { Fabricate.build(:category) }
-  let(:album) { Fabricate.build(:category) }
-  let(:edited_album) { Fabricate.build(:category) }
 
-  background { sign_in admin }
+  let!(:root_album) { Fabricate(:album) }
+  let(:edited_root_album) { Fabricate.build(:album) }
 
-  scenario 'one nested album' do
-    create_root_category(category)
-    create_album(category, album)
-
+  scenario 'edit an album' do
     visit homepage
 
-    click_link category.title
-    click_link album.title
+    click_link root_album.title
 
     click_link 'Edit'
 
     within('.edit_album') do
-      fill_in 'Title', with: edited_album.title
-      fill_in 'Description', with: edited_album.description
-    end
-    click_button 'Save'
+       fill_in 'Title', with: edited_root_album.title
+       fill_in 'Description', with: edited_root_album.description
+     end
+     click_button 'Save'
 
     page.should have_content 'Album was successfully updated.'
-    page.should have_content edited_album.title
+    page.should have_content edited_root_album.title
+  end
+
+
+  let!(:album) { Fabricate(:album) }
+
+  scenario 'destroy an album' do
+    visit homepage
+
+    click_link root_album.title
+
+    click_button 'Delete'
+
+    page.should have_content 'Album was successfully destroyed.'
+    page.should have_no_content root_album.title
   end
 end

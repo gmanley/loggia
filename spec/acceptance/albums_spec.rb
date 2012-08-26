@@ -2,8 +2,7 @@ require 'acceptance_helper'
 
 feature 'User comments on albums' do
   let(:user) { Fabricate(:confirmed_user) }
-  let(:category) { Fabricate(:category) }
-  let!(:album) { Fabricate(:album, parent: category) }
+  let!(:album) { Fabricate(:album) }
   let(:comment) { Fabricate.build(:comment) }
 
   background { sign_in user }
@@ -11,7 +10,6 @@ feature 'User comments on albums' do
   scenario 'as logged in user' do
     visit homepage
 
-    click_link category.title
     click_link album.title
 
     within('#new_comment') do

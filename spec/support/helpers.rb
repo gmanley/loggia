@@ -4,12 +4,9 @@ def FabricateMany(count, name, overrides={}, &block)
   end
 end
 
-# A simple helper for mocking an array of
-# models (usually for the index action).
-def mock_models(count, string_or_model_class)
-  count.times.collect do
-    mock_model(string_or_model_class)
-  end
+# A simple helper for mocking an array of models (ie. the index action).
+def mock_models(count, model_class)
+  Kaminari.paginate_array(count.times.map { mock_model(model_class) })
 end
 
 def path_to_fixture(fixture)

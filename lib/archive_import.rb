@@ -16,41 +16,40 @@ module Archive
     end
 
     def import_folder
-      @containers = []
+      @albums = []
       @images = []
-      create_containers
+      create_albums
       create_associations
     end
 
-    def create_containers
+    def create_albums
       @extraction_location.find do |entry|
         next if entry == @extraction_location
         Find.prune if IGNORED_ENTRIES.include?(entry.basename.to_s)
 
         if entry.directory? # Must be a category or album
-          container_class = entry.children.any?(&:directory?) ? Category : Album
-          container = container_class.create(
+          album = Album.create(
             title: entry.basename,
             import_path: clean_path(entry)
           )
 
-          container.import_folder(entry) if container.is_a?(Album)
+          album.import_folder(entry)
 
-          @containers << container
+          @albums << album
         end
       end
     end
 
     def create_associations
-      @containers.each do |container|
-        hierarchy_array = container.import_path.split('/')
+      @albums.each do |album|
+        hierarchy_array = album.import_path.split('/')
 
         if hierarchy_array.count > 1
           hierarchy_array.delete_at(-1)
           parent_import_path = hierarchy_array.join('/')
-          parent = @containers.find { |c| c.import_path == parent_import_path }
-          container.parent = parent
-          container.save
+          parent = @albums.find { |a| a.import_path == parent_import_path }
+          album.parent = parent
+          album.save
         end
       end
     end
