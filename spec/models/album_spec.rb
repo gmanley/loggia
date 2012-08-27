@@ -13,7 +13,7 @@ describe Album do
     end
 
     it "should have a valid url slug" do
-      ERB::Util.url_encode(album.slugs.first).should eql(album.slugs.first)
+      ERB::Util.url_encode(album.slug).should eql(album.slug)
     end
   end
 end

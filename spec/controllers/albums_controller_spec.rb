@@ -23,7 +23,7 @@ describe AlbumsController do
 
     context 'when album is not hidden' do
       before do
-        Album.should_receive(:find).and_return(album)
+        Album.should_receive(:find_by_slug!).and_return(album)
         album.stub_chain(:children, :accessible_by).and_return(children)
         album.stub(:images).and_return(images)
         get :show, id: album.slugs.first
@@ -39,7 +39,7 @@ describe AlbumsController do
       let(:hidden_album) { mock_model(Album, slugs: %w[hidden-cool-album], hidden: true)  }
 
       before do
-        Album.should_receive(:find).and_return(hidden_album)
+        Album.should_receive(:find_by_slug!).and_return(hidden_album)
         hidden_album.stub_chain(:children, :accessible_by).and_return(children)
         hidden_album.stub(:images).and_return(images)
       end
@@ -85,7 +85,7 @@ describe AlbumsController do
   end
 
   describe '#edit' do
-    before { Album.should_receive(:find).and_return(album) }
+    before { Album.should_receive(:find_by_slug!).and_return(album) }
 
     context 'as an admin' do
       before do
@@ -134,7 +134,7 @@ describe AlbumsController do
   describe 'PUT #update' do
     let(:updated_album_hash) { Fabricate.attributes_for(:album) }
 
-    before { Album.should_receive(:find).any_number_of_times.and_return(album) }
+    before { Album.should_receive(:find_by_slug!).any_number_of_times.and_return(album) }
 
     def do_put
       put :update, id: album.slugs.first, album: updated_album_hash
@@ -164,7 +164,7 @@ describe AlbumsController do
   end
 
   describe 'DELETE #destroy' do
-    before { Album.should_receive(:find).any_number_of_times.and_return(album) }
+    before { Album.should_receive(:find_by_slug!).any_number_of_times.and_return(album) }
 
     def do_delete
       delete :destroy, id: album.slugs.first

@@ -19,7 +19,7 @@ end
 gem 'jquery-rails'
 
 gem 'mongoid'
-gem 'mongoid_slug', git: 'git://github.com/hakanensari/mongoid-slug.git', branch: '0.20.0'
+gem 'stringex'
 gem 'mongoid-tree'
 
 gem 'kaminari'

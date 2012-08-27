@@ -7,15 +7,6 @@ GIT
       subexec (~> 0.2.1)
 
 GIT
-  remote: git://github.com/hakanensari/mongoid-slug.git
-  revision: 4160f5029a779f045338ee3adf0bc3e52adad92f
-  branch: 0.20.0
-  specs:
-    mongoid_slug (0.20.0)
-      mongoid (~> 3.0.0)
-      stringex (~> 1.4)
-
-GIT
   remote: git://github.com/jnicklas/carrierwave-mongoid.git
   revision: 28a9b718d42b8aba47d2eb951f73bd9d872b6eb0
   branch: mongoid-3.0
@@ -330,7 +321,6 @@ DEPENDENCIES
   mongoid
   mongoid-rspec
   mongoid-tree
-  mongoid_slug!
   pry-rails
   quiet_assets
   rails (~> 3.2)
@@ -343,5 +333,6 @@ DEPENDENCIES
   simple_form
   simplecov
   spork-rails
+  stringex
   thin
   uglifier

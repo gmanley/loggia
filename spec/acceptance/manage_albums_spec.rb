@@ -2,10 +2,11 @@ require 'acceptance_helper'
 
 feature 'Admin manages albums' do
   let(:admin) { Fabricate(:admin) }
+  background { sign_in admin }
+
+
   let(:root_album) { Fabricate.build(:album) }
   let(:child_album) { Fabricate.build(:album) }
-
-  background { sign_in admin }
 
   scenario 'create a root album' do
     visit homepage
@@ -20,9 +21,8 @@ feature 'Admin manages albums' do
     page.should have_content 'Album was successfully created.'
   end
 
-  let!(:root_album) { Fabricate(:album) }
-
   scenario 'create a child album' do
+    root_album = Fabricate(:album)
     visit homepage
 
     click_link root_album.title
@@ -36,37 +36,35 @@ feature 'Admin manages albums' do
   end
 
 
-  let!(:root_album) { Fabricate(:album) }
-  let(:edited_root_album) { Fabricate.build(:album) }
+  let(:edited_album) { Fabricate.build(:album) }
 
   scenario 'edit an album' do
+    album = Fabricate(:album)
     visit homepage
 
-    click_link root_album.title
+    click_link album.title
 
     click_link 'Edit'
 
     within('.edit_album') do
-       fill_in 'Title', with: edited_root_album.title
-       fill_in 'Description', with: edited_root_album.description
+       fill_in 'Title', with: edited_album.title
+       fill_in 'Description', with: edited_album.description
      end
      click_button 'Save'
 
     page.should have_content 'Album was successfully updated.'
-    page.should have_content edited_root_album.title
+    page.should have_content edited_album.title
   end
 
-
-  let!(:album) { Fabricate(:album) }
-
   scenario 'destroy an album' do
+    album = Fabricate(:album)
     visit homepage
 
-    click_link root_album.title
+    click_link album.title
 
-    click_button 'Delete'
+    click_link 'Delete'
 
     page.should have_content 'Album was successfully destroyed.'
-    page.should have_no_content root_album.title
+    page.should have_no_content album.title
   end
 end

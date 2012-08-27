@@ -61,4 +61,5 @@ Spork.each_run do
   end
 
   Fabrication.clear_definitions
+  DatabaseCleaner.clean
 end

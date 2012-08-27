@@ -1,9 +1,9 @@
 class Album
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Slug
   include Mongoid::Tree
 
+  field :slug,          type: String,  default: -> { generate_slug }
   field :title,         type: String
   field :description,   type: String
   field :hidden,        type: Boolean, default: false
@@ -16,12 +16,12 @@ class Album
 
   index hidden: 1
   index image_count: 1
-  index title: 1
+  index({ slug: 1 }, { unique: true })
   index 'comments.created_at' => 1
 
-  slug :title
-
-  validates_presence_of :title
+  validates :title, presence: true,
+                    uniqueness: { scope: :parent_id,
+                                  case_sensitive: false }
 
   default_scope asc(:title)
 
@@ -29,6 +29,15 @@ class Album
 
   mount_uploader :archive, ArchiveUploader
 
+  # This lets access slug in controllers via params[:id]
+  def to_param
+    slug
+  end
+
+  # Pointless helper?
+  def self.find_by_slug!(slug)
+    find_by(slug: slug)
+  end
 
   def favorite_by(user)
     favorites.where(user_id: user.id).first
@@ -73,5 +82,14 @@ class Album
     archive.url if save
   ensure
     zip_temp_file.close if zip_temp_file
+  end
+
+  private
+  def generate_slug
+    ancestors_and_self.collect(&:title).join(' ').to_url
+  end
+
+  def update_slug
+    update_attribute(:slug, generate_slug)
   end
 end
