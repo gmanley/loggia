@@ -17,7 +17,6 @@ module Archive
 
     def import_folder
       @albums = []
-      @images = []
       create_albums
       create_associations
     end

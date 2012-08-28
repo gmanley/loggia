@@ -23,14 +23,10 @@ module IPGallery
       is_global.eql?(1)
     end
 
-    def import_type
-      global? ? 'Category' : 'Album'
-    end
-
     def importable_attributes
       attrs = attributes.extract!(:title, :description)
       attrs.each { |key, value| attrs[key] = CGI.unescape_html(value) }
-      attrs.merge(legacy_id: id, _type: import_type)
+      attrs.merge(legacy_id: id)
     end
   end
 
@@ -69,43 +65,41 @@ module IPGallery
     end
 
     def start
-      import_containers
+      import_albums
       import_images
       puts 'Import Successful!'
     rescue StandardError => e
-      Container.destroy_all(conditions: { :legacy_id.exists => true })
+      Album.where(:legacy_id.exists => true).destroy_all
       raise e
     end
 
     def import_containers
-      legacy_containers = LegacyAlbum.public.collect(&:importable_attributes)
-      Container.collection.insert(legacy_containers)
+      legacy_albums = LegacyAlbum.public.collect(&:importable_attributes)
+      Album.collection.insert(legacy_albums)
 
-      containers = Container.where(:legacy_id.exists => true)
-      progress_bar = ProgressBar.new('Category/Album Import', containers.count)
-      containers.each do |container|
-        proccess_container(container)
+      albums = Album.where(:legacy_id.exists => true)
+      progress_bar = ProgressBar.new('Album Import', albums.count)
+      albums.each do |album|
+        proccess_album(album)
         progress_bar.inc
       end
 
       progress_bar.finish
     end
 
-    def proccess_container(container)
-      container.build_slug
-      legacy_container = LegacyAlbum.get(container.legacy_id)
+    def proccess_album(album)
+      album.set_created_at
 
-      unless legacy_container.parent_id.eql?(0)
-        container.parent = Container.where(legacy_id: legacy_container.parent_id).first
-      end
+      legacy_album = LegacyAlbum.get(album.legacy_id)
+      album.parent = Album.where(legacy_id: legacy_album.parent_id).first
 
       container.save
     end
 
     def import_images
       legacy_images = LegacyImage.all
-      progress_bar = ProgressBar.new('Image Import', legacy_images.count)
 
+      progress_bar = ProgressBar.new('Image Import', legacy_images.count)
       Parallel.each(legacy_images, in_processes: Parallel.processor_count * 2) do |legacy_image|
         import_image(legacy_image)
         progress_bar.inc
