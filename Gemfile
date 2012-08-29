@@ -48,6 +48,8 @@ group :development do
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
   gem 'launchy'
   gem 'quiet_assets'
+  gem 'newrelic_rpm'
+  gem 'newrelic_moped'
 end
 
 group :test do
