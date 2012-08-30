@@ -12,15 +12,10 @@ module IPGallery
     property :title,       String,  field: 'album_name'
     property :description, String,  field: 'album_description'
     property :parent_id,   Integer, field: 'album_parent_id'
-    property :is_global,   Integer, field: 'album_is_global'
     property :is_public,   Integer, field: 'album_is_public'
 
     def self.public
       all(is_public: 1)
-    end
-
-    def global?
-      is_global.eql?(1)
     end
 
     def importable_attributes
@@ -40,18 +35,16 @@ module IPGallery
     belongs_to :album, 'LegacyAlbum'
 
     property :id,          Serial
-    property :category_id, Integer
     property :album_id,    Integer, field: 'img_album_id'
     property :directory,   String
     property :file_name,   String,  field: 'masked_file_name'
 
-    def valid_image?(path)
+    def self.valid_image?(path)
       File.file?(path) && VALID_EXTENSIONS.include?(File.extname(path))
     end
 
     def file_path(upload_root)
-      path = File.join(upload_root, directory, file_name)
-      valid_image?(upload_root) ? path : nil
+      File.join(upload_root, directory, file_name)
     end
   end
 
@@ -73,7 +66,7 @@ module IPGallery
       raise e
     end
 
-    def import_containers
+    def import_albums
       legacy_albums = LegacyAlbum.public.collect(&:importable_attributes)
       Album.collection.insert(legacy_albums)
 
@@ -93,14 +86,12 @@ module IPGallery
       legacy_album = LegacyAlbum.get(album.legacy_id)
       album.parent = Album.where(legacy_id: legacy_album.parent_id).first
 
-      container.save
+      album.save
     end
 
     def import_images
-      legacy_images = LegacyImage.all
-
-      progress_bar = ProgressBar.new('Image Import', legacy_images.count)
-      Parallel.each(legacy_images, in_processes: Parallel.processor_count * 2) do |legacy_image|
+      progress_bar = ProgressBar.new('Image Import', LegacyImage.count)
+      Parallel.each(LegacyImage, in_processes: Parallel.processor_count * 2) do |legacy_image|
         import_image(legacy_image)
         progress_bar.inc
       end
@@ -109,7 +100,8 @@ module IPGallery
     end
 
     def import_image(legacy_image)
-      if image_file_path = legacy_image.file_path(@upload_root)
+      image_file_path = legacy_image.file_path(@upload_root)
+      if LegacyImage.valid_image?(image_file_path)
         if album = Album.where(legacy_id: legacy_image.album_id).first
           image = album.images.new
           image.image = File.open(image_file_path)
