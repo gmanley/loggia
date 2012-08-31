@@ -10,7 +10,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find_by_slug!(params[:id])
-    @children = @album.children.accessible_by(current_ability)
+    @children = @album.children.accessible_by(current_ability).cache
     @images = @album.images.page(params[:page]).per(100)
     authorize!(:show, @album)
 

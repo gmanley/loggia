@@ -5,7 +5,7 @@ class Comment
   field :body, type: String
 
   embedded_in :commentable, polymorphic: true, inverse_of: :comments
-  belongs_to :user, index: true
+  belongs_to :user
 
   validates_presence_of :body
 end
