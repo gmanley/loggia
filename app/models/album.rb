@@ -53,7 +53,7 @@ class Album
 
   def set_thumbnail_url
     if images.empty?
-      descendants_with_images = descendants_and_self.with_images
+      descendants_with_images = Album.where(parent_ids: id).with_images
       unless descendants_with_images.empty?
         thumbnail_url = descendants_with_images.sample.thumbnail_url
         update_attributes(thumbnail_url: thumbnail_url)
