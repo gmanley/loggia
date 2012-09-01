@@ -76,4 +76,5 @@ end
 #   gem 'dm-mysql-adapter'
 #   gem 'progressbar'
 #   gem 'parallel'
+#   gem 'dm-aggregates'
 # end
