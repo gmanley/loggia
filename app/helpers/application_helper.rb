@@ -36,10 +36,7 @@ module ApplicationHelper
   def breadcrumbs(elements = [])
     haml_tag 'ul.breadcrumb' do
       breadcrumb('Home', root_path)
-      elements.each_with_index do |element, index|
-        element.delete(:url) if element.count == index
-        breadcrumb(element[:title], element[:url])
-      end
+      elements.each {|e| breadcrumb(e[:title], e[:url]) }
     end
   end
 

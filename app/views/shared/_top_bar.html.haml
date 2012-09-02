@@ -18,4 +18,4 @@
           = f.input_field :password, placeholder: 'Password', class: 'input-small'
           = f.button :submit, 'Sign In', class: 'btn-primary'
           = link_to 'Sign Up', new_user_registration_path, class: 'btn'
-  - breadcrumbs(breadcrumb_paths)
+  - breadcrumbs(breadcrumb_paths) unless current_page?(root_path)
