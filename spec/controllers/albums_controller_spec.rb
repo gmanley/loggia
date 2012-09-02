@@ -24,7 +24,7 @@ describe AlbumsController do
     context 'when album is not hidden' do
       before do
         Album.should_receive(:find_by_slug!).and_return(album)
-        album.stub_chain(:children, :accessible_by).and_return(children)
+        album.stub_chain(:children, :accessible_by, :cache).and_return(children)
         album.stub(:images).and_return(images)
         get :show, id: album.slugs.first
       end
@@ -40,7 +40,7 @@ describe AlbumsController do
 
       before do
         Album.should_receive(:find_by_slug!).and_return(hidden_album)
-        hidden_album.stub_chain(:children, :accessible_by).and_return(children)
+        hidden_album.stub_chain(:children, :accessible_by, :cache).and_return(children)
         hidden_album.stub(:images).and_return(images)
       end
 
