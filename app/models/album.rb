@@ -30,9 +30,7 @@ class Album
   mount_uploader :archive, ArchiveUploader
 
   # This lets access slug in controllers via params[:id]
-  def to_param
-    slug
-  end
+  alias_method :to_param, :slug
 
   alias_method :to_s, :title
 
