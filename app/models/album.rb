@@ -34,6 +34,8 @@ class Album
     slug
   end
 
+  alias_method :to_s, :title
+
   # Pointless helper?
   def self.find_by_slug!(slug)
     find_by(slug: slug)
