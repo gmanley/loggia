@@ -34,6 +34,7 @@ gem 'carrierwave'
 gem 'carrierwave-mongoid', git: 'git://github.com/jnicklas/carrierwave-mongoid.git', branch: 'mongoid-3.0'
 gem 'carrierwave-vips'
 gem 'fog'
+gem 'carrierwave_backgrounder', git: 'git://github.com/gmanley/carrierwave_backgrounder.git'
 
 gem 'archive-zip'
 gem 'sidekiq'
@@ -67,6 +68,12 @@ group :development, :test do
   gem 'spork-rails'
 end
 
+# Uncomment this to run script/sidekiq_web
+# group :sidekiq_web do
+#   gem 'slim'
+#   gem 'sinatra'
+# end
+
 # Unccomment this and run bundle if you need to run the importer.
 # After your done using the importer make sure to comment this block out
 # again and run `bundle` or you may run into issues.
@@ -74,6 +81,5 @@ end
 #   gem 'dm-core'
 #   gem 'dm-mysql-adapter'
 #   gem 'progressbar'
-#   gem 'parallel'
 #   gem 'dm-aggregates'
 # end

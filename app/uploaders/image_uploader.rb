@@ -3,6 +3,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::Vips
   include CarrierWave::MimeTypes
+  include CarrierWave::Backgrounder::Delay if Soshigal::Application.config.store_in_bg
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
 

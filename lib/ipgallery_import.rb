@@ -54,6 +54,7 @@ module IPGallery
       config = YAML.load_file(Rails.root.join('config/legacy_import.yml'))
       DataMapper::Logger.new(STDOUT, :warn)
       DataMapper.setup(:default, config['ipgallery'])
+      Soshigal::Application.config.store_in_bg = true
       @upload_root = upload_root
     end
 
@@ -91,7 +92,7 @@ module IPGallery
 
     def import_images
       progress_bar = ProgressBar.new('Image Import', LegacyImage.count)
-      Parallel.each(LegacyImage, in_processes: Parallel.processor_count * 2) do |legacy_image|
+      LegacyImage.each do |legacy_image|
         import_image(legacy_image)
         progress_bar.inc
       end
@@ -109,7 +110,7 @@ module IPGallery
         end
       end
     rescue StandardError => e
-      puts e.message
+      puts "Error: #{e.message} importing #{image_file_path}"
     end
   end
 end
