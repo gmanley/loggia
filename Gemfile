@@ -32,7 +32,7 @@ gem 'simple_form'
 
 gem 'carrierwave'
 gem 'carrierwave-mongoid', git: 'git://github.com/jnicklas/carrierwave-mongoid.git', branch: 'mongoid-3.0'
-gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
+gem 'carrierwave-vips'
 gem 'fog'
 
 gem 'archive-zip'
@@ -58,7 +58,6 @@ group :test do
   gem 'mongoid-rspec'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
-  # gem 'capybara-webkit', git: 'git://github.com/thoughtbot/capybara-webkit.git' # brew install qt
 end
 
 group :development, :test do

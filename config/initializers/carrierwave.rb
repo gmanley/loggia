@@ -1,4 +1,3 @@
-require 'carrierwave/processing/mini_magick'
 CarrierWave.configure do |config|
   # Example settings for s3/cloudfront
   # config.storage = :fog
@@ -13,4 +12,3 @@ CarrierWave.configure do |config|
   config.storage = :file # Can be overridden in uploaders
 end
 CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
-MiniMagick.processor = :gm
