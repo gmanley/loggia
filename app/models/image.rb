@@ -13,7 +13,9 @@ class Image
     end
   end
 
-  set_callback(:destroy, :after) do
-    album.inc(:image_count, -1) unless album.nil?
+  skip_callback(:destroy, :after, :remove_image!)
+  set_callback(:destroy, :before) do
+    remove_image!
+    album.inc(:image_count, -1)
   end
 end
