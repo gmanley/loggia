@@ -93,7 +93,7 @@ $ ->
 
   uploader.bind 'FileUploaded', (up, file, request) ->
     response = JSON.parse(request.response)
-    $('.thumbnails').append(JST['templates/image'](image: response.image))
+    $('#images').append(JST['templates/image'](image: response.image))
     $("##{file.id} .progress")
       .toggleClass('active')
       .prev('.file_info b').text('Done')

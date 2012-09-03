@@ -6,15 +6,13 @@
 
 = render('images/form') if can?(:create, Image)
 
-- unless @children.empty?
-  %ul.thumbnails
+#thumbnails-wrapper
+  %ul#albums.thumbnails
     = render partial: 'albums/album', collection: @children
 
-- unless @images.empty?
-  %ul.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
+  %ul#images.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
     = render partial: 'images/image', collection: @images
   = paginate @images
-  %hr
 
 %section.row-fluid
   .span6

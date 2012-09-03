@@ -17,15 +17,11 @@ footer {
 .favorite, .favorited { &:hover { opacity: .8 } }
 
 .home, .albums {
-  .thumbnail.album {
+  #albums .thumbnail {
     padding: 15px 15px 0px 15px;
-    width: 200px;
-    height: 250px;
+    width: 200px; height: 250px;
 
-    img {
-      border: 1px solid #D3D3D3;
-      width: 200px;
-      height: 200px }
+    img { border: 1px solid #D3D3D3 }
 
     .thumbnail-title {
       text-align: center;

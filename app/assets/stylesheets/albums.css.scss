@@ -23,7 +23,9 @@ body.albums {
 
     .header-actions { padding-top: 5px }
 
-    .thumbnails { clear: both }
+    #thumbnails-wrapper {
+      border-bottom: 1px solid #EEE;
+      .thumbnails { clear: both } }
 
     .comment {
       margin-bottom:10px;
