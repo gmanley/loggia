@@ -54,7 +54,8 @@ module IPGallery
       config = YAML.load_file(Rails.root.join('config/legacy_import.yml'))
       DataMapper::Logger.new(STDOUT, :warn)
       DataMapper.setup(:default, config['ipgallery'])
-      Soshigal::Application.config.store_in_bg = true
+      Image.send(:store_in_background, :image)
+      ImageUploader.send(:include, CarrierWave::Backgrounder::Delay)
       @upload_root = upload_root
     end
 

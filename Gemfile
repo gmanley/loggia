@@ -34,7 +34,6 @@ gem 'carrierwave'
 gem 'carrierwave-mongoid', git: 'git://github.com/jnicklas/carrierwave-mongoid.git', branch: 'mongoid-3.0'
 gem 'carrierwave-vips'
 gem 'fog'
-gem 'carrierwave_backgrounder', git: 'git://github.com/gmanley/carrierwave_backgrounder.git'
 
 gem 'archive-zip'
 gem 'sidekiq'
@@ -82,4 +81,5 @@ end
 #   gem 'dm-mysql-adapter'
 #   gem 'progressbar'
 #   gem 'dm-aggregates'
+#   gem 'carrierwave_backgrounder', git: 'git://github.com/gmanley/carrierwave_backgrounder.git'
 # end

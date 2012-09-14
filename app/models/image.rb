@@ -4,7 +4,6 @@ class Image
 
   embedded_in :album
   mount_uploader :image, ImageUploader
-  store_in_background :image if Soshigal::Application.config.store_in_bg
 
   set_callback(:create, :after) do
     unless album.nil?

@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/gmanley/carrierwave_backgrounder.git
-  revision: 4bfa2b7c0fb8412c3d265cbd494c10962b40845f
-  specs:
-    carrierwave_backgrounder (0.0.7)
-      carrierwave (~> 0.5)
-
-GIT
   remote: git://github.com/jnicklas/carrierwave-mongoid.git
   revision: 28a9b718d42b8aba47d2eb951f73bd9d872b6eb0
   branch: mongoid-3.0
@@ -297,7 +290,6 @@ DEPENDENCIES
   carrierwave
   carrierwave-mongoid!
   carrierwave-vips
-  carrierwave_backgrounder!
   coffee-filter
   coffee-rails (~> 3.2)
   coffeebeans
