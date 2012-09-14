@@ -160,8 +160,8 @@ textarea {
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 13px;
+  line-height: 18px;
   color: #333333;
   background-color: #ffffff;
 }
@@ -580,14 +580,14 @@ a:hover {
 }
 
 p {
-  margin: 0 0 10px;
+  margin: 0 0 9px;
 }
 
 .lead {
-  margin-bottom: 20px;
-  font-size: 21px;
+  margin-bottom: 18px;
+  font-size: 19.5px;
   font-weight: 200;
-  line-height: 30px;
+  line-height: 27px;
 }
 
 small {
@@ -632,7 +632,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 10px 0;
+  margin: 9px 0;
   font-family: inherit;
   font-weight: bold;
   line-height: 1;
@@ -698,15 +698,15 @@ h4 small {
 }
 
 .page-header {
-  padding-bottom: 9px;
-  margin: 20px 0 30px;
+  padding-bottom: 8px;
+  margin: 18px 0 27px;
   border-bottom: 1px solid #eeeeee;
 }
 
 ul,
 ol {
   padding: 0;
-  margin: 0 0 10px 25px;
+  margin: 0 0 9px 25px;
 }
 
 ul ul,
@@ -717,7 +717,7 @@ ol ul {
 }
 
 li {
-  line-height: 20px;
+  line-height: 18px;
 }
 
 ul.unstyled,
@@ -727,12 +727,12 @@ ol.unstyled {
 }
 
 dl {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 dt,
 dd {
-  line-height: 20px;
+  line-height: 18px;
 }
 
 dt {
@@ -740,7 +740,7 @@ dt {
 }
 
 dd {
-  margin-left: 10px;
+  margin-left: 9px;
 }
 
 .dl-horizontal {
@@ -773,7 +773,7 @@ dd {
 }
 
 hr {
-  margin: 20px 0;
+  margin: 18px 0;
   border: 0;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #ffffff;
@@ -791,7 +791,7 @@ abbr.initialism {
 
 blockquote {
   padding: 0 0 0 15px;
-  margin: 0 0 20px;
+  margin: 0 0 18px;
   border-left: 5px solid #eeeeee;
 }
 
@@ -799,12 +799,12 @@ blockquote p {
   margin-bottom: 0;
   font-size: 16px;
   font-weight: 300;
-  line-height: 25px;
+  line-height: 22.5px;
 }
 
 blockquote small {
   display: block;
-  line-height: 20px;
+  line-height: 18px;
   color: #999999;
 }
 
@@ -842,16 +842,16 @@ blockquote:after {
 
 address {
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-style: normal;
-  line-height: 20px;
+  line-height: 18px;
 }
 
 code,
 pre {
   padding: 0 3px 2px;
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
-  font-size: 12px;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 11px;
   color: #333333;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
@@ -867,10 +867,10 @@ code {
 
 pre {
   display: block;
-  padding: 9.5px;
-  margin: 0 0 10px;
-  font-size: 13px;
-  line-height: 20px;
+  padding: 8.5px;
+  margin: 0 0 9px;
+  font-size: 12px;
+  line-height: 18px;
   word-break: break-all;
   word-wrap: break-word;
   white-space: pre;
@@ -884,7 +884,7 @@ pre {
 }
 
 pre.prettyprint {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 pre code {
@@ -900,7 +900,7 @@ pre code {
 }
 
 form {
-  margin: 0 0 20px;
+  margin: 0 0 18px;
 }
 
 fieldset {
@@ -913,16 +913,16 @@ legend {
   display: block;
   width: 100%;
   padding: 0;
-  margin-bottom: 20px;
-  font-size: 21px;
-  line-height: 40px;
+  margin-bottom: 18px;
+  font-size: 19.5px;
+  line-height: 36px;
   color: #333333;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
 
 legend small {
-  font-size: 15px;
+  font-size: 13.5px;
   color: #999999;
 }
 
@@ -931,9 +931,9 @@ input,
 button,
 select,
 textarea {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: normal;
-  line-height: 20px;
+  line-height: 18px;
 }
 
 input,
@@ -966,11 +966,11 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   display: inline-block;
-  height: 20px;
+  height: 18px;
   padding: 4px 6px;
   margin-bottom: 9px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 13px;
+  line-height: 18px;
   color: #555555;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
@@ -1496,9 +1496,9 @@ select:focus:required:invalid:focus {
 }
 
 .form-actions {
-  padding: 19px 20px 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding: 17px 20px 18px;
+  margin-top: 18px;
+  margin-bottom: 18px;
   background-color: #f5f5f5;
   border-top: 1px solid #e5e5e5;
   *zoom: 1;
@@ -1522,7 +1522,7 @@ select:focus:required:invalid:focus {
 
 .help-block {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 
 .help-inline {
@@ -1549,7 +1549,7 @@ select:focus:required:invalid:focus {
   position: relative;
   margin-bottom: 0;
   *margin-left: 0;
-  font-size: 14px;
+  font-size: 13px;
   vertical-align: top;
   -webkit-border-radius: 0 3px 3px 0;
      -moz-border-radius: 0 3px 3px 0;
@@ -1569,12 +1569,12 @@ select:focus:required:invalid:focus {
 .input-prepend .add-on {
   display: inline-block;
   width: auto;
-  height: 20px;
+  height: 18px;
   min-width: 16px;
   padding: 4px 5px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: normal;
-  line-height: 20px;
+  line-height: 18px;
   text-align: center;
   text-shadow: 0 1px 0 #ffffff;
   background-color: #eeeeee;
@@ -1766,16 +1766,16 @@ input.search-query {
 }
 
 .control-group {
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 
 legend + .control-group {
-  margin-top: 20px;
+  margin-top: 18px;
   -webkit-margin-top-collapse: separate;
 }
 
 .form-horizontal .control-group {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   *zoom: 1;
 }
 
@@ -1815,7 +1815,7 @@ legend + .control-group {
 .form-horizontal input + .help-block,
 .form-horizontal select + .help-block,
 .form-horizontal textarea + .help-block {
-  margin-top: 10px;
+  margin-top: 9px;
 }
 
 .form-horizontal .form-actions {
@@ -1831,13 +1831,13 @@ table {
 
 .table {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .table th,
 .table td {
   padding: 8px;
-  line-height: 20px;
+  line-height: 18px;
   text-align: left;
   vertical-align: top;
   border-top: 1px solid #dddddd;
@@ -2799,7 +2799,7 @@ table [class*=span],
 .dropdown-menu .divider {
   *width: 100%;
   height: 1px;
-  margin: 9px 1px;
+  margin: 8px 1px;
   *margin: -5px 0 5px;
   overflow: hidden;
   background-color: #e5e5e5;
@@ -2811,7 +2811,7 @@ table [class*=span],
   padding: 3px 20px;
   clear: both;
   font-weight: normal;
-  line-height: 20px;
+  line-height: 18px;
   color: #333333;
   white-space: nowrap;
 }
@@ -2997,7 +2997,7 @@ table [class*=span],
   float: right;
   font-size: 20px;
   font-weight: bold;
-  line-height: 20px;
+  line-height: 18px;
   color: #000000;
   text-shadow: 0 1px 0 #ffffff;
   opacity: 0.2;
@@ -3026,9 +3026,9 @@ button.close {
   padding: 4px 14px;
   margin-bottom: 0;
   *margin-left: .3em;
-  font-size: 14px;
-  line-height: 20px;
-  *line-height: 20px;
+  font-size: 13px;
+  line-height: 18px;
+  *line-height: 18px;
   color: #333333;
   text-align: center;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
@@ -3122,7 +3122,7 @@ button.close {
 
 .btn-large {
   padding: 9px 14px;
-  font-size: 16px;
+  font-size: 15px;
   line-height: normal;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
@@ -3135,8 +3135,8 @@ button.close {
 
 .btn-small {
   padding: 3px 9px;
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 11px;
+  line-height: 16px;
 }
 
 .btn-small [class^="icon-"] {
@@ -3145,8 +3145,8 @@ button.close {
 
 .btn-mini {
   padding: 2px 6px;
-  font-size: 11px;
-  line-height: 17px;
+  font-size: 10px;
+  line-height: 15px;
 }
 
 .btn-block {
@@ -3452,8 +3452,8 @@ input[type="submit"].btn.btn-mini {
 }
 
 .btn-toolbar {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 9px;
+  margin-bottom: 9px;
   font-size: 0;
 }
 
@@ -3484,7 +3484,7 @@ input[type="submit"].btn.btn-mini {
 
 .btn-group > .btn,
 .btn-group > .dropdown-menu {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .btn-group > .btn-mini {
@@ -3695,7 +3695,7 @@ input[type="submit"].btn.btn-mini {
 
 .alert {
   padding: 8px 35px 8px 14px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   color: #c09853;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   background-color: #fcf8e3;
@@ -3713,7 +3713,7 @@ input[type="submit"].btn.btn-mini {
   position: relative;
   top: -2px;
   right: -21px;
-  line-height: 20px;
+  line-height: 18px;
 }
 
 .alert-success {
@@ -3750,7 +3750,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .nav {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   margin-left: 0;
   list-style: none;
 }
@@ -3773,7 +3773,7 @@ input[type="submit"].btn.btn-mini {
   padding: 3px 15px;
   font-size: 11px;
   font-weight: bold;
-  line-height: 20px;
+  line-height: 18px;
   color: #999999;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
@@ -3814,7 +3814,7 @@ input[type="submit"].btn.btn-mini {
 .nav-list .divider {
   *width: 100%;
   height: 1px;
-  margin: 9px 1px;
+  margin: 8px 1px;
   *margin: -5px 0 5px;
   overflow: hidden;
   background-color: #e5e5e5;
@@ -3864,7 +3864,7 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs > li > a {
   padding-top: 8px;
   padding-bottom: 8px;
-  line-height: 20px;
+  line-height: 18px;
   border: 1px solid transparent;
   -webkit-border-radius: 4px 4px 0 0;
      -moz-border-radius: 4px 4px 0 0;
@@ -4145,7 +4145,7 @@ input[type="submit"].btn.btn-mini {
 .navbar {
   *position: relative;
   *z-index: 2;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   overflow: visible;
   color: #777777;
 }
@@ -4194,7 +4194,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .brand {
   display: block;
   float: left;
-  padding: 10px 20px 10px;
+  padding: 11px 20px 11px;
   margin-left: -20px;
   font-size: 20px;
   font-weight: 200;
@@ -4388,7 +4388,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li > a {
   float: none;
-  padding: 10px 15px 10px;
+  padding: 11px 15px 11px;
   color: #777777;
   text-decoration: none;
   text-shadow: 0 1px 0 #ffffff;
@@ -4564,15 +4564,15 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .navbar-inner {
-  background-color: #1b1b1b;
-  background-image: -moz-linear-gradient(top, #222222, #111111);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
-  background-image: -webkit-linear-gradient(top, #222222, #111111);
-  background-image: -o-linear-gradient(top, #222222, #111111);
-  background-image: linear-gradient(to bottom, #222222, #111111);
+  background-color: #2c2c2c;
+  background-image: -moz-linear-gradient(top, #333333, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
+  background-image: -webkit-linear-gradient(top, #333333, #222222);
+  background-image: -o-linear-gradient(top, #333333, #222222);
+  background-image: linear-gradient(to bottom, #333333, #222222);
   background-repeat: repeat-x;
   border-color: #252525;
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff222222', GradientType=0);
 }
 
 .navbar-inverse .brand,
@@ -4596,7 +4596,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .nav .active > a:hover,
 .navbar-inverse .nav .active > a:focus {
   color: #ffffff;
-  background-color: #111111;
+  background-color: #222222;
 }
 
 .navbar-inverse .navbar-link {
@@ -4608,15 +4608,15 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .divider-vertical {
-  border-right-color: #222222;
-  border-left-color: #111111;
+  border-right-color: #333333;
+  border-left-color: #222222;
 }
 
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
   color: #ffffff;
-  background-color: #111111;
+  background-color: #222222;
 }
 
 .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {
@@ -4633,8 +4633,8 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-inverse .navbar-search .search-query {
   color: #ffffff;
-  background-color: #515151;
-  border-color: #111111;
+  background-color: #626262;
+  border-color: #222222;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
           box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -4672,17 +4672,17 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .btn-navbar {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #0e0e0e;
-  *background-color: #040404;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#151515), to(#040404));
-  background-image: -webkit-linear-gradient(top, #151515, #040404);
-  background-image: -o-linear-gradient(top, #151515, #040404);
-  background-image: linear-gradient(to bottom, #151515, #040404);
-  background-image: -moz-linear-gradient(top, #151515, #040404);
+  background-color: #1f1f1f;
+  *background-color: #151515;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#262626), to(#151515));
+  background-image: -webkit-linear-gradient(top, #262626, #151515);
+  background-image: -o-linear-gradient(top, #262626, #151515);
+  background-image: linear-gradient(to bottom, #262626, #151515);
+  background-image: -moz-linear-gradient(top, #262626, #151515);
   background-repeat: repeat-x;
-  border-color: #040404 #040404 #000000;
+  border-color: #151515 #151515 #000000;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff151515', endColorstr='#ff040404', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff262626', endColorstr='#ff151515', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
@@ -4692,8 +4692,8 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .btn-navbar.disabled,
 .navbar-inverse .btn-navbar[disabled] {
   color: #ffffff;
-  background-color: #040404;
-  *background-color: #000000;
+  background-color: #151515;
+  *background-color: #080808;
 }
 
 .navbar-inverse .btn-navbar:active,
@@ -4703,7 +4703,7 @@ input[type="submit"].btn.btn-mini {
 
 .breadcrumb {
   padding: 8px 15px;
-  margin: 0 0 20px;
+  margin: 0 0 18px;
   list-style: none;
   background-color: #f5f5f5;
   -webkit-border-radius: 4px;
@@ -4728,8 +4728,8 @@ input[type="submit"].btn.btn-mini {
 }
 
 .pagination {
-  height: 40px;
-  margin: 20px 0;
+  height: 36px;
+  margin: 18px 0;
 }
 
 .pagination ul {
@@ -4754,7 +4754,7 @@ input[type="submit"].btn.btn-mini {
 .pagination ul > li > span {
   float: left;
   padding: 0 14px;
-  line-height: 38px;
+  line-height: 34px;
   text-decoration: none;
   background-color: #ffffff;
   border: 1px solid #dddddd;
@@ -4805,7 +4805,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .pager {
-  margin: 20px 0;
+  margin: 18px 0;
   text-align: center;
   list-style: none;
   *zoom: 1;
@@ -5232,14 +5232,14 @@ input[type="submit"].btn.btn-mini {
 
 .thumbnails > li {
   float: left;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   margin-left: 20px;
 }
 
 .thumbnail {
   display: block;
   padding: 4px;
-  line-height: 20px;
+  line-height: 18px;
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
@@ -5274,7 +5274,7 @@ a.thumbnail:hover {
 
 .label,
 .badge {
-  font-size: 11.844px;
+  font-size: 10.998px;
   font-weight: bold;
   line-height: 14px;
   color: #ffffff;
@@ -5412,8 +5412,8 @@ a.badge:hover {
 }
 
 .progress {
-  height: 20px;
-  margin-bottom: 20px;
+  height: 18px;
+  margin-bottom: 18px;
   overflow: hidden;
   background-color: #f7f7f7;
   background-image: -moz-linear-gradient(top, #f5f5f5, #f9f9f9);
@@ -5575,7 +5575,7 @@ a.badge:hover {
 }
 
 .accordion {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .accordion-group {
@@ -5606,7 +5606,7 @@ a.badge:hover {
 
 .carousel {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   line-height: 1;
 }
 
@@ -5713,7 +5713,7 @@ a.badge:hover {
 
 .carousel-caption h4,
 .carousel-caption p {
-  line-height: 20px;
+  line-height: 18px;
   color: #ffffff;
 }
 
@@ -5745,7 +5745,7 @@ a.badge:hover {
 .hero-unit p {
   font-size: 18px;
   font-weight: 200;
-  line-height: 30px;
+  line-height: 27px;
   color: inherit;
 }
 
