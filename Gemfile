@@ -74,7 +74,7 @@ end
 #   gem 'sinatra'
 # end
 
-# Unccomment this and run bundle if you need to run the importer.
+# Uncomment this and run bundle if you need to run the importer.
 # After your done using the importer make sure to comment this block out
 # again and run `bundle` or you may run into issues.
 # group :importer do
@@ -82,5 +82,5 @@ end
 #   gem 'dm-mysql-adapter'
 #   gem 'progressbar'
 #   gem 'dm-aggregates'
-#   gem 'carrierwave_backgrounder', git: 'git://github.com/gmanley/carrierwave_backgrounder.git'
+#   gem 'carrierwave_backgrounder', git: 'git://github.com/gmanley/carrierwave_backgrounder.git', require: %w[carrierwave_backgrounder backgrounder/orm/mongoid]
 # end
