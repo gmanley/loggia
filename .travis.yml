@@ -1,6 +1,8 @@
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq libvips-dev
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libvips-dev
+services:
+  - mongodb
 bundler_args: --without development
 language: ruby
 rvm:
