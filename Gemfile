@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '~> 3.2'
+gem 'actionpack', '~> 3.2'
 
 gem 'rake'
 
@@ -26,6 +26,7 @@ gem 'mongoid-tree'
 gem 'kaminari'
 
 gem 'devise'
+gem 'actionmailer'
 gem 'cancan'
 
 gem 'responders'
@@ -65,7 +66,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'spork-rails'
+  gem 'spork-rails', git: 'git://github.com/gmanley/spork-rails.git'
 end
 
 # Uncomment this to run script/sidekiq_web
