@@ -1,10 +1,18 @@
 body.albums {
 
+  #albums .thumbnail {
+    padding: 15px 15px 0px 15px;
+    width: 200px; height: 250px;
+
+    img { border: 1px solid #D3D3D3 }
+
+    .thumbnail-title { text-align: center } }
+
   &.show {
     #new_album {
       &.string {
         max-width: 250px;
-        width:99% } }
+        width: 99% } }
 
     .selection {
       position: absolute;

@@ -1,4 +1,5 @@
-%ul#albums.thumbnails
+%ol#albums.thumbnails
   = render partial: 'albums/album', collection: @albums
 
-= link_to('New Album', new_album_path, class: 'btn btn-primary') if can?(:create, Album)
+- if can?(:create, Album)
+  = link_to('New Album', new_album_path, class: 'btn btn-primary')

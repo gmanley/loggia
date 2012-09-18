@@ -1,9 +1,5 @@
-/*
- *= require bootstrap
- *= require bootstrap-image-gallery
- *= require_self
- *= require_tree .
-*/
+@import 'libraries';
+@import 'albums';
 
 a { color: black }
 
@@ -18,13 +14,4 @@ footer {
 
 .favorite, .favorited { &:hover { opacity: .8 } }
 
-.home, .albums {
-  #albums .thumbnail {
-    padding: 15px 15px 0px 15px;
-    width: 200px; height: 250px;
-
-    img { border: 1px solid #D3D3D3 }
-
-    .thumbnail-title { text-align: center } } }
-
-.plupload.html5, .plupload.flash { display:none }
+.plupload.html5, .plupload.flash { display: none }

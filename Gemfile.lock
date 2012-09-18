@@ -43,6 +43,7 @@ GEM
       io-like (>= 0.3.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    bootstrap-sass (2.1.0.0)
     builder (3.0.0)
     cancan (1.6.8)
     capybara (1.1.2)
@@ -285,6 +286,7 @@ PLATFORMS
 
 DEPENDENCIES
   archive-zip
+  bootstrap-sass (~> 2.1.0.0)
   cancan
   capybara
   carrierwave
