@@ -28,7 +28,7 @@ module IPGallery
   class LegacyImage
     include DataMapper::Resource
 
-    VALID_EXTENSIONS = %w(.jpg .jpeg .gif .png)
+    VALID_EXTENSIONS = %w(.jpg .jpeg .png)
 
     storage_names[:default] = 'gallery_images'
 
@@ -54,8 +54,6 @@ module IPGallery
       config = YAML.load_file(Rails.root.join('config/legacy_import.yml'))
       DataMapper::Logger.new(STDOUT, :warn)
       DataMapper.setup(:default, config['ipgallery'])
-      Image.send(:store_in_background, :image)
-      ImageUploader.send(:include, CarrierWave::Backgrounder::Delay)
       @upload_root = upload_root
     end
 

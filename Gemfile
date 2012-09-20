@@ -83,5 +83,4 @@ end
 #   gem 'dm-mysql-adapter'
 #   gem 'progressbar'
 #   gem 'dm-aggregates'
-#   gem 'carrierwave_backgrounder', git: 'git://github.com/gmanley/carrierwave_backgrounder.git', require: %w[carrierwave_backgrounder backgrounder/orm/mongoid]
 # end
