@@ -34,7 +34,7 @@ delete_selected = ->
 
 $ ->
   $('#start_upload').button()
-  $('#start_selection').on 'click', (e) ->
+  $('#toggle_deletion').on 'click', (e) ->
     $(this).hide()
     $instructions_alert_html = $('<div id="delete_instructions" class="alert alert-info fade in">
                                     <a class="close" data-dismiss="alert">×</a>

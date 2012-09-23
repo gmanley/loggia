@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 
 @import 'libraries';
 @import 'albums';
@@ -7,13 +7,20 @@ a { color: black }
 
 section { padding-top: 60px }
 
+.container-fluid { min-width: 480px }
+
+.breadcrumb { border: 1px solid #DDD }
+
+.favorite, .favorited {
+  float: left;
+  margin: 18px 12px;
+
+  &:hover { opacity: .8 } }
+
 footer {
   margin-top: 40px;
   border-top: 1px solid #E5E5E5;
   padding: 35px 0 36px }
 
-.breadcrumb { border: 1px solid #DDD }
-
-.favorite, .favorited { &:hover { opacity: .8 } }
-
 .plupload.html5, .plupload.flash { display: none }
+

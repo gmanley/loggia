@@ -13,7 +13,7 @@
               %li.divider
               %li= link_to 'Logout', destroy_user_session_path, method: 'delete'
       - else
-        = simple_form_for('user', url: user_session_path, html: {class: 'pull-right navbar-form', id: 'login'}) do |f|
+        = simple_form_for('user', url: user_session_path, html: { class: 'pull-right navbar-form', id: 'login' }) do |f|
           = f.input_field :email, placeholder: 'Email', class: 'input-small'
           = f.input_field :password, placeholder: 'Password', class: 'input-small'
           = f.button :submit, 'Sign In', class: 'btn-primary'
