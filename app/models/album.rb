@@ -3,7 +3,7 @@ class Album
   include Mongoid::Timestamps
   include Mongoid::Tree
 
-  field :slug,          type: String,  default: -> { generate_slug }
+  field :slug,          type: String
   field :title,         type: String
   field :description,   type: String
   field :hidden,        type: Boolean, default: false
@@ -28,6 +28,8 @@ class Album
   scope :with_images, excludes(image_count: 0)
 
   mount_uploader :archive, ArchiveUploader
+
+  before_create :set_slug
 
   # This lets access slug in controllers via params[:id]
   alias_method :to_param, :slug
@@ -89,7 +91,7 @@ class Album
     ancestors_and_self.collect(&:title).join(' ').to_url
   end
 
-  def update_slug
-    update_attribute(:slug, generate_slug)
+  def set_slug
+    self.slug = generate_slug
   end
 end
