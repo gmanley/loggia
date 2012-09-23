@@ -15,7 +15,7 @@ $ ->
 
   $('li.active a, li.disabled a').on('click', false)
 
-  $('#toggle_editing').on 'click', (e) ->
+  $('#toggle_editing.inactive').on 'click', (e) ->
     $('.thumbnail').on 'click', (e) ->
       e.preventDefault()
       album_url = $(this).attr('href')

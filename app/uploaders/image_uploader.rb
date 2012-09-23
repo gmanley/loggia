@@ -15,11 +15,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    File.join('uploads', 'images', model.album.slug)
-  end
-
-  def filename
-    model.id.to_s + File.extname(super.to_s)
+    File.join('uploads', 'images', model.id.to_s)
   end
 
   def default_url

@@ -1,0 +1,3 @@
+#delete_instructions.alert.alert-info.fade.in
+  %a.close{"data-dismiss" => "alert"} ×
+  Click and drag your mouse over the images you wish to delete. Then click "Complete Deletion" (You will be given a chance to cancel).
