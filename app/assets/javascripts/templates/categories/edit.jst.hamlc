@@ -1,2 +1,0 @@
-%form#edit-category
-  %button.btn.btn-primary Save

@@ -1,2 +1,2 @@
 collection @albums
-extends 'containers/_container'
+extends 'albums/_album'

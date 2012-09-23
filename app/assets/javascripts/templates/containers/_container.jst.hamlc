@@ -1,3 +1,0 @@
-%a.thumbnail.container-item{href: "/##{App.routingUrlFor(@type)}/#{@id}"}
-  %img{src: @thumbnail_url}
-  %h4.thumbnail-title= @title

@@ -1,5 +1,5 @@
 /*
- * JavaScript Load Image 1.1.7
+ * JavaScript Load Image 1.1.4
  * https://github.com/blueimp/JavaScript-Load-Image
  *
  * Copyright 2011, Sebastian Tschan
@@ -40,53 +40,46 @@
             if (url) {
                 img.src = url;
                 return img;
+            } else {
+                return loadImage.readFile(file, function (url) {
+                    img.src = url;
+                });
             }
-            return loadImage.readFile(file, function (url) {
-                img.src = url;
-            });
         },
-        // The check for URL.revokeObjectURL fixes an issue with Opera 12,
-        // which provides URL.createObjectURL but doesn't properly implement it:
         urlAPI = (window.createObjectURL && window) ||
-            (window.URL && URL.revokeObjectURL && URL) ||
-            (window.webkitURL && webkitURL);
+            (window.URL && URL) || (window.webkitURL && webkitURL);
 
-    // Scales the given image (img or canvas HTML element)
+    // Scales the given image (img HTML element)
     // using the given options.
-    // Returns a canvas object if the browser supports canvas
-    // and the canvas option is true or a canvas object is passed
-    // as image, else the scaled image:
+    // Returns a canvas object if the canvas option is true
+    // and the browser supports canvas, else the scaled image:
     loadImage.scale = function (img, options) {
         options = options || {};
         var canvas = document.createElement('canvas'),
-            width = img.width,
-            height = img.height,
             scale = Math.max(
-                (options.minWidth || width) / width,
-                (options.minHeight || height) / height
+                (options.minWidth || img.width) / img.width,
+                (options.minHeight || img.height) / img.height
             );
         if (scale > 1) {
-            width = parseInt(width * scale, 10);
-            height = parseInt(height * scale, 10);
+            img.width = parseInt(img.width * scale, 10);
+            img.height = parseInt(img.height * scale, 10);
         }
         scale = Math.min(
-            (options.maxWidth || width) / width,
-            (options.maxHeight || height) / height
+            (options.maxWidth || img.width) / img.width,
+            (options.maxHeight || img.height) / img.height
         );
         if (scale < 1) {
-            width = parseInt(width * scale, 10);
-            height = parseInt(height * scale, 10);
+            img.width = parseInt(img.width * scale, 10);
+            img.height = parseInt(img.height * scale, 10);
         }
-        if (img.getContext || (options.canvas && canvas.getContext)) {
-            canvas.width = width;
-            canvas.height = height;
-            canvas.getContext('2d')
-                .drawImage(img, 0, 0, width, height);
-            return canvas;
+        if (!options.canvas || !canvas.getContext) {
+            return img;
         }
-        img.width = width;
-        img.height = height;
-        return img;
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext('2d')
+            .drawImage(img, 0, 0, img.width, img.height);
+        return canvas;
     };
 
     loadImage.createObjectURL = function (file) {

@@ -1,0 +1,2 @@
+%form#new-album
+  %button.btn.btn-primary Create

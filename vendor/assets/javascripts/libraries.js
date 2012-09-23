@@ -14,3 +14,5 @@
 //= require bootstrap-backbone-forms-custom
 //= require backbone-paginated-collection
 //= require backbone-relational
+//= require jquery.event.drag
+//= require jquery.event.drop

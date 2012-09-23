@@ -1,5 +1,4 @@
 object @album
-extends 'containers/_container'
-node(:images) do |album|
-  partial('images/_image', object: album.images)
-end
+extends 'albums/_album'
+node(:children) { partial('albums/_album', object: @children) }
+node(:images) { partial('images/_image', object: @images) }

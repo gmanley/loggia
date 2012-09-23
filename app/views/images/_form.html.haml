@@ -4,6 +4,10 @@
     .btn-group
       %button.btn#select_files Select Files
       %button.btn.btn-primary#start_upload{data: {:'loading-text' => 'Uploading', :'complete-text' => 'Uploaded!'}} Upload
+    .btn-group
+      %button.btn.inactive#toggle_editing{data: { toggle: 'button' }} Edit Mode
+      %button.btn.inactive#toggle_deletion{data: { toggle: 'button' }} Deletion Mode
+
   %ul.unstyled#file_list
 
 %hr/

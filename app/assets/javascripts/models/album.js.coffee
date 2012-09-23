@@ -9,6 +9,17 @@ class App.Models.Album extends Backbone.RelationalModel
     description: 'Text'
     hidden: { type: 'Checkbox', template: 'checkbox' }
 
+  relations: [
+    type: 'HasMany'
+    key: 'children'
+    relatedModel: 'App.Models.Album'
+    collectionType: 'App.Collections.AlbumsCollection'
+    includeInJSON: false
+    reverseRelation:
+      key: 'parent'
+      includeInJSON: 'id'
+  ]
+
   defaults:
     title:         null
     description:   null
@@ -27,6 +38,9 @@ class App.Models.Album extends Backbone.RelationalModel
 class App.Collections.AlbumsCollection extends Backbone.Collection
   model: App.Models.Album
   url: '/albums'
+
+  roots: ->
+    @where(parent_id: null)
 
   comparator: (category) ->
     category.get('title')

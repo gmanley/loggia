@@ -1,2 +1,0 @@
-%form#new-category
-  %button.btn.btn-primary Create

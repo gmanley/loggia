@@ -1,11 +1,15 @@
 %header.page-header
   %h1= @title
+  %a.favorite.favorite-toggle{href: "#/albums/#{@slug}/favorites"}
+    %img{src: '/assets/favorite.png'}
   .header-actions.btn-toolbar
-    %a.btn.btn-primary.btn-mini{href: "#/albums/#{@id}/edit"} Edit
+    %a.btn.btn-primary.btn-mini{href: "#/albums/#{@slug}/edit"} Edit
     %a.btn.btn-danger.btn-mini.destroy{href: '', data: {action: 'destroy'}} Delete
 
 != JST['templates/images/_form']()
 
-%ul.thumbnails{data: {toggle: 'modal-gallery', target: '#modal-gallery' }}
+#thumbnails-wrapper
+  %ol#albums.thumbnails
+  %ol#images.thumbnails{data: {toggle: 'modal-gallery', target: '#modal-gallery' }}
 
 != JST['templates/images/_modal']()

@@ -1,8 +1,0 @@
-= simple_form_for(@category) do |f|
-  %fieldset
-    %legend Editing Category
-    = render partial: 'containers/form', locals: {f: f}
-    .form-actions
-      = f.button :submit, 'Save', class: 'btn-primary'
-
-= link_to 'Show', @category

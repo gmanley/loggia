@@ -30,18 +30,26 @@ Spork.prefork do
     config.include Mongoid::Matchers
     config.include Devise::TestHelpers, type: :controller
     config.extend ControllerMacros, type: :controller
+    config.alias_it_should_behave_like_to :it_has_behavior, 'has behavior:'
+
 
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
       DatabaseCleaner.orm = 'mongoid'
-    end
-
-    config.before(:each) do
-      DatabaseCleaner.start
-    end
-
-    config.after(:each) do
       DatabaseCleaner.clean
+    end
+
+    config.before(:each) do |group|
+      Mongoid::IdentityMap.clear
+      unless group.example.metadata[:no_database_cleaner]
+        DatabaseCleaner.start
+      end
+    end
+
+    config.after(:each) do |group|
+      unless group.example.metadata[:no_database_cleaner]
+        DatabaseCleaner.clean
+      end
     end
   end
 end
@@ -53,4 +61,5 @@ Spork.each_run do
   end
 
   Fabrication.clear_definitions
+  DatabaseCleaner.clean
 end

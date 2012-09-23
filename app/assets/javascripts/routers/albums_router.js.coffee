@@ -2,9 +2,10 @@ class App.Routers.AlbumsRouter extends Backbone.Router
   initialize: (options) ->
     App.albumsRouter = this
     @albums = new App.Collections.AlbumsCollection()
-    @albums.reset(options.albums) if options and options.albums
+    @albums.reset(options.albums)
 
   routes:
+    '.*'              : 'index'
     'album/new'       : 'new'
     'albums/:id/edit' : 'edit'
     'albums/:id'      : 'show'
@@ -12,6 +13,11 @@ class App.Routers.AlbumsRouter extends Backbone.Router
   new: ->
     @view = new App.Views.Albums.NewView(collection: @albums)
     $("#content").html(@view.render().el)
+
+  index: ->
+    console.log @albums
+    @view = new App.Views.Albums.IndexView(collection: @albums)
+    @view.render()
 
   show: (id) ->
     album = (@albums.get(id) || new App.Models.Album(id: id))

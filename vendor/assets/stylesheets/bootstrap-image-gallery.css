@@ -127,7 +127,7 @@
 .modal-fullscreen .close,
 .modal-fullscreen .modal-title {
   color: #fff;
-  text-shadow: 0 0 2px rgba(33, 33, 33, 0.8);
+	text-shadow: 0 0 2px rgba(33, 33, 33, 0.8);
 }
 .modal-fullscreen .modal-header:hover,
 .modal-fullscreen .modal-footer:hover {

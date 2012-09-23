@@ -1,17 +1,20 @@
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libvips-dev
+services:
+  - mongodb
 bundler_args: --without development
 language: ruby
 rvm:
-  - 1.9.2
   - 1.9.3
-  - ruby-head
-  - rbx-19mode
-matrix:
-  allow_failures:
-    - rvm: rbx-19mode
 script: bundle exec rake spec
 notifications:
   recipients:
     - gray.manley@gmail.com
 branches:
   only:
+<<<<<<< HEAD
     - master
+=======
+    - master
+>>>>>>> master

@@ -1,17 +1,16 @@
-shared: &shared_settings
-  identity_map_enabled: true
-
 development:
-  <<: *shared_settings
-  host: localhost
-  database: soshigal_development
-
+  sessions:
+    default:
+      database: soshigal_development
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true
 test:
-  <<: *shared_settings
-  host: localhost
-  database: soshigal_test
-
-production:
-  <<: *shared_settings
-  host: localhost
-  database: soshigal_production
+  sessions:
+    default:
+      database: soshigal_test
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true

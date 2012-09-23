@@ -1,9 +1,64 @@
 body.albums {
 
+  #albums .thumbnail {
+    padding: 15px 15px 0px 15px;
+    width: 200px; height: 250px;
+
+    img { border: 1px solid #D3D3D3 }
+
+    .thumbnail-title { text-align: center } }
+
   &.show {
+    .page-header {
+      h1 { float: left }
+      .header-actions { clear: both } }
+
+    #new_album {
+      &.string {
+        max-width: 250px;
+        width: 99% } }
+
+    .selection {
+      position: absolute;
+      border: 1px solid #89B;
+      background: #BCE;
+      background-color: #BEC;
+      border-color: #8B9 }
+
+    .selected {
+      background-color: #EBC;
+      border-color: #B89 }
+
+    .selecting {
+      background-color: #CEB;
+      border-color: #9B8 }
+
     .header-actions { padding-top: 5px }
 
-    .thumbnails { clear: both }
+    #thumbnails-wrapper {
+      border-bottom: 1px solid #EEE;
+      .thumbnails { clear: both } }
+
+    .comment {
+      margin-bottom:10px;
+
+      .info {
+        color:#999;
+        font-size:12px;
+        border-bottom:1px solid #eee;
+        margin-bottom:5px;
+        line-height:18px;
+        padding-bottom:3px }
+
+      .body { font-size:13px } }
+
+    #new_comment {
+      .btn { display: none }
+
+      textarea.expand {
+        height: 25px;
+        padding: 6px 8px 5px;
+        font-size: 14px } }
 
     #uploader {
       #file_list {

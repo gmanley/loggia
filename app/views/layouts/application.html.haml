@@ -10,7 +10,7 @@
     = csrf_meta_tags
   %body{class: page_class}
     = render 'shared/top_bar'
-    #container.container-fluid
+    .container-fluid
       #content.row-fluid
         - flash_messages
         = yield

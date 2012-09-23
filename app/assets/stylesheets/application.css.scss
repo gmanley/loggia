@@ -1,33 +1,26 @@
-/*
- *= require bootstrap
- *= require bootstrap-image-gallery
- *= require bootstrap-backbone-forms
- *= require_self
- *= require_tree .
-*/
+@charset 'UTF-8';
 
-.stack > *:not(.active) { display: none }
+@import 'libraries';
+@import 'albums';
 
 a { color: black }
 
 section { padding-top: 60px }
+
+.container-fluid { min-width: 480px }
+
+.breadcrumb { border: 1px solid #DDD }
+
+.favorite, .favorited {
+  float: left;
+  margin: 18px 12px;
+
+  &:hover { opacity: .8 } }
 
 footer {
   margin-top: 40px;
   border-top: 1px solid #E5E5E5;
   padding: 35px 0 36px }
 
-.categories {
-  .thumbnail {
-    padding: 15px 15px 0px 15px;
-    width: 200px;
-    height: 250px;
+.plupload.html5, .plupload.flash { display: none }
 
-    img {
-      border: 1px solid #D3D3D3;
-      width: 200px;
-      height: 200px }
-
-    .thumbnail-title {
-      text-align: center;
-      padding: 8px 0px } } }

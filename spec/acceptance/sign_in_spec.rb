@@ -4,9 +4,7 @@ feature "User signs in" do
   let(:user) { Fabricate(:confirmed_user) }
   let(:form) { find("form#login") }
 
-  background do
-    visit homepage
-  end
+  background { visit homepage }
 
   scenario "with invalid credentials" do
     form.fill_in "user_email", with: "invalid@email.com"

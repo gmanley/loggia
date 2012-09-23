@@ -26,10 +26,10 @@ class User
   field :confirmation_sent_at,   type: Time
   field :unconfirmed_email,      type: String
 
-  # Custom Fields
+  ## Custom Fields
   field :admin, type: Boolean
 
-  def admin?
-    !!admin
-  end
+  has_many :favorites
+
+  alias_method :admin, :admin?
 end

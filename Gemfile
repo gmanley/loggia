@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '~> 3.2'
+gem 'actionpack', '~> 3.2'
 
 gem 'rake'
 
@@ -10,6 +10,7 @@ gem 'coffeebeans'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
+  gem 'bootstrap-sass', '~> 2.1.0.0'
   gem 'coffee-rails', '~> 3.2'
   gem 'uglifier'
   gem 'haml_coffee_assets'
@@ -18,28 +19,31 @@ end
 
 gem 'jquery-rails'
 
-gem 'mongoid', '~> 2.4'
-gem 'bson_ext'
-gem 'mongoid_slug'
+gem 'mongoid'
+gem 'stringex'
 gem 'mongoid-tree'
+
 gem 'kaminari'
 
 gem 'rabl'
 gem 'yajl-ruby'
 
 gem 'devise'
+gem 'actionmailer'
 gem 'cancan'
 
 gem 'responders'
 gem 'simple_form'
 
 gem 'carrierwave'
-gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
-gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
+gem 'carrierwave-mongoid', git: 'git://github.com/jnicklas/carrierwave-mongoid.git', branch: 'mongoid-3.0'
+gem 'carrierwave-vips'
 gem 'fog'
 
-gem 'archive-zip', git: 'git://github.com/javanthropus/archive-zip.git'
+gem 'archive-zip'
 gem 'sidekiq'
+
+gem 'pry-rails'
 
 group :development do
   gem 'thin'
@@ -47,33 +51,39 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
-  gem 'pry-rails'
   gem 'launchy'
   gem 'quiet_assets'
+  gem 'newrelic_rpm'
+  gem 'newrelic_moped'
 end
 
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'mongoid-rspec'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
-  gem 'poltergeist' # brew install phantomjs
 end
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'spork-rails'
-  gem 'konacha'
+  gem 'spork-rails', git: 'git://github.com/gmanley/spork-rails.git'
 end
 
-# Unccomment this and run bundle if you need to run the importer.
+# Uncomment this to run script/sidekiq_web
+# group :sidekiq_web do
+#   gem 'slim'
+#   gem 'sinatra'
+# end
+
+# Uncomment this and run bundle if you need to run the importer.
 # After your done using the importer make sure to comment this block out
 # again and run `bundle` or you may run into issues.
 # group :importer do
 #   gem 'dm-core'
 #   gem 'dm-mysql-adapter'
 #   gem 'progressbar'
-#   gem 'parallel'
+#   gem 'dm-aggregates'
 # end

@@ -7,18 +7,25 @@ class App.Views.Albums.ShowView extends Backbone.View
     'click [data-action=destroy]': 'destroy'
 
   initialize: ->
-    @model.images?.on('add', @addOne)
+    @model.get('children')?.on('add', @addOneAlbum)
+    @model.images?.on('add', @addOneImage)
     @paginatedImages = new App.Collections.PaginatedImagesCollection(null, collection: @model.images)
     @paginatedImages.perPage = 25
     @paginatedImages.changePage(0)
 
   addAll: =>
-    @paginatedImages.each(@addOne)
+    @model.get('children').each(@addOneAlbum)
+    @paginatedImages.each(@addOneImage)
 
-  addOne: (image) =>
+  addOneAlbum: (album) =>
+    return unless album?
+    view = new App.Views.Albums.AlbumView(model: album)
+    @$('#albums').append(view.render().el)
+
+  addOneImage: (image) =>
     return unless image?
     view = new App.Views.Images.ImageView(model: image)
-    @$('.thumbnails').append(view.render().el)
+    @$('#images').append(view.render().el)
 
   destroy: (e) ->
     e.preventDefault()

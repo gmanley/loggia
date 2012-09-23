@@ -1,0 +1,6 @@
+%li{id: @file.id}
+  .file_info
+    = "#{@file.name} (#{plupload.formatSize(@file.size)})"
+    %b
+  .progress.striped
+    .bar{style: 'width: 0%;'}

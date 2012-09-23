@@ -1,0 +1,2 @@
+%ol.thumbnails#albums
+%a.btn.btn-primary{href: '#/albums/new'} New Album
