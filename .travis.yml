@@ -13,8 +13,4 @@ notifications:
     - gray.manley@gmail.com
 branches:
   only:
-<<<<<<< HEAD
     - master
-=======
-    - master
->>>>>>> master
