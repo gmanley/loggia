@@ -1,5 +1,5 @@
 require 'spec_helper'
-require Rails.root.join('lib/archive_import')
+require Rails.root.join('lib/import/archive_import')
 
 describe Archive::Import, no_database_cleaner: true do
 
