@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::Vips
+  include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
@@ -11,7 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   version :thumb do
-    resize_to_fill(200, 200)
+    resize_to_fill(200, 200, 'North')
   end
 
   def store_dir

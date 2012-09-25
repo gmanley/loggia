@@ -1,6 +1,7 @@
 %header.page-header
-  %h1= @album.title
-  = render('favorites/links', parent_resource: @album) if can?(:manage, Favorite)
+  %h1
+    = @album.title
+    = render('favorites/links', parent_resource: @album) if can?(:manage, Favorite)
   = render('albums/header_actions', album: @album) if can?(:manage, @album)
 
 = render('images/form') if can?(:create, Image)
