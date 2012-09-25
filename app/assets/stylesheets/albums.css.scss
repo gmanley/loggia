@@ -9,10 +9,6 @@ body.albums {
     .thumbnail-title { text-align: center } }
 
   &.show {
-    .page-header {
-      h1 { float: left }
-      .header-actions { clear: both } }
-
     #new_album {
       &.string {
         max-width: 250px;

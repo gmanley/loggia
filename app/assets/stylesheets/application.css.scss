@@ -11,11 +11,7 @@ section { padding-top: 60px }
 
 .breadcrumb { border: 1px solid #DDD }
 
-.favorite, .favorited {
-  float: left;
-  margin: 18px 12px;
-
-  &:hover { opacity: .8 } }
+.favorite, .favorited { &:hover { opacity: .8 } }
 
 footer {
   margin-top: 40px;
