@@ -34,7 +34,7 @@ gem 'simple_form'
 
 gem 'carrierwave'
 gem 'carrierwave-mongoid', git: 'git://github.com/jnicklas/carrierwave-mongoid.git', branch: 'mongoid-3.0'
-gem 'carrierwave-vips'
+gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
 gem 'fog'
 
 gem 'archive-zip'
