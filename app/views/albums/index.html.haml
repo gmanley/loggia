@@ -7,4 +7,4 @@
 :coffeescript
   $ ->
     new App.Routers.AlbumsRouter(albums: #{render(partial: 'index', formats: :json, object: @albums)})
-    App.handleHistory()
+    App.start()

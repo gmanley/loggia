@@ -1,3 +1,3 @@
 %a.thumbnail{href: "#/albums/#{@slug}"}
-  %img.img-rounded{src: @thumbnail_url}
+  %img.img-rounded{src: @thumbnail_url, alt: @title}
   %h5.thumbnail-title= @title

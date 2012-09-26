@@ -5,9 +5,8 @@
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
-#= require ./boot
 
-window.App =
+window.App = new Backbone.Marionette.Application(
   Models: {}
   Collections: {}
   Routers: {}
@@ -17,3 +16,11 @@ window.App =
     Images: {}
     Containers: {}
   }
+)
+
+App.addRegions
+  content: "#content"
+
+App.on "initialize:after", ->
+  for model in App.Models then model.setup()
+  App.handleHistory()

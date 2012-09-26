@@ -15,7 +15,7 @@ class App.Views.Albums.EditView extends Backbone.View
           App.flashMessage('Album was successfully updated.')
 
   render: ->
-    @$el.html(@template())
+    @$el.html(@template(@model.toJSON()))
     [html, @form] = App.formsetFor(@model, legend: 'Edit Album')
     @$('#edit-album').prepend(html)
     this

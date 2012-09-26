@@ -23,7 +23,6 @@ class App.Models.Album extends Backbone.RelationalModel
   defaults:
     title:         null
     description:   null
-    type:          'Album'
     thumbnail_url: '/assets/placeholder.png'
 
   initialize: (args) ->
@@ -34,6 +33,9 @@ class App.Models.Album extends Backbone.RelationalModel
       @images.add(response.images)
       delete response.images
     response
+
+  children: ->
+    @collection.where(parent: @id)
 
 class App.Collections.AlbumsCollection extends Backbone.Collection
   model: App.Models.Album
