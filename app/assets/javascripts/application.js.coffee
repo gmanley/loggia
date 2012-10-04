@@ -9,6 +9,7 @@
 window.App = new Backbone.Marionette.Application(
   Models: {}
   Collections: {}
+  Controllers: {}
   Routers: {}
   Views: {
     Albums: {}
@@ -21,6 +22,8 @@ window.App = new Backbone.Marionette.Application(
 App.addRegions
   content: "#content"
 
-App.on "initialize:after", ->
+App.addInitializer (options) ->
   for model in App.Models then model.setup()
+  App.currentUser = new App.Models.User(options.currentUser)
+  new App.Routers.AlbumsRouter(albums: options.albums)
   App.handleHistory()

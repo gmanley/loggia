@@ -8,8 +8,8 @@ class App.Views.Albums.ShowView extends Backbone.View
 
   initialize: ->
     @model.get('children')?.on('add', @addOneAlbum)
-    @model.images?.on('add', @addOneImage)
-    @paginatedImages = new App.Collections.PaginatedImagesCollection(null, collection: @model.images)
+    @model.get('images')?.on('add', @addOneImage)
+    @paginatedImages = new App.Collections.PaginatedImagesCollection(null, collection: @model.get('images'))
     @paginatedImages.perPage = 25
     @paginatedImages.changePage(0)
 
@@ -72,7 +72,7 @@ class App.Views.Albums.ShowView extends Backbone.View
 
     @uploader.bind 'FileUploaded', (up, file, request) =>
       image = JSON.parse(request.response)
-      @model.images.add(image)
+      @model.get('images').add(image)
       @$("##{file.id} .progress")
         .toggleClass('active')
         .prev('.file_info b').text('Done')

@@ -15,7 +15,6 @@ class App.Routers.AlbumsRouter extends Backbone.Router
     $("#content").html(@view.render().el)
 
   index: ->
-    window.albums = @albums
     @view = new App.Views.Albums.IndexView(collection: @albums)
     @view.render()
 

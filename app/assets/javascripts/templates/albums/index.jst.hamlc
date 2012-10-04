@@ -1,2 +1,3 @@
 %ol.thumbnails#albums
-%a.btn.btn-primary{href: '#/albums/new'} New Album
+/ - if App.currentUser.admin
+  / %a.btn.btn-primary{href: '#/albums/new'} New Album
