@@ -24,6 +24,7 @@ App.addRegions
 
 App.addInitializer (options) ->
   for model in App.Models then model.setup()
-  App.currentUser = new App.Models.User(options.currentUser)
+  App.currentUser =
+    if options.currentUser? new App.Models.User(options.currentUser) else null
   new App.Routers.AlbumsRouter(albums: options.albums)
   App.handleHistory()
