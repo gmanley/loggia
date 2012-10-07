@@ -1,9 +1,10 @@
 $ ->
+  $newCommentBtn = $('#new_comment .btn').hide()
   $('textarea.expand')
     .focus ->
       $(this).height('75px')
-      $('#new_comment .btn').show()
+      $newCommentBtn.show()
     .blur ->
       if $(this).val().length is 0
         $(this).height('25px')
-        $('#new_comment .btn').hide()
+        $newCommentBtn.hide()

@@ -35,27 +35,6 @@ body.albums {
       border-bottom: 1px solid #EEE;
       .thumbnails { clear: both } }
 
-    .comment {
-      margin-bottom:10px;
-
-      .info {
-        color:#999;
-        font-size:12px;
-        border-bottom:1px solid #eee;
-        margin-bottom:5px;
-        line-height:18px;
-        padding-bottom:3px }
-
-      .body { font-size:13px } }
-
-    #new_comment {
-      .btn { display: none }
-
-      textarea.expand {
-        height: 25px;
-        padding: 6px 8px 5px;
-        font-size: 14px } }
-
     #uploader {
       #file_list {
         margin-top: 20px;
