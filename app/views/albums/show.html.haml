@@ -2,16 +2,16 @@
   %h1
     = @album.title
     = render('favorites/links', parent_resource: @album) if can?(:manage, Favorite)
-  = render('albums/header_actions', album: @album) if can?(:manage, @album)
+  = render('header_actions', album: @album) if can?(:manage, @album)
 
 = render('images/form') if can?(:create, Image)
 
 #thumbnails-wrapper
   %ol#albums.thumbnails
-    = render partial: 'albums/album', collection: @children
+    = render @children
 
   %ol#images.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
-    = render partial: 'images/image', collection: @images
+    = render @images
   = paginate @images
 
 %section.row-fluid
@@ -20,7 +20,7 @@
       = simple_form_for(Album.new) do |f|
         %fieldset
           %legend New Child Album
-          = render 'albums/form', f: f
+          = render 'form', f: f
           = f.hidden_field :parent_id, value: @album.id
           = f.button :submit, 'Create', class: 'btn-primary'
 
@@ -29,6 +29,6 @@
     %h3 Comments
   = render 'comments/form' if can?(:create, Comment)
   %ol.unstyled#comments-list
-    = render partial: 'comments/comment', collection: @album.comments
+    = render @album.comments
 
 = render 'images/modal'
