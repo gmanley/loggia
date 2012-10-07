@@ -1,6 +1,6 @@
 # encoding: UTF-8
 module ApplicationHelper
-  GRAVATAR_URL_FORMAT = "https://secure.gravatar.com/avatar/%s.png?s=%i&d=%s"
+  GRAVATAR_URL_FORMAT = "https://secure.gravatar.com/avatar/%s.png?s=%i&d=mm"
 
   BOOTSTRAP_FLASH_CLASS = {
     alert:   'warning',
@@ -18,9 +18,8 @@ module ApplicationHelper
   end
 
   def user_avatar_url(user, size = 16)
-    default_url = "#{root_url}assets/placeholder_16.png"
-    gravatar_id = Digest::MD5.hexdigest(user.email).downcase
-    GRAVATAR_URL_FORMAT % [gravatar_id, size, CGI.escape(default_url)]
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    GRAVATAR_URL_FORMAT % [gravatar_id, size]
   end
 
   def current_resource
