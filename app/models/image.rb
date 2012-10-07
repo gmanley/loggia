@@ -5,6 +5,8 @@ class Image
   embedded_in :album
   mount_uploader :image, ImageUploader
 
+  paginates_per 100
+
   set_callback(:create, :after) do
     unless album.nil?
       album.inc(:image_count, 1)

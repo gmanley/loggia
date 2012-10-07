@@ -51,4 +51,4 @@ __Steps:__
 
 #### Admin User: ####
     Email: admin@example.com
-    Password: password 
+    Password: password
