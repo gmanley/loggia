@@ -1,6 +1,10 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap-alert
+//= require bootstrap-dropdown
+//= require bootstrap-modal
+//= require bootstrap-transition
+//= require bootstrap-button
 //= require load-image
 //= require bootstrap-image-gallery
 //= require jquery.jeditable
