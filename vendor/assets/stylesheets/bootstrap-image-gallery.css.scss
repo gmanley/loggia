@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 /*
- * Bootstrap Image Gallery CSS 2.5
+ * Bootstrap Image Gallery CSS 2.5.2
  * https://github.com/blueimp/Bootstrap-Image-Gallery
  *
  * Copyright 2011, Sebastian Tschan
@@ -13,6 +13,7 @@
 .modal-gallery {
   width: auto;
   max-height: none;
+  outline: none;
 }
 .modal-gallery .modal-body {
   max-height: none;
@@ -32,7 +33,7 @@
 }
 .modal-gallery .modal-image:hover:before,
 .modal-gallery .modal-image:hover:after {
-  content: '‹';
+  content: '\2039';
   position: absolute;
   top: 50%;
   left: 15px;
@@ -54,7 +55,7 @@
   z-index: 1;
 }
 .modal-gallery .modal-image:hover:after {
-  content: '›';
+  content: '\203A';
   left: auto;
   right: 15px;
 }
@@ -63,7 +64,7 @@
   display: none;
 }
 .modal-loading .modal-image {
-  background: url(/assets/loading.gif) center no-repeat;
+  background: image-url('loading.gif') center no-repeat;
 }
 .modal-gallery.fade .modal-image {
   -webkit-transition: width 0.15s ease, height 0.15s ease;
@@ -127,15 +128,19 @@
 .modal-fullscreen .close,
 .modal-fullscreen .modal-title {
   color: #fff;
-	text-shadow: 0 0 2px rgba(33, 33, 33, 0.8);
+  text-shadow: 0 0 2px rgba(33, 33, 33, 0.8);
 }
 .modal-fullscreen .modal-header:hover,
 .modal-fullscreen .modal-footer:hover {
   opacity: 1;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .modal-gallery .btn span {
     display: none;
+  }
+  .modal-fullscreen {
+    right: 0;
+    left: 0;
   }
 }
