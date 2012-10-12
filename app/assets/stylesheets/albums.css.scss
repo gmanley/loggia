@@ -9,6 +9,12 @@ body.albums {
     .thumbnail-title { text-align: center } }
 
   &.show {
+    .page-header {
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth);
+      float: left;
+      h1 { float: left }
+      .header-actions { clear: both } }
+
     #new_album {
       &.string {
         max-width: 250px;
