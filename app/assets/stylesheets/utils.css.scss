@@ -1,0 +1,4 @@
+// Mixins
+@mixin fluid-span($i) {
+  @include grid-fluid-span($i, $fluidGridColumnWidth, $fluidGridGutterWidth);
+}

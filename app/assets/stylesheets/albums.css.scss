@@ -4,13 +4,15 @@ body.albums {
     padding: 15px 15px 0px 15px;
     width: 200px; height: 250px;
 
-    img { border: 1px solid #D3D3D3 }
+    img {
+      @include border-radius(6px);
+      border: 1px solid #D3D3D3 }
 
     .thumbnail-title { text-align: center } }
 
   &.show {
     .page-header {
-      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth);
+      @include fluid-span(12);
       float: left;
       h1 { float: left }
       .header-actions { clear: both } }

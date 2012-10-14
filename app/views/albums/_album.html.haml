@@ -1,4 +1,4 @@
 %li
   = link_to(album, class: 'thumbnail') do
-    = image_tag(album.thumbnail_url, class: 'img-rounded')
+    = image_tag(album.thumbnail_url)
     %h5.thumbnail-title= album.title.truncate(50)
