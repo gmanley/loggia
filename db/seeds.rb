@@ -1,9 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+if Rails.env.development?
+  # Password for both is 'password'
+  Fabricate.build(:confirmed_user, email: 'user@example.com').save
+  Fabricate.build(:admin, email: 'admin@example.com').save
 
-Fabricate(:admin, :email => 'admin@example.com')
+  puts <<-INFO.strip_heredoc
+    You can login with following seed accounts:
+      E: user@example.com
+      P: password
+      -----
+      E: admin@example.com
+      P: password
+  INFO
+end

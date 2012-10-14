@@ -8,11 +8,11 @@ Soshigal is a photo gallery built with Rails.
 Features
 -------
 
-* Drag and Drop Image Uploading
-* Simultaneous Uploading of Images
-* Ajax Image Updating after Upload
-* Nested Categories & Albums
-* Basic Admin Role Based Permissions
+* Drag and drop image uploading
+* Simultaneous uploading of images
+* Nested albums
+* Basic admin role based permissions
+* Commenting and favoriting of albums
 
 To Do
 -----
@@ -34,8 +34,8 @@ Setup
 -----
 __Requirements:__
 
-* Ruby (>= 1.9.2)
-* MongoDB
+* Ruby (>= 1.9.3)
+* MongoDB (>= 2)
 * Graphicsmagick (ie. `brew install graphicsmagick` on OSX)
 * Bundler
 * A Javascript Runtime - For Rails asset pipeline (Builtin on OSX / Install node on other OSes)
@@ -43,12 +43,16 @@ __Requirements:__
 __Steps:__
 
 1. Clone repository
-2. CD into the app directory
+2. `cd` into the app directory
 2. `bundle install`
 3. `rake db:seed`
 4. `bundle exec rails server`
-5. Login with the seed admin user (See Below).
+5. Login with the seed users below.
 
 #### Admin User: ####
     Email: admin@example.com
+    Password: password
+
+#### Regular User: ####
+    Email: user@example.com
     Password: password
