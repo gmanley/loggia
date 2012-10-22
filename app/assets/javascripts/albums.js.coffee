@@ -1,3 +1,9 @@
+initMasonry = ($selector) ->
+  $selector.masonry
+    itemSelector: $selector.children('li')
+    isFitWidth: true
+    gutterWidth: 20
+
 $ ->
   editable_settings =
     method: 'PUT'
@@ -22,8 +28,8 @@ $ ->
       $('.thumbnail-title').editable(album_url, editable_settings)
       $(this).children('.thumbnail-title').click()
 
-  $('.thumbnails').masonry
-    itemSelector: '.thumbnails > li'
-    isFitWidth: true
-    gutterWidth: 20
+  initMasonry($('#albums'))
 
+  $container = $('#images')
+  $container.imagesLoaded ->
+    initMasonry($container)

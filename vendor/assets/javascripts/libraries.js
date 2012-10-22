@@ -15,3 +15,4 @@
 //= require plupload.flash
 //= require plupload.html5
 //= require hamlcoffee
+//= require jquery.imagesloaded
