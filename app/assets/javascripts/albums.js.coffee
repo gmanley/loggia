@@ -21,3 +21,9 @@ $ ->
       album_url = $(this).attr('href')
       $('.thumbnail-title').editable(album_url, editable_settings)
       $(this).children('.thumbnail-title').click()
+
+  $('.thumbnails').masonry
+    itemSelector: '.thumbnails > li'
+    isFitWidth: true
+    gutterWidth: 20
+

@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.masonry
 //= require bootstrap-alert
 //= require bootstrap-dropdown
 //= require bootstrap-modal

@@ -1,5 +1,10 @@
 body.albums {
 
+  .thumbnails {
+    margin: 0 auto;
+
+    & > li { margin-left: 0 } }
+
   #albums .thumbnail {
     padding: 15px 15px 0px 15px;
     width: 200px; height: 250px;
