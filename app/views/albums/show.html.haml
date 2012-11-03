@@ -27,7 +27,6 @@
   %header.page-header
     %h3 Comments
   = render 'comments/form' if can?(:create, Comment)
-  %ol.unstyled#comments-list
-    = render @album.comments
+  - comments_list_for(@album)
 
 = render 'images/modal'
