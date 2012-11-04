@@ -26,16 +26,14 @@ module ApplicationHelper
     @current_resource ||= instance_variable_get("@#{controller_name.singularize}")
   end
 
-  def breadcrumb_paths
-    return [] unless current_resource
-    resources = current_resource.ancestors_and_self.reverse.rotate
-    resources.collect {|r| { title: r, url: url_for(r) }}
-  end
-
-  def breadcrumbs(elements = [])
+  def breadcrumbs
+    return if current_page?(root_path)
     haml_tag 'ul.breadcrumb' do
       breadcrumb('Home', root_path)
-      elements.each {|e| breadcrumb(e[:title], e[:url]) }
+
+      resources.each do |resource|
+        breadcrumb(resource, url_for(resource))
+      end
     end
   end
 
@@ -47,14 +45,19 @@ module ApplicationHelper
     end
   end
 
-  def breadcrumb(text, link = nil)
-    if link
-      haml_tag :li do
-        haml_tag :a, text, href: link
+  def breadcrumb(text, url = nil)
+    haml_tag :li do
+      if !url or current_page?(url)
+        haml_tag 'li.active', text
+      else
+        haml_tag :a, text, href: url
         haml_tag 'span.divider', '/'
       end
-    else
-      haml_tag 'li.active', text
     end
+  end
+
+  def resources # Possibly rename...  specific to breadcrumbs
+    return [] unless current_resource
+    current_resource.ancestors_and_self.reverse.rotate
   end
 end

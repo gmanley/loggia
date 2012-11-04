@@ -30,6 +30,7 @@ Spork.prefork do
     config.include Mongoid::Matchers
     config.include Devise::TestHelpers, type: :controller
     config.extend ControllerMacros, type: :controller
+    config.include Haml::Helpers, type: :helper
     config.alias_it_should_behave_like_to :it_has_behavior, 'has behavior:'
 
 
@@ -44,6 +45,10 @@ Spork.prefork do
       unless group.example.metadata[:no_database_cleaner]
         DatabaseCleaner.start
       end
+    end
+
+    config.before(:each, type: :helper) do
+      init_haml_helpers
     end
 
     config.after(:each) do |group|
