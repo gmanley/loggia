@@ -56,3 +56,9 @@ __Steps:__
 #### Regular User: ####
     Email: user@example.com
     Password: password
+
+License
+-------
+Licensed under the [MIT License](http://creativecommons.org/licenses/MIT/)
+
+Copyright 2012 [Grayson Manley](https://github.com/gmanley)
