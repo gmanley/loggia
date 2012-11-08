@@ -58,6 +58,6 @@ module ApplicationHelper
 
   def resources # Possibly rename...  specific to breadcrumbs
     return [] unless current_resource
-    current_resource.ancestors_and_self.reverse.rotate
+    current_resource.self_and_ancestors.reverse
   end
 end

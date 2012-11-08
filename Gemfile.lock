@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/gmanley/carrierwave-mongoid.git
-  revision: 9b1386ce4826e1ff8f86ea6dabed1c618587e7b4
-  branch: mongoid-3.0
-  specs:
-    carrierwave-mongoid (0.3.0.alpha)
-      carrierwave (~> 0.6.1)
-      mongoid (~> 3.0.0)
-      mongoid-grid_fs (~> 1.3.1)
-
-GIT
   remote: git://github.com/gmanley/mini_magick.git
   revision: 3560260f8efe582d1b3e66cd645bea70aac87ea1
   branch: graphicsmagick-fix
@@ -23,6 +13,12 @@ GIT
     spork-rails (3.2.0)
       actionpack (>= 3.0.0, < 3.3.0)
       spork (>= 1.0rc0)
+
+GIT
+  remote: git://github.com/ryanb/cancan.git
+  revision: 4dcd5445948216bb2796e27c6b78d418993a179f
+  specs:
+    cancan (1.6.8)
 
 GIT
   remote: git://github.com/wndxlori/bootstrap-sass.git
@@ -49,15 +45,23 @@ GEM
     activemodel (3.2.8)
       activesupport (= 3.2.8)
       builder (~> 3.0.0)
+    activerecord (3.2.8)
+      activemodel (= 3.2.8)
+      activesupport (= 3.2.8)
+      arel (~> 3.0.2)
+      tzinfo (~> 0.3.29)
+    activeresource (3.2.8)
+      activemodel (= 3.2.8)
+      activesupport (= 3.2.8)
     activesupport (3.2.8)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
     archive-zip (0.5.0)
       io-like (>= 0.3.0)
+    arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
-    cancan (1.6.8)
     capybara (1.1.3)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -65,7 +69,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    carrierwave (0.6.2)
+    carrierwave (0.7.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
     celluloid (0.12.3)
@@ -73,7 +77,8 @@ GEM
       timers (>= 1.0.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
-    chunky_png (1.2.6)
+    closure_tree (3.6.4)
+      activerecord (>= 3.0.0)
     coderay (1.0.8)
     coffee-filter (0.1.1)
       coffee-script (>= 2.2.0)
@@ -88,10 +93,6 @@ GEM
     coffeebeans (1.0.1)
       actionpack (>= 3.0.0)
       coffee-script
-    compass (0.12.2)
-      chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.1)
     connection_pool (0.9.2)
     daemons (1.1.9)
     database_cleaner (0.9.1)
@@ -107,10 +108,10 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fabrication (2.5.0)
-    facter (1.6.13)
+    facter (1.6.14)
     ffaker (1.15.0)
     ffi (1.1.5)
-    fog (1.6.0)
+    fog (1.7.0)
       builder
       excon (~> 0.14)
       formatador (~> 0.2.0)
@@ -121,7 +122,6 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.4)
-    fssm (0.2.9)
     growl (1.0.3)
     guard (1.5.3)
       listen (>= 0.4.2)
@@ -142,7 +142,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (~> 3.1)
       railties (>= 3.1, < 4.1)
-    haml_coffee_assets (1.6.2)
+    haml_coffee_assets (1.7.2)
       coffee-script (>= 1.0.0)
       sprockets (>= 2.0.3)
       tilt (>= 1.3.3)
@@ -169,30 +169,16 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.19)
-    mongoid (3.0.10)
-      activemodel (~> 3.1)
-      moped (~> 1.1)
-      origin (~> 1.0)
-      tzinfo (~> 0.3.22)
-    mongoid-grid_fs (1.3.3)
-      mime-types (~> 1.19)
-      mongoid (~> 3.0)
-    mongoid-rspec (1.5.4)
-      mongoid (>= 3.0.1)
-      rake
-      rspec (>= 2.9)
-    mongoid-tree (1.0.1)
-      mongoid (>= 3.0, <= 4.0)
-    moped (1.2.7)
-    multi_json (1.3.6)
+    multi_json (1.3.7)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.1)
-    newrelic_moped (0.0.3)
     newrelic_rpm (3.5.0.1)
     nokogiri (1.5.5)
-    origin (1.0.10)
     orm_adapter (0.4.0)
+    pg (0.14.1)
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -209,6 +195,14 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rails (3.2.8)
+      actionmailer (= 3.2.8)
+      actionpack (= 3.2.8)
+      activerecord (= 3.2.8)
+      activeresource (= 3.2.8)
+      activesupport (= 3.2.8)
+      bundler (~> 1.0)
+      railties (= 3.2.8)
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -239,27 +233,24 @@ GEM
       rspec (~> 2.11.0)
     ruby-hmac (0.4.0)
     rubyzip (0.9.9)
-    sass (3.2.1)
+    sass (3.2.2)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.25.0)
+    selenium-webdriver (2.26.0)
       childprocess (>= 0.2.5)
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
     shoulda-matchers (1.4.1)
       activesupport (>= 3.0.0)
-    sidekiq (2.5.1)
+    sidekiq (2.5.2)
       celluloid (~> 0.12.0)
-      compass
       connection_pool (~> 0.9.2)
       multi_json (~> 1)
       redis (~> 3)
       redis-namespace
-      sass
-      sprockets-sass
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -273,9 +264,10 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-sass (0.9.1)
-      sprockets (~> 2.0)
-      tilt (~> 1.1)
+    squeel (1.0.13)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      polyamorous (~> 0.5.0)
     stringex (1.4.0)
     subexec (0.2.2)
     sys-proctable (0.9.2)
@@ -289,7 +281,7 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.34)
+    tzinfo (0.3.35)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -302,14 +294,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionmailer
-  actionpack (~> 3.2)
   archive-zip
   bootstrap-sass!
-  cancan
+  cancan!
   capybara
   carrierwave
-  carrierwave-mongoid!
+  closure_tree
   coffee-filter
   coffee-rails (~> 3.2)
   coffeebeans
@@ -329,13 +319,11 @@ DEPENDENCIES
   kaminari
   launchy
   mini_magick!
-  mongoid
-  mongoid-rspec
-  mongoid-tree
-  newrelic_moped
   newrelic_rpm
+  pg
   pry-rails
   quiet_assets
+  rails (~> 3.2)
   rake
   responders
   rspec-rails
@@ -345,6 +333,7 @@ DEPENDENCIES
   simple_form
   simplecov
   spork-rails!
+  squeel
   stringex
   thin
   uglifier

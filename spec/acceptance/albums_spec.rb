@@ -9,7 +9,6 @@ feature 'User comments on albums' do
 
   scenario 'as logged in user' do
     visit homepage
-
     click_link album.title
 
     within('#new_comment') do

@@ -1,44 +1,27 @@
-class Album
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::Tree
+class Album < ActiveRecord::Base
+  attr_accessible :title, :description, :hidden, :parent_id, :archive, :thumbnail_url
 
-  field :slug,          type: String
-  field :title,         type: String
-  field :description,   type: String
-  field :hidden,        type: Boolean, default: false
-  field :thumbnail_url, type: String,  default: '/assets/placeholder.png'
-  field :image_count,   type: Integer, default: 0
-
-  embeds_many :images
-  embeds_many :comments, as: :commentable, order: :created_at.desc
+  has_many :images
+  has_many :comments,  as: :commentable, order: :created_at
   has_many :favorites, as: :favoritable
 
-  index hidden: 1
-  index image_count: 1
-  index({ slug: 1 }, { unique: true })
-  index 'comments.created_at' => 1
+  acts_as_tree order: :title
 
   validates :title, presence: true,
                     uniqueness: { scope: :parent_id,
                                   case_sensitive: false }
 
-  default_scope asc(:title)
+  # default_scope order(:title)
 
-  scope :with_images, excludes(image_count: 0)
+  scope :with_images, where(:images_count.not_eq => 0)
 
   mount_uploader :archive, ArchiveUploader
 
   before_create :set_slug
 
-  # This lets access slug in controllers via params[:id]
-  alias_method :to_param, :slug
-
-  alias_method :to_s, :title
-
   # Pointless helper?
   def self.find_by_slug!(slug)
-    find_by(slug: slug)
+    where(slug: slug).first
   end
 
   def favorite_by(user)
@@ -55,7 +38,7 @@ class Album
 
   def set_thumbnail_url
     if images.empty?
-      descendants_with_images = Album.where(parent_ids: id).with_images
+      descendants_with_images = descendants.with_images
       unless descendants_with_images.empty?
         thumbnail_url = descendants_with_images.sample.thumbnail_url
         update_attributes(thumbnail_url: thumbnail_url)
@@ -86,9 +69,17 @@ class Album
     zip_temp_file.close if zip_temp_file
   end
 
+  def to_s
+    title
+  end
+
+  def to_param
+    slug
+  end
+
   private
   def generate_slug
-    ancestors_and_self.collect(&:title).join(' ').to_url
+    ancestors.push(self).collect(&:title).join(' ').to_url
   end
 
   def set_slug

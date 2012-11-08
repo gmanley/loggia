@@ -10,7 +10,6 @@ Fabricator(:user) do
 end
 
 Fabricator(:confirmed_user, from: :user) do
-  confirmed_user true
   confirmed_at { Time.now }
   confirmation_token nil
 end

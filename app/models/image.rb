@@ -1,22 +1,19 @@
-class Image
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
+class Image < ActiveRecord::Base
+  attr_accessible :image
 
-  embedded_in :album
+  belongs_to :album, counter_cache: true
+
   mount_uploader :image, ImageUploader
 
   paginates_per 100
 
   set_callback(:create, :after) do
     unless album.nil?
-      album.inc(:image_count, 1)
-      album.ancestors_and_self.each { |a| a.set_thumbnail_url }
+      album.self_and_ancestors.each { |a| a.set_thumbnail_url }
     end
   end
 
+  # TODO: Confirm this is still needed.
   skip_callback(:destroy, :after, :remove_image!)
-  set_callback(:destroy, :before) do
-    remove_image!
-    album.inc(:image_count, -1)
-  end
+  set_callback(:destroy, :before) { remove_image! }
 end

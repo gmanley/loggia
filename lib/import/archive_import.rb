@@ -3,6 +3,7 @@ module Archive
 
   class Import
     IGNORED_ENTRIES = %w(__MACOSX)
+    attr_reader :albums
 
     def initialize(zip_path)
       @extraction_location = Pathname(Dir.mktmpdir).join('import')
@@ -16,38 +17,33 @@ module Archive
     end
 
     def import_folder
-      @albums = []
+      @albums = {}
       create_albums
       create_associations
     end
 
     def create_albums
       @extraction_location.find do |entry|
-        next if entry == @extraction_location
+        next if entry.to_s == @extraction_location.to_s
         Find.prune if IGNORED_ENTRIES.include?(entry.basename.to_s)
 
         if entry.directory? # Must be a category or album
-          album = Album.create(
-            title: entry.basename,
-            import_path: clean_path(entry)
-          )
-
+          album = Album.create(title: entry.basename.to_s)
           album.import_folder(entry)
 
-          @albums << album
+          @albums[clean_path(entry)] = album
         end
       end
     end
 
     def create_associations
-      @albums.each do |album|
-        hierarchy_array = album.import_path.split('/')
+      @albums.each do |import_path, album|
+        hierarchy_array = import_path.split('/')
 
         if hierarchy_array.count > 1
           hierarchy_array.delete_at(-1)
           parent_import_path = hierarchy_array.join('/')
-          parent = @albums.find { |a| a.import_path == parent_import_path }
-          album.parent = parent
+          album.parent = @albums[parent_import_path]
           album.save
         end
       end

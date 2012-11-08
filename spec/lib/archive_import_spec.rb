@@ -6,7 +6,7 @@ describe Archive::Import, no_database_cleaner: true do
   before(:all) { Archive::Import.new(path_to_fixture('import.zip')) }
 
   describe 'imported albums' do
-    let(:albums) { Album.where(:import_path.exists => true) }
+    let(:albums) { Album.scoped }
     subject { albums }
 
     describe 'Category1' do

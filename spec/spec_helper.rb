@@ -8,10 +8,6 @@ Spork.prefork do
     SimpleCov.start 'rails'
   end
 
-  # trap mongoid
-  require "rails/mongoid"
-  Spork.trap_class_method(Rails::Mongoid, :load_models)
-
   # trap devise
   require 'rails/application'
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
@@ -21,13 +17,13 @@ Spork.prefork do
 
   require File.expand_path('../../config/environment', __FILE__)
   require 'rspec/rails'
+  require 'shoulda/matchers/integrations/rspec' # Not sure why this is needed now.
 
   Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}
 
   RSpec.configure do |config|
     config.mock_with :rspec
 
-    config.include Mongoid::Matchers
     config.include Devise::TestHelpers, type: :controller
     config.extend ControllerMacros, type: :controller
     config.include Haml::Helpers, type: :helper
@@ -35,13 +31,11 @@ Spork.prefork do
 
 
     config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-      DatabaseCleaner.orm = 'mongoid'
-      DatabaseCleaner.clean
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
     end
 
     config.before(:each) do |group|
-      Mongoid::IdentityMap.clear
       unless group.example.metadata[:no_database_cleaner]
         DatabaseCleaner.start
       end

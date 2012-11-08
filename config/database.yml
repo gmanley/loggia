@@ -1,0 +1,12 @@
+development:
+  adapter: postgresql
+  database: soshigal_development
+
+test:
+  adapter: postgresql
+  database: soshigal_test
+  username: postgresql
+
+production:
+  adapter: postgresql
+  database: soshigal_production

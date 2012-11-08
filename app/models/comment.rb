@@ -1,11 +1,8 @@
-class Comment
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Comment < ActiveRecord::Base
+  attr_accessible :body
 
-  field :body, type: String
-
-  embedded_in :commentable, polymorphic: true, inverse_of: :comments
+  belongs_to :commentable, polymorphic: true
   belongs_to :user
 
-  validates_presence_of :body
+  validates :body, presence: true
 end

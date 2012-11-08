@@ -1,7 +1,8 @@
 require 'spec_helper'
+  # require 'shoulda/matchers/integrations/rspec'
 
 describe AlbumsController do
-  let(:album) { mock_model(Album, slugs: %w[cool-album], hidden: false) }
+  let(:album) { mock_model(Album, slug: 'cool-album', hidden: false) }
   let(:admin) { Fabricate(:admin) }
 
   describe '#index' do
@@ -24,9 +25,9 @@ describe AlbumsController do
     context 'when album is not hidden' do
       before do
         Album.should_receive(:find_by_slug!).and_return(album)
-        album.stub_chain(:children, :accessible_by, :cache).and_return(children)
+        album.stub_chain(:children, :accessible_by).and_return(children)
         album.stub(:images).and_return(images)
-        get :show, id: album.slugs.first
+        get :show, id: album.slug
       end
 
       it { should assign_to(:album).with(album) }
@@ -36,25 +37,25 @@ describe AlbumsController do
     end
 
     context 'when album is hidden' do
-      let(:hidden_album) { mock_model(Album, slugs: %w[hidden-cool-album], hidden: true)  }
+      let(:hidden_album) { mock_model(Album, slug: 'hidden-cool-album', hidden: true)  }
 
       before do
         Album.should_receive(:find_by_slug!).and_return(hidden_album)
-        hidden_album.stub_chain(:children, :accessible_by, :cache).and_return(children)
+        hidden_album.stub_chain(:children, :accessible_by).and_return(children)
         hidden_album.stub(:images).and_return(images)
       end
 
       context 'as an admin' do
         before do
           sign_in(admin)
-          get :show, id: hidden_album.slugs.first
+          get :show, id: hidden_album.slug
         end
 
         it { should respond_with(:success) }
       end
 
       context 'as a non-admin' do
-        before { get :show, id: hidden_album.slugs.first }
+        before { get :show, id: hidden_album.slug }
 
         it_has_behavior('access denied')
       end
@@ -90,7 +91,7 @@ describe AlbumsController do
     context 'as an admin' do
       before do
         sign_in(admin)
-        get :edit, id: album.slugs.first
+        get :edit, id: album.slug
       end
 
       it { should assign_to(:album).with(album) }
@@ -99,7 +100,7 @@ describe AlbumsController do
     end
 
     context 'as a non-admin' do
-      before { get :edit, id: album.slugs.first }
+      before { get :edit, id: album.slug }
 
       it_has_behavior('access denied')
     end
@@ -137,7 +138,7 @@ describe AlbumsController do
     before { Album.should_receive(:find_by_slug!).any_number_of_times.and_return(album) }
 
     def do_put
-      put :update, id: album.slugs.first, album: updated_album_hash
+      put :update, id: album.slug, album: updated_album_hash
     end
 
     context 'as an admin' do
@@ -167,7 +168,7 @@ describe AlbumsController do
     before { Album.should_receive(:find_by_slug!).any_number_of_times.and_return(album) }
 
     def do_delete
-      delete :destroy, id: album.slugs.first
+      delete :destroy, id: album.slug
     end
 
     context 'as an admin' do
