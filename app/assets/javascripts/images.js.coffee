@@ -3,7 +3,7 @@ initConfirmDelete = ->
   $('#toggle_deletion').parent().append($delete_button_html)
   $('#finish_delete').alert()
   $('#finish_delete').on 'click', (e) ->
-    $('#delete_instructions').hide()
+    $('#delete_instructions').remove()
     $("#content").prepend(JST['templates/delete_warning'])
     $('#yes_delete').on('click', (e) -> deleteSelected())
     $('#no_delete').on('click', (e) -> cleanupDelete())
@@ -34,23 +34,26 @@ initSelection = ->
 cleanupDelete = ->
   $('#delete_warning').alert('close')
   $('#finish_delete').remove()
-  $('.selected').each(i, item -> $(item).removeClass('selected'))
+  $('.selected').each((i, item) -> $(item).removeClass('selected'))
 
 deleteSelected = ->
   $('.selected').each((i, item) ->
     $item = $(item)
     destroy_url = $item.data('destroy_url') ? $item.attr('href')
-    $.post(destroy_url, {_method: 'delete'})
-    $item.parent().fadeOut(500)
+    $.post(destroy_url, { _method: 'delete' })
+    $item.parent().fadeOut(500).remove()
   )
   cleanupDelete()
 
 $ ->
+  $imagesContainer = $('#images')
+
   $('#start_upload').button()
   $('#uploader').on('click', '#toggle_deletion.active', (e) ->
     $(this).toggleClass('inactive')
     $('#content').off()
     cleanupDelete()
+    $('#delete_instructions').remove()
   )
 
   $('#uploader').on('click', '#toggle_deletion.inactive', (e) ->
@@ -96,7 +99,9 @@ $ ->
 
   uploader.bind 'FileUploaded', (up, file, request) ->
     response = JSON.parse(request.response)
-    $('#images').append(JST['templates/image'](image: response.image))
+    image = JST['templates/image'](image: response.image)
+    $imagesContainer.append(image)
+
     $("##{file.id} .progress")
       .toggleClass('active')
       .prev('.file_info b').text('Done')

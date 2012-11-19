@@ -1,9 +1,3 @@
-initMasonry = ($selector) ->
-  $selector.masonry
-    itemSelector: $selector.children('li')
-    isFitWidth: true
-    gutterWidth: 20
-
 $ ->
   editable_settings =
     method: 'PUT'
@@ -23,13 +17,8 @@ $ ->
 
   $('#toggle_editing.inactive').on 'click', (e) ->
     $('.thumbnail').on 'click', (e) ->
+      $this = $(this)
       e.preventDefault()
-      album_url = $(this).attr('href')
+      album_url = $this.attr('href')
       $('.thumbnail-title').editable(album_url, editable_settings)
-      $(this).children('.thumbnail-title').click()
-
-  initMasonry($('#albums'))
-
-  $container = $('#images')
-  $container.imagesLoaded ->
-    initMasonry($container)
+      $this.children('.thumbnail-title').click()

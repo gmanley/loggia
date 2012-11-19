@@ -1,6 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery.masonry
 //= require bootstrap-alert
 //= require bootstrap-dropdown
 //= require bootstrap-modal
@@ -15,4 +14,3 @@
 //= require plupload.flash
 //= require plupload.html5
 //= require hamlcoffee
-//= require jquery.imagesloaded

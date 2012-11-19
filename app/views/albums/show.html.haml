@@ -5,7 +5,7 @@
 
 = render('images/form') if can?(:create, Image)
 
-#thumbnails-wrapper
+#thumbnails-wrapper.row-fluid
   %ol#albums.thumbnails
     = render @children
 
