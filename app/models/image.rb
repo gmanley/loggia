@@ -7,13 +7,19 @@ class Image < ActiveRecord::Base
 
   paginates_per 100
 
-  set_callback(:create, :after) do
+  validates :md5, uniqueness: { scope: :album_id }
+
+  before_validation :set_md5
+  after_create :set_thumbnails
+
+  private
+  def set_md5
+    self.md5 = image.md5
+  end
+
+  def set_thumbnails
     unless album.nil?
       album.self_and_ancestors.each { |a| a.set_thumbnail_url }
     end
   end
-
-  # TODO: Confirm this is still needed.
-  skip_callback(:destroy, :after, :remove_image!)
-  set_callback(:destroy, :before) { remove_image! }
 end

@@ -15,7 +15,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    File.join('uploads', 'images', model.id.to_s)
+    File.join('uploads', 'images', model.album.slug)
+  end
+
+  def filename
+    "#{md5}#{File.extname(super.to_s)}"
   end
 
   def default_url
@@ -24,6 +28,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     EXTENSION_WHITE_LIST
+  end
+
+  def md5
+    @md5 ||= (model.md5 || Digest::MD5.hexdigest(model.image.read))
   end
 
   def cached_master
