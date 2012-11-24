@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112011409) do
+ActiveRecord::Schema.define(:version => 20121120063332) do
 
   create_table "album_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20121112011409) do
 
   add_index "albums", ["hidden"], :name => "index_albums_on_hidden"
   add_index "albums", ["images_count"], :name => "index_albums_on_images_count"
+  add_index "albums", ["parent_id"], :name => "index_albums_on_parent_id"
   add_index "albums", ["slug"], :name => "index_albums_on_slug", :unique => true
 
   create_table "comments", :force => true do |t|
@@ -48,6 +49,9 @@ ActiveRecord::Schema.define(:version => 20121112011409) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "favorites", :force => true do |t|
     t.text     "body"
     t.integer  "favoritable_id"
@@ -56,6 +60,9 @@ ActiveRecord::Schema.define(:version => 20121112011409) do
     t.datetime "created_at"
   end
 
+  add_index "favorites", ["favoritable_id", "favoritable_type"], :name => "index_favorites_on_favoritable_id_and_favoritable_type"
+  add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
+
   create_table "images", :force => true do |t|
     t.string   "image"
     t.integer  "album_id"
@@ -63,6 +70,9 @@ ActiveRecord::Schema.define(:version => 20121112011409) do
     t.datetime "updated_at", :null => false
     t.string   "md5"
   end
+
+  add_index "images", ["album_id"], :name => "index_images_on_album_id"
+  add_index "images", ["md5"], :name => "index_images_on_md5"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
