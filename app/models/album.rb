@@ -12,8 +12,6 @@ class Album < ActiveRecord::Base
                     uniqueness: { scope: :parent_id,
                                   case_sensitive: false }
 
-  # default_scope order(:title)
-
   scope :with_images, where(:images_count.not_eq => 0)
 
   mount_uploader :archive, ArchiveUploader

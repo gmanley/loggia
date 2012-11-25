@@ -1,5 +1,4 @@
 require 'spec_helper'
-  # require 'shoulda/matchers/integrations/rspec'
 
 describe AlbumsController do
   let(:album) { mock_model(Album, slug: 'cool-album', hidden: false) }
@@ -9,7 +8,7 @@ describe AlbumsController do
     let(:albums) { mock_models(3, Album) }
 
     before do
-      Album.stub_chain(:roots, :accessible_by).and_return(albums)
+      Album.stub_chain(:roots, :order, :accessible_by).and_return(albums)
       get :index
     end
 

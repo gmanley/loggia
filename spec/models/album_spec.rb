@@ -17,7 +17,6 @@ describe Album do
     end
   end
 
-
   describe '#ancestry_path with unpersisted album' do
     let(:album) { Fabricate.build(:album) }
 
