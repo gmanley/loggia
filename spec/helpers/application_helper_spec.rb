@@ -2,6 +2,21 @@ require 'spec_helper'
 
 describe ApplicationHelper do
 
+  describe '#bootstrap_flash_class' do
+    describe 'returning bootstrap eqivalant to rails flash types' do
+
+      ApplicationHelper::BOOTSTRAP_FLASH_CLASS.each do |key, value|
+        it %(should return "#{value}" when passed :#{key}) do
+          bootstrap_flash_class(key).should eq(value)
+        end
+      end
+    end
+
+    it 'should return original type when no defined bootstrap eqivalant' do
+      bootstrap_flash_class(:custom_flash_type).should eq('custom_flash_type')
+    end
+  end
+
   describe '#breadcrumbs' do
     context 'when on home page' do
       before do
