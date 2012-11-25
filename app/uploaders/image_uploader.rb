@@ -19,7 +19,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{md5}#{File.extname(super.to_s)}"
+    "#{md5}#{File.extname(path)}"
   end
 
   def default_url
@@ -31,7 +31,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def md5
-    @md5 ||= (model.md5 || Digest::MD5.hexdigest(model.image.read))
+    model.md5 || calculate_md5
   end
 
   def cached_master
@@ -45,5 +45,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   private
   def calculate_store_dir
     File.join('uploads', 'images', model.album.slug)
+  end
+
+  def calculate_md5
+    Digest::MD5.hexdigest(model.image.read)
   end
 end

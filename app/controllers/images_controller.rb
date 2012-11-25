@@ -7,7 +7,8 @@ class ImagesController < ApplicationController
     authorize!(:create, @image)
 
     @image.save
-    respond_with(@image, location: nil) # set location to nil as the image resource has no show
+    # set location to nil as the image resource has no show
+    respond_with(@image, location: nil)
   end
 
   def destroy
