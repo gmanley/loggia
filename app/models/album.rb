@@ -85,7 +85,7 @@ class Album < ActiveRecord::Base
     if persisted?
       super(to_s_column)
     else
-      (parent.try(:ancestry_path, to_s_column) || []).push(to_s_column)
+      (parent.try(:ancestry_path, to_s_column) || []).push(self[to_s_column])
     end
   end
 

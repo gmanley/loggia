@@ -16,4 +16,19 @@ describe Album do
       ERB::Util.url_encode(album.slug).should eql(album.slug)
     end
   end
+
+
+  describe '#ancestry_path with unpersisted album' do
+    let(:album) { Fabricate.build(:album) }
+
+    before do
+      parent = double('Album')
+      parent.stub(:ancestry_path) { %w(Album1 Album2) }
+      album.should_receive(:parent).and_return(parent)
+    end
+
+    it 'should return an array of ancestors titles its title' do
+      album.ancestry_path.should eql(['Album1', 'Album2', album.title])
+    end
+  end
 end
