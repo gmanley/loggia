@@ -15,7 +15,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    File.join('uploads', 'images', model.album.slug)
+    model.store_dir || calculate_store_dir
   end
 
   def filename
@@ -40,5 +40,10 @@ class ImageUploader < CarrierWave::Uploader::Base
                          filename: File.basename(path),
                          content_type: file.content_type
                        )
+  end
+
+  private
+  def calculate_store_dir
+    File.join('uploads', 'images', model.album.slug)
   end
 end

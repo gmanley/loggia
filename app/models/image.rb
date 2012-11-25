@@ -11,10 +11,15 @@ class Image < ActiveRecord::Base
 
   before_validation :set_md5
   after_create :set_thumbnails
+  before_create :set_store_dir
 
   private
   def set_md5
     self.md5 = image.md5
+  end
+
+  def set_store_dir
+    self.store_dir = image.store_dir
   end
 
   def set_thumbnails
