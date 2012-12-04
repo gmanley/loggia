@@ -4,5 +4,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  has_many :favorites
+  has_many :comments,  as: :commentable, order: :created_at
+  has_many :favorites, as: :favoritable
 end
