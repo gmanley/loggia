@@ -46,10 +46,10 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'growl' # install growlnotify (http://growl.info/extras.php#growlnotify)
   gem 'launchy'
   gem 'quiet_assets'
   gem 'newrelic_rpm'
+  gem 'bullet'
 end
 
 group :test do
