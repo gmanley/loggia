@@ -5,7 +5,7 @@ development:
 test:
   adapter: postgresql
   database: soshigal_test
-  username: postgresql
+  username: postgres
 
 production:
   adapter: postgresql
