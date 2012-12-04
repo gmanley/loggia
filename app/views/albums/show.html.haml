@@ -26,7 +26,7 @@
 #comments.row-fluid
   %header.page-header
     %h3 Comments
-  = render 'comments/form' if can?(:create, Comment)
+  = render('comments/form') if can?(:create, Comment)
   - comments_list_for(@album)
 
 = render 'images/modal'

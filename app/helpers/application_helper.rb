@@ -37,6 +37,17 @@ module ApplicationHelper
     end
   end
 
+  def link_to_destroy(body, resource, options = {})
+    name = (resource.is_a?(Array) ? resource.last : resource).class.name.downcase
+    options = {
+      method: :delete,
+      remote: true,
+      confirm: "Are you sure you want to delete this #{name}?"
+    }.merge(options)
+
+    link_to('×', resource, options)
+  end
+
   private
   def flash_message(type, message)
     haml_tag :div, class: "alert alert-#{bootstrap_flash_class(type)} fade in" do
