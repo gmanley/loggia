@@ -1,1 +1,1 @@
-$('.favorite-toggle').html("<%=j render partial: 'links', locals: {parent_resource: @parent_resource} %>")
+$('.favorite-toggle').replaceWith("<%=j favorite_button_for(@parent_resource) %>")
