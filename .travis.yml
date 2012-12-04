@@ -1,5 +1,7 @@
 before_script:
   - psql -c 'create database soshigal_test;' -U postgres
+script:
+  - RACK_ENV=test bundle exec rake db:test:prepare
 bundler_args: --without development
 language: ruby
 rvm:
