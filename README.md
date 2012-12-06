@@ -23,19 +23,18 @@ How?
 Here is a list of some key components used in the application:
 
 * [Rails](http://rubyonrails.org) (Web framework)
-* [MongoDB](http://www.mongodb.org) (Document-oriented NoSQL Database)
-* [Mongoid](http://mongoid.org) (Object-Document-Mapper)
-* [jQuery](http://jquery.com) (Javascript Framework)
+* [Postgresql](http://www.postgresql.org) (Object-relational database)
+* [jQuery](http://jquery.com) (Javascript framework)
 * [HAML](http://haml-lang.com) (Markup)
-* [Carrierwave](https://github.com/jnicklas/carrierwave) (Rails File Uploading)
-* [Twitter Bootstrap](http://twitter.github.com/bootstrap) (Base CSS/Design)
+* [Carrierwave](https://github.com/jnicklas/carrierwave) (Rails file uploading)
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap) (Base CSS/design)
 
 Setup
 -----
 __Requirements:__
 
 * Ruby (>= 1.9.3)
-* MongoDB (>= 2)
+* Postgresql (SQLite or MySQL should work as well if you change the database.yml)
 * Graphicsmagick (ie. `brew install graphicsmagick` on OSX)
 * Bundler
 * A Javascript Runtime - For Rails asset pipeline (Builtin on OSX / Install node on other OSes)
