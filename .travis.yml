@@ -1,7 +1,7 @@
 before_script:
   - psql -c 'create database soshigal_test;' -U postgres
 script:
-  - bundle exec rake db:test:prepare spec
+  - bundle exec rake db:migrate spec
 bundler_args: --without development
 language: ruby
 rvm:
