@@ -1,12 +1,11 @@
 before_script:
   - psql -c 'create database soshigal_test;' -U postgres
 script:
-  - RACK_ENV=test bundle exec rake db:test:prepare
+  - bundle exec rake db:test:prepare spec
 bundler_args: --without development
 language: ruby
 rvm:
   - 1.9.3
-script: bundle exec rake spec
 notifications:
   recipients:
     - gray.manley@gmail.com
