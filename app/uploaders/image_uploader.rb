@@ -18,10 +18,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     model.store_dir || calculate_store_dir
   end
 
-  def filename
-    "#{md5}#{File.extname(path)}"
-  end
-
   def default_url
     image_path('placeholder.png')
   end
