@@ -1,4 +1,4 @@
-class AddMissingIndexes < ActiveRecord::Migration
+class AddMissingIndices < ActiveRecord::Migration
 
   def change
     add_index :albums, :parent_id
