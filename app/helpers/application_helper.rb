@@ -57,10 +57,10 @@ module ApplicationHelper
   end
 
   def breadcrumb(text, url = nil)
-    haml_tag :li do
-      if !url or current_page?(url)
-        haml_tag 'li.active', text
-      else
+    if !url or current_page?(url)
+      haml_tag 'li.active', text
+    else
+      haml_tag :li do
         haml_tag :a, text, href: url
         haml_tag 'span.divider', '/'
       end
