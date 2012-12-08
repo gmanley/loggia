@@ -8,7 +8,7 @@ class Image < ActiveRecord::Base
   paginates_per 100
 
   validates :md5, uniqueness: { scope: :album_id },
-                  on: :create
+                  on: :create, message: 'This image already exists in the album'
 
   before_validation :set_md5
   after_create :set_thumbnails

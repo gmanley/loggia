@@ -5,13 +5,10 @@
 //= require bootstrap-modal
 //= require bootstrap-transition
 //= require bootstrap-button
-//= require load-image
-//= require bootstrap-image-gallery
 //= require jquery.jeditable
 //= require jquery.event.drag
 //= require jquery.event.drop
-//= require plupload.base
-//= require plupload.flash
-//= require plupload.html5
+//= require jquery-fileupload
+//= require bootstrap-image-gallery
 //= require hamlcoffee
 //= require bootstrap-datepicker
