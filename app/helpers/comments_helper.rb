@@ -5,7 +5,9 @@ module CommentsHelper
       haml_concat(render(resource.comments))
 
       if resource.comments.empty?
-        haml_tag 'i.muted', 'No Comments'
+        haml_tag 'li' do
+          haml_tag 'i.muted', 'No Comments'
+        end
       end
     end
   end
