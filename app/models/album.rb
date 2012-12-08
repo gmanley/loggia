@@ -18,11 +18,6 @@ class Album < ActiveRecord::Base
 
   before_create :set_slug
 
-  # Pointless helper?
-  def self.find_by_slug!(slug)
-    where(slug: slug).first
-  end
-
   def favorite_by(user)
     favorites.where(user_id: user.id).first
   end
