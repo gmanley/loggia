@@ -1,19 +1,25 @@
 require 'spec_helper'
 
 describe Album do
-  context 'that exists' do
-    let(:album) { Fabricate(:album) }
+  describe 'title & date uniqueness validation' do
 
-    it "should be a valid record" do
-      album.should be_valid
-    end
+    describe 'album with same title & parent' do
 
-    it "should have a title" do
-      album.title.should be_kind_of(String)
-    end
+      let!(:album) { Fabricate(:album, event_date: Date.parse('12.11.30')) }
 
-    it "should have a valid url slug" do
-      ERB::Util.url_encode(album.slug).should eql(album.slug)
+      it 'should be valid when event_date differs' do
+        Fabricate.build(:album,
+          event_date: Date.parse('12.11.19'),
+          title: album.title
+        ).should be_valid
+      end
+
+      it 'should be invalid when event_date is the same' do
+        Fabricate.build(:album,
+          event_date: Date.parse('12.11.30'),
+          title: album.title
+        ).should be_invalid
+      end
     end
   end
 

@@ -1,6 +1,8 @@
 class AlbumsController < ApplicationController
   respond_to :html, :json, :js
 
+  decorates :album
+
   def index
     @albums = Album.roots.order(:title).accessible_by(current_ability)
     authorize!(:index, Album)

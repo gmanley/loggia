@@ -14,3 +14,4 @@
 //= require plupload.flash
 //= require plupload.html5
 //= require hamlcoffee
+//= require bootstrap-datepicker

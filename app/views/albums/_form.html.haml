@@ -1,3 +1,4 @@
 = f.input :title
-= f.input :description
-= f.input :hidden, as: :boolean, label: false, inline_label: true
+= f.input :event_date, as: :string, input_html: { class: 'datepicker' }
+= f.input :description, input_html: { rows: 5 }
+= f.input :hidden, label: false, inline_label: true

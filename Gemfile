@@ -31,6 +31,8 @@ gem 'cancan', git: 'git://github.com/ryanb/cancan.git'
 
 gem 'responders'
 gem 'simple_form'
+gem 'draper'
+gem 'decorates_before_rendering'
 
 gem 'carrierwave'
 gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'

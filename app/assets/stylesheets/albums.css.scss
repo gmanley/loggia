@@ -17,6 +17,7 @@ body.albums {
       @include fluid-span(12);
       float: left;
       h1 { float: left }
+      form { display: inline-block }
       .header-actions { clear: both } }
 
     #new_album {

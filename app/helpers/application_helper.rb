@@ -32,7 +32,7 @@ module ApplicationHelper
       breadcrumb('Home', root_path)
 
       resources.each do |resource|
-        breadcrumb(resource, url_for(resource))
+        breadcrumb(resource.display_name, url_for(resource))
       end
     end
   end

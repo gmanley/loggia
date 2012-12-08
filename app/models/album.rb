@@ -1,6 +1,6 @@
 class Album < ActiveRecord::Base
   attr_accessible :title, :description, :hidden, :parent_id, :archive,
-                  :thumbnail_url
+                  :thumbnail_url, :event_date
 
   has_many :images
   has_many :comments,  as: :commentable, order: :created_at
@@ -9,7 +9,7 @@ class Album < ActiveRecord::Base
   acts_as_tree order: :title, dependent: :destroy, name_column: :title
 
   validates :title, presence: true,
-                    uniqueness: { scope: :parent_id,
+                    uniqueness: { scope: [:parent_id, :event_date],
                                   case_sensitive: false }
 
   scope :with_images, where(:images_count.not_eq => 0)
@@ -68,8 +68,13 @@ class Album < ActiveRecord::Base
     zip_temp_file.close if zip_temp_file
   end
 
-  def to_s
-    title
+  def display_name
+    "#{formated_event_date} #{title}".strip
+  end
+  alias_method :to_s, :display_name
+
+  def formated_event_date
+    event_date.strftime('%Y.%m.%d') if event_date
   end
 
   def to_param
@@ -89,7 +94,9 @@ class Album < ActiveRecord::Base
 
   private
   def generate_slug
-    ancestry_path.join(' ').to_url
+    slug_components = ancestry_path
+    slug_components.insert(-2, event_date.strftime('%Y%m%d')) if event_date
+    slug_components.join(' ').to_url
   end
 
   def set_slug
