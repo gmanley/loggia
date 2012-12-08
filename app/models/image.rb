@@ -11,7 +11,7 @@ class Image < ActiveRecord::Base
                   on: :create
 
   before_validation :set_md5
-  after_create :async_set_thumbnails
+  after_commit :async_set_thumbnails, on: :create
   before_create :set_store_dir
 
   private
