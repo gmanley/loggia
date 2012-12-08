@@ -11,7 +11,7 @@ class Image < ActiveRecord::Base
                   on: :create
 
   before_validation :set_md5
-  after_create :set_thumbnails
+  after_create :async_set_thumbnails
   before_create :set_store_dir
 
   private
@@ -21,6 +21,10 @@ class Image < ActiveRecord::Base
 
   def set_store_dir
     self.store_dir = image.store_dir
+  end
+
+  def async_set_thumbnails
+    Thumbnailer.perform_async(id.to_s)
   end
 
   def set_thumbnails

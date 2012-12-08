@@ -3,6 +3,7 @@
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../../Gemfile', __FILE__)
 require 'bundler/setup'
 Bundler.require(:sidekiq_web)
+require 'active_support/core_ext'
 require 'sidekiq'
 
 Sidekiq.configure_client do |config|
