@@ -14,6 +14,12 @@ class Image < ActiveRecord::Base
   after_commit :async_set_thumbnails, on: :create
   before_create :set_store_dir
 
+  def set_thumbnails
+    unless album.nil?
+      album.self_and_ancestors.each { |a| a.set_thumbnail_url }
+    end
+  end
+
   private
   def set_md5
     self.md5 = image.md5
@@ -28,12 +34,6 @@ class Image < ActiveRecord::Base
       Thumbnailer.perform_async(id)
     else
       set_thumbnails
-    end
-  end
-
-  def set_thumbnails
-    unless album.nil?
-      album.self_and_ancestors.each { |a| a.set_thumbnail_url }
     end
   end
 end
