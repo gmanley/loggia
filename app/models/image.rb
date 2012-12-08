@@ -24,7 +24,11 @@ class Image < ActiveRecord::Base
   end
 
   def async_set_thumbnails
-    Thumbnailer.perform_async(id.to_s)
+    if Rails.env.production?
+      Thumbnailer.perform_async(id)
+    else
+      set_thumbnails
+    end
   end
 
   def set_thumbnails
