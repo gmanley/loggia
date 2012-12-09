@@ -11,7 +11,12 @@ class ApplicationResponder < ActionController::Responder
     elsif post?
       display resource, status: :created, location: api_location
     else
+      # The default behavior is to return a head response with no body.
       display resource, status: 200
     end
+  end
+
+  def json_resource_errors
+    { errors: resource.errors.full_messages.to_sentence }
   end
 end

@@ -49,14 +49,14 @@ $ ->
   $imagesContainer = $('#images')
 
   $('#start_upload').button()
-  $('#uploader').on('click', '#toggle_deletion.active', (e) ->
+  $('#toggle_deletion.active').on('click', (e) ->
     $(this).toggleClass('inactive')
     $('#content').off()
     cleanupDelete()
     $('#delete_instructions').remove()
   )
 
-  $('#uploader').on('click', '#toggle_deletion.inactive', (e) ->
+  $('#toggle_deletion.inactive').on('click', (e) ->
     $(this).toggleClass('inactive')
     $("#content").prepend(JST['templates/delete_instructions'])
     initSelection()
@@ -68,47 +68,20 @@ $ ->
     $('#delete_confirmation').delay(2000).fadeOut(400)
   )
 
-  uploader = new plupload.Uploader(
-    runtimes: 'html5,flash'
-    browse_button: 'select_files'
-    max_file_size: '10mb'
+  $uploaderElement = $('#uploader')
+  $uploaderElement.fileupload(
     url: "#{window.location.pathname}/images.json"
-    file_data_name: 'image[image]'
-    flash_swf_url: '/assets/plupload.flash.swf'
-    drop_element: 'content'
-    filters:
-      title: 'Image files', extensions: 'jpg,jpeg,gif,png'
-    multipart: true
-    multipart_params:
-      authenticity_token: authenticity_token
-      _soshigal_session: session_token
+    maxFileSize: 20000000
+    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+    downloadTemplateId: false
+    done: (e, data) ->
+      image = JST['templates/image'](image: data.result.image)
+      $('#images').append(image)
+      data.context = $(this)
+      $uploaderElement.data('fileupload')._trigger('completed', e, data)
+    fail: (e, data) ->
+      response = JSON.parse(data.xhr().response)
+      error = "<td class='error' colspan='2'><span class='label label-important'>Error</span>#{response.errors}</td>"
+      $(this).find('.progress').replaceWith(error)
+      $uploaderElement.data('fileupload')._trigger('failed', e, data)
   )
-
-  uploader.bind 'FilesAdded', (up, files) ->
-    for file in files
-      $('#file_list').append(JST['templates/file'](file: file))
-
-  uploader.bind 'UploadProgress', (up, file) ->
-    $("##{file.id} b").html("#{file.percent}%")
-    $("##{file.id} .progress .bar").css('width', "#{file.percent}%")
-
-  $('#start_upload').click (e) ->
-    uploader.start()
-    $(this).button('loading')
-    e.preventDefault()
-
-  uploader.bind 'FileUploaded', (up, file, request) ->
-    response = JSON.parse(request.response)
-    image = JST['templates/image'](image: response.image)
-    $imagesContainer.append(image)
-
-    $("##{file.id} .progress")
-      .toggleClass('active')
-      .prev('.file_info b').text('Done')
-      .fadeOut 'slow', ->
-        $(this).parent().css('border', 'none')
-
-  uploader.bind 'UploadComplete', (up, files) ->
-    $('#start_upload').button('complete')
-
-  uploader.init()

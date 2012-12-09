@@ -1,13 +1,23 @@
-#uploader.row-fluid
-  %strong Drag & drop photos anywhere on the page!
-  .btn-toolbar
-    .btn-group
-      %button.btn#select_files Select Files
-      %button.btn.btn-primary#start_upload{data: {:'loading-text' => 'Uploading', :'complete-text' => 'Uploaded!'}} Upload
-    .btn-group
-      %button.btn.inactive#toggle_editing{data: { toggle: 'button' }} Edit Mode
-      %button.btn.inactive#toggle_deletion{data: { toggle: 'button' }} Deletion Mode
+= render 'images/templates'
 
-  %ul.unstyled#file_list
-
-%hr/
+= form_for([@album, Image.new], html: { multipart: true, id: 'uploader'}) do |f|
+  .row-fluid.fileupload-buttonbar
+    .btn-toolbar
+      %span.btn.btn-success.fileinput-button
+        %i.icon-plus.icon-white
+        %span Add files...
+        = f.file_field :image, multiple: true, name: 'image[image]'
+      %button.btn.btn-primary.start{:type => "submit"}
+        %i.icon-upload.icon-white
+        %span Start upload
+      .btn-group
+        %button.btn.inactive#toggle_editing{data: { toggle: 'button' }} Edit Mode
+        %button.btn.inactive#toggle_deletion{data: { toggle: 'button' }} Deletion Mode
+    .span5.fileupload-progress.fade
+      .progress.progress-success.progress-striped.active{"aria-valuemax" => "100", "aria-valuemin" => "0", :role => "progressbar"}
+        .bar{:style => "width:0%;"}
+      .progress-extended
+  .fileupload-loading
+  %br
+    %table.table.table-striped{:role => "presentation"}
+      %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
