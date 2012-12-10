@@ -34,12 +34,15 @@ class Album < ActiveRecord::Base
     if images.empty?
       descendants_with_images = descendants.with_images
       unless descendants_with_images.empty?
-        thumbnail_url = descendants_with_images.sample.thumbnail_url
-        update_attributes(thumbnail_url: thumbnail_url)
+        thumbnail_url = descendants_with_images
+                        .offset(rand(descendants_with_images.count))
+                        .limit(1).pluck(:thumbnail_url).first
       end
     else
-      update_attributes(thumbnail_url: images.sample.image_url(:thumb))
+      thumbnail_url = images.offset(rand(images.count)).first.image_url(:thumb)
     end
+
+    update_attributes(thumbnail_url: thumbnail_url)
   end
 
   def async_create_archive
