@@ -7,6 +7,7 @@ initConfirmDelete = ->
     $("#content").prepend(JST['templates/delete_warning'])
     $('#yes_delete').on('click', (e) -> deleteSelected())
     $('#no_delete').on('click', (e) -> cleanupDelete())
+    e.preventDefault()
 
 initSelection = ->
   $('#content').drag("start", (ev, dd) ->
@@ -54,6 +55,7 @@ $ ->
     $('#content').off()
     cleanupDelete()
     $('#delete_instructions').remove()
+    e.preventDefault()
   )
 
   $('#toggle_deletion.inactive').on('click', (e) ->
@@ -61,6 +63,7 @@ $ ->
     $("#content").prepend(JST['templates/delete_instructions'])
     initSelection()
     initConfirmDelete()
+    e.preventDefault()
   )
 
   $("form.edit_image").on("ajax:success", (evt, data, status, xhr) ->
