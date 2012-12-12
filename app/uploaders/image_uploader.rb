@@ -32,10 +32,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def cached_master
     @cached_master ||= CarrierWave::SanitizedFile.new(
-                         tempfile: StringIO.new(file.read),
-                         filename: File.basename(path),
-                         content_type: file.content_type
-                       )
+      tempfile: StringIO.new(file.read),
+      filename: File.basename(path),
+      content_type: file.content_type
+    )
   end
 
   private

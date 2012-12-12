@@ -39,7 +39,7 @@ gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'gra
 gem 'fog'
 gem 'jquery-fileupload-rails'
 
-gem 'archive-zip'
+gem 'zipruby'
 gem 'sidekiq'
 
 gem 'pry-rails'

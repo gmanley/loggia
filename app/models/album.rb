@@ -49,21 +49,30 @@ class Album < ActiveRecord::Base
     AlbumArchiver.perform_async(id.to_s)
   end
 
-  def create_archive
-    zip_temp_file = Tempfile.new(id.to_s, encoding: 'binary')
-    Archive::Zip.open(zip_temp_file, :w) do |zip|
-      images.each do |image_record|
-        image = image_record.image.cached_master
-        zip_entry = Archive::Zip::Entry::File.new(image.filename)
-        zip_entry.file_data = image.file
-        zip << zip_entry
+  def create_archive(recursive = false)
+    temp_directory = Dir.mktmpdir("album-archive-#{id}")
+    zip_path = File.join(temp_directory, display_name + '.zip')
+
+    Zip::Archive.open(zip_path Zip::CREATE) do |zip|
+      # For now limited to immediate children.
+      albums = recursive ? children.unshift(self) : [self]
+
+      albums.each do |album|
+        zip.add_dir(album.display_name)
+
+        album.images.each do |image_record|
+          image_file = image_record.image.cached_master
+          zip_path = File.join(album.display_name, image_file.filename)
+
+          zip.add_io(zip_path, image_file.file)
+        end
       end
     end
 
     self.archive = zip_temp_file
     archive.url if save
   ensure
-    zip_temp_file.close if zip_temp_file
+    FileUtils.remove_entry_secure(temp_directory)
   end
 
   def display_name
