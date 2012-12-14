@@ -45,7 +45,7 @@ module ApplicationHelper
       confirm: "Are you sure you want to delete this #{name}?"
     }.merge(options)
 
-    link_to('×', resource, options)
+    link_to(body, resource, options)
   end
 
   private
