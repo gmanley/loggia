@@ -40,6 +40,7 @@ gem 'fog'
 gem 'jquery-fileupload-rails'
 
 gem 'zipruby'
+gem 'archive-zip'
 gem 'sidekiq'
 
 gem 'pry-rails'
