@@ -33,6 +33,7 @@ gem 'responders'
 gem 'simple_form'
 gem 'draper'
 gem 'decorates_before_rendering'
+gem 'multi_fetch_fragments'
 
 gem 'carrierwave'
 gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'

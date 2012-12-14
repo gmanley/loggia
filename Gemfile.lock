@@ -179,6 +179,7 @@ GEM
     mime-types (1.19)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
+    multi_fetch_fragments (0.0.9)
     multi_json (1.5.0)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -338,6 +339,7 @@ DEPENDENCIES
   kaminari
   launchy
   mini_magick!
+  multi_fetch_fragments
   newrelic_rpm
   pg
   pry-rails

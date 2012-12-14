@@ -7,10 +7,10 @@
 
 #thumbnails-wrapper.row-fluid
   %ol#albums.thumbnails
-    = render @children
+    = render partial: @children, cache: true
 
   %ol#images.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
-    = render @images
+    = render partial: @images, cache: true
   = paginate @images
 
 %section.row-fluid
