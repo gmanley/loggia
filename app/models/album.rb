@@ -19,7 +19,7 @@ class Album < ActiveRecord::Base
   before_create :set_slug
 
   def recursive_images
-    Image.where(:album_id.in => descendant_ids)
+    Image.where(album_id: self_and_descendant_ids)
   end
 
   def favorite_by(user)
