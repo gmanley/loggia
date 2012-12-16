@@ -24,3 +24,10 @@ $ ->
       $this.children('.thumbnail-title').click()
 
   $('.datepicker').datepicker(format: 'yyyy.mm.dd')
+
+  $('#toggle-recursive').click (e) ->
+    if $(this).hasClass('active')
+      document.location.search = ''
+    else
+      document.location.search = '?recursive=true'
+

@@ -2,12 +2,15 @@
   %h1= @album.display_name
   = favorite_button_for(@album) if can?(:manage, Favorite)
   = render('header_actions', album: @album) if can?(:manage, @album)
+  .row-fluid
+    .btn-toolbar.offset11
+      - recursive_button
 
 = render('images/form') if can?(:create, Image)
 
 #thumbnails-wrapper.row-fluid
   %ol#albums.thumbnails
-    = render partial: @children, cache: true
+    = render partial: @children, cache: true if @children
 
   %ol#images.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
     = render partial: @images, cache: true

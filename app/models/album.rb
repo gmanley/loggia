@@ -18,6 +18,10 @@ class Album < ActiveRecord::Base
 
   before_create :set_slug
 
+  def recursive_images
+    Image.where(:album_id.in => descendant_ids)
+  end
+
   def favorite_by(user)
     favorites.where(user_id: user.id).first
   end
@@ -102,7 +106,7 @@ class Album < ActiveRecord::Base
   private
   def generate_slug
     slug_components = ancestry_path
-    slug_components.insert(-2, event_date.strftime('%Y%m%d')) if event_date
+    slug_components.insert(-2, formated_event_date) if event_date
     slug_components.join(' ').to_url
   end
 
