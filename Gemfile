@@ -27,7 +27,7 @@ gem 'squeel'
 gem 'kaminari'
 
 gem 'devise'
-gem 'cancan', git: 'git://github.com/ryanb/cancan.git'
+gem 'cancan', github: 'ryanb/cancan'
 
 gem 'responders'
 gem 'simple_form'
@@ -36,7 +36,7 @@ gem 'decorates_before_rendering'
 gem 'multi_fetch_fragments'
 
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'mini_magick', github: 'minimagick/minimagick'
 gem 'fog'
 gem 'jquery-fileupload-rails'
 

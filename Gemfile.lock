@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/minimagick/minimagick.git
+  revision: 5217dfe200e03d43c8d812e47d79503d3bbc09d5
+  specs:
+    mini_magick (3.4)
+      subexec (~> 0.2.1)
+
+GIT
   remote: git://github.com/ryanb/cancan.git
   revision: 3f4ee1202566e433967a972b0455de844eb4e5ef
   specs:
@@ -161,8 +168,6 @@ GEM
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.19)
-    mini_magick (3.4)
-      subexec (~> 0.2.1)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
     multi_fetch_fragments (0.0.10)
@@ -327,7 +332,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
-  mini_magick
+  mini_magick!
   multi_fetch_fragments
   newrelic_rpm
   pg
