@@ -57,7 +57,7 @@ class Album < ActiveRecord::Base
     temp_directory = Dir.mktmpdir("album-archive-#{id}")
     zip_path = File.join(temp_directory, display_name + '.zip')
 
-    Zip::Archive.open(zip_path Zip::CREATE) do |zip|
+    Zip::Archive.open(zip_path, Zip::CREATE) do |zip|
       # For now limited to immediate children.
       albums = recursive ? children.unshift(self) : [self]
 
