@@ -1,7 +1,9 @@
 module PolymorphicController
   extend ActiveSupport::Concern
 
-  included { before_filter :set_parent_resource }
+  included do
+    before_filter :set_parent_resource
+  end
 
   private
   def set_parent_resource

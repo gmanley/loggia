@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207203130) do
+ActiveRecord::Schema.define(:version => 20121217014104) do
 
   create_table "album_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -71,10 +71,19 @@ ActiveRecord::Schema.define(:version => 20121207203130) do
     t.datetime "updated_at", :null => false
     t.string   "md5"
     t.string   "store_dir"
+    t.integer  "source_id"
   end
 
   add_index "images", ["album_id"], :name => "index_images_on_album_id"
   add_index "images", ["md5"], :name => "index_images_on_md5"
+  add_index "images", ["source_id"], :name => "index_images_on_source_id"
+
+  create_table "sources", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

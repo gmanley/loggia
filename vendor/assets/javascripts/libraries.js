@@ -12,3 +12,4 @@
 //= require bootstrap-image-gallery
 //= require hamlcoffee
 //= require bootstrap-datepicker
+//= require jquery.soulmate

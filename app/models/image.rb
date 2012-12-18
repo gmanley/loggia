@@ -1,7 +1,8 @@
 class Image < ActiveRecord::Base
-  attr_accessible :image
+  attr_accessible :image, :source
 
   belongs_to :album, counter_cache: true
+  belongs_to :source
 
   mount_uploader :image, ImageUploader
 
@@ -18,6 +19,10 @@ class Image < ActiveRecord::Base
     unless album.nil?
       album.self_and_ancestors.each { |a| a.set_thumbnail_url }
     end
+  end
+
+  def source=(source)
+    self.source_id = Source.find_or_create_by_name(source).id
   end
 
   private

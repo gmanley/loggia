@@ -1,6 +1,7 @@
 = render 'images/templates'
 
-= form_for([@album, Image.new], html: { multipart: true, id: 'uploader'}) do |f|
+= simple_form_for([@album, Image.new], html: { multipart: true, id: 'uploader'}) do |f|
+  = f.input :source, input_html: { autocomplete: false }
   .row-fluid.fileupload-buttonbar
     .btn-toolbar
       %span.btn.btn-success.fileinput-button
