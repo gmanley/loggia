@@ -6,7 +6,7 @@ class Album < ActiveRecord::Base
   has_many :comments,  as: :commentable, order: :created_at
   has_many :favorites, as: :favoritable
 
-  acts_as_tree order: :title, dependent: :destroy, name_column: :display_name
+  acts_as_tree order: :title, dependent: :destroy, name_column: :title
 
   validates :title, presence: true,
                     uniqueness: { scope: [:parent_id, :event_date],
@@ -92,22 +92,15 @@ class Album < ActiveRecord::Base
     slug
   end
 
-  # By default closure_tree's ancestry_path will always return an empty array
-  # when the record isn't persisted. This overides that behavior to work
-  # similarly to how it does when the record is persited.
-  def ancestry_path(to_s_column = name_column)
-    if persisted?
-      super(to_s_column)
-    else
-      (parent.try(:ancestry_path, to_s_column) || []).push(self[to_s_column])
+  private
+  def slug_components
+    parent.try(:self_and_ancestors).to_a.reverse.push(self).map do |album|
+      album.display_name.gsub('.', '')
     end
   end
 
-  private
   def generate_slug
-    slug_components = ancestry_path
-    slug_components.insert(-2, event_date) if event_date
-    slug_components.map { |sc| sc.to_s.gsub('.', '') }.join(' ').to_url
+    slug_components.join(' ').to_url
   end
 
   def set_slug
