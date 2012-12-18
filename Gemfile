@@ -15,6 +15,7 @@ group :assets do
   gem 'uglifier'
   gem 'haml_coffee_assets'
   gem 'execjs'
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'
