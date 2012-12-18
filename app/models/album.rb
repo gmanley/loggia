@@ -6,7 +6,7 @@ class Album < ActiveRecord::Base
   has_many :comments,  as: :commentable, order: :created_at
   has_many :favorites, as: :favoritable
 
-  acts_as_tree order: :title, dependent: :destroy, name_column: :title
+  acts_as_tree order: :title, dependent: :destroy, name_column: :display_name
 
   validates :title, presence: true,
                     uniqueness: { scope: [:parent_id, :event_date],
@@ -106,8 +106,8 @@ class Album < ActiveRecord::Base
   private
   def generate_slug
     slug_components = ancestry_path
-    slug_components.insert(-2, formated_event_date) if event_date
-    slug_components.join(' ').to_url
+    slug_components.insert(-2, event_date) if event_date
+    slug_components.map { |sc| sc.to_s.gsub('.', '') }.join(' ').to_url
   end
 
   def set_slug
