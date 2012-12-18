@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/minimagick/minimagick.git
-  revision: 5217dfe200e03d43c8d812e47d79503d3bbc09d5
+  remote: git://github.com/gmanley/mini_magick.git
+  revision: 3560260f8efe582d1b3e66cd645bea70aac87ea1
+  branch: graphicsmagick-fix
   specs:
     mini_magick (3.4)
       subexec (~> 0.2.1)

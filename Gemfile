@@ -37,7 +37,7 @@ gem 'decorates_before_rendering'
 gem 'multi_fetch_fragments'
 
 gem 'carrierwave'
-gem 'mini_magick', github: 'minimagick/minimagick'
+gem 'mini_magick', github: 'gmanley/mini_magick', branch: 'graphicsmagick-fix'
 gem 'fog'
 gem 'jquery-fileupload-rails'
 
