@@ -40,7 +40,7 @@ class Album < ActiveRecord::Base
       unless descendants_with_images.empty?
         thumbnail_url = descendants_with_images
                         .offset(rand(descendants_with_images.count))
-                        .limit(1).pluck(:thumbnail_url).first
+                        .first.thumbnail_url
       end
     else
       thumbnail_url = images.offset(rand(images.count)).first.image_url(:thumb)
@@ -57,7 +57,7 @@ class Album < ActiveRecord::Base
     temp_directory = Dir.mktmpdir("album-archive-#{id}")
     zip_path = File.join(temp_directory, display_name + '.zip')
 
-    Zip::Archive.open(zip_path Zip::CREATE) do |zip|
+    Zip::Archive.open(zip_path, Zip::CREATE) do |zip|
       # For now limited to immediate children.
       albums = recursive ? children.unshift(self) : [self]
 
@@ -92,21 +92,14 @@ class Album < ActiveRecord::Base
     slug
   end
 
-  # By default closure_tree's ancestry_path will always return an empty array
-  # when the record isn't persisted. This overides that behavior to work
-  # similarly to how it does when the record is persited.
-  def ancestry_path(to_s_column = name_column)
-    if persisted?
-      super(to_s_column)
-    else
-      (parent.try(:ancestry_path, to_s_column) || []).push(self[to_s_column])
+  private
+  def slug_components
+    parent.try(:self_and_ancestors).to_a.reverse.push(self).map do |album|
+      album.display_name.gsub('.', '')
     end
   end
 
-  private
   def generate_slug
-    slug_components = ancestry_path
-    slug_components.insert(-2, formated_event_date) if event_date
     slug_components.join(' ').to_url
   end
 

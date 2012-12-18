@@ -80,11 +80,9 @@ $ ->
     done: (e, data) ->
       image = JST['templates/image'](image: data.result.image)
       $('#images').append(image)
-      data.context = $(this)
-      $uploaderElement.data('fileupload')._trigger('completed', e, data)
+      data.context.find('.progress').replaceWith("<span class='label label-success'>Success</span>")
     fail: (e, data) ->
       response = JSON.parse(data.xhr().response)
-      error = "<td class='error' colspan='2'><span class='label label-important'>Error</span>#{response.errors}</td>"
-      $(this).find('.progress').replaceWith(error)
-      $uploaderElement.data('fileupload')._trigger('failed', e, data)
+      error = "<td class='error' colspan='2'><span class='label label-important'>Error</span> #{response.errors}</td>"
+      data.context.find('.progress').replaceWith(error)
   )

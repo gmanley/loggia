@@ -15,6 +15,7 @@ group :assets do
   gem 'uglifier'
   gem 'haml_coffee_assets'
   gem 'execjs'
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'
@@ -27,7 +28,7 @@ gem 'squeel'
 gem 'kaminari'
 
 gem 'devise'
-gem 'cancan', git: 'git://github.com/ryanb/cancan.git'
+gem 'cancan', github: 'ryanb/cancan'
 
 gem 'responders'
 gem 'simple_form'
@@ -39,7 +40,7 @@ gem 'rack-contrib'
 gem 'soulmate', require: 'soulmate/server'
 
 gem 'carrierwave'
-gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
+gem 'mini_magick', github: 'gmanley/mini_magick', branch: 'graphicsmagick-fix'
 gem 'fog'
 gem 'jquery-fileupload-rails'
 
@@ -71,7 +72,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'spork-rails', git: 'git://github.com/gmanley/spork-rails.git'
+  gem 'spork-rails'
 end
 
 # Uncomment this to run script/sidekiq_web
