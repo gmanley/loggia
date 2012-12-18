@@ -36,7 +36,7 @@ gem 'decorates_before_rendering'
 gem 'multi_fetch_fragments'
 
 gem 'carrierwave'
-gem 'mini_magick', git: 'git://github.com/gmanley/mini_magick.git', branch: 'graphicsmagick-fix'
+gem 'mini_magick'
 gem 'fog'
 gem 'jquery-fileupload-rails'
 
@@ -68,7 +68,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'spork-rails', git: 'git://github.com/gmanley/spork-rails.git'
+  gem 'spork-rails'
 end
 
 # Uncomment this to run script/sidekiq_web
