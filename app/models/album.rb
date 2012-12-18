@@ -40,7 +40,7 @@ class Album < ActiveRecord::Base
       unless descendants_with_images.empty?
         thumbnail_url = descendants_with_images
                         .offset(rand(descendants_with_images.count))
-                        .limit(1).pluck(:thumbnail_url).first
+                        .first.thumbnail_url
       end
     else
       thumbnail_url = images.offset(rand(images.count)).first.image_url(:thumb)
