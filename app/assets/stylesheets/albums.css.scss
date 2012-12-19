@@ -46,6 +46,12 @@ body.albums {
       border-bottom: 1px solid #EEE;
       .thumbnails { clear: both } }
 
+    #uploader-container {
+      @include fluid-span(5);
+      @include clearfix();
+      @include center-block();
+    }
+
     #uploader {
       #file_list {
         margin-top: 20px;

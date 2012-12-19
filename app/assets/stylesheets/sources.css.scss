@@ -1,11 +1,19 @@
 $helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $lucida: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
 
-$suggestionWidth: 490px;
-$inputWidth: 600px;
+$suggestionWidth: 325px;
+$inputWidth: 400px;
 $soulmateWidth: $inputWidth - 21px;
 
-#image_source{
+#attributionContainer {
+  width: $inputWidth;
+
+  dl {
+    font-size: 14px;
+  }
+}
+
+#attribution {
   border: 1px solid #999;
   color: #545C5F;
   font-family: $helvetica;
@@ -28,7 +36,7 @@ $soulmateWidth: $inputWidth - 21px;
   padding: 0;
   position: absolute;
   text-shadow: 0 0 0 white;
-  top: 306px;
+  top: 330px;
   width: $soulmateWidth;
   z-index: 1000;
   @include border-radius(4px);
@@ -84,20 +92,5 @@ $soulmateWidth: $inputWidth - 21px;
     vertical-align: top;
     @include border-radius(5px);
     @include clearfix();
-  }
-}
-
-#footer {
-  margin-top: 40px;
-  font-family: $helvetica;
-  font-size: 13px;
-  color: #444;
-  text-align: center;
-  a {
-    color: #000;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
