@@ -1,17 +1,15 @@
 initConfirmDelete = ->
-  $delete_button_html = $('<button class="btn btn-danger" id="finish_delete">Complete Deletion</button>')
-  $('#toggle_deletion').parent().append($delete_button_html)
-  $('#finish_delete').alert()
+  $('#finish_delete').removeAttr('disabled')
   $('#finish_delete').on 'click', (e) ->
-    $('#delete_instructions').remove()
-    $("#content").prepend(JST['templates/delete_warning'])
-    $('#yes_delete').on('click', (e) -> deleteSelected())
-    $('#no_delete').on('click', (e) -> cleanupDelete())
     e.preventDefault()
+    confirmationMessage = 'This will delete the selected images. Are you sure you want to continue?'
+    bootbox.confirm confirmationMessage, (confirmed) ->
+      if confirmed then deleteSelected() else cleanupDelete()
+    $('#delete_instructions').remove()
 
 initSelection = ->
-  $('#content').drag("start", (ev, dd) ->
-    $('<div class="selection" />').css("opacity", .65)
+  $('#content').drag('start', (ev, dd) ->
+    $('<div class="selection" />').css('opacity', .65)
                                   .appendTo($('#content'))
   ).drag((ev, dd) ->
     $(dd.proxy).css(
@@ -20,28 +18,27 @@ initSelection = ->
       height: Math.abs(ev.pageY - dd.startY)
       width: Math.abs(ev.pageX - dd.startX)
     )
-  ).drag "end", (ev, dd) ->
+  ).drag 'end', (ev, dd) ->
     $(dd.proxy).remove()
 
-  $(".thumbnail").drop("start", ->
-    $(this).addClass "selecting"
+  $('.thumbnail').drop('start', ->
+    $(this).addClass 'selecting'
   ).drop((ev, dd) ->
-    $(this).toggleClass "selected"
-  ).drop "end", ->
-    $(this).removeClass "selecting"
+    $(this).toggleClass 'selected'
+  ).drop 'end', ->
+    $(this).removeClass 'selecting'
 
   $.drop multi: true
 
 cleanupDelete = ->
-  $('#delete_warning').alert('close')
-  $('#finish_delete').remove()
-  $('.selected').each((i, item) -> $(item).removeClass('selected'))
+  $('#finish_delete').attr('disabled', true)
+  $('.selected').removeClass('selected')
 
 deleteSelected = ->
   $('.selected').each((i, item) ->
     $item = $(item)
-    destroy_url = $item.data('destroy_url') ? $item.attr('href')
-    $.post(destroy_url, { _method: 'delete' })
+    destroyUrl = $item.data('destroy_url') ? $item.attr('href')
+    $.post(destroyUrl, _method: 'delete')
     $item.parent().fadeOut(500).remove()
   )
   cleanupDelete()
@@ -49,37 +46,25 @@ deleteSelected = ->
 $ ->
   $imagesContainer = $('#images')
 
-  $('#start_upload').button()
-  $('#toggle_deletion.active').on('click', (e) ->
-    $(this).toggleClass('inactive')
-    $('#content').off()
-    cleanupDelete()
-    $('#delete_instructions').remove()
+  $('#toggle_selection').click (e) ->
     e.preventDefault()
-  )
+    if $(this).hasClass('active')
+      $('#content').off()
+      cleanupDelete()
+      $('#delete_instructions').remove()
+    else
+      $('#content').prepend(JST['templates/delete_instructions'])
+      initSelection()
+      initConfirmDelete()
 
-  $('#toggle_deletion.inactive').on('click', (e) ->
-    $(this).toggleClass('inactive')
-    $("#content").prepend(JST['templates/delete_instructions'])
-    initSelection()
-    initConfirmDelete()
-    e.preventDefault()
-  )
-
-  $("form.edit_image").on("ajax:success", (evt, data, status, xhr) ->
-    $("#content").prepend(JST['templates/delete_confirmation'])
-    $('#delete_confirmation').delay(2000).fadeOut(400)
-  )
-
-  $uploaderElement = $('#uploader')
-  $uploaderElement.fileupload(
+  $('#uploader').fileupload(
     url: "#{window.location.pathname}/images.json"
     maxFileSize: 20000000
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
     downloadTemplateId: false
     done: (e, data) ->
       image = JST['templates/image'](image: data.result.image)
-      $('#images').append(image)
+      $imagesContainer.append(image)
       data.context.find('.progress').replaceWith("<span class='label label-success'>Success</span>")
     fail: (e, data) ->
       response = JSON.parse(data.xhr().response)

@@ -7,17 +7,17 @@
         %i.icon-plus.icon-white
         %span Add files...
         = f.file_field :image, multiple: true, name: 'image[image]'
-      %button.btn.btn-primary.start{:type => "submit"}
+      %button.btn.btn-primary.start{type: :submit}
         %i.icon-upload.icon-white
         %span Start upload
+      %button.btn#toggle_selection{data: { toggle: 'button' }} Select Items
       .btn-group
-        %button.btn.inactive#toggle_editing{data: { toggle: 'button' }} Edit Mode
-        %button.btn.inactive#toggle_deletion{data: { toggle: 'button' }} Deletion Mode
+        %button.btn.btn-danger#finish_delete{disabled: true} Delete
     .span5.fileupload-progress.fade
       .progress.progress-success.progress-striped.active{"aria-valuemax" => "100", "aria-valuemin" => "0", :role => "progressbar"}
-        .bar{:style => "width:0%;"}
+        .bar
       .progress-extended
   .fileupload-loading
   %br
-    %table.table.table-striped{:role => "presentation"}
-      %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
+    %table.table.table-striped{role: 'presentation'}
+      %tbody.files{data: { target: '#modal-gallery', toggle: 'modal-gallery' }}
