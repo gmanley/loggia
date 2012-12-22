@@ -5,8 +5,9 @@ $suggestionWidth: 325px;
 $inputWidth: 400px;
 $soulmateWidth: $inputWidth - 21px;
 
-#attributionContainer {
-  width: $inputWidth;
+#attribution-container {
+ @include fluid-span(3);
+ @include center-block();
 
   dl {
     font-size: 14px;

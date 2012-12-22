@@ -1,4 +1,4 @@
 %li
   = link_to(album, class: 'thumbnail') do
     = image_tag(album.thumbnail_url)
-    %h5.thumbnail-title= album.display_name.truncate(50)
+    %span.thumbnail-title= album.display_name.truncate(50)
