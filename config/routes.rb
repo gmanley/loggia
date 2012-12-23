@@ -8,9 +8,9 @@ Soshigal::Application.routes.draw do
     resources :favorites, only: [:create, :destroy]
   end
 
-  get 'sources/autocomplete_source_name'
+  # resources :sources, :photographers, only: [:create]
 
-  mount Soulmate::Server, :at => "/autocomplete"
+  mount Soulmate::Server, at: '/autocomplete'
 
   devise_for :users
 end

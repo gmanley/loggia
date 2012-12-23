@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217014104) do
+ActiveRecord::Schema.define(:version => 20121223024747) do
 
   create_table "album_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -67,16 +67,24 @@ ActiveRecord::Schema.define(:version => 20121217014104) do
   create_table "images", :force => true do |t|
     t.string    "image"
     t.integer   "album_id"
-    t.timestamp "created_at", :limit => 6, :null => false
-    t.timestamp "updated_at", :limit => 6, :null => false
+    t.timestamp "created_at",      :limit => 6, :null => false
+    t.timestamp "updated_at",      :limit => 6, :null => false
     t.string    "md5"
     t.string    "store_dir"
     t.integer   "source_id"
+    t.integer   "photographer_id"
   end
 
   add_index "images", ["album_id"], :name => "index_images_on_album_id"
   add_index "images", ["md5"], :name => "index_images_on_md5"
+  add_index "images", ["photographer_id"], :name => "index_images_on_photographer_id"
   add_index "images", ["source_id"], :name => "index_images_on_source_id"
+
+  create_table "photographers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "sources", :force => true do |t|
     t.string   "name"

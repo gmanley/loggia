@@ -12,12 +12,8 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find_by_slug!(params[:id])
-    if params[:recursive]
-      @images = @album.recursive_images.page(params[:page])
-    else
-      @children = @album.children.accessible_by(current_ability)
-      @images = @album.images.page(params[:page])
-    end
+    @children = @album.children.accessible_by(current_ability)
+    @images = get_images.page(params[:page])
     authorize!(:show, @album)
 
     respond_with(@album)
@@ -59,5 +55,17 @@ class AlbumsController < ApplicationController
 
     @album.destroy
     respond_with(@album, location: root_path)
+  end
+
+  private
+  def get_images
+    query = params[:album]
+
+    if query.present? && query[:source_ids].is_a?(Array)
+      sources_ids = query[:source_ids].reject(&:blank?)
+      @album.images.where(source_id: sources_ids)
+    else
+      @album.images
+    end
   end
 end

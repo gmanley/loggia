@@ -1,0 +1,6 @@
+#filter_album_images.span2.well.pull-right.collapse.hide
+  = simple_form_for album, method: :get do |f|
+    = f.association :sources, collection: album.sources,
+      selected: source_selected_proc,
+      label: false
+    = f.button :submit, value: 'Filter', class: 'btn-primary'

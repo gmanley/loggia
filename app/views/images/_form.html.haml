@@ -1,6 +1,6 @@
 = render 'images/templates'
 
-#uploader-container
+#uploader-container.row-fluid
   #attribution-container
     = text_field_tag :attribution
     %dl
@@ -10,6 +10,7 @@
       %dd#image_photographer_display Unattributed
   = simple_form_for([@album, Image.new], html: { multipart: true, id: 'uploader'}) do |f|
     = f.hidden_field :source
+    = f.hidden_field :photographer
     .fileupload-buttonbar
       .btn-toolbar
         %span.btn.btn-success.fileinput-button

@@ -1,6 +1,11 @@
 class SourcesController < ApplicationController
+  respond_to :html, :json, :js
 
-  def autocomplete_source_name
-    render json: Source.search(params['term'])
+  def create
+    @source = Source.new(params[:source])
+    authorize!(:create, @source)
+
+    @source.save
+    respond_with(@source, location: nil)
   end
 end

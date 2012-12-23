@@ -3,8 +3,12 @@ class Album < ActiveRecord::Base
                   :thumbnail_url, :event_date
 
   has_many :images
+
   has_many :comments,  as: :commentable, order: :created_at
   has_many :favorites, as: :favoritable
+
+  has_many :sources,       through: :images, uniq: true
+  has_many :photographers, through: :images, uniq: true
 
   acts_as_tree order: :title, dependent: :destroy, name_column: :title
 

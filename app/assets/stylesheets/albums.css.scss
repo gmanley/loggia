@@ -1,14 +1,5 @@
 body.albums {
 
-  .thumbnails {
-    text-align: center;
-    margin-left: -18px;
-
-    & > li {
-      display: inline-block;
-      float: none;
-      vertical-align: top } }
-
   #albums .thumbnail {
     padding: 15px 15px 0px 15px;
     width: 200px; height: 250px;
@@ -45,16 +36,7 @@ body.albums {
 
     .header-actions { padding-top: 5px }
 
-    #uploader {
-      @include fluid-span(5);
-      @include clearfix();
-      @include center-block();
-
-      .btn-toolbar {
-        @include fluid-span(7);
-        @include center-block();
-      }
-    }
+    #filter_album_images .checkbox { font-weight: bold; }
 
     #thumbnails-wrapper {
       border-bottom: 1px solid #EEE;

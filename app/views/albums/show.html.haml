@@ -2,9 +2,8 @@
   %h1= @album.display_name
   = favorite_button_for(@album) if can?(:manage, Favorite)
   = render('header_actions', album: @album) if can?(:manage, @album)
-  .row-fluid
-    .btn-toolbar.offset11
-      - recursive_button
+  - filter_sidebar_toggle
+= render('view_options', album: @album)
 
 = render('images/form') if can?(:create, Image)
 
@@ -15,6 +14,7 @@
   %ol#images.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
     = render partial: @images, cache: true
   = paginate @images
+
 
 %section.row-fluid
   .span6

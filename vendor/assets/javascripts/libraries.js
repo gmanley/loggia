@@ -5,6 +5,7 @@
 //= require bootstrap-modal
 //= require bootstrap-transition
 //= require bootstrap-button
+//= require bootstrap-collapse
 //= require jquery.jeditable
 //= require jquery.event.drag
 //= require jquery.event.drop

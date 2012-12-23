@@ -6,8 +6,8 @@ $inputWidth: 400px;
 $soulmateWidth: $inputWidth - 21px;
 
 #attribution-container {
- @include fluid-span(3);
- @include center-block();
+ // @include fluid-span(3);
+ // @include center-block();
 
   dl {
     font-size: 14px;

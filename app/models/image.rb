@@ -1,8 +1,9 @@
 class Image < ActiveRecord::Base
-  attr_accessible :image, :source
+  attr_accessible :image, :source, :photographer
 
   belongs_to :album, counter_cache: true
   belongs_to :source
+  belongs_to :photographer
 
   mount_uploader :image, ImageUploader
 
@@ -23,6 +24,10 @@ class Image < ActiveRecord::Base
 
   def source=(source)
     self.source_id = Source.find_or_create_by_name(source).id
+  end
+
+  def photographer=(photographer)
+    self.photographer_id = Photographer.find_or_create_by_name(photographer).id
   end
 
   private

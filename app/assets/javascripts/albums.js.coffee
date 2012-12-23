@@ -25,9 +25,7 @@ $ ->
 
   $('.datepicker').datepicker(format: 'yyyy.mm.dd')
 
-  $('#toggle-recursive').click (e) ->
-    if $(this).hasClass('active')
-      document.location.search = ''
-    else
-      document.location.search = '?recursive=true'
+  $filter_album_images = $("#filter_album_images")
+  $filter_album_images.on 'hidden', -> $(this).hide()
+  $filter_album_images.on 'show', -> $(this).show()
 
