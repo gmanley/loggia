@@ -1,20 +1,31 @@
 class Album < ActiveRecord::Base
-  attr_accessible :title, :description, :hidden, :parent_id, :archive,
-                  :thumbnail_url, :event_date
+  attr_accessible :title, :description, :hidden, :parent_id,
+                  :archive,:thumbnail_url, :event_date
 
   has_many :images
 
-  has_many :comments,  as: :commentable, order: :created_at
+  has_many :comments, as: :commentable,
+                      order: :created_at
+
   has_many :favorites, as: :favoritable
 
-  has_many :sources,       through: :images, uniq: true
-  has_many :photographers, through: :images, uniq: true
+  has_many :sources, through: :images, uniq: true,
+                     order: 'LOWER(name)',
+                     select: 'sources.*, LOWER(name)'
 
-  acts_as_tree order: :title, dependent: :destroy, name_column: :title
+  has_many :photographers, through: :images, uniq: true,
+                           order: 'LOWER(name)',
+                           select: 'photographers.*, LOWER(name)'
+
+  acts_as_tree order: :title,
+               dependent: :destroy,
+               name_column: :title
 
   validates :title, presence: true,
-                    uniqueness: { scope: [:parent_id, :event_date],
-                                  case_sensitive: false }
+                    uniqueness: {
+                      scope: [:parent_id, :event_date],
+                      case_sensitive: false
+                    }
 
   scope :with_images, where(:images_count.not_eq => 0)
 
@@ -54,7 +65,7 @@ class Album < ActiveRecord::Base
   end
 
   def async_create_archive
-    AlbumArchiver.perform_async(id.to_s)
+    AlbumArchiver.perform_async(id)
   end
 
   def create_archive(recursive = false)
