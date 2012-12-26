@@ -10,6 +10,6 @@ class ArchiveUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{model.title}.zip"
+    "#{model.archivable.display_name}.zip"
   end
 end

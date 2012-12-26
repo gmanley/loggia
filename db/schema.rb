@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223024747) do
+ActiveRecord::Schema.define(:version => 20121226183803) do
 
   create_table "album_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20121223024747) do
 
   create_table "albums", :force => true do |t|
     t.text      "description"
-    t.string    "archive"
     t.boolean   "hidden",                     :default => false
     t.string    "slug",                                                              :null => false
     t.string    "title",                                                             :null => false
@@ -40,6 +39,16 @@ ActiveRecord::Schema.define(:version => 20121223024747) do
   add_index "albums", ["images_count"], :name => "index_albums_on_images_count"
   add_index "albums", ["parent_id"], :name => "index_albums_on_parent_id"
   add_index "albums", ["slug"], :name => "index_albums_on_slug", :unique => true
+
+  create_table "archives", :force => true do |t|
+    t.string   "file"
+    t.boolean  "processing",      :default => false
+    t.boolean  "outdated",        :default => true
+    t.integer  "archivable_id"
+    t.string   "archivable_type"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
 
   create_table "comments", :force => true do |t|
     t.text      "body"

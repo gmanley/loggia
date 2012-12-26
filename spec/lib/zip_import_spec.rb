@@ -1,9 +1,9 @@
 require 'spec_helper'
-require Rails.root.join('lib/import/archive_import')
+require Rails.root.join('lib/import/zip_import')
 
-describe Archive::Import, no_database_cleaner: true do
+describe Zip::Import, no_database_cleaner: true do
 
-  before(:all) { Archive::Import.new(path_to_fixture('import.zip')) }
+  before(:all) { Zip::Import.new(path_to_fixture('import.zip')) }
 
   describe 'imported albums' do
     let(:albums) { Album.scoped }

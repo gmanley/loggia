@@ -17,6 +17,8 @@ class Album < ActiveRecord::Base
                            order: 'LOWER(name)',
                            select: 'photographers.*, LOWER(name)'
 
+  has_one :archive, as: :archivable
+
   acts_as_tree order: :title,
                dependent: :destroy,
                name_column: :title
@@ -28,8 +30,6 @@ class Album < ActiveRecord::Base
                     }
 
   scope :with_images, where(:images_count.not_eq => 0)
-
-  mount_uploader :archive, ArchiveUploader
 
   before_create :set_slug
 
@@ -66,32 +66,6 @@ class Album < ActiveRecord::Base
 
   def async_create_archive
     AlbumArchiver.perform_async(id)
-  end
-
-  def create_archive(recursive = false)
-    temp_directory = Dir.mktmpdir("album-archive-#{id}")
-    zip_path = File.join(temp_directory, display_name + '.zip')
-
-    Zip::Archive.open(zip_path, Zip::CREATE) do |zip|
-      # For now limited to immediate children.
-      albums = recursive ? children.unshift(self) : [self]
-
-      albums.each do |album|
-        zip.add_dir(album.display_name)
-
-        album.images.each do |image_record|
-          image_file = image_record.image.cached_master
-          zip_path = File.join(album.display_name, image_file.filename)
-
-          zip.add_io(zip_path, image_file.file)
-        end
-      end
-    end
-
-    self.archive = zip_temp_file
-    archive.url if save
-  ensure
-    FileUtils.remove_entry_secure(temp_directory)
   end
 
   def display_name
