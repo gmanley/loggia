@@ -10,7 +10,7 @@ gem 'coffeebeans'
 
 group :assets do
   gem 'sass-rails',     '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.2.1.1'
+  gem 'bootstrap-sass', '~> 2.2.2.0'
   gem 'coffee-rails',   '~> 3.2'
   gem 'uglifier'
   gem 'haml_coffee_assets'
