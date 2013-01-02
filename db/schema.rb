@@ -23,16 +23,16 @@ ActiveRecord::Schema.define(:version => 20121226183803) do
   add_index "album_hierarchies", ["descendant_id"], :name => "index_album_hierarchies_on_descendant_id"
 
   create_table "albums", :force => true do |t|
-    t.text      "description"
-    t.boolean   "hidden",                     :default => false
-    t.string    "slug",                                                              :null => false
-    t.string    "title",                                                             :null => false
-    t.string    "thumbnail_url",              :default => "/assets/placeholder.png", :null => false
-    t.integer   "images_count",               :default => 0,                         :null => false
-    t.timestamp "created_at",    :limit => 6,                                        :null => false
-    t.timestamp "updated_at",    :limit => 6,                                        :null => false
-    t.integer   "parent_id"
-    t.date      "event_date"
+    t.text     "description"
+    t.boolean  "hidden",        :default => false
+    t.string   "slug",                                                 :null => false
+    t.string   "title",                                                :null => false
+    t.string   "thumbnail_url", :default => "/assets/placeholder.png", :null => false
+    t.integer  "images_count",  :default => 0,                         :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.integer  "parent_id"
+    t.date     "event_date"
   end
 
   add_index "albums", ["hidden"], :name => "index_albums_on_hidden"
@@ -51,37 +51,37 @@ ActiveRecord::Schema.define(:version => 20121226183803) do
   end
 
   create_table "comments", :force => true do |t|
-    t.text      "body"
-    t.integer   "commentable_id"
-    t.string    "commentable_type"
-    t.integer   "user_id"
-    t.timestamp "created_at",       :limit => 6, :null => false
-    t.timestamp "updated_at",       :limit => 6, :null => false
+    t.text     "body"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "favorites", :force => true do |t|
-    t.text      "body"
-    t.integer   "favoritable_id"
-    t.string    "favoritable_type"
-    t.integer   "user_id"
-    t.timestamp "created_at",       :limit => 6
+    t.text     "body"
+    t.integer  "favoritable_id"
+    t.string   "favoritable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
   end
 
   add_index "favorites", ["favoritable_id", "favoritable_type"], :name => "index_favorites_on_favoritable_id_and_favoritable_type"
   add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
 
   create_table "images", :force => true do |t|
-    t.string    "image"
-    t.integer   "album_id"
-    t.timestamp "created_at",      :limit => 6, :null => false
-    t.timestamp "updated_at",      :limit => 6, :null => false
-    t.string    "md5"
-    t.string    "store_dir"
-    t.integer   "source_id"
-    t.integer   "photographer_id"
+    t.string   "image"
+    t.integer  "album_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "md5"
+    t.string   "store_dir"
+    t.integer  "source_id"
+    t.integer  "photographer_id"
   end
 
   add_index "images", ["album_id"], :name => "index_images_on_album_id"

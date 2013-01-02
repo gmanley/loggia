@@ -13,15 +13,7 @@ module Zip
     end
 
     def extract(zip_path)
-      Zip::Archive.open(zip_path) do |ar|
-        ar.each do |entry|
-          next if entry.directory?
-          entry_path = @extraction_location.join(entry.name).to_s
-          dirname = ::File.dirname(entry_path)
-          FileUtils.mkdir_p(dirname) unless ::File.exist?(dirname)
-          open(entry_path, 'wb') { |f| f << entry.read }
-        end
-      end
+      Zip::Archive.extract(zip_path, @extraction_location)
     end
 
     def import_folder

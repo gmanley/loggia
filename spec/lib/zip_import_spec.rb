@@ -1,5 +1,6 @@
 require 'spec_helper'
-require Rails.root.join('lib/import/zip_import')
+require 'zip_archive'
+require 'import/zip_import'
 
 describe Zip::Import, no_database_cleaner: true do
 

@@ -16,7 +16,7 @@ class Archive < ActiveRecord::Base
   def archive_album
     return file.url unless outdated?
 
-    temp_directory = Dir.mktmpdir("#{archivable_type}-#{archivable.id}-archive-#{id}")
+    temp_directory = Dir.mktmpdir
     zip_path = File.join(temp_directory, archivable.to_s + '.zip')
 
     Zip::Archive.open(zip_path, Zip::CREATE) do |zip|
