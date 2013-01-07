@@ -1,23 +1,14 @@
-$helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$lucida: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
-
 $suggestionWidth: 325px;
 $inputWidth: 400px;
 $soulmateWidth: $inputWidth - 21px;
 
-#attribution-container {
- // @include fluid-span(3);
- // @include center-block();
-
-  dl {
-    font-size: 14px;
-  }
+#attribution-container dl {
+  font-size: 14px;
 }
 
 #attribution {
   border: 1px solid #999;
   color: #545C5F;
-  font-family: $helvetica;
   font-size: 20px;
   letter-spacing: 0.5px;
   margin: 0;
@@ -30,7 +21,6 @@ $soulmateWidth: $inputWidth - 21px;
   background-color: #fafafa;
   border: 1px solid #bbb;
   display: none;
-  font: 12px/14px $helvetica;
   font-weight: normal;
   list-style: none;
   margin: 0 0 0 10px;
@@ -83,7 +73,6 @@ $soulmateWidth: $inputWidth - 21px;
   .soulmate-type {
     background-color: white;
     color: #333;
-    font-family: $helvetica;
     font-size: 11px;
     letter-spacing: 0.5px;
     margin-right: $suggestionWidth;

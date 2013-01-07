@@ -25,7 +25,12 @@ $ ->
 
   $('.datepicker').datepicker(format: 'yyyy.mm.dd')
 
-  $filter_album_images = $("#filter_album_images")
-  $filter_album_images.on 'hidden', -> $(this).hide()
-  $filter_album_images.on 'show', -> $(this).show()
+  $('#clear-images-filter').on 'click', (e) ->
+    $('#album_source_ids').val([]).trigger('liszt:updated')
+    e.preventDefault()
 
+  $('#filter-images').on('show hide', ->
+    $(this).prev().find('.accordian-toggle i')
+           .toggleClass('icon-chevron-down')
+           .toggleClass('icon-chevron-up')
+  ).on('shown', -> $(this).toggleClass('collapse'))

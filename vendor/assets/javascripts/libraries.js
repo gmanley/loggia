@@ -15,3 +15,4 @@
 //= require bootstrap-datepicker
 //= require jquery.soulmate
 //= require bootbox
+//= require chosen.jquery

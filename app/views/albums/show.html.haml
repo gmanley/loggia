@@ -2,10 +2,10 @@
   %h1= @album.display_name
   = favorite_button_for(@album) if can?(:manage, Favorite)
   = render('header_actions', album: @album) if can?(:manage, @album)
-  - filter_sidebar_toggle if @album.sources.present?
-= render('view_options', album: @album)
 
 = render('images/form') if can?(:create, Image)
+
+= render('view_options', album: @album)
 
 #thumbnails-wrapper.row-fluid
   %ol#albums.thumbnails

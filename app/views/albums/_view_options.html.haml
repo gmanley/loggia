@@ -1,6 +1,15 @@
-#filter_album_images.span2.well.pull-right.collapse.hide
-  = simple_form_for album, method: :get do |f|
-    = f.association :sources, collection: album.sources,
-      selected: source_selected_proc,
-      label: false
-    = f.button :submit, value: 'Filter', class: 'btn-primary'
+- if @album.sources.present?
+  .accordian.span12
+    .accordian-group
+      .accordian-heading
+        %a.accordian-toggle{href: '#filter-images', data: { toggle: 'collapse' }}
+          Filter
+          %i.icon-chevron-down.icon-large
+      .collapse.accordion-body#filter-images
+        = simple_form_for album, method: :get, html: { class: 'accordion-inner' } do |f|
+          = f.association :sources, collection: album.sources,
+            selected: source_selected_proc,
+            label: 'By Source',
+            input_html: { class: 'chosen span6', data: { placeholder: 'Select sources to filter by...' } }
+          = f.button :submit, value: 'Filter', class: 'btn-primary'
+          %button.btn#clear-images-filter Clear
