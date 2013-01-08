@@ -153,9 +153,8 @@ class SuggestionCollection
   selectFocused: ->
     if @focusedIndex >= 0
       suggestion = @suggestions[@focusedIndex]
-      window.suggestion = suggestion
       callback =
-        if suggestion.constructor.name is 'CreateSuggestion'
+        if ~suggestion.id.indexOf('soulmate-create')
           @selectCreateCallback
         else
           @selectSuggestionCallback
