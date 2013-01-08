@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :comments,  as: :commentable, order: :created_at
   has_many :favorites, as: :favoritable
+
+  has_many :uploads, class_name: 'Image',
+                     inverse_of: :uploader,
+                     foreign_key: 'uploader_id'
 end

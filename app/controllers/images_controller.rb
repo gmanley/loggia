@@ -4,6 +4,7 @@ class ImagesController < ApplicationController
   def create
     @album = Album.find_by_slug!(params[:album_id])
     @image = @album.images.new(params[:image])
+    @image.uploader = current_user
     authorize!(:create, @image)
 
     @image.save

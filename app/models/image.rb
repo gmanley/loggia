@@ -1,9 +1,10 @@
 class Image < ActiveRecord::Base
-  attr_accessible :image, :source, :photographer
+  attr_accessible :image, :source, :photographer, :uploader
 
   belongs_to :album, counter_cache: true
   belongs_to :source
   belongs_to :photographer
+  belongs_to :uploader, class_name: 'User', inverse_of: :uploads
 
   mount_uploader :image, ImageUploader
 

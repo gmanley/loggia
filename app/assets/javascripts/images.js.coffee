@@ -5,6 +5,7 @@ initConfirmDelete = ->
     confirmationMessage = 'This will delete the selected images. Are you sure you want to continue?'
     bootbox.confirm confirmationMessage, (confirmed) ->
       if confirmed then deleteSelected() else cleanupDelete()
+
     $('#delete_instructions').remove()
 
 initSelection = ->
