@@ -37,7 +37,7 @@ cleanupDelete = ->
 deleteSelected = ->
   $('.selected').each((i, item) ->
     $item = $(item)
-    destroyUrl = $item.data('destroy_url') ? $item.attr('href')
+    destroyUrl = "#{window.location.pathname}/images/#{$item.data('image_id')}"
     $.post(destroyUrl, _method: 'delete')
     $item.parent().fadeOut(500).remove()
   )
@@ -63,7 +63,7 @@ $ ->
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
     downloadTemplateId: false
     done: (e, data) ->
-      image = JST['templates/image'](image: data.result.image)
+      image = JST['templates/image'](image: data.result.image, id: data.result.id)
       $imagesContainer.append(image)
       data.context.find('.progress').replaceWith("<span class='label label-success'>Success</span>")
     fail: (e, data) ->
