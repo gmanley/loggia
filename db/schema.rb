@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108151518) do
+ActiveRecord::Schema.define(:version => 20130109222826) do
 
   create_table "album_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -42,12 +42,11 @@ ActiveRecord::Schema.define(:version => 20130108151518) do
 
   create_table "archives", :force => true do |t|
     t.string   "file"
-    t.boolean  "processing",      :default => false
-    t.boolean  "outdated",        :default => true
     t.integer  "archivable_id"
     t.string   "archivable_type"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.boolean  "processing",      :default => false
   end
 
   create_table "comments", :force => true do |t|

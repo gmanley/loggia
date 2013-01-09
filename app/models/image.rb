@@ -24,7 +24,7 @@ class Image < ActiveRecord::Base
   end
 
   def source=(source)
-    if source.class.modelname == 'Source'
+    if source.class.name == 'Source'
       super
     else
       self.source_id = Source.find_or_create_by_name(source).id
@@ -32,7 +32,7 @@ class Image < ActiveRecord::Base
   end
 
   def photographer=(photographer)
-    if photographer.class.modelname == 'Photographer'
+    if photographer.class.name == 'Photographer'
       super
     else
       self.photographer_id = Photographer.find_or_create_by_name(photographer).id

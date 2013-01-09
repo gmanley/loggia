@@ -46,6 +46,7 @@ gem 'jquery-fileupload-rails'
 
 gem 'zipruby'
 gem 'sidekiq'
+gem 'redis-objects', require: 'redis/list'
 
 gem 'pry-rails'
 

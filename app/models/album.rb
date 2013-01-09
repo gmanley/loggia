@@ -64,8 +64,8 @@ class Album < ActiveRecord::Base
     update_attributes(thumbnail_url: thumbnail_url)
   end
 
-  def async_create_archive(user)
-    AlbumArchiver.perform_async(slug, user)
+  def async_create_archive(user_id)
+    AlbumArchiver.perform_async(slug, user_id)
   end
 
   def display_name

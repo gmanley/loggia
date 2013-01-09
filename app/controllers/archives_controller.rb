@@ -1,14 +1,10 @@
-class CommentsController < ApplicationController
+class ArchivesController < ApplicationController
   include PolymorphicController
-  respond_to :json
+  respond_to :js
 
   def create
     authorize!(:create, Archive)
 
-    @parent_resource.async_create_archive(current_user)
-    render json: {
-      message: 'You will receive a download link via email shortly.',
-      success: true
-    }
+    @parent_resource.async_create_archive(current_user.id)
   end
 end

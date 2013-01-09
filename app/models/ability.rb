@@ -13,6 +13,8 @@ class Ability
         can :manage, Comment, user_id: user.id
         # Can favorite and unfavorite things
         can :manage, Favorite, user_id: user.id
+        # Can download archives
+        can :create, Archive
       end
     end
   end

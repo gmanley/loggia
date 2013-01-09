@@ -1,4 +1,5 @@
 class Archive < ActiveRecord::Base
+  attr_accessible :processing
 
   belongs_to :archivable, polymorphic: true
 
@@ -8,6 +9,8 @@ class Archive < ActiveRecord::Base
 
   def archive_album
     return file.url unless outdated?
+
+    update_attributes(processing: true)
 
     temp_directory = Dir.mktmpdir
     zip_path = File.join(temp_directory, archivable.to_s + '.zip')
@@ -30,7 +33,16 @@ class Archive < ActiveRecord::Base
     self.file = File.open(zip_path)
     file.url if save
   ensure
+    update_attributes(processing: false)
     FileUtils.remove_entry_secure(temp_directory) if temp_directory
+  end
+
+  def outdated?
+    archivable.updated_at > updated_at
+  end
+
+  def requesters
+    @requesters ||= Redis::List.new("archive_#{id}_requesters")
   end
 
   private
