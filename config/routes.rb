@@ -6,9 +6,8 @@ Soshigal::Application.routes.draw do
     resources :images, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy, :update]
     resources :favorites, only: [:create, :destroy]
+    resource  :archive, only: [:create]
   end
-
-  # resources :sources, :photographers, only: [:create]
 
   mount Soulmate::Server, at: '/autocomplete'
 

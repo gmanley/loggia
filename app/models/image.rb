@@ -24,11 +24,19 @@ class Image < ActiveRecord::Base
   end
 
   def source=(source)
-    self.source_id = Source.find_or_create_by_name(source).id
+    if source.class.modelname == 'Source'
+      super
+    else
+      self.source_id = Source.find_or_create_by_name(source).id
+    end
   end
 
   def photographer=(photographer)
-    self.photographer_id = Photographer.find_or_create_by_name(photographer).id
+    if photographer.class.modelname == 'Photographer'
+      super
+    else
+      self.photographer_id = Photographer.find_or_create_by_name(photographer).id
+    end
   end
 
   private

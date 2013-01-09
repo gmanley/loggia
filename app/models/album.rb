@@ -64,8 +64,8 @@ class Album < ActiveRecord::Base
     update_attributes(thumbnail_url: thumbnail_url)
   end
 
-  def async_create_archive
-    AlbumArchiver.perform_async(id)
+  def async_create_archive(user)
+    AlbumArchiver.perform_async(slug, user)
   end
 
   def display_name
@@ -79,6 +79,10 @@ class Album < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def childless?
+    children.empty?
   end
 
   private

@@ -12,4 +12,8 @@ class ArchiveUploader < CarrierWave::Uploader::Base
   def filename
     "#{model.archivable.display_name}.zip"
   end
+
+  def absolute_url
+    "#{asset_host}#{url}"
+  end
 end

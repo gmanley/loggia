@@ -1,0 +1,7 @@
+%h2
+  Your zip of
+  %strong #{@archive.archivable.display_name} is ready to be downloaded.
+%p
+  Visit the following link to start your download:
+  %strong= link_to('Download', @archive.file.absolute_url)
+

@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
   #   aws_secret_access_key: 'yyy'
   # }
   # config.fog_directory  = 'bucket_name'
-  # config.asset_host = 'http://cdn.example.com'
+  config.asset_host = 'http://localhost:3000'
   # config.fog_attributes = {'Cache-Control' => 'max-age=315576000'}
   config.storage = :file # Can be overridden in uploaders
 end
