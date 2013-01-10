@@ -4,7 +4,10 @@ class AlbumArchiver
   def perform(album_slug, user_id)
     album = Album.find_by_slug!(album_slug)
     archive = (album.archive || album.create_archive)
-    archive.requesters << user_id
+
+    unless archive.requesters.include?(user_id.to_s)
+      archive.requesters << user_id
+    end
 
     unless archive.processing?
 

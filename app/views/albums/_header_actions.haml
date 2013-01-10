@@ -3,4 +3,4 @@
   = link_to('Delete', album, method: :delete, class: 'btn btn-danger btn-mini', confirm: 'Are you sure?')
 
 #download-zip.pull-right
-  = link_to('Download Zip', album_archive_path(album), class: 'btn btn-primary', remote: true, method: :post) if can?(:create, Archive)
+  = link_to('Download Zip', album_archive_path(album), class: 'btn btn-primary', remote: true, method: :post) if can?(:create, Archive) && album.childless?
