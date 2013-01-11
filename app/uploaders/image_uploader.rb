@@ -41,7 +41,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   private
   def calculate_store_dir
     File.join(*['uploads', 'images',
-                model.album.slug, model.source.name, model.id].compact)
+                model.album.slug, model.source.try(:name), model.id].compact)
   end
 
   def calculate_md5
