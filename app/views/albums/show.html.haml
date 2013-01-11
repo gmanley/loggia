@@ -1,7 +1,7 @@
 %header.page-header
   %h1= @album.display_name
   = favorite_button_for(@album) if can?(:manage, Favorite)
-  = render('header_actions', album: @album) if can?(:manage, @album)
+  = render('header_actions', album: @album)
 
 = render('images/form') if can?(:create, Image)
 
