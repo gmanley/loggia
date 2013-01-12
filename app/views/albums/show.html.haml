@@ -13,6 +13,7 @@
   %ol#images.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
     = render partial: @images, cache: true
   = paginate @images
+  %span.muted=page_entries_info(@images)
 
 
 %section.row-fluid
