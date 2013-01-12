@@ -19,6 +19,7 @@ body.albums {
       float: left;
       h1 { float: left }
       form { display: inline-block }
+      .album-updated-at { clear: both; }
       .header-actions { clear: both } }
 
     .selection {

@@ -1,3 +1,5 @@
+= favorite_button_for(@album) if can?(:manage, Favorite)
+= album.updated_at
 - if can?(:manage, @album)
   .header-actions.btn-toolbar
     = link_to('Edit', edit_album_path(album), class: 'btn btn-primary btn-mini')
