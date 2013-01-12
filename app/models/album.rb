@@ -5,7 +5,7 @@ class Album < ActiveRecord::Base
   has_many :images
 
   has_many :comments, as: :commentable,
-                      order: :created_at
+                      order: 'created_at desc'
 
   has_many :favorites, as: :favoritable
 
