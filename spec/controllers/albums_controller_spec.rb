@@ -26,6 +26,7 @@ describe AlbumsController do
         Album.should_receive(:find_by_slug!).and_return(album)
         album.stub_chain(:children, :accessible_by).and_return(children)
         album.stub(:images).and_return(images)
+        album.stub(:comments).and_return(Comment)
         get :show, id: album.slug
       end
 
@@ -42,6 +43,7 @@ describe AlbumsController do
         Album.should_receive(:find_by_slug!).and_return(hidden_album)
         hidden_album.stub_chain(:children, :accessible_by).and_return(children)
         hidden_album.stub(:images).and_return(images)
+        hidden_album.stub(:comments).and_return(Comment)
       end
 
       context 'as an admin' do
