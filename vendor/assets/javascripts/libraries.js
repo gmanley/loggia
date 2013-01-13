@@ -16,3 +16,4 @@
 //= require jquery.soulmate
 //= require bootbox
 //= require chosen.jquery
+//= require jquery.timeago

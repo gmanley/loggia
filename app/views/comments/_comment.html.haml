@@ -2,7 +2,7 @@
   .info
     %img{src: user_avatar_url(comment.user)}
     %span= comment.user.email
-    #{time_ago_in_words(comment.created_at)} ago
+    %time.timeago{datetime: comment.created_at.iso8601}= comment.created_at
     - if can?(:destroy, comment)
       = link_to_destroy('×', [comment.commentable, comment], class: 'close')
   .body= comment.body
