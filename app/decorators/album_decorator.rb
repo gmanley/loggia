@@ -12,10 +12,12 @@ class AlbumDecorator < Draper::Base
   end
 
   def updated_at
-    h.content_tag(:p,
-      "Last updated #{h.time_ago_in_words(self[:updated_at])} ago",
-      class: 'album-updated-at muted'
-    )
+    h.content_tag :p, class: 'album-updated-at muted' do
+      h.haml_concat 'Last updated '
+      h.haml_tag 'time.timeago', datetime: self[:updated_at].iso8601 do
+        self[:updated_at]
+      end
+    end
   end
 
   def event_date
