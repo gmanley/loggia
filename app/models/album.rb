@@ -2,7 +2,7 @@ class Album < ActiveRecord::Base
   attr_accessible :title, :description, :hidden, :parent_id,
                   :archive,:thumbnail_url, :event_date
 
-  has_many :images
+  has_many :images, order: 'created_at desc'
 
   has_many :comments, as: :commentable,
                       order: 'created_at desc'
