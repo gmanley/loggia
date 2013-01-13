@@ -30,6 +30,6 @@
   %header.page-header
     %h3 Comments
   = render('comments/form') if can?(:create, Comment)
-  - comments_list_for(@album)
+  - comments_list(@comments)
 
 = render 'images/modal'
