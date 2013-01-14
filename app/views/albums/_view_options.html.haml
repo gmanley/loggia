@@ -1,5 +1,5 @@
 - if @album.sources.present?
-  .accordian.span12
+  .accordian.span12#images_source_filter
     .accordian-group
       .accordian-heading
         %a.accordian-toggle{href: '#filter-images', data: { toggle: 'collapse' }}
@@ -10,6 +10,6 @@
           = f.association :sources, collection: album.sources,
             selected: source_selected_proc,
             label: 'By Source',
-            input_html: { class: 'chosen span6', data: { placeholder: 'Select sources to filter by...' } }
+            input_html: { class: 'chosen span12', data: { placeholder: 'Select sources to filter by...' } }
           = f.button :submit, value: 'Filter', class: 'btn-primary'
           %button.btn#clear-images-filter Clear
