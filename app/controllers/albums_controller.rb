@@ -14,7 +14,7 @@ class AlbumsController < ApplicationController
     @album = Album.find_by_slug!(params[:id])
     @children = @album.children.accessible_by(current_ability)
     @images = get_images.page(params[:page])
-    @comments = @album.comments.includes(:commentable, :user)
+    @comments = @album.comments.includes(:user)
     authorize!(:show, @album)
 
     respond_with(@album)

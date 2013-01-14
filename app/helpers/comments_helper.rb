@@ -1,8 +1,8 @@
 module CommentsHelper
 
-  def comments_list(comments)
+  def comments_list(comments, commentable)
     haml_tag 'ol.unstyled#comments-list' do
-      haml_concat(render(partial: comments, cache: true))
+      haml_concat(render(partial: comments, locals: { commentable: commentable }, cache: true))
 
       if comments.empty?
         haml_tag 'li' do
