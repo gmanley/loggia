@@ -24,18 +24,18 @@ class Image < ActiveRecord::Base
   end
 
   def source=(source)
-    if source.class.name == 'Source'
-      super
-    else
+    if source.is_a?(String) && source.present?
       self.source_id = Source.find_or_create_by_name(source).id
+    else
+      super
     end
   end
 
   def photographer=(photographer)
-    if photographer.class.name == 'Photographer'
-      super
-    else
+    if photographer.is_a?(String) && photographer.present?
       self.photographer_id = Photographer.find_or_create_by_name(photographer).id
+    else
+      super
     end
   end
 
