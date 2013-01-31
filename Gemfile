@@ -55,10 +55,17 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'rb-fsevent', require: false # OSX
+  # gem 'rb-inotify', require: false # Linux
+  # gem 'rb-fchange', require: false # Windows
+  gem 'ruby_gntp'
   gem 'launchy'
   gem 'quiet_assets'
   gem 'newrelic_rpm'
   gem 'bullet'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :test do

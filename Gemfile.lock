@@ -45,6 +45,10 @@ GEM
     addressable (2.3.2)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    better_errors (0.3.2)
+      coderay (>= 1.0.0)
+      erubis (>= 2.7.0)
+    binding_of_caller (0.6.8)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
     bourne (1.1.2)
@@ -163,6 +167,9 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.2.1)
+      rack-contrib
+      rails
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.19)
@@ -215,6 +222,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.3)
+    rb-fsevent (0.9.3)
     rdoc (3.12)
       json (~> 1.4)
     redis (3.0.2)
@@ -241,6 +249,7 @@ GEM
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
     ruby-hmac (0.4.0)
+    ruby_gntp (0.3.4)
     rubyzip (0.9.9)
     sass (3.2.5)
     sass-rails (3.2.6)
@@ -327,6 +336,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   bootstrap-sass (~> 2.2.2.0)
   bullet
   cancan!
@@ -353,6 +364,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  meta_request
   mini_magick!
   multi_fetch_fragments
   newrelic_rpm
@@ -362,9 +374,11 @@ DEPENDENCIES
   rack-contrib
   rails (~> 3.2)
   rake
+  rb-fsevent
   redis-objects
   responders
   rspec-rails
+  ruby_gntp
   sass-rails (~> 3.2)
   shoulda-matchers
   sidekiq
