@@ -66,8 +66,6 @@
 .modal-single .modal-image:hover:after {
   display: none;
 }
-// NOTE: Changed to image-url so it loads from the correct asset host.
-// Also changed file ext to scss to allow for this.
 .modal-loading .modal-image {
   background: image-url('loading.gif') center no-repeat;
 }

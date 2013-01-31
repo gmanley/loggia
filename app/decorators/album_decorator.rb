@@ -1,7 +1,5 @@
-class AlbumDecorator < Draper::Base
-  decorates :album
-  decorates_association :children
-  decorates_association :parent
+class AlbumDecorator < Draper::Decorator
+  delegate_all
 
   def display_name
     "#{event_date} #{title}".strip.html_safe
