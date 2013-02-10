@@ -7,6 +7,14 @@ GIT
       subexec (~> 0.2.1)
 
 GIT
+  remote: git://github.com/gmanley/shoulda-matchers.git
+  revision: 214d81c34e35c837494b79c7ca4155edbb6e686d
+  specs:
+    shoulda-matchers (1.4.2)
+      activesupport (>= 3.0.0)
+      bourne (~> 1.2.0)
+
+GIT
   remote: git://github.com/ryanb/cancan.git
   revision: 3f4ee1202566e433967a972b0455de844eb4e5ef
   specs:
@@ -51,8 +59,8 @@ GEM
     binding_of_caller (0.6.8)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
-    bourne (1.1.2)
-      mocha (= 0.10.5)
+    bourne (1.2.1)
+      mocha (= 0.12.7)
     builder (3.0.4)
     bullet (4.3.0)
       uniform_notifier
@@ -173,7 +181,7 @@ GEM
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.19)
-    mocha (0.10.5)
+    mocha (0.12.7)
       metaclass (~> 0.0.1)
     multi_fetch_fragments (0.0.13)
     multi_json (1.5.0)
@@ -261,9 +269,6 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
-    shoulda-matchers (1.4.2)
-      activesupport (>= 3.0.0)
-      bourne (~> 1.1.2)
     sidekiq (2.6.5)
       celluloid (~> 0.12.0)
       connection_pool (~> 1.0)
@@ -380,7 +385,7 @@ DEPENDENCIES
   rspec-rails
   ruby_gntp
   sass-rails (~> 3.2)
-  shoulda-matchers
+  shoulda-matchers!
   sidekiq
   simple_form
   simplecov

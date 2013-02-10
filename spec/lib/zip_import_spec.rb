@@ -5,6 +5,7 @@ require 'import/zip_import'
 describe Zip::Import, no_database_cleaner: true do
 
   before(:all) { Zip::Import.new(path_to_fixture('import.zip')) }
+  after(:all)  { DatabaseCleaner.clean_with(:truncation) }
 
   describe 'imported albums' do
     let(:albums) { Album.scoped }
