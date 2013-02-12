@@ -10,6 +10,8 @@ class Archive < ActiveRecord::Base
   def archive_album
     return file.url unless outdated?
 
+    file.remove!
+
     update_attributes(processing: true)
 
     temp_directory = Dir.mktmpdir
@@ -17,7 +19,11 @@ class Archive < ActiveRecord::Base
 
     Zip::Archive.open(zip_path, Zip::CREATE) do |zip|
       archivable.sources.each do |source|
-        zip.add_dir(source.name)
+        begin
+          zip.add_dir(source.name)
+        rescue Zip::Error
+          Rails.logger.warn("Error adding #{source.name} to archive #{id}.")
+        end
       end
 
       images = archivable.images.includes(:source)
@@ -51,5 +57,7 @@ class Archive < ActiveRecord::Base
     zip_path = File.join(*[parent_path, image_file.filename].compact)
 
     zip.add_io(zip_path, image_file.file)
+  rescue Zip::Error
+    Rails.logger.warn("Error adding #{image_file.filename} to archive #{id}.")
   end
 end
