@@ -1,6 +1,23 @@
 body.albums {
 
-  #albums .thumbnail {
+  #recent_albums {
+    padding: 0;
+
+    h3 {
+      text-align: center;
+      margin-bottom: 15px }
+
+    .thumbnails {
+      text-align: center;
+
+      a { background: white }
+
+      & > li {
+        display: inline-block;
+        float: none;
+        vertical-align: top } } }
+
+  .thumbnail {
     padding: 15px 15px 0px 15px;
     width: 200px; height: 250px;
 
