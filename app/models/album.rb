@@ -2,12 +2,15 @@ class Album < ActiveRecord::Base
   attr_accessible :title, :description, :hidden, :parent_id,
                   :archive,:thumbnail_url, :event_date
 
-  has_many :images, order: 'created_at desc'
+  has_many :images, order: 'created_at desc',
+                    dependent: :destroy
 
   has_many :comments, as: :commentable,
-                      order: 'created_at desc'
+                      order: 'created_at desc',
+                      dependent: :destroy
 
-  has_many :favorites, as: :favoritable
+  has_many :favorites, as: :favoritable,
+                       dependent: :destroy
 
   has_many :sources, through: :images, uniq: true,
                      order: 'LOWER(name)',
@@ -17,7 +20,8 @@ class Album < ActiveRecord::Base
                            order: 'LOWER(name)',
                            select: 'photographers.*, LOWER(name)'
 
-  has_one :archive, as: :archivable
+  has_one :archive, as: :archivable,
+                    dependent: :destroy
 
   acts_as_tree order: :title,
                dependent: :destroy,
