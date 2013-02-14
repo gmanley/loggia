@@ -50,7 +50,8 @@ class Album < ActiveRecord::Base
   end
 
   def import_folder(path)
-    allowed_exts = ImageUploader::EXTENSION_WHITE_LIST
+    allowed_exts = ImageUploader::EXTENSION_WHITE_LIST.dup
+    allowed_exts.push(*allowed_exts.map(&:upcase))
     glob_pattern = "#{path}/*.{#{allowed_exts.join(',')}}"
     Dir[glob_pattern].each do |file|
       images.create(image: File.open(file))
