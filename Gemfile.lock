@@ -21,7 +21,7 @@ GIT
     cancan (1.6.9)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.12)
       actionpack (= 3.2.12)
@@ -53,10 +53,11 @@ GEM
     addressable (2.3.2)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    better_errors (0.5.0)
+    better_errors (0.6.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
-    binding_of_caller (0.6.8)
+    binding_of_caller (0.6.9)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
     bourne (1.2.1)
@@ -83,9 +84,6 @@ GEM
       activerecord (>= 3.0.0)
       with_advisory_lock
     coderay (1.0.8)
-    coffee-filter (0.1.3)
-      coffee-script (>= 2.2.0)
-      haml (< 4.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -93,12 +91,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    coffeebeans (1.0.1)
-      actionpack (>= 3.0.0)
-      coffee-script
     connection_pool (1.0.0)
     daemons (1.1.9)
     database_cleaner (0.9.1)
+    debug_inspector (0.0.2)
     decorates_before_rendering (0.0.2)
       activesupport (>= 3.2.6)
     devise (2.2.3)
@@ -116,7 +112,7 @@ GEM
     excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    fabrication (2.6.0)
+    fabrication (2.6.1)
     facter (1.6.17)
     ffaker (1.15.0)
     ffi (1.3.1)
@@ -144,11 +140,12 @@ GEM
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
-    haml (3.1.7)
-    haml-rails (0.3.5)
+    haml (4.0.0)
+      tilt
+    haml-rails (0.4)
       actionpack (>= 3.1, < 4.1)
       activesupport (>= 3.1, < 4.1)
-      haml (~> 3.1)
+      haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     haml_coffee_assets (1.11.1)
       coffee-script (>= 1.0.0)
@@ -184,18 +181,18 @@ GEM
     mocha (0.12.7)
       metaclass (~> 0.0.1)
     multi_fetch_fragments (0.0.13)
-    multi_json (1.5.1)
+    multi_json (1.6.1)
     net-scp (1.0.6)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.5)
-    newrelic_rpm (3.5.6.46)
+    newrelic_rpm (3.5.6.55)
     nokogiri (1.5.6)
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
-    pry (0.9.11.4)
+    pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -301,7 +298,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    squeel (1.0.15)
+    squeel (1.0.16)
       activerecord (~> 3.0)
       activesupport (~> 3.0)
       polyamorous (~> 0.5.0)
@@ -349,9 +346,7 @@ DEPENDENCIES
   capybara
   carrierwave
   closure_tree
-  coffee-filter
   coffee-rails (~> 3.2)
-  coffeebeans
   database_cleaner
   decorates_before_rendering
   devise
@@ -378,7 +373,6 @@ DEPENDENCIES
   quiet_assets
   rack-contrib
   rails (~> 3.2)
-  rake
   rb-fsevent
   redis-objects
   responders

@@ -1,23 +1,18 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2'
-
-gem 'rake'
-
-gem 'haml-rails'
-gem 'coffee-filter'
-gem 'coffeebeans'
 
 group :assets do
   gem 'sass-rails',     '~> 3.2'
   gem 'bootstrap-sass', '~> 2.2.2.0'
-  gem 'coffee-rails',   '~> 3.2'
   gem 'uglifier'
   gem 'haml_coffee_assets'
   gem 'execjs'
   gem 'turbo-sprockets-rails3'
 end
 
+gem 'coffee-rails',   '~> 3.2'
+gem 'haml-rails'
 gem 'jquery-rails'
 
 gem 'pg'

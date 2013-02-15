@@ -38,7 +38,7 @@ cleanupDelete = ->
 deleteSelected = ->
   $('.selected').each((i, item) ->
     $item = $(item)
-    destroyUrl = "#{window.location.pathname}/images/#{$item.data('image_id')}"
+    destroyUrl = "#{window.location.pathname}/images/#{$item.data('image-id')}"
     $.post(destroyUrl, _method: 'delete')
     $item.parent().fadeOut(500).remove()
   )
