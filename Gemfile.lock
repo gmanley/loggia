@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/gmanley/mini_magick.git
-  revision: 3560260f8efe582d1b3e66cd645bea70aac87ea1
-  branch: graphicsmagick-fix
-  specs:
-    mini_magick (3.4)
-      subexec (~> 0.2.1)
-
-GIT
   remote: git://github.com/gmanley/shoulda-matchers.git
   revision: 214d81c34e35c837494b79c7ca4155edbb6e686d
   specs:
@@ -178,6 +170,8 @@ GEM
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.21)
+    mini_magick (3.5.0)
+      subexec (~> 0.2.1)
     mocha (0.12.7)
       metaclass (~> 0.0.1)
     multi_fetch_fragments (0.0.13)
@@ -365,7 +359,7 @@ DEPENDENCIES
   kaminari
   launchy
   meta_request
-  mini_magick!
+  mini_magick
   multi_fetch_fragments
   newrelic_rpm
   pg
