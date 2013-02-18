@@ -24,3 +24,5 @@
 //= require bootbox
 //= require chosen.jquery
 //= require jquery.timeago
+//= require jquery.masonry
+//= require jquery.imagesloaded

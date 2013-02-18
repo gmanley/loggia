@@ -1,3 +1,35 @@
+window.setupMasonry = ->
+  $imagesContainer = $('#images')
+  $window = $(window)
+
+  $imagesContainer.masonry
+    itemSelector: '.image'
+    isAnimated: true
+    isResizable: true
+
+  $imagesContainer.find("img").load ->
+    $imagesContainer.masonry "reload"
+
+  $imagesContainer.imagesLoaded ->
+    $imagesContainer.masonry "reload"
+    $window.scroll()
+
+  imageSize = 300
+
+  $window.resize ->
+    $window.width()
+    columns = Math.floor($window.width() / imageSize)
+    containerWidth = imageSize * columns - 15 + 40
+    containerWidth = 940 if columns <= 3
+
+    if $window.width() <= containerWidth + 25
+      containerWidth = imageSize * (columns - 1) - 15 + 40
+
+    $imagesContainer.width(containerWidth)
+    $imagesContainer.masonry "reload"
+
+  $window.resize()
+
 
 window.tmpl = (id) ->
   console.log(id)
@@ -51,7 +83,10 @@ deleteSelected = ->
   cleanupDelete()
 
 $ ->
+  setupMasonry()
+
   $imagesContainer = $('#images')
+
 
   $('#toggle_selection').click (e) ->
     e.preventDefault()

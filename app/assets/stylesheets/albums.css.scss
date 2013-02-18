@@ -31,6 +31,24 @@ body.albums {
       font-weight: bold } }
 
   &.show {
+    #images {
+      margin: 0 auto;
+      min-width: 920px }
+
+    .image {
+      margin: 0 0 20px 15px;
+      width: 285px;
+      display: inline-block;
+      border: 1px solid #e8e8e8;
+      @include box-shadow(1px 6px 12px -6px #c6c6c6);
+      @include border-radius(5px);
+
+      &:hover { @include box-shadow(1px 6px 12px -6px #888) }
+
+      .item-link {
+        display: block;
+        overflow: hidden } }
+
     #images_source_filter {
       margin: 18px 0 27px;
       .accordian-heading { padding: 5px }

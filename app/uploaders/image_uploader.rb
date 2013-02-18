@@ -11,7 +11,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   version :thumb do
-    resize_to_fill(200, 200, 'North')
+    resize_to_fit(285, 500)
+  end
+
+  version :square, from_version: :thumb do
+    resize_to_fill(285, 285, 'North')
+  end
+
+  version :tiny, from_version: :square do
+    resize_to_fill(75, 75, 'North')
   end
 
   def store_dir

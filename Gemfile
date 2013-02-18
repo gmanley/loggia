@@ -35,7 +35,7 @@ gem 'rack-contrib'
 gem 'soulmate', require: 'soulmate/server'
 
 gem 'carrierwave'
-gem 'mini_magick'#, github: 'gmanley/mini_magick', branch: 'graphicsmagick-fix'
+gem 'mini_magick'
 gem 'fog'
 gem 'jquery-fileupload-rails'
 

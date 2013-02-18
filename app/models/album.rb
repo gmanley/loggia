@@ -67,7 +67,7 @@ class Album < ActiveRecord::Base
                         .first.thumbnail_url
       end
     else
-      thumbnail_url = images.offset(rand(images.count)).first.image_url(:thumb)
+      thumbnail_url = images.offset(rand(images.count)).first.image_url(:square)
     end
 
     update_attributes(thumbnail_url: thumbnail_url)

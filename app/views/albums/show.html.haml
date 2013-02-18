@@ -10,7 +10,7 @@
   %ol#albums.thumbnails
     = render partial: @children, cache: true
 
-  %ol#images.thumbnails{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
+  #images{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
     = render partial: @images, cache: true
   = paginate @images
   - unless @images.empty?
