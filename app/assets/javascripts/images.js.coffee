@@ -1,17 +1,13 @@
-window.setupMasonry = ->
+setupMasonry = ->
   $imagesContainer = $('#images')
   $window = $(window)
 
   $imagesContainer.masonry
     itemSelector: '.image'
-    isAnimated: true
     isResizable: true
 
-  $imagesContainer.find("img").load ->
-    $imagesContainer.masonry "reload"
-
   $imagesContainer.imagesLoaded ->
-    $imagesContainer.masonry "reload"
+    $imagesContainer.masonry('reload')
     $window.scroll()
 
   imageSize = 300
@@ -26,13 +22,12 @@ window.setupMasonry = ->
       containerWidth = imageSize * (columns - 1) - 15 + 40
 
     $imagesContainer.width(containerWidth)
-    $imagesContainer.masonry "reload"
+    $imagesContainer.masonry('reload')
 
   $window.resize()
 
 
 window.tmpl = (id) ->
-  console.log(id)
   if id is 'template-upload'
     return (data) -> JST['templates/file'](data)
 
@@ -87,7 +82,6 @@ $ ->
 
   $imagesContainer = $('#images')
 
-
   $('#toggle_selection').click (e) ->
     e.preventDefault()
     if $(this).hasClass('active')
@@ -106,12 +100,13 @@ $ ->
     downloadTemplateId: false
     uploadTemplate: (data) ->
       for file in data.files
-        window.file = file
         JST['templates/file'](file: file, formatFileSize: data.formatFileSize)
     done: (e, data) ->
       image = JST['templates/image'](image: data.result.image, id: data.result.id)
-      $imagesContainer.append(image)
+      $imagesContainer.prepend(image)
       data.context.find('.progress').replaceWith("<span class='label label-success'>Success</span>")
+      $imagesContainer.imagesLoaded ->
+        $imagesContainer.masonry('reload')
     fail: (e, data) ->
       response = JSON.parse(data.xhr().response)
       error = "<td class='error' colspan='2'><span class='label label-important'>Error</span> #{response.errors}</td>"
