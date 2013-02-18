@@ -1,3 +1,9 @@
+
+window.tmpl = (id) ->
+  console.log(id)
+  if id is 'template-upload'
+    return (data) -> JST['templates/file'](data)
+
 initConfirmDelete = ->
   $('#finish_delete').removeAttr('disabled')
   $('#finish_delete').on 'click', (e) ->
@@ -63,6 +69,10 @@ $ ->
     maxFileSize: 20000000
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
     downloadTemplateId: false
+    uploadTemplate: (data) ->
+      for file in data.files
+        window.file = file
+        JST['templates/file'](file: file, formatFileSize: data.formatFileSize)
     done: (e, data) ->
       image = JST['templates/image'](image: data.result.image, id: data.result.id)
       $imagesContainer.append(image)

@@ -1,6 +1,19 @@
-%li{id: @file.id}
-  .file_info
-    = "#{@file.name} (#{plupload.formatSize(@file.size)})"
-    %b
-  .progress.striped
-    .bar{style: 'width: 0%;'}
+%tr.template-upload.fade
+  %td.preview
+    %span.fade
+  %td.name
+    %span= @file.name
+  %td.size
+    %span= @formatFileSize(@file.size)
+  - if @file.error
+    %td.error{colspan: '2'}
+      %span.label.label-important Error
+      = @file.error
+  - else
+    %td
+      .progress.progress-success.progress-striped.active{roll: 'progressbar', aria: { valuemax: '100', valuemin: '0', valuenow: '0' }}
+        .bar{style: 'width:0%;'}
+    %td.start
+      %button.btn.btn-primary
+        %i.icon-upload.icon-white
+        %span Start

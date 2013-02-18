@@ -9,7 +9,14 @@
 //= require jquery.jeditable
 //= require jquery.event.drag
 //= require jquery.event.drop
-//= require jquery-fileupload
+//= require jquery-fileupload/vendor/jquery.ui.widget
+//= require jquery-fileupload/vendor/load-image
+//= require jquery-fileupload/vendor/canvas-to-blob
+//= require jquery-fileupload/jquery.iframe-transport
+//= require jquery-fileupload/jquery.fileupload
+//= require jquery-fileupload/jquery.fileupload-fp
+//= require jquery-fileupload/jquery.fileupload-ui
+//= require jquery-fileupload/locale
 //= require bootstrap-image-gallery
 //= require hamlcoffee
 //= require bootstrap-datepicker
