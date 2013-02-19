@@ -30,6 +30,16 @@ class ImageUploader < CarrierWave::Uploader::Base
     image_path('placeholder.png')
   end
 
+  def filename
+    @new_filename ||= begin
+      if conflicting_filename?(super)
+        "#{Time.now.to_f}_#{super}"
+      else
+        super
+      end
+    end
+  end
+
   def extension_white_list
     EXTENSION_WHITE_LIST
   end
@@ -47,9 +57,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   private
+  def conflicting_filename?(filename)
+    model.album.images.where(
+      image: filename,
+      source_id: model.source.try(:id)
+    ).any?
+  end
+
   def calculate_store_dir
     File.join(*['uploads', 'images',
-                model.album.slug, model.source.try(:name), model.id].compact)
+                model.album.slug, model.source.try(:name)].compact)
   end
 
   def calculate_md5
