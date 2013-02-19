@@ -32,7 +32,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def filename
     @new_filename ||= begin
-      if conflicting_filename?(super)
+      if !version_name && conflicting_filename?(super)
         "#{Time.now.to_f}_#{super}"
       else
         super
