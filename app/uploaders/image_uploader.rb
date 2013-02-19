@@ -53,6 +53,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def calculate_md5
-    Digest::MD5.hexdigest(model.image.read)
+    Digest::MD5.hexdigest(file.read)
   end
 end
