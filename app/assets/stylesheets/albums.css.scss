@@ -69,8 +69,9 @@ body.albums {
       background-color: #BEC }
 
     .selected {
+      opacity: 0.8;
       background-color: #EBC;
-      border-color: #B89 }
+      border: 3px solid #B89 }
 
     .selecting {
       background-color: #CEB;

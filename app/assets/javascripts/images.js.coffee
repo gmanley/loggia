@@ -55,7 +55,7 @@ initSelection = ->
   ).drag 'end', (ev, dd) ->
     $(dd.proxy).remove()
 
-  $('.thumbnail').drop('start', ->
+  $('.image').drop('start', ->
     $(this).addClass 'selecting'
   ).drop((ev, dd) ->
     $(this).toggleClass 'selected'
