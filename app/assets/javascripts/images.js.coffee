@@ -67,10 +67,11 @@ initSelection = ->
 cleanupDelete = ->
   $('#finish_delete').attr('disabled', true)
   $('.selected').removeClass('selected')
+  $('#images').masonry('reload')
 
 deleteSelected = ->
   $('.selected').each((i, item) ->
-    $item = $(item)
+    $item = $(item).find('.item-link')
     destroyUrl = "#{window.location.pathname}/images/#{$item.data('image-id')}"
     $.post(destroyUrl, _method: 'delete')
     $item.parent().fadeOut(500).remove()
