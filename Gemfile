@@ -4,7 +4,7 @@ gem 'rails', '~> 3.2'
 
 group :assets do
   gem 'sass-rails',     '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.2.2.0'
+  gem 'bootstrap-sass', '~> 2.3.0.1'
   gem 'uglifier'
   gem 'haml_coffee_assets'
   gem 'execjs'
@@ -14,6 +14,8 @@ end
 gem 'coffee-rails',   '~> 3.2'
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'turbolinks'
+gem 'jquery-turbolinks'
 
 gem 'pg'
 gem 'stringex'
