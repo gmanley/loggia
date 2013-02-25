@@ -68,7 +68,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'shoulda-matchers', github: 'gmanley/shoulda-matchers'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
 

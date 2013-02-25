@@ -6,6 +6,7 @@ bundler_args: --without development
 language: ruby
 rvm:
   - 1.9.3
+  - 2.0.0
 notifications:
   recipients:
     - gray.manley@gmail.com
