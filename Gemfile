@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2'
 
@@ -29,8 +29,6 @@ gem 'cancan', github: 'ryanb/cancan'
 
 gem 'responders'
 gem 'simple_form'
-gem 'draper'
-gem 'decorates_before_rendering'
 gem 'multi_fetch_fragments'
 
 gem 'rack-contrib'

@@ -48,6 +48,12 @@ module ApplicationHelper
     link_to(body, resource, options)
   end
 
+  def time_ago(datetime)
+    capture_haml do
+      haml_tag 'time.timeago', datetime: datetime.iso8601 { datetime }
+    end
+  end
+
   private
   def flash_message(type, message)
     haml_tag :div, class: "alert alert-#{bootstrap_flash_class(type)} fade in" do

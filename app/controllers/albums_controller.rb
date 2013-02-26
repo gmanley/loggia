@@ -1,8 +1,6 @@
 class AlbumsController < ApplicationController
   respond_to :html, :json, :js
 
-  decorates :album
-
   def index
     @albums = Album.roots.order(:title).accessible_by(current_ability)
     @recent_albums = Album.recently_updated.limit(5).accessible_by(current_ability)

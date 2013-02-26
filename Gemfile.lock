@@ -5,7 +5,7 @@ GIT
     cancan (1.6.9)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (3.2.12)
       actionpack (= 3.2.12)
@@ -79,18 +79,12 @@ GEM
     daemons (1.1.9)
     database_cleaner (0.9.1)
     debug_inspector (0.0.2)
-    decorates_before_rendering (0.0.2)
-      activesupport (>= 3.2.6)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
     diff-lcs (1.2.1)
-    draper (1.1.0)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0.3)
     erubis (2.7.0)
     eventmachine (1.0.0)
     excon (0.18.5)
@@ -223,7 +217,6 @@ GEM
       redis (~> 3.0.0)
     redis-objects (0.6.1)
       redis (>= 3.0.2)
-    request_store (1.0.5)
     responders (0.9.3)
       railties (~> 3.1)
     rspec (2.13.0)
@@ -341,9 +334,7 @@ DEPENDENCIES
   closure_tree
   coffee-rails (~> 3.2)
   database_cleaner
-  decorates_before_rendering
   devise
-  draper
   execjs
   fabrication
   ffaker
