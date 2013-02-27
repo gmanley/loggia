@@ -56,6 +56,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     )
   end
 
+  def url(options = {})
+    URI.encode(URI.decode(super))
+  end
+
   private
   def conflicting_filename?(filename)
     model.album.images.where(
