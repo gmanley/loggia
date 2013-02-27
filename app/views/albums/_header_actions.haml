@@ -1,6 +1,7 @@
 = favorite_button_for(album) if can?(:manage, Favorite)
 
-= album.updated_at if album.childless?
+- if album.childless?
+  %p.album-updated-at.muted Last updated #{time_ago(album.updated_at)}
 
 - if can?(:manage, album)
   .header-actions.btn-toolbar

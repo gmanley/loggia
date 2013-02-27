@@ -1,9 +1,8 @@
 #recent_albums.well
   %h3 Recently Updated
-  %ol.thumbnails
-    = render partial: @recent_albums, cache: true
+  = render partial: @recent_albums, cache: true
 
-%ol#albums.thumbnails
+#albums.grid-container
   = render partial: @albums, cache: true
 
 - if can?(:create, Album)

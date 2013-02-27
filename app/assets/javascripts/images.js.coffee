@@ -1,32 +1,3 @@
-setupMasonry = ->
-  $imagesContainer = $('#images')
-  $window = $(window)
-
-  $imagesContainer.masonry
-    itemSelector: '.image'
-    isResizable: true
-
-  $imagesContainer.imagesLoaded ->
-    $imagesContainer.masonry('reload')
-    $window.scroll()
-
-  imageSize = 300
-
-  $window.resize ->
-    $window.width()
-    columns = Math.floor($window.width() / imageSize)
-    containerWidth = imageSize * columns - 15 + 40
-    containerWidth = 940 if columns <= 3
-
-    if $window.width() <= containerWidth + 25
-      containerWidth = imageSize * (columns - 1) - 15 + 40
-
-    $imagesContainer.width(containerWidth)
-    $imagesContainer.masonry('reload')
-
-  $window.resize()
-
-
 window.tmpl = (id) ->
   if id is 'template-upload'
     return (data) -> JST['templates/file'](data)
@@ -79,8 +50,6 @@ deleteSelected = ->
   cleanupDelete()
 
 $ ->
-  setupMasonry()
-
   $imagesContainer = $('#images')
 
   $('#toggle_selection').click (e) ->

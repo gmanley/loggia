@@ -1,4 +1,13 @@
-%li
-  = link_to(album, class: 'thumbnail') do
-    = image_tag(album.thumbnail_url)
-    %span.thumbnail-title= album.display_name.truncate(50)
+.album.grid-item
+  .cover= link_to(image_tag(album.thumbnail_url), album)
+  .info
+    = link_to(album.display_name, album, class: 'item-link')
+    - unless album.images.empty?
+      .stats.muted
+        %span.stat-block
+          %i.icon-picture
+          %span.text= album.images_count
+        %span.stat-block
+          %i.icon-time
+          %span.text= time_ago(album.updated_at)
+    .clearfix

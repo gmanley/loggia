@@ -10,10 +10,10 @@
 = render('view_options', album: @album)
 
 #thumbnails-wrapper.row-fluid
-  %ol#albums.thumbnails
+  #albums.grid-container
     = render partial: @children, cache: true
 
-  #images{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
+  #images.grid-container{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
     = render partial: @images, cache: true
   = paginate @images
   - unless @images.empty?

@@ -10,7 +10,6 @@ $ ->
   selectCreate = (term, type) ->
     selectSuggestion(term, {}, type)
 
-
   $autocomplete.soulmate({
     url:            '/autocomplete/search'
     types:          ['source', 'photographer']

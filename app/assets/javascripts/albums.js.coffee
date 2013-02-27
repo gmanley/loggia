@@ -1,4 +1,34 @@
+setupMasonry = ->
+  $imagesContainer = $('.grid-container')
+  $window = $(window)
+
+  $imagesContainer.masonry
+    itemSelector: '.grid-item'
+    isResizable: true
+
+  $imagesContainer.imagesLoaded ->
+    $imagesContainer.masonry('reload')
+
+  imageSize = 300
+
+  $window.resize ->
+    $window.width()
+    columns = Math.floor($window.width() / imageSize)
+    containerWidth = imageSize * columns - 15 + 40
+    containerWidth = 940 if columns <= 3
+
+    if $window.width() <= containerWidth + 25
+      containerWidth = imageSize * (columns - 1) - 15 + 40
+
+    $imagesContainer.width(containerWidth)
+    $imagesContainer.masonry('reload')
+
+  $window.resize()
+
+
 $ ->
+  setupMasonry()
+
   editable_settings =
     method: 'PUT'
     indicator: 'Saving...'
@@ -34,3 +64,4 @@ $ ->
            .toggleClass('icon-chevron-down')
            .toggleClass('icon-chevron-up')
   ).on('shown', -> $(this).toggleClass('collapse'))
+

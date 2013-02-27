@@ -3,7 +3,6 @@
   @include grid-fluid-span($i, $fluidGridColumnWidth, $fluidGridGutterWidth);
 }
 
-
 .flash {
   -moz-animation: flash 1s ease-out;
   -moz-animation-iteration-count: 1;
