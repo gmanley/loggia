@@ -60,4 +60,4 @@ License
 -------
 Licensed under the [MIT License](http://creativecommons.org/licenses/MIT/)
 
-Copyright 2012 [Grayson Manley](https://github.com/gmanley)
+Copyright 2013 [Grayson Manley](https://github.com/gmanley)
