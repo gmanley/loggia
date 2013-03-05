@@ -12,5 +12,5 @@ CarrierWave.configure do |config|
   # config.fog_attributes = {'Cache-Control' => 'max-age=315576000'}
   config.storage = :file # Can be overridden in uploaders
 end
-CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-]/
 MiniMagick.processor = :gm
