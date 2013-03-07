@@ -4,7 +4,6 @@ class AlbumsController < ApplicationController
   def index
     @albums = Album.roots.order(:title).accessible_by(current_ability)
     @recent_albums = Album.recently_updated.limit(5).accessible_by(current_ability)
-
     authorize!(:index, Album)
 
     respond_with(@albums)
