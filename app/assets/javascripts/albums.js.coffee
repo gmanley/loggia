@@ -9,6 +9,9 @@ setupMasonry = ->
   $imagesContainer.imagesLoaded ->
     $imagesContainer.masonry('reload')
 
+  $imagesContainer.find('img').load ->
+    $imagesContainer.masonry('reload')
+
   imageSize = 300
 
   $window.resize ->
