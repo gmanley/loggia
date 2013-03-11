@@ -23,12 +23,14 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.mock_with :rspec
+    config.expect_with :rspec do |c|
+      c.syntax = :expect
+    end
 
     config.include Devise::TestHelpers, type: :controller
     config.extend ControllerMacros, type: :controller
     config.include Haml::Helpers, type: :helper
     config.alias_it_should_behave_like_to :it_has_behavior, 'has behavior:'
-
 
     config.before(:suite) do
       DatabaseCleaner.strategy = :transaction

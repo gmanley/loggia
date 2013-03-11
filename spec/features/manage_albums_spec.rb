@@ -1,12 +1,11 @@
 require 'acceptance_helper'
 
-feature 'Admin manages albums' do
-  let(:admin) { Fabricate(:admin) }
+feature 'Managing albums' do
+  given(:admin)       { Fabricate(:admin) }
+  given(:root_album)  { Fabricate.build(:album) }
+  given(:child_album) { Fabricate.build(:album) }
+
   background { sign_in admin }
-
-
-  let(:root_album) { Fabricate.build(:album) }
-  let(:child_album) { Fabricate.build(:album) }
 
   scenario 'create a root album' do
     visit homepage
@@ -18,11 +17,11 @@ feature 'Admin manages albums' do
     end
     click_button 'Create'
 
-    page.should have_content 'Album was successfully created.'
+    expect(page).to have_content 'Album was successfully created.'
   end
 
   scenario 'create a child album' do
-    root_album = Fabricate(:album)
+    root_album.save
     visit homepage
 
     click_link root_album.title
@@ -32,39 +31,39 @@ feature 'Admin manages albums' do
     end
     click_button 'Create'
 
-    page.should have_content 'Album was successfully created.'
+    expect(page).to have_content 'Album was successfully created.'
   end
 
-
-  let(:edited_album) { Fabricate.build(:album) }
+  given(:edited_album) { Fabricate.build(:album) }
 
   scenario 'edit an album' do
-    album = Fabricate(:album)
+    root_album.save
     visit homepage
 
-    click_link album.title
+    click_link root_album.title
 
     click_link 'Edit'
 
     within('.edit_album') do
-       fill_in 'Title', with: edited_album.title
-       fill_in 'Description', with: edited_album.description
-     end
-     click_button 'Save'
+      fill_in 'Title', with: edited_album.title
+      fill_in 'Description', with: edited_album.description
+    end
 
-    page.should have_content 'Album was successfully updated.'
-    page.should have_content edited_album.title
+    click_button 'Save'
+
+    expect(page).to have_content 'Album was successfully updated.'
+    expect(page).to have_content edited_album.title
   end
 
   scenario 'destroy an album' do
-    album = Fabricate(:album)
+    root_album.save
     visit homepage
 
-    click_link album.title
+    click_link root_album.title
 
     click_link 'Delete'
 
-    page.should have_content 'Album was successfully destroyed.'
-    page.should have_no_content album.title
+    expect(page).to have_content 'Album was successfully destroyed.'
+    expect(page).to have_no_content root_album.title
   end
 end

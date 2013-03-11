@@ -10,36 +10,36 @@ describe Album do
 
   it { should validate_presence_of(:title) }
 
-  describe 'title uniqueness' do
+  describe 'title uniqueness validation' do
 
-    let!(:album) { Fabricate(:album, event_date: Date.parse('12.11.30')) }
+    let!(:existing_album) { Fabricate(:album, event_date: Date.parse('12.11.30')) }
 
-    subject { album }
+    subject { existing_album }
 
     it { should validate_uniqueness_of(:title)
                 .scoped_to(:parent_id, :event_date)
                 .case_insensitive }
 
-    it 'allows an album with same title & parent_id if event_date differs' do
-      Fabricate.build(:album,
+    it 'is valid with same title & parent_id if event_date differs' do
+      expect(Fabricate.build(:album,
         event_date: Date.parse('12.11.19'),
-        title: album.title
-      ).should be_valid
+        title: existing_album.title
+      )).to be_valid
     end
 
-    it 'allows an album with the same title & event_date if parent_id differs' do
-      Fabricate.build(:album,
+    it 'is valid with the same title & event_date if parent_id differs' do
+      expect(Fabricate.build(:album,
         event_date: Date.parse('12.11.30'),
-        title: album.title,
+        title: existing_album.title,
         parent_id: 999
-      ).should be_valid
+      )).to be_valid
     end
 
-    it "doesn't allow an album with same title, parent_id & event_date" do
-      Fabricate.build(:album,
+    it 'is invalid with same title, parent_id & event_date' do
+      expect(Fabricate.build(:album,
         event_date: Date.parse('12.11.30'),
-        title: album.title
-      ).should be_invalid
+        title: existing_album.title
+      )).to be_invalid
     end
   end
 end

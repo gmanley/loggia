@@ -1,9 +1,9 @@
 require 'acceptance_helper'
 
-feature 'User comments on albums' do
-  let(:user) { Fabricate(:confirmed_user) }
-  let!(:album) { Fabricate(:album) }
-  let(:comment) { Fabricate.build(:comment) }
+feature 'Commenting on albums' do
+  given(:user)    { Fabricate(:confirmed_user) }
+  given!(:album)  { Fabricate(:album) }
+  given(:comment) { Fabricate.build(:comment) }
 
   background { sign_in user }
 
@@ -16,7 +16,7 @@ feature 'User comments on albums' do
     end
     click_button 'Post'
 
-    page.should have_content 'Comment was successfully created.'
-    page.should have_content comment.body
+    expect(page).to have_content 'Comment was successfully created.'
+    expect(page).to have_content comment.body
   end
 end

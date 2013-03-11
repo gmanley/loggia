@@ -6,7 +6,7 @@ describe User do
     let(:admin) { Fabricate(:admin) }
 
     it 'should return true that they are an admin' do
-      admin.admin?.should be_true
+      expect(admin.admin?).to be_true
     end
   end
 
@@ -14,7 +14,7 @@ describe User do
     let(:user) { Fabricate(:confirmed_user) }
 
     it 'should return false that they are an admin' do
-      user.admin?.should be_false
+      expect(user.admin?).to be_false
     end
   end
 end

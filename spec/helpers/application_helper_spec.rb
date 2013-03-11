@@ -7,13 +7,13 @@ describe ApplicationHelper do
 
       ApplicationHelper::BOOTSTRAP_FLASH_CLASS.each do |key, value|
         it %(should return "#{value}" when passed :#{key}) do
-          bootstrap_flash_class(key).should eq(value)
+          expect(bootstrap_flash_class(key)).to eq(value)
         end
       end
     end
 
     it 'should return original type when no defined bootstrap eqivalant' do
-      bootstrap_flash_class(:custom_flash_type).should eq('custom_flash_type')
+      expect(bootstrap_flash_class(:custom_flash_type)).to eq('custom_flash_type')
     end
   end
 
@@ -26,7 +26,7 @@ describe ApplicationHelper do
       let(:output) { capture_haml { breadcrumbs } }
 
       it 'should return nothing' do
-        output.should be_empty
+        expect(output).to be_empty
       end
     end
   end
@@ -40,11 +40,11 @@ describe ApplicationHelper do
       let(:output) { capture_haml { breadcrumb('Home', '/') } }
 
       it 'should return output with a child list item' do
-        output.should have_selector('li.active', text: 'Home')
+        expect(output).to have_selector('li.active', text: 'Home')
       end
 
       it 'should not return output with a seperator' do
-        output.should_not have_selector('span.divider', text: '/')
+        expect(output).to_not have_selector('span.divider', text: '/')
       end
     end
 
@@ -56,11 +56,11 @@ describe ApplicationHelper do
       let(:output) { capture_haml { breadcrumb('Home', '/') } }
 
       it 'should return output with a link' do
-        output.should have_selector('a[href="/"]', text: 'Home')
+        expect(output).to have_selector('a[href="/"]', text: 'Home')
       end
 
       it 'should return output with a seperator' do
-        output.should have_selector('span.divider', text: '/')
+        expect(output).to have_selector('span.divider', text: '/')
       end
     end
   end

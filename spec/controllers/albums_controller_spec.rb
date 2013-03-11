@@ -4,22 +4,25 @@ describe AlbumsController do
   let(:album) { mock_model(Album, slug: 'cool-album', hidden: false) }
   let(:admin) { Fabricate(:admin) }
 
-  describe '#index' do
-    let(:albums) { mock_models(3, Album) }
+  describe 'GET #index' do
+    let(:albums)        { mock_models(Album, 3) }
+    let(:recent_albums) { mock_models(Album, 3) }
 
     before do
       Album.stub_chain(:roots, :order, :accessible_by).and_return(albums)
+      Album.stub_chain(:recently_updated, :limit, :accessible_by).and_return(recent_albums)
       get :index
     end
 
     it { should assign_to(:albums).with(albums) }
+    it { should assign_to(:recent_albums).with(recent_albums) }
     it { should respond_with(:success) }
     it { should render_template(:index) }
   end
 
-  describe '#show' do
-    let(:children) { mock_models(3, Album) }
-    let(:images) { mock_models(3, Image) }
+  describe 'GET #show' do
+    let(:children) { mock_models(Album, 3) }
+    let(:images)   { mock_models(Image, 3) }
 
     context 'when album is not hidden' do
       before do
@@ -63,7 +66,7 @@ describe AlbumsController do
     end
   end
 
-  describe '#new' do
+  describe 'GET #new' do
     let(:new_album) { mock_model(Album) }
 
     before { Album.should_receive(:new).and_return(new_album) }
@@ -86,7 +89,7 @@ describe AlbumsController do
     end
   end
 
-  describe '#edit' do
+  describe 'GET#edit' do
     before { Album.should_receive(:find_by_slug!).and_return(album) }
 
     context 'as an admin' do
