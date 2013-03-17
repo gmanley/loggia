@@ -1,6 +1,6 @@
 class Album < ActiveRecord::Base
   attr_accessible :title, :description, :hidden, :parent_id,
-                  :archive,:thumbnail_url, :event_date
+                  :archive, :thumbnail_url, :event_date
 
   has_many :images, order: 'created_at desc',
                     dependent: :destroy
@@ -94,10 +94,13 @@ class Album < ActiveRecord::Base
     children.empty?
   end
 
-  private
+  # TODO: The slug setting code should really be in a seperate class!
   def slug_components
-    parent.try(:self_and_ancestors).to_a.reverse.push(self).map do |album|
-      album.display_name.gsub('.', '')
+    slug_replacements = { '.' => '', '/' => ' and ' }
+
+    parent.try(:self_and_ancestors).to_a.reverse.push(self).collect do |album|
+      pattern = Regexp.union(slug_replacements.keys)
+      album.display_name.gsub(pattern, slug_replacements)
     end
   end
 
