@@ -68,6 +68,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'poltergeist'
 end
 
 group :development, :test do

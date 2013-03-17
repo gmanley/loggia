@@ -7,7 +7,7 @@ feature 'Commenting on albums' do
 
   background { sign_in user }
 
-  scenario 'as logged in user' do
+  scenario 'commenting while logged in' do
     visit homepage
     click_link album.title
 

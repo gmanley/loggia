@@ -1,5 +1,5 @@
 Fabricator(:album) do
-  title { Faker::Lorem.words.collect { |w| w.titlecase}.join(' ') }
+  title { Faker::Lorem.words.collect(&:titlecase).join(' ') }
   description { Faker::Lorem.sentence }
 end
 
@@ -20,4 +20,8 @@ end
 
 Fabricator(:comment) do
   body { Faker::Lorem.sentence }
+end
+
+Fabricator(:album_comment, from: :comment) do
+  commentable(fabricator: :album)
 end
