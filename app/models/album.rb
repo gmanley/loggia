@@ -94,7 +94,7 @@ class Album < ActiveRecord::Base
     children.empty?
   end
 
-  # TODO: The slug setting code should really be in a seperate class!
+  # TODO: The slug code should really be in a seperate class!
   def slug_components
     slug_replacements = { '.' => '', '/' => ' and ' }
 

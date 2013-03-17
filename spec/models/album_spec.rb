@@ -1,52 +1,92 @@
 require 'spec_helper'
 
 describe Album do
-  it { should have_many(:images) }
-  it { should have_many(:comments) }
-  it { should have_many(:favorites) }
-  it { should have_many(:sources) }
-  it { should have_many(:photographers) }
-  it { should have_one(:archive)  }
+  # NOTE: I have mixed feelings about the necessity of the tests found in the
+  # first 3 describe blocks. If nothing else, however, they serve as good
+  # documentation.
 
-  it { should validate_presence_of(:title) }
+  describe 'database columns' do
+    it { should have_db_column(:description).of_type(:text) }
 
-  describe 'title uniqueness validation' do
+    it { should have_db_column(:event_date).of_type(:date) }
 
-    let!(:existing_album) { Fabricate(:album, event_date: Date.parse('2012-11-30')) }
+    it { should have_db_column(:hidden).
+                  of_type(:boolean).
+                  with_options(default: false) }
 
-    subject { existing_album }
+    it { should have_db_column(:images_count).
+                  of_type(:integer).
+                  with_options(default: 0) }
 
-    it { should validate_uniqueness_of(:title)
-                .scoped_to(:parent_id, :event_date)
-                .case_insensitive }
+    it { should have_db_column(:slug).
+                  of_type(:string).
+                  with_options(null: false) }
 
-    context 'allows two albums to have certain matching attributes' do
-      it 'is valid with matching title & parent_id but differing event_date' do
-        expect(Fabricate.build(:album,
-          event_date: Date.parse('12.11.19'),
-          title: existing_album.title
-        )).to be_valid
-      end
+    it { should have_db_column(:thumbnail_url).
+                  of_type(:string).
+                  with_options(default: '/assets/placeholder.png') }
 
-      it 'is valid with matching title & event_date but differing parent_id' do
-        expect(Fabricate.build(:album,
-          event_date: Date.parse('2012-11-30'),
-          title: existing_album.title,
-          parent_id: 999
-        )).to be_valid
-      end
+    it { should have_db_column(:title).
+                  of_type(:string).
+                  with_options(null: false) }
+  end
 
-      it 'is invalid with matching title, parent_id & event_date' do
-        expect(Fabricate.build(:album,
-          event_date: Date.parse('2012-11-30'),
-          title: existing_album.title
-        )).to be_invalid
+  describe 'indexes' do
+    it { should have_db_index(:hidden) }
+    it { should have_db_index(:images_count) }
+    it { should have_db_index(:parent_id) }
+    it { should have_db_index(:slug).unique(true) }
+  end
+
+  describe 'associations' do
+    it { should have_many(:images).dependent(:destroy) }
+    it { should have_many(:comments).dependent(:destroy) }
+    it { should have_many(:favorites).dependent(:destroy) }
+    it { should have_many(:sources).through(:images) }
+    it { should have_many(:photographers).through(:images) }
+    it { should have_one(:archive).dependent(:destroy)  }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of(:title) }
+
+    describe 'title uniqueness validation' do
+      let(:date) { Date.parse('2012-11-30') }
+      let(:existing_album) { Fabricate(:album, event_date: date) }
+
+      subject { existing_album }
+
+      it { should validate_uniqueness_of(:title).
+                    scoped_to(:parent_id, :event_date).
+                    case_insensitive }
+
+      context 'allows two albums to have certain matching attributes' do
+        it 'is valid with matching title & parent_id but differing event_date' do
+          expect(Fabricate.build(:album,
+            event_date: Date.parse('2012-11-19'),
+            title: existing_album.title
+          )).to be_valid
+        end
+
+        it 'is valid with matching title & event_date but differing parent_id' do
+          expect(Fabricate.build(:album,
+            event_date: date,
+            title: existing_album.title,
+            parent_id: 999
+          )).to be_valid
+        end
+
+        it 'is invalid with matching title, parent_id & event_date' do
+          expect(Fabricate.build(:album,
+            event_date: date,
+            title: existing_album.title
+          )).to be_invalid
+        end
       end
     end
   end
 
   describe '#formated_event_date' do
-
     it 'returns the event_date as a string formated "year.month.day"' do
       album = Fabricate.build(:album, event_date: '2012-11-30')
       expect(album.formated_event_date).to eq('2012.11.30')
@@ -54,7 +94,6 @@ describe Album do
   end
 
   describe '#display_name' do
-
     it 'returns the formated_event_date and title concatenated' do
       album = Fabricate.build(:album,
         event_date: Date.parse('2012-11-30'),
