@@ -1,4 +1,21 @@
 GIT
+  remote: git://github.com/gmanley/spork-rails.git
+  revision: fae2476e9a84dbfea4bb02bf0ae81f47cfbf20ec
+  branch: gemspec-tweak
+  specs:
+    spork-rails (3.2.1)
+      actionpack (>= 3.0.0, < 3.3.0)
+      spork (>= 1.0rc0)
+
+GIT
+  remote: git://github.com/kossnocorp/jquery.turbolinks.git
+  revision: b495b9d9181a108f864dda6059cb44f3361e6b74
+  specs:
+    jquery-turbolinks (1.0.0.rc2)
+      railties (>= 3.1.0)
+      turbolinks
+
+GIT
   remote: git://github.com/ryanb/cancan.git
   revision: ff2b632f1524bac4273fe113968d73ea62114652
   specs:
@@ -28,9 +45,6 @@ GEM
       activesupport (= 3.2.12)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.12)
-      activemodel (= 3.2.12)
-      activesupport (= 3.2.12)
     activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
@@ -44,10 +58,10 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
-    bourne (1.1.2)
-      mocha (= 0.10.5)
+    bourne (1.2.1)
+      mocha (= 0.12.7)
     builder (3.0.4)
-    bullet (4.3.1)
+    bullet (4.4.0)
       uniform_notifier
     capybara (2.0.2)
       mime-types (>= 1.16)
@@ -64,7 +78,7 @@ GEM
       timers (>= 1.0.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
-    closure_tree (3.9.0)
+    closure_tree (3.10.0)
       activerecord (>= 3.0.0)
       with_advisory_lock (>= 0.0.6)
     coderay (1.0.9)
@@ -90,8 +104,8 @@ GEM
     excon (0.20.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    fabrication (2.6.2)
-    facter (1.6.17)
+    fabrication (2.6.3)
+    facter (1.6.18)
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
     ffaker (1.15.0)
@@ -113,7 +127,7 @@ GEM
       pry (>= 0.9.10)
       terminal-table (>= 1.4.3)
       thor (>= 0.14.6)
-    guard-rspec (2.5.0)
+    guard-rspec (2.5.1)
       guard (>= 1.1)
       rspec (~> 2.11)
     guard-spork (1.5.0)
@@ -141,8 +155,6 @@ GEM
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-turbolinks (0.2.1)
-      rails (>= 3.1.0)
     json (1.7.7)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
@@ -163,10 +175,10 @@ GEM
     mime-types (1.21)
     mini_magick (3.5.0)
       subexec (~> 0.2.1)
-    mocha (0.10.5)
+    mocha (0.12.7)
       metaclass (~> 0.0.1)
     multi_fetch_fragments (0.0.13)
-    multi_json (1.6.1)
+    multi_json (1.7.0)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.6)
@@ -194,20 +206,12 @@ GEM
       rack (>= 0.4)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
-    rack-protection (1.4.0)
+    rack-protection (1.5.0)
       rack
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.12)
-      actionmailer (= 3.2.12)
-      actionpack (= 3.2.12)
-      activerecord (= 3.2.12)
-      activeresource (= 3.2.12)
-      activesupport (= 3.2.12)
-      bundler (~> 1.0)
-      railties (= 3.2.12)
     railties (3.2.12)
       actionpack (= 3.2.12)
       activesupport (= 3.2.12)
@@ -230,7 +234,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
-    rspec-core (2.13.0)
+    rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.13.0)
@@ -254,9 +258,9 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
-    shoulda-matchers (1.4.2)
+    shoulda-matchers (1.5.0)
       activesupport (>= 3.0.0)
-      bourne (~> 1.1.2)
+      bourne (~> 1.2.0)
     sidekiq (2.8.0)
       celluloid (~> 0.12.0)
       connection_pool (~> 1.0)
@@ -270,20 +274,17 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
-    sinatra (1.3.5)
+    sinatra (1.3.6)
       rack (~> 1.4)
       rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
-    slop (3.4.3)
+    slop (3.4.4)
     soulmate (1.0.0)
       multi_json (>= 1.0)
       redis (>= 2.0)
       sinatra (>= 1.0)
       vegas (>= 0.1.0)
     spork (1.0.0rc3)
-    spork-rails (3.2.1)
-      rails (>= 3.0.0, < 3.3.0)
-      spork (>= 1.0rc0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -301,7 +302,7 @@ GEM
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     thor (0.17.0)
-    tilt (1.3.5)
+    tilt (1.3.6)
     timers (1.1.0)
     treetop (1.4.12)
       polyglot
@@ -311,7 +312,7 @@ GEM
       sprockets (>= 2.0.0)
     turbolinks (1.0.0)
       coffee-rails
-    tzinfo (0.3.36)
+    tzinfo (0.3.37)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -331,10 +332,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer (~> 3.2)
+  actionpack (~> 3.2)
+  activerecord (~> 3.2)
   better_errors
   binding_of_caller
   bootstrap-sass (~> 2.3.0.1)
   bullet
+  bundler
   cancan!
   capybara
   carrierwave
@@ -353,7 +358,7 @@ DEPENDENCIES
   haml_coffee_assets
   jquery-fileupload-rails
   jquery-rails
-  jquery-turbolinks
+  jquery-turbolinks!
   kaminari
   launchy
   meta_request
@@ -365,7 +370,6 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rack-contrib
-  rails (~> 3.2)
   rb-fsevent
   redis-objects
   responders
@@ -377,7 +381,7 @@ DEPENDENCIES
   simple_form
   simplecov
   soulmate
-  spork-rails
+  spork-rails!
   squeel
   stringex
   thin

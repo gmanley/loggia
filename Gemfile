@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2'
+gem 'actionpack',   '~> 3.2'
+gem 'activerecord', '~> 3.2'
+gem 'actionmailer', '~> 3.2'
+gem 'bundler'
 
 group :assets do
   gem 'sass-rails',     '~> 3.2'
@@ -15,7 +18,7 @@ gem 'coffee-rails',   '~> 3.2'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jquery-turbolinks'
+gem 'jquery-turbolinks', github: 'kossnocorp/jquery.turbolinks'
 
 gem 'pg'
 gem 'stringex'
@@ -75,7 +78,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'spork-rails'
+  gem 'spork-rails', github: 'gmanley/spork-rails', branch: 'gemspec-tweak'
 end
 
 # Uncomment this to run script/sidekiq_web
