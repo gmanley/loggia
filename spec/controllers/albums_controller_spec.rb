@@ -14,8 +14,6 @@ describe AlbumsController do
       get :index
     end
 
-    it { should assign_to(:albums).with(albums) }
-    it { should assign_to(:recent_albums).with(recent_albums) }
     it { should respond_with(:success) }
     it { should render_template(:index) }
   end
@@ -33,8 +31,6 @@ describe AlbumsController do
         get :show, id: album.slug
       end
 
-      it { should assign_to(:album).with(album) }
-      it { should assign_to(:children).with(children) }
       it { should respond_with(:success) }
       it { should render_template(:show) }
     end
@@ -77,7 +73,6 @@ describe AlbumsController do
         get :new
       end
 
-      it { should assign_to(:album).with(new_album) }
       it { should respond_with(:success) }
       it { should render_template(:new) }
     end
@@ -98,7 +93,6 @@ describe AlbumsController do
         get :edit, id: album.slug
       end
 
-      it { should assign_to(:album).with(album) }
       it { should respond_with(:success) }
       it { should render_template(:edit) }
     end

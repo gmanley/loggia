@@ -8,6 +8,7 @@ class CarrierwaveTesting < ::Rails::Railtie
 
     CarrierWave::Uploader::Base.descendants.each do |klass|
       next if klass.anonymous?
+
       klass.class_eval do
         def cache_dir
           "#{Dir.tmpdir}/uploads/tmp"
