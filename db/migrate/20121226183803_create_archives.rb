@@ -1,7 +1,7 @@
 class CreateArchives < ActiveRecord::Migration
 
   def change
-    create_table :archives do |t|
+    create_table(:archives) do |t|
       t.string     :file
       t.boolean    :processing, default: false
       t.boolean    :outdated,   default: true

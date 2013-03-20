@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109222826) do
+ActiveRecord::Schema.define(:version => 20130320061052) do
 
   create_table "album_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20130109222826) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "favorites", :force => true do |t|
-    t.text     "body"
     t.integer  "favoritable_id"
     t.string   "favoritable_type"
     t.integer  "user_id"
