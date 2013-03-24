@@ -63,7 +63,7 @@ class AlbumsController < ApplicationController
 
     if query.present? && query[:source_ids].is_a?(Array)
       sources_ids = query[:source_ids].reject(&:blank?)
-      @album.images.where(source_id: sources_ids)
+      @album.images.joins(:sources).where(sources: { id: sources_ids })
     else
       @album.images
     end

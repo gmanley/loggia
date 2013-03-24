@@ -16,10 +16,6 @@ class Album < ActiveRecord::Base
                      order: 'LOWER(name)',
                      select: 'sources.*, LOWER(name)'
 
-  has_many :photographers, through: :images, uniq: true,
-                           order: 'LOWER(name)',
-                           select: 'photographers.*, LOWER(name)'
-
   has_one :archive, as: :archivable,
                     dependent: :destroy
 

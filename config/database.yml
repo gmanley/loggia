@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  database: soshigal_development
+  database: soshigal_clean_development
 
 test:
   adapter: postgresql

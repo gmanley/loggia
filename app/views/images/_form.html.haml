@@ -2,13 +2,19 @@
   #attribution-container
     = text_field_tag :attribution
     %dl
-      %dt Source
-      %dd#image_source_display Unattributed
+      %dt Website
+      %dd#image_website_display Unattributed
       %dt Photographer
       %dd#image_photographer_display Unattributed
   = simple_form_for([@album, Image.new], html: { multipart: true, id: 'uploader'}) do |f|
-    = f.hidden_field :source
-    = f.hidden_field :photographer
+    = fields_for 'image[sources_attributes]' do |sources_fields|
+      - Source::POSSIBLE_KINDS.each_with_index do |kind, i|
+        = sources_fields.hidden_field :id,
+          id: "image_sources_#{kind}_id", index: i
+        = sources_fields.hidden_field :name,
+          id: "image_sources_#{kind}_name", index: i
+        = sources_fields.hidden_field :kind,
+          id: "image_sources_#{kind}_kind", value: kind, index: i
     .fileupload-buttonbar
       .btn-toolbar
         %span.btn.btn-success.fileinput-button

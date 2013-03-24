@@ -62,15 +62,16 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   private
   def conflicting_filename?(filename)
-    model.album.images.where(
+    model.album.images.joins(:sources).where(
       image: filename,
-      source_id: model.source.try(:id)
+      sources: { id: model.sources.pluck(:id) }
     ).any?
   end
 
   def calculate_store_dir
     File.join(*['uploads', 'images',
-                model.album.slug, model.source.try(:name)].compact)
+                model.album.slug,
+                model.sources.websites.first.try(:name)].compact)
   end
 
   def calculate_md5

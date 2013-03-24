@@ -89,17 +89,19 @@ ActiveRecord::Schema.define(:version => 20130320061052) do
   add_index "images", ["source_id"], :name => "index_images_on_source_id"
   add_index "images", ["uploader_id"], :name => "index_images_on_uploader_id"
 
-  create_table "photographers", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "images_sources", :id => false, :force => true do |t|
+    t.integer "image_id"
+    t.integer "source_id"
   end
+
+  add_index "images_sources", ["image_id", "source_id"], :name => "index_images_sources_on_image_id_and_source_id", :unique => true
 
   create_table "sources", :force => true do |t|
     t.string   "name"
     t.string   "url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "kind"
   end
 
   create_table "users", :force => true do |t|

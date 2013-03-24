@@ -3,7 +3,10 @@ $ ->
 
   render = (term, data, type) -> term
   selectSuggestion = (term, data, type) ->
-    $("#image_#{type}").val(term)
+    if data.record_id
+      $("#image_sources_#{type}_id").val(data.record_id)
+    else
+      $("#image_sources_#{type}_name").val(term)
     $("#image_#{type}_display").html(term).addClass('flash')
     $autocomplete.val('')
     $('#soulmate').hide()
@@ -12,7 +15,7 @@ $ ->
 
   $autocomplete.soulmate({
     url:            '/autocomplete/search'
-    types:          ['source', 'photographer']
+    types:          ['website', 'photographer']
     renderCallback: render
     selectSuggestionCallback: selectSuggestion
     selectCreateCallback: selectCreate

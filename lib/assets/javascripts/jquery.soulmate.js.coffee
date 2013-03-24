@@ -94,7 +94,9 @@ class SuggestionCollection
     for type, typeResults of results
       @existingTerms[type] = []
       for result in typeResults
-        @suggestions.push( new Suggestion(i, result.term, result.data, type) )
+        data = result.data || {}
+        data.record_id = result.id
+        @suggestions.push( new Suggestion(i, result.term, data, type) )
         @existingTerms[type].push( result.term )
         i += 1
       unless term in @existingTerms[type]

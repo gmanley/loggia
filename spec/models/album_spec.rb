@@ -43,7 +43,6 @@ describe Album do
     it { should have_many(:comments).dependent(:destroy) }
     it { should have_many(:favorites).dependent(:destroy) }
     it { should have_many(:sources).through(:images) }
-    it { should have_many(:photographers).through(:images) }
     it { should have_one(:archive).dependent(:destroy)  }
   end
 

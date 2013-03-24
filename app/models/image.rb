@@ -1,10 +1,9 @@
 class Image < ActiveRecord::Base
-  attr_accessible :image, :source, :photographer, :uploader
+  attr_accessible :image, :sources_attributes, :uploader
 
   belongs_to :album, counter_cache: true
-  belongs_to :source
-  belongs_to :photographer
   belongs_to :uploader, class_name: 'User', inverse_of: :uploads
+  has_and_belongs_to_many :sources, uniq: true
 
   mount_uploader :image, ImageUploader
 
@@ -19,25 +18,18 @@ class Image < ActiveRecord::Base
 
   def set_thumbnails
     unless album.nil?
-      album.self_and_ancestors.each { |a| a.set_thumbnail_url }
+      album.self_and_ancestors.each {|a| a.set_thumbnail_url }
     end
   end
 
-  def source=(source)
-    source = nil unless source.present?
-    if source.is_a?(String)
-      self.source_id = Source.find_or_create_by_name(source).id
-    else
-      super
-    end
-  end
-
-  def photographer=(photographer)
-    photographer = nil unless photographer.present?
-    if photographer.is_a?(String)
-      self.photographer_id = Photographer.find_or_create_by_name(photographer).id
-    else
-      super
+  def sources_attributes=(attrs)
+    attrs.values.each do |source|
+      source_id = source.delete(:id)
+      if source_id.present?
+        sources << Source.find(source_id)
+      else
+        sources << Source.new(source)
+      end
     end
   end
 
