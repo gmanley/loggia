@@ -72,11 +72,11 @@ $ ->
       for file in data.files
         JST['templates/file'](file: file, formatFileSize: data.formatFileSize)
     done: (e, data) ->
-      image = JST['templates/image'](image: data.result.image, id: data.result.id)
-      $imagesContainer.prepend(image)
-      data.context.find('.progress').replaceWith("<span class='label label-success'>Success</span>")
-      $imagesContainer.imagesLoaded ->
+      $image = $(JST['templates/image'](image: data.result.image, id: data.result.id))
+      $image.find('img').load ->
         $imagesContainer.masonry('reload')
+      $imagesContainer.prepend($image)
+      data.context.find('.progress').replaceWith("<span class='label label-success'>Success</span>")
     fail: (e, data) ->
       response = JSON.parse(data.xhr().response)
       error = "<td class='error' colspan='2'><span class='label label-important'>Error</span> #{response.errors}</td>"
