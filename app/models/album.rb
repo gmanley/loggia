@@ -32,7 +32,9 @@ class Album < ActiveRecord::Base
   scope :with_images, where(:images_count.not_eq => 0)
 
   def self.recently_updated(date = 1.month.ago)
-    joins(:images).where(images: { :created_at.gt => date }).uniq
+    joins(:images).where(
+      images: { :created_at.gt => date }
+    ).uniq.order('updated_at DESC')
   end
 
   before_create :set_slug

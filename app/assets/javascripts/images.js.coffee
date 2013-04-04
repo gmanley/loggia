@@ -52,7 +52,6 @@ deleteSelected = ->
 albumUrl = ->
   window.location.pathname.replace(/\/page\/\d+/, '')
 
-
 $ ->
   $imagesContainer = $('#images')
 
