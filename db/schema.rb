@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320061052) do
+ActiveRecord::Schema.define(:version => 20130404030820) do
 
   create_table "album_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(:version => 20130320061052) do
 
   create_table "albums", :force => true do |t|
     t.text     "description"
-    t.boolean  "hidden",        :default => false
-    t.string   "slug",                                                 :null => false
-    t.string   "title",                                                :null => false
-    t.string   "thumbnail_url", :default => "/assets/placeholder.png", :null => false
-    t.integer  "images_count",  :default => 0,                         :null => false
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.boolean  "hidden",                       :default => false
+    t.string   "slug",                                                                :null => false
+    t.string   "title",                                                               :null => false
+    t.string   "thumbnail_url", :limit => 400, :default => "/assets/placeholder.png", :null => false
+    t.integer  "images_count",                 :default => 0,                         :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
     t.integer  "parent_id"
     t.date     "event_date"
   end
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130320061052) do
   add_index "albums", ["images_count"], :name => "index_albums_on_images_count"
   add_index "albums", ["parent_id"], :name => "index_albums_on_parent_id"
   add_index "albums", ["slug"], :name => "index_albums_on_slug", :unique => true
+  add_index "albums", ["updated_at"], :name => "index_albums_on_updated_at"
 
   create_table "archives", :force => true do |t|
     t.string   "file"
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20130320061052) do
   end
 
   add_index "images", ["album_id"], :name => "index_images_on_album_id"
+  add_index "images", ["created_at"], :name => "index_images_on_created_at"
   add_index "images", ["md5"], :name => "index_images_on_md5"
   add_index "images", ["photographer_id"], :name => "index_images_on_photographer_id"
   add_index "images", ["source_id"], :name => "index_images_on_source_id"
