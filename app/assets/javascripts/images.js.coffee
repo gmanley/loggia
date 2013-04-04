@@ -43,11 +43,15 @@ cleanupDelete = ->
 deleteSelected = ->
   $('.selected').each((i, item) ->
     $item = $(item).find('a')
-    destroyUrl = "#{window.location.pathname}/images/#{$item.data('image-id')}"
+    destroyUrl = "#{albumUrl()}/images/#{$item.data('image-id')}"
     $.post(destroyUrl, _method: 'delete')
     $item.parent().fadeOut(500).remove()
   )
   cleanupDelete()
+
+albumUrl = ->
+  window.location.pathname.replace(/\/page\/\d+/, '')
+
 
 $ ->
   $imagesContainer = $('#images')
@@ -64,7 +68,7 @@ $ ->
       initConfirmDelete()
 
   $('#uploader').fileupload(
-    url: "#{window.location.pathname}/images.json"
+    url: "#{albumUrl()}/images.json"
     maxFileSize: 20000000
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
     downloadTemplateId: false
