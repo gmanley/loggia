@@ -1,8 +1,8 @@
 class AlbumsController < ApplicationController
-  respond_to :html, :json, :js
+  respond_to :html, :json, :js, :atom
 
   def index
-    @albums = Album.roots.order(:title).accessible_by(current_ability)
+    @albums = Album.roots.order(:title).includes(:sources).accessible_by(current_ability)
     @recent_albums = Album.recently_updated.limit(5).accessible_by(current_ability)
     authorize!(:index, Album)
 

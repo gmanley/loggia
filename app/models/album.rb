@@ -2,19 +2,18 @@ class Album < ActiveRecord::Base
   attr_accessible :title, :description, :hidden, :parent_id,
                   :archive, :thumbnail_url, :event_date
 
-  has_many :images, order: 'created_at desc',
+  has_many :images, order: :created_at,
                     dependent: :destroy
 
   has_many :comments, as: :commentable,
-                      order: 'created_at desc',
+                      order: :created_at,
                       dependent: :destroy
 
   has_many :favorites, as: :favoritable,
                        dependent: :destroy
 
-  has_many :sources, through: :images, uniq: true,
-                     order: 'LOWER(name)',
-                     select: 'sources.*, LOWER(name)'
+  has_many :sources, through: :images,
+                     uniq: true
 
   has_one :archive, as: :archivable,
                     dependent: :destroy
@@ -34,7 +33,7 @@ class Album < ActiveRecord::Base
   def self.recently_updated(date = 1.month.ago)
     joins(:images).where(
       images: { :created_at.gt => date }
-    ).uniq.order('updated_at DESC')
+    ).uniq.order(:updated_at)
   end
 
   before_create :set_slug
