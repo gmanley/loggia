@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  respond_to :html, :json, :js
+  respond_to :html, :json, :js, :atom
 
   def index
     @albums = Album.roots.order(:title).accessible_by(current_ability)
