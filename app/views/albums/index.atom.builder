@@ -1,6 +1,6 @@
 atom_feed do |feed|
   feed.title 'Recently Updated Albums'
-  feed.updated @recent_albums.maximum(:updated_at)
+  feed.updated @recent_albums.first.updated_at
 
   @recent_albums.each do |album|
     feed.entry album, published: album.updated_at do |entry|
