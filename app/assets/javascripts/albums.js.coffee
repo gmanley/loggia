@@ -28,6 +28,9 @@ setupMasonry = ->
 
   $window.resize()
 
+# Fixes an issue where masonry images overlap after hitting the back button.
+$(document).on 'page:restore', ->
+  setupMasonry()
 
 $ ->
   setupMasonry()
@@ -67,4 +70,3 @@ $ ->
            .toggleClass('icon-chevron-down')
            .toggleClass('icon-chevron-up')
   ).on('shown', -> $(this).toggleClass('collapse'))
-
