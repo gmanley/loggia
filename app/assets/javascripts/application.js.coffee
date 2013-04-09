@@ -10,3 +10,6 @@ $ ->
 document.addEventListener 'page:fetch', ->
   html = "<div id='loading'><div><i class='icon-spinner icon-spin icon-4x'></div></div>"
   $('body').prepend(html)
+
+document.addEventListener 'page:receive', ->
+  $('#loading').remove()
