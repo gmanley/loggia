@@ -9,7 +9,7 @@ describe AlbumsController do
     let(:recent_albums) { mock_models(Album, 3) }
 
     before do
-      Album.stub_chain(:roots, :order, :accessible_by).and_return(albums)
+      Album.stub_chain(:roots, :order, :includes, :accessible_by).and_return(albums)
       Album.stub_chain(:recently_updated, :limit, :accessible_by).and_return(recent_albums)
       get :index
     end

@@ -64,7 +64,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   def conflicting_filename?(filename)
     model.album.images.joins(:sources).where(
       image: filename,
-      sources: { id: model.sources.pluck(:id) }
+      sources: { id: model.sources.map(&:id) }
     ).any?
   end
 
