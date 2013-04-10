@@ -15,6 +15,9 @@ class Album < ActiveRecord::Base
   has_many :sources, through: :images,
                      uniq: true
 
+  has_many :uploaders, through: :images,
+                       uniq: true
+
   has_one :archive, as: :archivable,
                     dependent: :destroy
 
