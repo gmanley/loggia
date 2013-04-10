@@ -34,13 +34,17 @@ describe ApplicationHelper do
   describe '#breadcrumb' do
     context 'when no url is passed or url is the current page' do
       before do
-        should_receive(:current_page?).with('/').and_return(true)
+        should_receive(:current_page?).with('/').twice.and_return(true)
       end
 
       let(:output) { capture_haml { breadcrumb('Home', '/') } }
 
-      it 'should return output with a child list item' do
-        expect(output).to have_selector('li.active', text: 'Home')
+      it 'should return output with a class active' do
+        expect(output).to have_selector('li.active')
+      end
+
+      it 'should return output with a link' do
+        expect(output).to have_selector('a[href="/"]', text: 'Home')
       end
 
       it 'should not return output with a seperator' do
@@ -50,7 +54,7 @@ describe ApplicationHelper do
 
     context "when a url is passed and the url isn't the current page" do
       before do
-        should_receive(:current_page?).with('/').and_return(false)
+        should_receive(:current_page?).with('/').twice.and_return(false)
       end
 
       let(:output) { capture_haml { breadcrumb('Home', '/') } }

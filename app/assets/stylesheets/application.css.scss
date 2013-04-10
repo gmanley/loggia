@@ -12,7 +12,10 @@ section { padding-top: 60px }
 
 .container-fluid { min-width: 480px }
 
-.breadcrumb { border: 1px solid #DDD }
+.breadcrumb {
+  border: 1px solid #DDD;
+
+  .active span { color: #999 } }
 
 .favorite-toggle {
   float: left;

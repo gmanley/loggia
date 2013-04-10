@@ -1,5 +1,7 @@
 # encoding: UTF-8
 module ApplicationHelper
+  BREADCRUMB_MICRODATA_URL = 'http://data-vocabulary.org/Breadcrumb'
+
   GRAVATAR_URL_FORMAT = "https://secure.gravatar.com/avatar/%s.png?s=%i&d=mm"
 
   BOOTSTRAP_FLASH_CLASS = {
@@ -63,13 +65,15 @@ module ApplicationHelper
   end
 
   def breadcrumb(text, url = nil)
-    if !url or current_page?(url)
-      haml_tag 'li.active', text
-    else
-      haml_tag :li do
-        haml_tag :a, text, href: url
-        haml_tag 'span.divider', '/'
+    attrs = { itemscope: true, itemtype: BREADCRUMB_MICRODATA_URL }
+    attrs.merge!(class: 'active') if current_page?(url)
+
+    haml_tag :li, attrs do
+      haml_tag :a, href: url, itemprop: 'url' do
+        haml_tag :span, text, itemprop: 'title'
       end
+
+      haml_tag 'span.divider', '/' unless current_page?(url)
     end
   end
 
