@@ -16,6 +16,8 @@ class Image < ActiveRecord::Base
   after_commit :async_set_thumbnails, on: :create
   before_create :set_store_dir
 
+  before_create { album.set_contents_updated_at }
+
   def set_thumbnails
     unless album.nil?
       album.self_and_ancestors.each {|a| a.set_thumbnail_url }

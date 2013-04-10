@@ -31,12 +31,18 @@ class Album < ActiveRecord::Base
   scope :with_images, where(:images_count.not_eq => 0)
 
   def self.recently_updated(date = 1.month.ago)
-    joins(:images).where(
-      images: { :created_at.gt => date }
-    ).uniq.order('updated_at desc')
+    where(:contents_updated_at.gt => date).order('contents_updated_at desc')
   end
 
   before_create :set_slug
+
+  def set_contents_updated_at
+    self.contents_updated_at = images.maximum(:created_at)
+  end
+
+  def last_updated
+    contents_updated_at || updated_at
+  end
 
   def recursive_images
     Image.where(album_id: self_and_descendant_ids)

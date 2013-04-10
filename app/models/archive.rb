@@ -31,7 +31,7 @@ class Archive < ActiveRecord::Base
   end
 
   def outdated?
-    !file.file.exists? || archivable.updated_at > updated_at
+    !file.file.exists? || archivable.last_updated > updated_at
   end
 
   def requesters
