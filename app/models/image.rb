@@ -15,8 +15,7 @@ class Image < ActiveRecord::Base
   before_validation :set_md5
   after_commit :async_set_thumbnails, on: :create
   before_create :set_store_dir
-
-  before_create { album.set_contents_updated_at }
+  after_commit(on: :create) { album.touch(:contents_updated_at) }
 
   def set_thumbnails
     unless album.nil?
