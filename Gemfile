@@ -79,12 +79,6 @@ group :development, :test do
   gem 'ffaker'
 end
 
-# Uncomment this to run script/sidekiq_web
-# group :sidekiq_web do
-#   gem 'slim'
-#   gem 'sinatra'
-# end
-
 # Uncomment this and run bundle if you need to run the importer.
 # After your done using the importer make sure to comment this block out
 # again and run `bundle` or you may run into issues.
