@@ -52,7 +52,6 @@ group :development do
   gem 'thin'
   gem 'guard'
   gem 'guard-rspec'
-  gem 'guard-spork'
   gem 'rb-fsevent', require: false # OSX
   # gem 'rb-inotify', require: false # Linux
   # gem 'rb-fchange', require: false # Windows
@@ -78,7 +77,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'ffaker'
-  gem 'spork-rails', github: 'gmanley/spork-rails', branch: 'gemspec-tweak'
 end
 
 # Uncomment this to run script/sidekiq_web

@@ -1,7 +1,3 @@
-guard 'spork' do
-  watch('spec/spec_helper.rb')
-end
-
 guard 'rspec', all_after_pass: false, cli: '--color --drb --format documentation' do
   watch('spec/spec_helper.rb')                        { "spec" }
   watch('config/routes.rb')                           { "spec/routing" }

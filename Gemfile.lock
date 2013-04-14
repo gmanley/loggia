@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/gmanley/spork-rails.git
-  revision: fae2476e9a84dbfea4bb02bf0ae81f47cfbf20ec
-  branch: gemspec-tweak
-  specs:
-    spork-rails (3.2.1)
-      actionpack (>= 3.0.0, < 3.3.0)
-      spork (>= 1.0rc0)
-
-GIT
   remote: git://github.com/kossnocorp/jquery.turbolinks.git
   revision: 69d08ecaf52da60d029b5ad34f45283f363eeebd
   specs:
@@ -130,10 +121,6 @@ GEM
     guard-rspec (2.5.2)
       guard (>= 1.1)
       rspec (~> 2.11)
-    guard-spork (1.5.0)
-      childprocess (>= 0.2.3)
-      guard (>= 1.1)
-      spork (>= 0.8.4)
     haml (4.0.1)
       tilt
     haml-rails (0.4)
@@ -284,7 +271,6 @@ GEM
       redis (>= 2.0)
       sinatra (>= 1.0)
       vegas (>= 0.1.0)
-    spork (1.0.0rc3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -352,7 +338,6 @@ DEPENDENCIES
   fog
   guard
   guard-rspec
-  guard-spork
   haml-rails
   haml_coffee_assets
   jquery-fileupload-rails
@@ -380,7 +365,6 @@ DEPENDENCIES
   simple_form
   simplecov
   soulmate
-  spork-rails!
   squeel
   stringex
   thin
