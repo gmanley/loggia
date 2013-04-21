@@ -1,4 +1,4 @@
-ActiveAdmin.register Source do
+ActiveAdmin.register Source, as: 'Website' do
   config.sort_order = 'name_asc'
 
   filter :id
@@ -34,6 +34,10 @@ ActiveAdmin.register Source do
   end
 
   controller do
+    def scoped_collection
+      Source.websites
+    end
+
     # TODO: Make this less hacky!
     # It changes the order to be case insensitive for name column
     def index
