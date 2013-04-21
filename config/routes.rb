@@ -1,6 +1,7 @@
 Soshigal::Application.routes.draw do
 
   root to: 'albums#index'
+
   resources :albums, except: [:index] do
     get 'page/:page', action: :show, on: :member
     resources :images, only: [:create, :destroy]
@@ -12,4 +13,6 @@ Soshigal::Application.routes.draw do
   mount Soulmate::Server, at: '/autocomplete'
 
   devise_for :users
+
+  ActiveAdmin.routes(self)
 end

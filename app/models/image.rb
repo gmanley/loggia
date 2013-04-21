@@ -19,7 +19,7 @@ class Image < ActiveRecord::Base
 
   def set_thumbnails
     unless album.nil?
-      album.self_and_ancestors.each {|a| a.set_thumbnail_url }
+      album.self_and_ancestors.each { |a| a.set_thumbnail_url }
     end
   end
 

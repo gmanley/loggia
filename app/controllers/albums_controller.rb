@@ -5,8 +5,6 @@ class AlbumsController < ApplicationController
     @albums = Album.roots.order(:title).accessible_by(current_ability)
     @recent_albums = Album.recently_updated.limit(5).accessible_by(current_ability)
     authorize!(:index, Album)
-
-    respond_with(@albums)
   end
 
   def show
@@ -22,15 +20,11 @@ class AlbumsController < ApplicationController
   def new
     @album = Album.new(params[:album])
     authorize!(:new, @album)
-
-    respond_with(@album)
   end
 
   def edit
     @album = Album.find_by_slug!(params[:id])
     authorize!(:edit, @album)
-
-    respond_with(@album)
   end
 
   def create

@@ -56,6 +56,15 @@ module ApplicationHelper
     end
   end
 
+  # Make the default kaminari theme bootstrap unless we are in the admin panel
+  def paginate(scope, options = {}, &block)
+    unless respond_to?(:active_admin_application)
+      options[:theme] ||= 'bootstrap'
+    end
+
+    super
+  end
+
   private
   def flash_message(type, message)
     haml_tag :div, class: "alert alert-#{bootstrap_flash_class(type)} fade in" do

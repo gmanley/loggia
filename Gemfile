@@ -29,6 +29,7 @@ gem 'kaminari'
 
 gem 'devise'
 gem 'cancan', github: 'ryanb/cancan'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'responders'
 gem 'simple_form'
