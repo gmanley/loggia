@@ -10,6 +10,8 @@ Soshigal::Application.routes.draw do
     resource  :archive, only: [:create]
   end
 
+  resources :sources, only: [:show]
+
   mount Soulmate::Server, at: '/autocomplete'
 
   devise_for :users

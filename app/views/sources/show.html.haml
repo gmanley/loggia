@@ -1,0 +1,9 @@
+%header.page-header
+  %h1=@source.name
+
+#thumbnails-wrapper.row-fluid
+  #images.grid-container{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
+    = render partial: @images, cache: true
+  = paginate @images
+  - unless @images.empty?
+    %span.muted= page_entries_info(@images)

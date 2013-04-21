@@ -34,7 +34,7 @@ module ApplicationHelper
       breadcrumb('Home', root_path)
 
       resources.each do |resource|
-        breadcrumb(resource.display_name, url_for(resource))
+        breadcrumb(resource.to_s, url_for(resource))
       end
     end
   end
@@ -88,6 +88,10 @@ module ApplicationHelper
 
   def resources # Possibly rename...  specific to breadcrumbs
     return [] unless current_resource
-    current_resource.self_and_ancestors.reverse
+    if current_resource.is_a?(Album)
+      current_resource.self_and_ancestors.reverse
+    else
+      Array(current_resource)
+    end
   end
 end

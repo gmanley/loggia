@@ -35,4 +35,8 @@ class Source < ActiveRecord::Base
   def name=(name)
     self[:name] = name.strip
   end
+
+  def to_s
+    name
+  end
 end

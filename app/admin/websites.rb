@@ -12,7 +12,9 @@ ActiveAdmin.register Source, as: 'Website' do
     column :name
     column :url
 
-    actions
+    actions do |source|
+      link_to 'Images', source, class: 'member_link'
+    end
   end
 
   form do |f|
