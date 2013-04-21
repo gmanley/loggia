@@ -12,10 +12,7 @@ class Source < ActiveRecord::Base
                    }
 
   validates :name, presence: true,
-                   uniqueness: {
-                    scope: :kind,
-                    case_sensitive: false
-                   }
+                   uniqueness: { scope: :kind }
 
   has_and_belongs_to_many :images, uniq: true
 

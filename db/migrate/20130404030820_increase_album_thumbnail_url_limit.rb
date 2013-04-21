@@ -1,4 +1,5 @@
 class IncreaseAlbumThumbnailUrlLimit < ActiveRecord::Migration
+
   def up
     change_column :albums, :thumbnail_url, :string, limit: 400
   end

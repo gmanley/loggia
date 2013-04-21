@@ -35,7 +35,7 @@ Setup
 __Requirements:__
 
 * Ruby (>= 1.9.3)
-* Postgresql (SQLite or MySQL should work as well if you change the database.yml)
+* Postgresql (SQLite or MySQL will work to an extent as well)
 * Graphicsmagick (ie. `brew install graphicsmagick` on OSX)
 * Bundler
 * A Javascript Runtime - For Rails asset pipeline (Builtin on OSX / Install node on other OSes)

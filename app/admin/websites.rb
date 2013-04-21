@@ -39,15 +39,5 @@ ActiveAdmin.register Source, as: 'Website' do
     def scoped_collection
       Source.websites
     end
-
-    # TODO: Make this less hacky!
-    # It changes the order to be case insensitive for name column
-    def index
-      column, order = collection.order_values.first.split(' ')
-      if column == '"sources"."name"'
-        set_collection_ivar collection.reorder("LOWER(#{column.gsub('"', '')}) #{order}")
-      end
-      super
-    end
   end
 end

@@ -24,12 +24,12 @@ class Image < ActiveRecord::Base
   end
 
   def sources_attributes=(attrs)
-    attrs.values.each do |source|
-      source_id = source.delete(:id)
+    attrs.values.each do |source_attrs|
+      source_id = source_attrs.delete(:id)
       if source_id.present?
         sources << Source.find(source_id)
       else
-        sources << Source.new(source)
+        sources << Source.find_initialize_by_name(source_attrs)
       end
     end
   end
