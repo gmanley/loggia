@@ -4,8 +4,8 @@ module Autocompleteable
   class UnconfiguredException < Exception; end
 
   included do
-    after_create  :add_to_autocomplete_cache
     after_destroy :remove_from_autocomplete_cache
+    after_save    :update_autocomplete_cache, if: :changed?
   end
 
   private
@@ -25,11 +25,15 @@ module Autocompleteable
   end
 
   def autocomplete_data
-    { }
+    {}
   end
 
   def autocomplete_cache
     @autocomplete_cache ||= Soulmate::Loader.new(autocomplete_kind)
+  end
+
+  def update_autocomplete_cache
+    remove_from_autocomplete_cache && add_to_autocomplete_cache
   end
 
   def add_to_autocomplete_cache
