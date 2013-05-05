@@ -1,3 +1,13 @@
+# Add this to your group to the Gemfile and bundle to run the importer.
+# After your done using the importer make sure to comment this block out
+# again and run `bundle` or you may run into issues.
+# group :importer do
+#   gem 'dm-core'
+#   gem 'dm-mysql-adapter'
+#   gem 'progressbar'
+#   gem 'dm-aggregates'
+# end
+
 module IPGallery
   class LegacyAlbum
     include DataMapper::Resource

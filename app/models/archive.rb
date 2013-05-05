@@ -1,6 +1,4 @@
 class Archive < ActiveRecord::Base
-  attr_accessible :processing
-
   belongs_to :archivable, polymorphic: true
 
   mount_uploader :file, ArchiveUploader

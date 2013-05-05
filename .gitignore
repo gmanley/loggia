@@ -2,7 +2,6 @@
 /log/*.log
 /tmp
 /public/uploads
-/.sass-cache
 .rbx
 /coverage
 /config/initializers/carrierwave_personal.rb

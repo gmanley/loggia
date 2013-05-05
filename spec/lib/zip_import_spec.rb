@@ -8,7 +8,7 @@ describe Zip::Import, no_database_cleaner: true do
   after(:all)  { DatabaseCleaner.clean_with(:truncation) }
 
   describe 'imported albums' do
-    let(:albums) { Album.scoped }
+    let(:albums) { Album.all }
     subject { albums }
 
     describe 'Category1' do

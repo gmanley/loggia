@@ -3,8 +3,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
-  include Sprockets::Helpers::RailsHelper
-  include Sprockets::Helpers::IsolatedHelper
+  include ActionView::Helpers::AssetUrlHelper
 
   EXTENSION_WHITE_LIST = %w(jpg jpeg gif png)
 

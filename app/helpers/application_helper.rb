@@ -44,7 +44,7 @@ module ApplicationHelper
     options = {
       method: :delete,
       remote: true,
-      confirm: "Are you sure you want to delete this #{name}?"
+      data: { confirm: "Are you sure you want to delete this #{name}?" }
     }.merge(options)
 
     link_to(body, resource, options)

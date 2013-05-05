@@ -1,9 +1,7 @@
 class Image < ActiveRecord::Base
-  attr_accessible :image, :sources_attributes, :uploader
-
   belongs_to :album, counter_cache: true
   belongs_to :uploader, class_name: 'User', inverse_of: :uploads
-  has_and_belongs_to_many :sources, uniq: true, order: :name
+  has_and_belongs_to_many :sources, -> { order(:name).uniq }
 
   mount_uploader :image, ImageUploader
 

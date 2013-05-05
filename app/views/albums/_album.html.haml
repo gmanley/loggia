@@ -2,7 +2,7 @@
   .cover= link_to(image_tag(album.thumbnail_url), album)
   .info
     = link_to(album.display_name, album, class: 'item-link')
-    - unless album.images.empty?
+    - if album.images_count > 0
       .stats.muted
         %span.stat-block
           %i.icon-picture

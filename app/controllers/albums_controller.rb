@@ -28,7 +28,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = Album.new(params[:album])
+    @album = Album.new(album_params)
     authorize!(:create, @album)
 
     @album.save
@@ -39,7 +39,7 @@ class AlbumsController < ApplicationController
     @album = Album.find_by_slug!(params[:id])
     authorize!(:update, @album)
 
-    @album.update_attributes(params[:album])
+    @album.update_attributes(album_params)
     respond_with(@album)
   end
 
@@ -52,6 +52,13 @@ class AlbumsController < ApplicationController
   end
 
   private
+  def album_params
+    params.require(:album).permit(
+      :title, :description, :hidden, :parent_id,
+      :archive, :thumbnail_url, :event_date
+    )
+  end
+
   def get_images
     query = params[:album]
 

@@ -3,8 +3,6 @@ class Source < ActiveRecord::Base
 
   POSSIBLE_KINDS = %w[photographer website]
 
-  attr_accessible :name, :url, :kind
-
   validates :kind, presence: true,
                    inclusion: {
                      in: POSSIBLE_KINDS,
@@ -14,11 +12,11 @@ class Source < ActiveRecord::Base
   validates :name, presence: true,
                    uniqueness: { scope: :kind }
 
-  has_and_belongs_to_many :images, uniq: true
+  has_and_belongs_to_many :images, -> { uniq }
 
-  scope :websites, where(kind: 'website')
+  scope :websites, -> { where(kind: 'website') }
 
-  scope :photographers, where(kind: 'photographer')
+  scope :photographers, -> { where(kind: 'photographer') }
 
   def self.merge!(source_ids)
     sources = Source.where(id: source_ids).order('created_at ASC')

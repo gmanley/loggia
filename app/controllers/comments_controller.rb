@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   respond_to :html, :json, :js
 
   def create
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(comment_params)
     @comment.user = current_user
     authorize!(:create, @comment)
 
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @comment = @parent_resource.comments.find(params[:id])
     authorize!(:update, @comment)
 
-    @comment.update_attributes(params[:comment])
+    @comment.update_attributes(comment_params)
     respond_with(@comment, location: @parent_resource)
   end
 
@@ -25,5 +25,10 @@ class CommentsController < ApplicationController
 
     @comment.destroy
     respond_with(@comment, location: @parent_resource)
+  end
+
+  private
+  def comment_params
+    params.require(:comment).permit(:body)
   end
 end
