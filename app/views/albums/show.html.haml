@@ -19,9 +19,9 @@
   - unless @images.empty?
     %span.muted= page_entries_info(@images)
 
-%section.row-fluid
-  .span6
-    - if can?(:create, Album)
+- if can?(:create, Album)
+  %section.row-fluid
+    .span6
       = simple_form_for(Album.new) do |f|
         %fieldset
           %legend New Child Album
