@@ -5,7 +5,7 @@ module CommentsHelper
       haml_concat(render(partial: comments, locals: { commentable: commentable }, cache: true))
 
       if comments.empty?
-        haml_tag 'li' do
+        haml_tag 'li.comment' do
           haml_tag 'i.muted', 'No Comments'
         end
       end
