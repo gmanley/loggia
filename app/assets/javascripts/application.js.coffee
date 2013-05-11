@@ -8,7 +8,7 @@ $ ->
 
 # Have a loading screen when turbolinks is working it's magic
 document.addEventListener 'page:fetch', ->
-  html = "<div id='loading'><div><i class='icon-spinner icon-spin icon-4x'></div></div>"
+  html = "<div id='loading'><div><i class='icon-spinner icon-spin icon-4x'></i></div></div>"
   $('body').prepend(html)
 
 document.addEventListener 'page:receive', ->
