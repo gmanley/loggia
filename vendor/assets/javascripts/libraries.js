@@ -36,3 +36,4 @@
 //= require outlayer
 //= require masonry
 //= require sammy
+//= require jquery.infinitescroll
