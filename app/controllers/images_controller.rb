@@ -13,8 +13,7 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    @album = Album.find_by_slug!(params[:album_id])
-    @image = @album.images.find(params[:id])
+    @image = Image.find(params[:id])
     authorize!(:destroy, @image)
 
     @image.destroy

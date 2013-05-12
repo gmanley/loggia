@@ -4,5 +4,5 @@
     %span= comment.user.email
     %time.timeago{datetime: comment.created_at.iso8601}= comment.created_at
     - if can?(:destroy, comment)
-      = link_to_destroy('×', [commentable, comment], class: 'close')
+      = link_to_destroy('×', comment, class: 'close')
   .body= comment.body

@@ -2,7 +2,9 @@ module PolymorphicController
   extend ActiveSupport::Concern
 
   included do
-    before_filter :set_parent_resource
+    before_filter :set_parent_resource, only: :create
+
+    attr_reader :parent_resource
   end
 
   private
