@@ -1,5 +1,8 @@
 #= require libraries
-#= require_tree .
+#= require albums
+#= require comments
+#= require images
+#= require sources
 
 $ ->
   $('.alert').delay(4000).fadeOut('slow')
