@@ -1,22 +1,29 @@
-class Zip::Archive
+require 'fileutils'
 
-  def self.extract(zip_path, destination)
-    archive = Zip::Archive.open(zip_path)
-    archive.extract(destination)
-    archive.close
-  end
+module Zip
+  module Archive
+    def self.create(source, destination)
+      source = File.expand_path(source)
+      destination = File.expand_path(destination)
 
-  def extract(destination)
-    each do |entry|
-      next if entry.directory?
-      entry_path = ::File.join(destination, entry.name)
-      dirname = ::File.dirname(entry_path)
-      FileUtils.mkdir_p(dirname) unless ::File.exist?(dirname)
-      ::File.open(entry_path, 'wb') { |f| f << entry.read }
+      FileUtils.mkdir_p(File.dirname(destination))
+
+      command = ['zip', '-rq', destination, '.']
+      if system(*command, chdir: source)
+        destination
+      end
     end
-  end
 
-  def file?
-    !directory?
+    def self.extract(zip, destination)
+      zip = File.expand_path(zip)
+      destination = File.expand_path(destination)
+
+      FileUtils.mkdir_p(File.dirname(destination))
+
+      command = ['unzip', '-qq', '-n', zip, '-d', destination]
+      if system(*command)
+        destination
+      end
+    end
   end
 end

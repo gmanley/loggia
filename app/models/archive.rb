@@ -12,22 +12,26 @@ class Archive < ActiveRecord::Base
     file.remove!
     update_attributes(processing: true)
 
-    temp_directory = Dir.mktmpdir
-    zip_path = File.join(temp_directory, archivable.to_s + '.zip')
+    tmpdir = Dir.mktmpdir
+    zip_path = File.join(tmpdir, "#{archivable.to_s}.zip")
 
-    Zip::Archive.open(zip_path, Zip::CREATE) do |zip|
-      archivable.sources.each {|source| add_source(zip, source) }
-
-      archivable.images.includes(:source).each do |image_record|
-        add_image(zip, image_record, image_record.source.try(:name))
-      end
+    archivable.images.includes(:source).each do |image_record|
+      prepare_image(image_record, contents_path)
     end
+
+    Archive::Zip.create(parent_path, zip_path)
 
     self.file = File.open(zip_path)
     file.url if save
   ensure
     update_attributes(processing: false)
-    FileUtils.remove_entry_secure(temp_directory) if temp_directory
+    FileUtils.remove_entry_secure(tmpdir) if tmpdir
+  end
+
+  def contents_path
+    File.join(
+      Rails.public_path, 'archive_contents', archivable.slug, archivable.to_s
+    )
   end
 
   def outdated?
@@ -39,18 +43,19 @@ class Archive < ActiveRecord::Base
   end
 
   private
-  def add_source(zip, source)
-    zip.add_dir(source.name)
-  rescue Zip::Error
-    Rails.logger.warn("Error adding #{source.name} to archive #{id}.")
-  end
+  def prepare_image(image_record)
+    source_name = image_record.source.try(:name)
 
-  def add_image(zip, image_record, parent_path = nil)
-    image_file = image_record.image.cached_master
-    zip_path = File.join(*[parent_path, image_file.filename].compact)
+    image_file = image_record.image.sanitized_file
+    image_path = File.join(*[
+      contents_path, source_name, image_file.filename
+    ].compact)
 
-    zip.add_io(zip_path, image_file.file)
-  rescue Zip::Error
-    Rails.logger.warn("Error adding #{image_file.filename} to archive #{id}.")
+    FileUtils.mkdir_p(File.dirname(image_path))
+    file.move_to(image_path)
+  rescue => e
+    Rails.logger.warn(
+      "Error archiving #{image_file.filename} to archive #{id}: #{e.inspect}"
+    )
   end
 end
