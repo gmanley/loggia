@@ -1,4 +1,5 @@
 #= require libraries
+#= require_tree ./templates
 #= require albums
 #= require comments
 #= require images
