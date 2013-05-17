@@ -2,10 +2,10 @@ Soshigal::Application.routes.draw do
 
   root to: 'albums#index'
 
-  resources :albums, except: [:index], shallow: true do
+  resources :albums, except: [:index] do
     get 'page/:page', action: :show, on: :member, as: :paginated
-    resources :images, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy, :update]
+    resources :images, only: [:create, :destroy], shallow: true
+    resources :comments, only: [:create, :destroy, :update], shallow: true
     resources :favorites, only: [:create, :destroy]
     resource  :archive, only: [:create]
   end
