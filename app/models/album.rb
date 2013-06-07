@@ -13,7 +13,8 @@ class Album < ActiveRecord::Base
                        dependent: :destroy
 
   has_many :sources, through: :images,
-                     uniq: true
+                     uniq: true,
+                     order: :name
 
   has_many :uploaders, through: :images,
                        uniq: true
