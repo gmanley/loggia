@@ -29,7 +29,7 @@ class Image < ActiveRecord::Base
       if source_id.present?
         sources << Source.find(source_id)
       else
-        sources << Source.find_or_initialize_by_name(source_attrs)
+        sources << Source.find_or_initialize_by_name_and_kind(source_attrs)
       end
     end
   end
