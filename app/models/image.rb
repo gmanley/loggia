@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
 
   belongs_to :album, counter_cache: true
   belongs_to :uploader, class_name: 'User', inverse_of: :uploads
-  has_and_belongs_to_many :sources, uniq: true, order: :name
+  has_and_belongs_to_many :sources, uniq: true
 
   mount_uploader :image, ImageUploader
 
