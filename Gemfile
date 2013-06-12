@@ -40,7 +40,8 @@ gem 'soulmate', require: 'soulmate/server'
 
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog'
+gem 'nokogiri', '~> 1.5.9'
+gem 'fog', '~> 1.12.1'
 gem 'jquery-fileupload-rails'
 
 gem 'zipruby'
