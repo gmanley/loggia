@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 05df90c74dc2bec99664d836351e6a5eced84049
+  revision: 58043b6a51b49c52931f70020fbf2f5297b432f8
   specs:
     activeadmin (0.6.0)
       arbre (>= 1.0.1)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: git://github.com/kossnocorp/jquery.turbolinks.git
-  revision: 84491b8c3bb0af794673abf6daa02a5237b762e3
+  revision: db5dae44bd269a0db9ea29406f1f24e69131f5e0
   specs:
     jquery-turbolinks (1.0.0)
       railties (>= 3.1.0)
@@ -89,7 +89,7 @@ GEM
       activesupport (>= 3.2.0)
     celluloid (0.14.1)
       timers (>= 1.0.0)
-    closure_tree (4.2.0)
+    closure_tree (4.2.1)
       activerecord (>= 3.0.0)
       with_advisory_lock (>= 0.0.6)
     coderay (1.0.9)
@@ -134,13 +134,13 @@ GEM
     formatador (0.2.4)
     formtastic (2.2.1)
       actionpack (>= 3.0)
-    guard (1.8.0)
+    guard (1.8.1)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
       thor (>= 0.14.6)
-    guard-rspec (3.0.1)
+    guard-rspec (3.0.2)
       guard (>= 1.8)
       rspec (~> 2.13)
     haml (4.0.3)
@@ -174,7 +174,7 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.3.0)
       addressable (~> 2.3)
-    listen (1.2.0)
+    listen (1.2.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
@@ -196,11 +196,11 @@ GEM
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
     multi_fetch_fragments (0.0.16)
-    multi_json (1.7.6)
+    multi_json (1.7.7)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.7)
-    newrelic_rpm (3.6.3.111)
+    newrelic_rpm (3.6.4.122)
     nokogiri (1.5.10)
     orm_adapter (0.4.0)
     pg (0.15.1)
@@ -245,7 +245,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rake (10.0.4)
+    rake (10.1.0)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.0)
       ffi (>= 0.5.0)
@@ -284,7 +284,7 @@ GEM
       tilt (~> 1.3)
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
-    sidekiq (2.12.1)
+    sidekiq (2.12.4)
       celluloid (>= 0.14.1)
       connection_pool (>= 1.0.0)
       json
@@ -316,7 +316,7 @@ GEM
       activerecord (~> 3.0)
       activesupport (~> 3.0)
       polyamorous (~> 0.5.0)
-    stringex (2.0.2)
+    stringex (2.0.3)
     subexec (0.2.3)
     thin (1.5.1)
       daemons (>= 1.0.9)
@@ -342,7 +342,7 @@ GEM
       rack (>= 1.0.0)
     warden (1.2.1)
       rack (>= 1.0)
-    with_advisory_lock (0.0.6)
+    with_advisory_lock (0.0.8)
       activerecord (>= 3.0.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
