@@ -84,3 +84,10 @@ $ ->
       error = "<td class='error' colspan='2'><span class='label label-important'>Error</span> #{response.errors}</td>"
       data.context.find('.progress').replaceWith(error)
   )
+
+  $('#modal-gallery').on 'load', ->
+    modalData = $(this).data('modal')
+    if url = modalData.img.src
+      slashCount = url.split('/').length
+      originalImageUrl = modalData.img.src.replace(/\/large_((?!\/).*)$/, "/$1")
+      modalData.$element.find('.modal-download').attr('href', originalImageUrl)

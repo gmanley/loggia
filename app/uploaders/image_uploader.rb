@@ -10,7 +10,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   process :set_content_type
 
-  version :thumb do
+  version :large do
+    resize_to_limit(1920, 1080)
+  end
+
+  version :thumb, from_version: :large do
     resize_to_fit(285, 500)
   end
 
