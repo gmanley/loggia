@@ -45,8 +45,12 @@ gem 'fog', '~> 1.12.1'
 gem 'jquery-fileupload-rails'
 
 gem 'zipruby'
-gem 'sidekiq'
 gem 'redis-objects', require: 'redis/list'
+
+gem 'sidekiq', require: %w[sidekiq sidekiq/web]
+gem 'sidekiq-failures'
+gem 'sinatra', require: nil
+gem 'slim'
 
 gem 'pry-rails'
 

@@ -290,6 +290,8 @@ GEM
       json
       redis (>= 3.0)
       redis-namespace
+    sidekiq-failures (0.2.1)
+      sidekiq (>= 2.2.1)
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -301,6 +303,9 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
+    slim (2.0.0)
+      temple (~> 0.6.5)
+      tilt (~> 1.3, >= 1.3.3)
     slop (3.4.5)
     soulmate (1.0.0)
       multi_json (>= 1.0)
@@ -318,6 +323,7 @@ GEM
       polyamorous (~> 0.5.0)
     stringex (2.0.3)
     subexec (0.2.3)
+    temple (0.6.5)
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -398,8 +404,11 @@ DEPENDENCIES
   sass-rails (~> 3.2)
   shoulda-matchers
   sidekiq
+  sidekiq-failures
   simple_form
   simplecov
+  sinatra
+  slim
   soulmate
   squeel
   stringex
