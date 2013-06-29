@@ -1,6 +1,12 @@
+getNumColumns = (itemWidth, $window) ->
+  $window.width()
+  Math.floor($window.width() / itemWidth)
+
 setupMasonry = ->
   $imagesContainer = $('#images')
   $window = $(window)
+  # width + margin + border + box-shadow
+  itemWidth = 305
 
   $imagesContainer.masonry
     itemSelector: '.grid-item'
@@ -9,21 +15,20 @@ setupMasonry = ->
   $imagesContainer.imagesLoaded ->
     $imagesContainer.masonry()
 
+  imagesLoadedCount = 0
   $imagesContainer.find('img').load ->
-    $imagesContainer.masonry()
-
-  # width + margin + border + box-shadow
-  itemWidth = 305
+    if getNumColumns(itemWidth, $window) <= imagesLoadedCount += 1
+      imageLoadedCount = 0
+      $imagesContainer.masonry()
 
   $window.resize ->
-    $window.width()
-    columns = Math.floor($window.width() / itemWidth)
+    numColumns = getNumColumns(itemWidth, $window)
 
-    containerWidth = itemWidth * columns
-    containerWidth = 945 if columns <= 3
+    containerWidth = itemWidth * numColumns
+    containerWidth = 945 if numColumns <= 3
 
     if $window.width() <= containerWidth + 25
-      containerWidth = itemWidth * (columns - 1)
+      containerWidth = itemWidth * (numColumns - 1)
 
     $imagesContainer.width(containerWidth)
     $imagesContainer.masonry()
