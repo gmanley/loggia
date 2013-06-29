@@ -8,7 +8,6 @@
 //= require bootstrap-transition
 //= require bootstrap-button
 //= require bootstrap-collapse
-//= require jquery.jeditable
 //= require jquery.event.drag
 //= require jquery.event.drop
 //= require jquery-fileupload/vendor/jquery.ui.widget
