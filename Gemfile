@@ -18,7 +18,7 @@ gem 'coffee-rails',   '~> 3.2'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jquery-turbolinks', github: 'kossnocorp/jquery.turbolinks'
+gem 'jquery-turbolinks'
 
 gem 'pg'
 gem 'stringex'

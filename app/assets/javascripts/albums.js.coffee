@@ -1,5 +1,5 @@
 setupMasonry = ->
-  $imagesContainer = $('.grid-container')
+  $imagesContainer = $('#images')
   $window = $(window)
 
   $imagesContainer.masonry
@@ -7,24 +7,26 @@ setupMasonry = ->
     isResizable: true
 
   $imagesContainer.imagesLoaded ->
-    $imagesContainer.masonry('reload')
+    $imagesContainer.masonry()
 
   $imagesContainer.find('img').load ->
-    $imagesContainer.masonry('reload')
+    $imagesContainer.masonry()
 
-  imageSize = 300
+  # width + margin + border + box-shadow
+  itemWidth = 305
 
   $window.resize ->
     $window.width()
-    columns = Math.floor($window.width() / imageSize)
-    containerWidth = imageSize * columns - 15 + 40
-    containerWidth = 940 if columns <= 3
+    columns = Math.floor($window.width() / itemWidth)
+
+    containerWidth = itemWidth * columns
+    containerWidth = 945 if columns <= 3
 
     if $window.width() <= containerWidth + 25
-      containerWidth = imageSize * (columns - 1) - 15 + 40
+      containerWidth = itemWidth * (columns - 1)
 
     $imagesContainer.width(containerWidth)
-    $imagesContainer.masonry('reload')
+    $imagesContainer.masonry()
 
   $window.resize()
 
