@@ -6,6 +6,7 @@ gem 'pg', platform: :ruby # Postgresql Active Record adapters
 gem 'activerecord-jdbcpostgresql-adapter', platform: :jruby
 gem 'closure_tree' # Tree structures for your model (similar to acts_as_tree)
 gem 'kaminari' # Pagination
+gem 'foreigner'
 
 gem 'jquery-rails' # Bundles jQuery and the UJS adapter for it
 gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130421232856) do
+ActiveRecord::Schema.define(version: 20130928083538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,5 +130,20 @@ ActiveRecord::Schema.define(version: 20130421232856) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "album_hierarchies", "albums", name: "album_hierarchies_ancestor_id_fk", column: "ancestor_id"
+  add_foreign_key "album_hierarchies", "albums", name: "album_hierarchies_descendant_id_fk", column: "descendant_id"
+
+  add_foreign_key "albums", "albums", name: "albums_parent_id_fk", column: "parent_id"
+
+  add_foreign_key "comments", "users", name: "comments_user_id_fk"
+
+  add_foreign_key "favorites", "users", name: "favorites_user_id_fk"
+
+  add_foreign_key "images", "albums", name: "images_album_id_fk"
+  add_foreign_key "images", "users", name: "images_uploader_id_fk", column: "uploader_id"
+
+  add_foreign_key "images_sources", "images", name: "images_sources_image_id_fk"
+  add_foreign_key "images_sources", "sources", name: "images_sources_source_id_fk"
 
 end

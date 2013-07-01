@@ -140,6 +140,8 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5)
       ruby-hmac
+    foreigner (1.5.0)
+      activerecord (>= 3.0.0)
     formatador (0.2.4)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
@@ -370,6 +372,7 @@ DEPENDENCIES
   fabrication
   ffaker
   fog
+  foreigner
   guard
   guard-rspec
   haml-rails
