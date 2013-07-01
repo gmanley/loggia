@@ -8,7 +8,7 @@
       .collapse.accordion-body#filter-images
         = simple_form_for album, method: :get, html: { class: 'accordion-inner' } do |f|
           = f.association :sources, collection: album.sources,
-            selected: source_selected_proc,
+            selected: method(:source_selected?).to_proc,
             label: 'By Source',
             input_html: { class: 'chosen span12', data: { placeholder: 'Select sources to filter by...' } }
           = f.button :submit, value: 'Filter', class: 'btn-primary'
