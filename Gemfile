@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0'
 
 gem 'pg' # Postgresql Active Record adapter
-# Tree structures for your model (similar to acts_as_tree)
-gem 'closure_tree', github: 'gmanley/closure_tree', branch: 'rails4'
+gem 'closure_tree' # Tree structures for your model (similar to acts_as_tree)
 gem 'kaminari' # Pagination
 
 gem 'jquery-rails' # Bundles jQuery and the UJS adapter for it
@@ -38,10 +37,11 @@ gem 'stringex' # Various string helpers... used in slug generation
 
 gem 'zipruby' # C extensions for libzip (Has bad memory leaks)
 gem 'redis-objects', require: 'redis/list' # Ruby data types to redis mapping
+
 gem 'sidekiq' # Background jobs
-gem 'sidekiq-failures'
-gem 'sinatra', require: nil
-gem 'slim'
+gem 'sidekiq-failures' # Adds a way to monitor worker failures
+gem 'sinatra', require: nil # Needed for sidekiq monitoring
+gem 'slim' # Ditto
 
 gem 'pry-rails' # Replaces regular rails console with a pry session
 

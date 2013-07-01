@@ -22,7 +22,6 @@ class ImagesController < ApplicationController
 
   private
   def image_params
-    params[:image] = params.delete(:image).first
     params.require(:image).permit(:image, :sources_attributes, :uploader)
   end
 end

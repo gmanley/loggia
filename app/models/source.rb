@@ -18,7 +18,7 @@ class Source < ActiveRecord::Base
 
   scope :photographers, -> { where(kind: 'photographer') }
 
-  default_scope order(:name)
+  default_scope { order(:name) }
 
   def self.merge!(source_ids)
     sources = Source.where(id: source_ids).order('created_at ASC')
