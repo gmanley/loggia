@@ -38,7 +38,7 @@ initSelection = ->
 cleanupDelete = ->
   $('#finish_delete').attr('disabled', true)
   $('.selected').removeClass('selected')
-  $('#images').masonry('reload')
+  $('#images').masonry('reloadItems')
 
 deleteSelected = ->
   $('.selected').each((i, item) ->
@@ -76,7 +76,7 @@ $ ->
     done: (e, data) ->
       $image = $(JST['templates/image'](image: data.result.image, id: data.result.id))
       $image.find('img').load ->
-        $imagesContainer.masonry('reload')
+        $imagesContainer.masonry('prepended', $image)
       $imagesContainer.prepend($image)
       data.context.find('.progress').replaceWith("<span class='label label-success'>Success</span>")
     fail: (e, data) ->
