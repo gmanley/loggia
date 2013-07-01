@@ -4,7 +4,6 @@ class ArchivesController < ApplicationController
 
   def create
     authorize!(:create, Archive)
-
-    @parent_resource.async_create_archive(current_user.id)
+    parent_resource.async_create_archive(current_user.id)
   end
 end

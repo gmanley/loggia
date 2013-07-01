@@ -1,30 +1,37 @@
+getNumColumns = (itemWidth, $window) ->
+  $window.width()
+  Math.floor($window.width() / itemWidth)
+
 setupMasonry = ->
-  $imagesContainer = $('.grid-container')
+  $imagesContainer = $('#images')
   $window = $(window)
+  # width + margin + border + box-shadow
+  itemWidth = 305
 
   $imagesContainer.masonry
     itemSelector: '.grid-item'
     isResizable: true
 
   $imagesContainer.imagesLoaded ->
-    $imagesContainer.masonry('reload')
+    $imagesContainer.masonry()
 
+  imagesLoadedCount = 0
   $imagesContainer.find('img').load ->
-    $imagesContainer.masonry('reload')
-
-  imageSize = 300
+    if getNumColumns(itemWidth, $window) <= imagesLoadedCount += 1
+      imageLoadedCount = 0
+      $imagesContainer.masonry()
 
   $window.resize ->
-    $window.width()
-    columns = Math.floor($window.width() / imageSize)
-    containerWidth = imageSize * columns - 15 + 40
-    containerWidth = 940 if columns <= 3
+    numColumns = getNumColumns(itemWidth, $window)
+
+    containerWidth = itemWidth * numColumns
+    containerWidth = 945 if numColumns <= 3
 
     if $window.width() <= containerWidth + 25
-      containerWidth = imageSize * (columns - 1) - 15 + 40
+      containerWidth = itemWidth * (numColumns - 1)
 
     $imagesContainer.width(containerWidth)
-    $imagesContainer.masonry('reload')
+    $imagesContainer.masonry()
 
   $window.resize()
 
@@ -34,30 +41,6 @@ $(document).on 'page:restore', ->
 
 $ ->
   setupMasonry()
-
-  editable_settings =
-    method: 'PUT'
-    indicator: 'Saving...'
-    tooltip: 'Click to edit...'
-    ajaxoptions:
-      dataType: 'json'
-    submitdata: (value, settings) ->
-      album:
-        title: value
-    callback: (response, settings) ->
-      $(this).html(response.title)
-
-  $('.page-header h1 .album-title').editable(window.location.pathname, editable_settings)
-
-  $('li.active a, li.disabled a').on('click', false)
-
-  $('#toggle_editing.inactive').on 'click', (e) ->
-    $('.thumbnail').on 'click', (e) ->
-      $this = $(this)
-      e.preventDefault()
-      album_url = $this.attr('href')
-      $('.thumbnail-title').editable(album_url, editable_settings)
-      $this.children('.thumbnail-title').click()
 
   $('.datepicker').datepicker(format: 'yyyy.mm.dd')
 

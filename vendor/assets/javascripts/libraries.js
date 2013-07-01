@@ -8,7 +8,6 @@
 //= require bootstrap-transition
 //= require bootstrap-button
 //= require bootstrap-collapse
-//= require jquery.jeditable
 //= require jquery.event.drag
 //= require jquery.event.drop
 //= require jquery-fileupload/vendor/jquery.ui.widget
@@ -26,5 +25,5 @@
 //= require bootbox
 //= require chosen.jquery
 //= require jquery.timeago
-//= require jquery.masonry
-//= require jquery.imagesloaded
+//= require masonry
+//= require imagesloaded

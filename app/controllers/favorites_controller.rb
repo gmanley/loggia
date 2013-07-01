@@ -7,12 +7,12 @@ class FavoritesController < ApplicationController
     @favorite.user = current_user
     authorize!(:create, @favorite)
 
-    @parent_resource.favorites << @favorite
+    parent_resource.favorites << @favorite
     respond_with(@favorite, location: false)
   end
 
   def destroy
-    @favorite = @parent_resource.favorites.find(params[:id])
+    @favorite = Favorite.find(params[:id])
     authorize!(:destroy, @favorite)
 
     @favorite.destroy

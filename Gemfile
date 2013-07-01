@@ -37,8 +37,11 @@ gem 'rack-contrib' # Needed by soulmate
 gem 'stringex' # Various string helpers... used in slug generation
 
 gem 'zipruby' # C extensions for libzip (Has bad memory leaks)
-gem 'sidekiq' # Background jobs
 gem 'redis-objects', require: 'redis/list' # Ruby data types to redis mapping
+gem 'sidekiq' # Background jobs
+gem 'sidekiq-failures'
+gem 'sinatra', require: nil
+gem 'slim'
 
 gem 'pry-rails' # Replaces regular rails console with a pry session
 

@@ -32,7 +32,10 @@ RSpec.configure do |config|
   config.before(:each, type: :helper) { init_haml_helpers }
 
   config.after(:each) do |group|
-    unless group.example.metadata[:no_database_cleaner]
+    metadata = group.example.metadata
+    if metadata[:no_database_cleaner] && metadata[:capybara_feature]
+      DatabaseCleaner.clean_with(:truncation)
+    else
       DatabaseCleaner.clean
     end
   end

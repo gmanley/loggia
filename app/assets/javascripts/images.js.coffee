@@ -43,8 +43,7 @@ cleanupDelete = ->
 deleteSelected = ->
   $('.selected').each((i, item) ->
     $item = $(item).find('a')
-    destroyUrl = "#{albumUrl()}/images/#{$item.data('image-id')}"
-    $.post(destroyUrl, _method: 'delete')
+    $.post("/images/#{$item.data('image-id')}", _method: 'delete')
     $item.parent().fadeOut(500).remove()
   )
   cleanupDelete()
@@ -85,3 +84,10 @@ $ ->
       error = "<td class='error' colspan='2'><span class='label label-important'>Error</span> #{response.errors}</td>"
       data.context.find('.progress').replaceWith(error)
   )
+
+  $('#modal-gallery').on 'load', ->
+    modalData = $(this).data('modal')
+    if url = modalData.img.src
+      slashCount = url.split('/').length
+      originalImageUrl = modalData.img.src.replace(/\/large_((?!\/).*)$/, "/$1")
+      modalData.$element.find('.modal-download').attr('href', originalImageUrl)

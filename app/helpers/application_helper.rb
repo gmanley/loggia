@@ -40,7 +40,7 @@ module ApplicationHelper
   end
 
   def link_to_destroy(body, resource, options = {})
-    name = (resource.is_a?(Array) ? resource.last : resource).class.name.downcase
+    name = resource.class.name.downcase
     options = {
       method: :delete,
       remote: true,

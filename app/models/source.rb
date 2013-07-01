@@ -18,6 +18,8 @@ class Source < ActiveRecord::Base
 
   scope :photographers, -> { where(kind: 'photographer') }
 
+  default_scope order(:name)
+
   def self.merge!(source_ids)
     sources = Source.where(id: source_ids).order('created_at ASC')
     image_ids = sources.map { |source| source.image_ids }.flatten
