@@ -49,10 +49,6 @@ class Album < ActiveRecord::Base
     contents_updated_at || updated_at
   end
 
-  def recursive_images
-    Image.where(album_id: self_and_descendant_ids)
-  end
-
   def favorite_by(user)
     favorites.where(user_id: user.id).first
   end

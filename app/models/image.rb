@@ -25,15 +25,20 @@ class Image < ActiveRecord::Base
 
   def sources_attributes=(attrs)
     attrs.values.each do |source_attrs|
-      source_id = source_attrs.delete(:id)
-      if source_id.present?
-        sources << Source.find(source_id)
-      else
-        sources << Source.find_or_initialize_by_name_and_kind(source_attrs)
-      end
+      associate_source(source_attrs)
     end
   end
 
+  def associate_source(attrs)
+    source_id = attrs.delete(:id)
+    if source_id.present?
+      sources << Source.find(source_id)
+    else
+      sources << Source.where(
+        attrs.slice(:name, :kind)
+      ).first_or_initialize(attrs)
+    end
+  end
 
   def album_page_num
     album.images.index(self) / self.class.default_per_page + 1

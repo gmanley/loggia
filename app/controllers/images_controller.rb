@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
 
   def create
     @album = Album.find_by_slug!(params[:album_id])
-    @image = @album.images.new(correct_params(params[:image]))
+    @image = @album.images.new(image_params)
     @image.uploader = current_user
     authorize!(:create, @image)
 
@@ -31,7 +31,8 @@ class ImagesController < ApplicationController
   end
 
   private
-  def correct_params(attrs)
+  def image_params
+    attrs = params[:image]
     attrs[:image] = attrs.delete(:image).first
     attrs
   end
