@@ -51,8 +51,50 @@ deleteSelected = ->
 albumUrl = ->
   window.location.pathname.replace(/\/page\/\d+/, '')
 
+handleSlideChange = (index) ->
+  slide = $('.image a').eq(index)
+  imageId = slide.data('image-id')
+  app.setLocation("#/images/#{imageId}")
+
+loadSlide = (slide) ->
+  options =
+    container: $modalContainer[0]
+    index: slide
+    clearSlides: false
+    onslide: (index, slide) ->
+      handleSlideChange(index)
+    onclose: ->
+      app.setLocation("#/")
+      $modalContainer.removeData 'gallery'
+
+  links = $('.image a')
+  gallery = new blueimp.Gallery(links, options)
+
+  $modalContainer.data 'gallery', gallery
+
+$imagesContainer = $('#images')
+$modalContainer = $('#gallery-modal')
+
+$imagesContainer.on 'click', '.image a', (e) ->
+  loadSlide(this)
+  e.preventDefault()
+
+# initialize the application
+window.app = Sammy('#images', ->
+  @get '#/', ->
+    $modalContainer.data('gallery')?.close()
+
+  @get '#/images/:imageId', ->
+    if gallery = $modalContainer.data('gallery')
+      newIndex = $("#image_#{@params.imageId}").index('.image a')
+      if newIndex != gallery.getIndex()
+        gallery.slide(newIndex)
+    else
+      loadSlide($("#image_#{@params.imageId}"))
+)
+
 $ ->
-  $imagesContainer = $('#images')
+  app.run('#/')
 
   $('#toggle_selection').click (e) ->
     e.preventDefault()
@@ -84,10 +126,3 @@ $ ->
       error = "<td class='error' colspan='2'><span class='label label-important'>Error</span> #{response.errors}</td>"
       data.context.find('.progress').replaceWith(error)
   )
-
-  $('#modal-gallery').on 'load', ->
-    modalData = $(this).data('modal')
-    if url = modalData.img.src
-      slashCount = url.split('/').length
-      originalImageUrl = modalData.img.src.replace(/\/large_((?!\/).*)$/, "/$1")
-      modalData.$element.find('.modal-download').attr('href', originalImageUrl)

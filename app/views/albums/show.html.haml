@@ -13,7 +13,7 @@
   #albums.grid-container
     = render partial: @children, cache: true
 
-  #images.grid-container{data: { toggle: 'modal-gallery', target: '#modal-gallery' }}
+  #images.grid-container
     = render partial: @images, cache: true
   = paginate @images
   - unless @images.empty?

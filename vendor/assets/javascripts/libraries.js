@@ -18,7 +18,7 @@
 //= require jquery-fileupload/jquery.fileupload-fp
 //= require jquery-fileupload/jquery.fileupload-ui
 //= require jquery-fileupload/locale
-//= require bootstrap-image-gallery
+//= require blueimp-gallery
 //= require hamlcoffee
 //= require bootstrap-datepicker
 //= require jquery.soulmate
@@ -27,3 +27,4 @@
 //= require jquery.timeago
 //= require masonry
 //= require imagesloaded
+//= require sammy

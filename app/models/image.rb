@@ -34,6 +34,11 @@ class Image < ActiveRecord::Base
     end
   end
 
+
+  def album_page_num
+    album.images.index(self) / self.class.default_per_page + 1
+  end
+
   private
   def set_md5
     self.md5 = image.md5
