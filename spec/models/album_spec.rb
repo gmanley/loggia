@@ -1,51 +1,6 @@
 require 'spec_helper'
 
 describe Album do
-  # NOTE: I have mixed feelings about the necessity of the tests found in the
-  # first 3 describe blocks. If nothing else, however, they serve as good
-  # documentation.
-
-  describe 'database columns' do
-    it { should have_db_column(:description).of_type(:text) }
-
-    it { should have_db_column(:event_date).of_type(:date) }
-
-    it { should have_db_column(:hidden).
-                  of_type(:boolean).
-                  with_options(default: false) }
-
-    it { should have_db_column(:images_count).
-                  of_type(:integer).
-                  with_options(default: 0) }
-
-    it { should have_db_column(:slug).
-                  of_type(:string).
-                  with_options(null: false) }
-
-    it { should have_db_column(:thumbnail_url).
-                  of_type(:string).
-                  with_options(default: '/assets/placeholder.png') }
-
-    it { should have_db_column(:title).
-                  of_type(:string).
-                  with_options(null: false) }
-  end
-
-  describe 'indexes' do
-    it { should have_db_index(:hidden) }
-    it { should have_db_index(:images_count) }
-    it { should have_db_index(:parent_id) }
-    it { should have_db_index(:slug).unique(true) }
-  end
-
-  describe 'associations' do
-    it { should have_many(:images).dependent(:destroy) }
-    it { should have_many(:comments).dependent(:destroy) }
-    it { should have_many(:favorites).dependent(:destroy) }
-    it { should have_many(:sources).through(:images) }
-    it { should have_one(:archive).dependent(:destroy)  }
-  end
-
   describe 'validations' do
     it { should validate_presence_of(:title) }
 

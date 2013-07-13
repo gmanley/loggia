@@ -25,3 +25,13 @@ end
 Fabricator(:album_comment, from: :comment) do
   commentable(fabricator: :album)
 end
+
+Fabricator(:image) do
+  album
+  md5 { SecureRandom.hex }
+end
+
+Fabricator(:source) do
+  kind { %w[photographer website].sample }
+  name { |attrs| sequence(:name) { |i| "#{attrs[:kind]}#{i}" } }
+end
