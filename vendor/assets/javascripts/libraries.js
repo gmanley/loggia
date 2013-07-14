@@ -13,7 +13,6 @@
 //= require jquery-fileupload/vendor/jquery.ui.widget
 //= require jquery-fileupload/vendor/load-image
 //= require jquery-fileupload/vendor/canvas-to-blob
-//= require jquery-fileupload/jquery.iframe-transport
 //= require jquery-fileupload/jquery.fileupload
 //= require jquery-fileupload/jquery.fileupload-fp
 //= require jquery-fileupload/jquery.fileupload-ui
@@ -25,6 +24,15 @@
 //= require bootbox
 //= require chosen.jquery
 //= require jquery.timeago
-//= require masonry
+//= require get-style-property
+//= require get-size
+//= require EventEmitter
+//= require eventie
 //= require imagesloaded
+//= require doc-ready
+//= require jquery.bridget
+//= require matches-selector
+//= require outlayer-item
+//= require outlayer
+//= require masonry
 //= require sammy

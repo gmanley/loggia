@@ -11,6 +11,7 @@ setupMasonry = ->
   $imagesContainer.masonry
     itemSelector: '.grid-item'
     isResizable: true
+    transitionDuration: '0.5s'
 
   $imagesContainer.imagesLoaded ->
     $imagesContainer.masonry()

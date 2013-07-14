@@ -243,7 +243,7 @@
             closeOnSwipeUpOrDown: true,
             // Emulate touch events on mouse-pointer devices such as desktop browsers:
             emulateTouchEvents: true,
-            // Hide the page scrollbars: 
+            // Hide the page scrollbars:
             hidePageScrollbars: true,
             // Stops any touches on the container from scrolling the page:
             disableScroll: true,

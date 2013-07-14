@@ -7,7 +7,7 @@ gem 'bundler'
 
 group :assets do
   gem 'sass-rails',     '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.3.0.1'
+  gem 'bootstrap-sass', '~> 2.3.2.0'
   gem 'uglifier'
   gem 'haml_coffee_assets'
   gem 'execjs'
