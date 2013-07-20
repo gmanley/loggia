@@ -81,7 +81,9 @@
 
   .header-actions { padding-top: 5px }
 
-  #filter_album_images .checkbox { font-weight: bold; }
+  #filter_album_images .checkbox { font-weight: bold }
+
+  button [class^="icon-"] { padding-right: 5px }
 
   #thumbnails-wrapper {
     border-bottom: 1px solid #EEE;
