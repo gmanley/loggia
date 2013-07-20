@@ -64,7 +64,6 @@ group :test do
   gem 'shoulda-matchers', github: 'gmanley/shoulda-matchers', branch: 'rails4' # Collection of helpful rspec macros
   gem 'simplecov', require: false # Code coverage tool
   gem 'poltergeist' # Headless browser for capybara (uses PhantomJS)
-  gem 'faye-websocket', '0.4.7' # Used by poltergeist need to lock in version
 end
 
 group :development, :test do

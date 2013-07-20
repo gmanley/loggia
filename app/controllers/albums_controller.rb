@@ -22,17 +22,17 @@ class AlbumsController < ApplicationController
     authorize!(:new, @album)
   end
 
-  def edit
-    @album = Album.find_by_slug!(params[:id])
-    authorize!(:edit, @album)
-  end
-
   def create
     @album = Album.new(album_params)
     authorize!(:create, @album)
 
     @album.save
     respond_with(@album)
+  end
+
+  def edit
+    @album = Album.find_by_slug!(params[:id])
+    authorize!(:edit, @album)
   end
 
   def update

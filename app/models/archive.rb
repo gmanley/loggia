@@ -10,9 +10,15 @@ class Archive < ActiveRecord::Base
     file.remove!
     update_attributes(processing: true)
 
-    temp_directory = Dir.mktmpdir
-    zip_path = File.join(temp_directory, archivable.to_s + '.zip')
+    assemble_zip
+    self.file = File.open(zip_path)
+    file.url if save
+  ensure
+    update_attributes(processing: false)
+    FileUtils.remove_entry_secure(temp_directory) if temp_directory
+  end
 
+  def assemble_zip
     Zip::Archive.open(zip_path, Zip::CREATE) do |zip|
       archivable.sources.each {|source| add_source(zip, source) }
 
@@ -20,12 +26,14 @@ class Archive < ActiveRecord::Base
         add_image(zip, image_record, image_record.source.try(:name))
       end
     end
+  end
 
-    self.file = File.open(zip_path)
-    file.url if save
-  ensure
-    update_attributes(processing: false)
-    FileUtils.remove_entry_secure(temp_directory) if temp_directory
+  def zip_path
+    File.join(temp_directory, archivable.to_s + '.zip')
+  end
+
+  def temp_directory
+    @temp_directory ||= Dir.mktmpdir
   end
 
   def outdated?

@@ -16,20 +16,29 @@ class Image < ActiveRecord::Base
   after_commit(on: :create) { album.touch(:contents_updated_at) }
 
   def set_thumbnails
-    unless album.nil?
+    if album
       album.self_and_ancestors.each { |a| a.set_thumbnail_url }
     end
   end
 
   def sources_attributes=(attrs)
     attrs.values.each do |source_attrs|
-      source_id = source_attrs.delete(:id)
-      if source_id.present?
-        sources << Source.find(source_id)
-      else
-        sources << Source.find_or_initialize_by_name_and_kind(source_attrs)
+      associate_source(source_attrs)
+    end
+  end
+
+  def associate_source(attrs)
+    if source_id = attrs.delete(:id).presence
+      sources << Source.find(source_id)
+    else
+      unless attrs.values_at(:name, :kind).any?(&:blank?)
+        sources << Source.find_or_initialize_by_name_and_kind(attrs)
       end
     end
+  end
+
+  def album_page_num
+    album.images.index(self) / self.class.default_per_page + 1
   end
 
   private
