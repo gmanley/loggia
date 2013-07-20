@@ -32,8 +32,6 @@ class ImagesController < ApplicationController
 
   private
   def image_params
-    attrs = params[:image]
-    attrs[:image] = attrs.delete(:image).first
-    attrs
+    params.require(:image).permit(:image, :sources_attributes)
   end
 end
