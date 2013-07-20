@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe AlbumsController do
+  shared_examples 'access denied' do
+    it { should_not respond_with(:success) }
+    it { should redirect_to(root_url) }
+    it { should set_the_flash.to('You are not authorized to access this page.') }
+  end
+
   let(:album) { mock_model(Album, slug: 'cool-album', hidden: false) }
   let(:admin) { Fabricate(:admin) }
 
@@ -133,7 +139,7 @@ describe AlbumsController do
   describe 'PUT #update' do
     let(:updated_album_hash) { Fabricate.attributes_for(:album) }
 
-    before { Album.should_receive(:find_by_slug!).any_number_of_times.and_return(album) }
+    before { Album.stub(:find_by_slug!).and_return(album) }
 
     def do_put
       put :update, id: album.slug, album: updated_album_hash
@@ -163,7 +169,7 @@ describe AlbumsController do
   end
 
   describe 'DELETE #destroy' do
-    before { Album.should_receive(:find_by_slug!).any_number_of_times.and_return(album) }
+    before { Album.stub(:find_by_slug!).and_return(album) }
 
     def do_delete
       delete :destroy, id: album.slug

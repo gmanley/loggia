@@ -70,7 +70,7 @@ describe Album do
       it "returns an array of the album's ancestors and itself's display_name" do
         album.stub(parent: parent)
         parent.stub(:self_and_ancestors) do
-          %w(f e d c b a).collect { |s| stub(display_name: s) }
+          %w(f e d c b a).collect { |s| double(display_name: s) }
         end
 
         expect(album.slug_components).to eql(%w(a b c d e f g))
