@@ -7,28 +7,28 @@ gem 'closure_tree' # Tree structures for your model (similar to acts_as_tree)
 gem 'kaminari' # Pagination
 
 gem 'jquery-rails' # Bundles jQuery and the UJS adapter for it
-gem 'sass-rails',     '~> 4.0.0.rc1' # Use SCSS for stylesheets
-gem 'coffee-rails',   '~> 4.0.0' # CoffeeScript support (.js.coffee)
-gem 'uglifier',       '>= 1.3.0' # JavaScript compressor
+gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
+gem 'coffee-rails', '~> 4.0.0' # CoffeeScript support (.js.coffee)
 gem 'haml_coffee_assets' # HAML coffeescript templates
-gem 'execjs' # Wrapper around JS runtimes (required by haml_coffee_assets)
 gem 'turbo-sprockets-rails3' # Speeds up asset precompilation
 gem 'bootstrap-sass', '~> 2.3.1.0' # SCSS version of bootstrap (usable mixins)
 gem 'turbolinks' # PJAX-esque ajax links
 gem 'jquery-turbolinks' # Better jQuery compatibility for turbolinks
 gem 'haml-rails' # Adds HAML support along with custom generators
 
-gem 'devise', github: 'plataformatec/devise', branch: 'rails4' # Authentication
+gem 'devise' # Authentication
 gem 'cancan' # Authorization
-gem 'activeadmin', github: 'akashkamboj/active_admin', branch: 'rails4' # Admin framework
+gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4' # Admin framework
 gem 'ransack', github: 'ernie/ransack', branch: 'rails-4' # Needed for activeadmin rails 4 support
+gem 'inherited_resources', github: 'josevalim/inherited_resources' # ditto
+gem 'formtastic', github: 'justinfrench/formtastic' # ditto
 
 gem 'carrierwave' # File uploading
 gem 'mini_magick' # Image processing (rmagick alternative)
 gem 'fog' # Cloud service ruby client (used by carrierwave for S3 support)
 gem 'jquery-fileupload-rails' # jquery-fileupload assets and required middleware shim
 
-gem 'responders' # Customize respond_with behavior
+gem 'responders', github: 'plataformatec/responders' # Customize respond_with behavior
 gem 'simple_form', github: 'plataformatec/simple_form' # Better rails form helpers
 gem 'multi_fetch_fragments' # Speeds up collection partial rendering
 gem 'soulmate', require: 'soulmate/server' # Autocomplete endpoint using Redis

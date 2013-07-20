@@ -3,10 +3,10 @@
   %head
     %meta{charset: 'UTF-8'}
     %title Soshi Gallery
-    = stylesheet_link_tag 'application', media: 'all', data: { 'turbolinks-track' => true }
+    = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: true }
     /[if lt IE 9]
       = javascript_include_tag '//html5shiv.googlecode.com/svn/trunk/html5.js'
-    = javascript_include_tag 'application', data: { 'turbolinks-track' => true }
+    = javascript_include_tag 'application', data: { turbolinks_track: true }
     = csrf_meta_tags
     = yield :head
   %body{class: page_class}
