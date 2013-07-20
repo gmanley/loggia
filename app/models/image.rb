@@ -18,7 +18,7 @@ class Image < ActiveRecord::Base
   after_commit(on: :create) { album.touch(:contents_updated_at) }
 
   def set_thumbnails
-    unless album.nil?
+    if album
       album.self_and_ancestors.each { |a| a.set_thumbnail_url }
     end
   end
@@ -30,13 +30,12 @@ class Image < ActiveRecord::Base
   end
 
   def associate_source(attrs)
-    source_id = attrs.delete(:id)
-    if source_id.present?
+    if source_id = attrs.delete(:id).presence
       sources << Source.find(source_id)
     else
-      sources << Source.where(
-        attrs.slice(:name, :kind)
-      ).first_or_initialize(attrs)
+      unless attrs.values_at(:name, :kind).any?(&:blank?)
+        sources << Source.find_or_initialize_by_name_and_kind(attrs)
+      end
     end
   end
 
