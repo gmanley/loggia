@@ -2,9 +2,7 @@ $suggestionWidth: 325px;
 $inputWidth: 400px;
 $soulmateWidth: $inputWidth - 21px;
 
-#attribution-container dl {
-  font-size: 14px;
-}
+#attribution-container dl { font-size: 14px }
 
 #attribution {
   border: 1px solid #999;
@@ -14,8 +12,7 @@ $soulmateWidth: $inputWidth - 21px;
   margin: 0;
   padding: 12px 12px 10px;
   width: $inputWidth;
-  @include border-radius(4px);
-}
+  @include border-radius(4px) }
 
 #soulmate {
   background-color: #fafafa;
@@ -36,9 +33,7 @@ $soulmateWidth: $inputWidth - 21px;
   .soulmate-type-container {
     border-top: 1px solid #ddd;
     &:first-child {
-      border-top: none;
-    }
-  }
+      border-top: none } }
 
   .soulmate-type-suggestions {
     border-left: 1px solid #ddd;
@@ -46,8 +41,7 @@ $soulmateWidth: $inputWidth - 21px;
     list-style: none;
     padding: 5px 0;
     width: $suggestionWidth;
-    letter-spacing: 0.5px;
-  }
+    letter-spacing: 0.5px }
 
   .soulmate-suggestion {
     color: #111;
@@ -57,7 +51,7 @@ $soulmateWidth: $inputWidth - 21px;
     padding: 5px 0 6px 12px;
     text-decoration: none;
 
-    &.focus{
+    &.focus {
       color: white;
       margin-left: -1px;
       margin-right: -1px;
@@ -66,9 +60,7 @@ $soulmateWidth: $inputWidth - 21px;
       text-shadow: 0 1px 1px #32629b;
       z-index: 1;
       @include box-shadow(0, 1px, 2px , rgba(0,0,0,0.3));
-      @include gradient-vertical(#545454, #444444);
-    }
-  }
+      @include gradient-vertical(#545454, #444444) } }
 
   .soulmate-type {
     background-color: white;
@@ -81,6 +73,4 @@ $soulmateWidth: $inputWidth - 21px;
     text-transform: capitalize;
     vertical-align: top;
     @include border-radius(5px);
-    @include clearfix();
-  }
-}
+    @include clearfix() } }

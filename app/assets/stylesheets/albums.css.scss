@@ -30,7 +30,7 @@
     height: 285px;
     @include border-radius(5px 5px 0 0);
     display: block;
-    img { height: 100% }}
+    img { height: 100% } }
 
   .info {
     border-top: 1px solid #E5E5E5;
@@ -41,7 +41,7 @@
       display: inline-block;
       clear: both;
       float: left;
-      .stat-block { margin-right: 10px; } } }
+      .stat-block { margin-right: 10px } } }
 
   .item-link {
     height: 20px;
@@ -62,7 +62,7 @@
     float: left;
     h1 { float: left }
     form { display: inline-block }
-    .album-updated-at { clear: both; }
+    .album-updated-at { clear: both }
     .header-actions { clear: both } }
 
   .selection {
