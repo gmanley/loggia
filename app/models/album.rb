@@ -66,7 +66,7 @@ class Album < ActiveRecord::Base
       thumbnail_url = images.offset(rand(images.count)).first.image_url(:square)
     end
 
-    update_attributes(thumbnail_url: thumbnail_url)
+    update(thumbnail_url: thumbnail_url)
   end
 
   def async_create_archive(user_id)

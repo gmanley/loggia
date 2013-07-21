@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     authorize!(:update, @comment)
 
-    @comment.update_attributes(comment_params)
+    @comment.update(comment_params)
     respond_with(@comment, location: false)
   end
 

@@ -39,7 +39,7 @@ class AlbumsController < ApplicationController
     @album = Album.find_by_slug!(params[:id])
     authorize!(:update, @album)
 
-    @album.update_attributes(album_params)
+    @album.update(album_params)
     respond_with(@album)
   end
 

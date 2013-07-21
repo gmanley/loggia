@@ -148,12 +148,12 @@ describe AlbumsController do
     context 'as an admin' do
       before do
         sign_in(admin)
-        album.stub(:update_attributes).with(updated_album_hash)
+        album.stub(:update).with(updated_album_hash)
         do_put
       end
 
       it 'should update specied album' do
-        album.should_receive(:update_attributes).with(updated_album_hash)
+        album.should_receive(:update).with(updated_album_hash)
         do_put
       end
 

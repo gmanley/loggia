@@ -8,13 +8,13 @@ class Archive < ActiveRecord::Base
   def archive_album
     return file.url unless outdated?
     file.remove!
-    update_attributes(processing: true)
+    update(processing: true)
 
     assemble_zip
     self.file = File.open(zip_path)
     file.url if save
   ensure
-    update_attributes(processing: false)
+    update(processing: false)
     FileUtils.remove_entry_secure(temp_directory) if temp_directory
   end
 
