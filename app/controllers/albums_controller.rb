@@ -10,7 +10,7 @@ class AlbumsController < ApplicationController
   def show
     @album = Album.find_by_slug!(params[:id])
     @children = @album.children.accessible_by(current_ability)
-    @images = get_images.page(params[:page])
+    @images = paginate(get_images)
     @comments = @album.comments.includes(:user)
     authorize!(:show, @album)
 

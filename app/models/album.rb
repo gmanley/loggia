@@ -1,5 +1,5 @@
 class Album < ActiveRecord::Base
-  has_many :images, dependent: :destroy
+  has_many :images, -> { order(created_at: :desc) }, dependent: :destroy
 
   has_many :comments, -> { order(:created_at) },
                       as: :commentable,
