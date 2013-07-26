@@ -1,5 +1,5 @@
 /*!
- * Outlayer v1.0.0
+ * Outlayer v1.1.0
  * the brains and guts of a layout library
  */
 
@@ -79,7 +79,7 @@ function toDashed( str ) {
 }
 
 
-function outlayerDefinition( classie, eventie, docReady, EventEmitter, getSize, matchesSelector, Item ) {
+function outlayerDefinition( eventie, docReady, EventEmitter, getSize, matchesSelector, Item ) {
 
 // -------------------------- Outlayer -------------------------- //
 
@@ -209,25 +209,28 @@ Outlayer.prototype._filterFindItemElements = function( elems ) {
   // make array of elems
   elems = makeArray( elems );
   var itemSelector = this.options.itemSelector;
-
-  if ( !itemSelector ) {
-    return elems;
-  }
-
   var itemElems = [];
 
-  // filter & find items if we have an item selector
   for ( var i=0, len = elems.length; i < len; i++ ) {
     var elem = elems[i];
-    // filter siblings
-    if ( matchesSelector( elem, itemSelector ) ) {
-      itemElems.push( elem );
+    // check that elem is an actual element
+    if ( !isElement( elem ) ) {
+      continue;
     }
-    // find children
-    var childElems = elem.querySelectorAll( itemSelector );
-    // concat childElems to filterFound array
-    for ( var j=0, jLen = childElems.length; j < jLen; j++ ) {
-      itemElems.push( childElems[j] );
+    // filter & find items if we have an item selector
+    if ( itemSelector ) {
+      // filter siblings
+      if ( matchesSelector( elem, itemSelector ) ) {
+        itemElems.push( elem );
+      }
+      // find children
+      var childElems = elem.querySelectorAll( itemSelector );
+      // concat childElems to filterFound array
+      for ( var j=0, jLen = childElems.length; j < jLen; j++ ) {
+        itemElems.push( childElems[j] );
+      }
+    } else {
+      itemElems.push( elem );
     }
   }
 
@@ -942,19 +945,17 @@ return Outlayer;
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'classie',
-      'eventie',
-      'doc-ready',
-      'eventEmitter',
-      'get-size',
-      'matches-selector',
-      'outlayer/item'
+      'eventie/eventie',
+      'doc-ready/doc-ready',
+      'eventEmitter/EventEmitter',
+      'get-size/get-size',
+      'matches-selector/matches-selector',
+      './item'
     ],
     outlayerDefinition );
 } else {
   // browser global
   window.Outlayer = outlayerDefinition(
-    window.classie,
     window.eventie,
     window.docReady,
     window.EventEmitter,

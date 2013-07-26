@@ -1,10 +1,12 @@
-#recent_albums.well
-  - content_for(:head, auto_discovery_link_tag(:atom, root_url(format: :atom)))
-  = link_to(root_url(format: :atom), class: 'rss-link') do
-    %i.icon-rss.icon-2x
+= link_to(root_url(format: :atom), class: 'rss-link') do
+  %i.icon-rss.icon-2x
 
-  %h3 Recently Updated
-  = render partial: @recent_albums, cache: true
+#recent-albums
+  %header
+    %h3 Recent
+
+  .grid-container.well
+    = render partial: @recent_albums, cache: true
 
 #albums.grid-container
   = render partial: @albums, cache: true
