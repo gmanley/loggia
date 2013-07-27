@@ -5,7 +5,7 @@ class Image < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  paginates_per 100
+  paginates_per 20
 
   validates :md5, on: :create,
                   uniqueness: { scope: :album_id }
