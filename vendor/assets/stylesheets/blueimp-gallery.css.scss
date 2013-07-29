@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 /*
- * blueimp Gallery CSS 2.4.1
+ * blueimp Gallery CSS 2.5.0
  * https://github.com/blueimp/Gallery
  *
  * Copyright 2013, Sebastian Tschan
@@ -35,6 +35,7 @@
   opacity: 0;
   visibility: hidden;
   display: none;
+  -ms-touch-action: none;
 }
 .blueimp-gallery-carousel {
   position: relative;
@@ -152,43 +153,11 @@
 .blueimp-gallery-playing > .play-pause {
   background-position: -15px 0;
 }
-.blueimp-gallery > .indicator {
-  position: absolute;
-  top: auto;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  margin: 0 40px;
-  padding: 0;
-  list-style: none;
-  text-align: center;
-  line-height: 10px;
-  display: none;
-}
-.blueimp-gallery > .indicator > li {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  margin: 6px 3px 0 3px;
-  border: 1px solid transparent;
-  background: #ccc;
-  background: rgba(255, 255, 255, 0.25) center no-repeat;
-  border-radius: 5px;
-  box-shadow: 0 0 2px #000;
-  opacity: 0.5;
-  cursor: pointer;
-}
-.blueimp-gallery > .indicator > .active {
-  background-color: #fff;
-  border-color: #fff;
-  opacity: 1;
-}
 .blueimp-gallery-controls > .prev,
 .blueimp-gallery-controls > .next,
 .blueimp-gallery-controls > .close,
 .blueimp-gallery-controls > .title,
-.blueimp-gallery-controls > .play-pause,
-.blueimp-gallery-controls > .indicator {
+.blueimp-gallery-controls > .play-pause {
   display: block;
   /* Fix z-index issues (controls behind slide element) on Android: */
   -webkit-transform: translateZ(0);
@@ -201,16 +170,14 @@
 .blueimp-gallery-left > .prev,
 .blueimp-gallery-single > .next,
 .blueimp-gallery-right > .next,
-.blueimp-gallery-single > .play-pause,
-.blueimp-gallery-single > .indicator {
+.blueimp-gallery-single > .play-pause {
   display: none;
 }
 .blueimp-gallery > .slides > .slide > .slide-content,
 .blueimp-gallery > .prev,
 .blueimp-gallery > .next,
 .blueimp-gallery > .close,
-.blueimp-gallery > .play-pause
-.blueimp-gallery > .indicator {
+.blueimp-gallery > .play-pause {
   -webkit-user-select: none;
    -khtml-user-select: none;
      -moz-user-select: none;
@@ -218,9 +185,31 @@
           user-select: none;
 }
 
+/* Replace PNGs with SVGs for capable browsers (excluding IE<9) */
+body:last-child .blueimp-gallery > .slides > .slide-error {
+  background-image: image-url('error.svg');
+}
+body:last-child .blueimp-gallery > .play-pause {
+  width: 20px;
+  height: 20px;
+  background-size: 40px 20px;
+  background-image: image-url('play-pause.svg');
+}
+body:last-child .blueimp-gallery-playing > .play-pause {
+  background-position: -20px 0;
+}
+
 @media (max-width: 767px) {
   .blueimp-gallery-carousel {
     height: 270px;
     max-width: 480px;
   }
+}
+
+/* IE7 fixes */
+*+html .blueimp-gallery > .slides > .slide {
+  min-height: 300px;
+}
+*+html .blueimp-gallery > .slides > .slide > .slide-content {
+  position: relative;
 }

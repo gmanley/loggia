@@ -52,15 +52,17 @@ albumUrl = ->
   window.location.pathname.replace(/\/page\/\d+/, '')
 
 handleSlideChange = (index) ->
-  slide = $('.image a').eq(index)
-  imageId = slide.data('image-id')
+  $slide = $('.image a').eq(index)
+  imageId = $slide.data('image-id')
   app.setLocation("#/images/#{imageId}")
 
 loadSlide = (slide) ->
   options =
-    container: $modalContainer[0]
+    container: $modalContainer.selector
     index: slide
     clearSlides: false
+    preloadRange: 10
+    continuous: false
     onslide: (index, slide) ->
       handleSlideChange(index)
     onclose: ->
@@ -85,12 +87,12 @@ window.app = Sammy('#images', ->
     $modalContainer.data('gallery')?.close()
 
   @get '#/images/:imageId', ->
+    newIndex = $("#image_#{@params.imageId}").index('.image a')
     if gallery = $modalContainer.data('gallery')
-      newIndex = $("#image_#{@params.imageId}").index('.image a')
       if newIndex != gallery.getIndex()
         gallery.slide(newIndex)
     else
-      loadSlide($("#image_#{@params.imageId}"))
+      loadSlide(newIndex)
 )
 
 $ ->
