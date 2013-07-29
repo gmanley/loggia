@@ -10,7 +10,6 @@ gem 'jquery-rails' # Bundles jQuery and the UJS adapter for it
 gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
 gem 'coffee-rails', '~> 4.0.0' # CoffeeScript support (.js.coffee)
 gem 'haml_coffee_assets' # HAML coffeescript templates
-gem 'turbo-sprockets-rails3' # Speeds up asset precompilation
 gem 'bootstrap-sass', '~> 2.3.1.0' # SCSS version of bootstrap (usable mixins)
 gem 'turbolinks' # PJAX-esque ajax links
 gem 'jquery-turbolinks' # Better jQuery compatibility for turbolinks
