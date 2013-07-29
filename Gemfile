@@ -14,6 +14,7 @@ gem 'bootstrap-sass', '~> 2.3.1.0' # SCSS version of bootstrap (usable mixins)
 gem 'turbolinks' # PJAX-esque ajax links
 gem 'jquery-turbolinks' # Better jQuery compatibility for turbolinks
 gem 'haml-rails' # Adds HAML support along with custom generators
+gem 'uglifier'
 
 gem 'devise' # Authentication
 gem 'cancan' # Authorization
