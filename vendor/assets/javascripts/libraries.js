@@ -36,4 +36,5 @@
 //= require outlayer
 //= require masonry
 //= require sammy
-//= require jquery.infinitescroll
+//= require waypoints
+//= require waypoints-infinite

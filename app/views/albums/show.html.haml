@@ -17,7 +17,7 @@
     = render partial: @images, cache: true
   = paginate @images
   - unless @images.empty?
-    %span.muted= page_entries_info(@images)
+    %span.pagination.muted= page_entries_info(@images)
 
 - if can?(:create, Album)
   %section.row-fluid
