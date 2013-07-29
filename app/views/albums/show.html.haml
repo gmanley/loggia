@@ -2,6 +2,7 @@
   %h1
     %span.muted= @album.formated_event_date
     %span.album-title= @album.title
+    = favorite_button_for(@album) if can?(:manage, Favorite)
 
   = render('header_actions', album: @album)
 

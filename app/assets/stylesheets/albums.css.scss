@@ -1,12 +1,16 @@
 .rss-link {
   float: left;
-  padding: 10px }
+  padding-top: 10px;
+  padding-left: 10px }
 
 #recent-albums {
-  padding: 0;
+  @include linear-gradient(bottom, #F8D9D9 0%, #F8D9D9 8%, #FFF 100%);
   margin-bottom: 20px;
-  text-align: center;
-
+  border-top: 10px solid #ee6265;
+  border-bottom: 10px solid #ee6265;
+  box-shadow: 0 0 4px #aaaaaa inset;
+  border-radius: 5px;
+  padding: 5px;
   h3 { text-align: center } }
 
 .grid-container { margin: 0 auto }
@@ -15,10 +19,11 @@
   margin-bottom: 15px;
   width: 285px;
   border: 1px solid #e8e8e8;
-  @include box-shadow(1px 6px 12px -6px #c6c6c6);
-  @include border-radius(5px);
+  box-shadow: 1px 6px 12px -6px #c6c6c6;
+  border-radius: 5px;
+  background: #fff;
 
-  &:hover { @include box-shadow(1px 6px 12px -6px #888) }
+  &:hover { box-shadow: 1px 6px 12px -6px #888 }
 
   &.album {
     display: inline-block;
@@ -26,9 +31,8 @@
     .cover a {
       overflow: hidden;
       height: 285px;
-      @include border-radius(5px 5px 0 0);
-      display: block;
-      img { height: 100% } }
+      border-radius: 5px 5px 0 0;
+      display: block }
 
     .info {
       border-top: 1px solid #E5E5E5;
@@ -36,7 +40,6 @@
 
       .stats {
         margin-top: 3px;
-        display: inline-block;
         clear: both;
         float: left;
         .stat-block { margin-right: 10px } } }
@@ -51,17 +54,12 @@
 .show {
   #images_source_filter {
     margin: 18px 0 27px;
-    .accordian-heading { padding: 5px }
-     // Needed to override inline style
-    .chzn-container { width: 100%!important } }
+    .accordian-heading { padding: 5px } }
 
   .page-header {
     @include fluid-span(12);
     float: left;
-    h1 { float: left }
-    form { display: inline-block }
-    .album-updated-at { clear: both }
-    .header-actions { clear: both } }
+    .favorite-toggle:hover { opacity: .8 } }
 
   .selection {
     position: absolute;
@@ -76,8 +74,6 @@
   .selecting {
     background-color: #CEB;
     border-color: #9B8 }
-
-  .header-actions { padding-top: 5px }
 
   #filter_album_images .checkbox { font-weight: bold }
 

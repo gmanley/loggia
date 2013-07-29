@@ -1,11 +1,11 @@
-= link_to(root_url(format: :atom), class: 'rss-link') do
-  %i.icon-rss.icon-2x
-
 #recent-albums
+  = link_to(root_url(format: :atom), class: 'rss-link') do
+    %i.icon-rss.icon-2x
+
   %header
     %h3 Recent
 
-  .grid-container.well
+  .grid-container
     = render partial: @recent_albums, cache: true
 
 #albums.grid-container

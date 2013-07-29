@@ -1,5 +1,3 @@
-= favorite_button_for(album) if can?(:manage, Favorite)
-
 - if album.childless?
   %p.album-updated-at.muted Last updated #{time_ago(album.last_updated)}
 

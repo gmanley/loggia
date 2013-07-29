@@ -12,21 +12,20 @@ section { padding-top: 60px }
 
 #content { min-width: 920px }
 
+.navbar-inverse .navbar-inner {
+  @include linear-gradient(#686765, #313131);
+  border-radius: 0px;
+  .brand { color: #fff } }
+
 .breadcrumb {
   border: 1px solid #DDD;
-
   .active span { color: #999 } }
-
-.favorite-toggle {
-  float: left;
-  margin: 18px 12px;
-
-  &:hover { opacity: .8 } }
 
 footer {
   margin-top: 40px;
   border-top: 1px solid #E5E5E5;
-  padding: 35px 0 36px }
+  padding: 35px 0 36px;
+  a { color: #08c } }
 
 #loading {
   position: fixed;
