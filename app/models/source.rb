@@ -1,7 +1,9 @@
 class Source < ActiveRecord::Base
   include Autocompleteable
 
-  POSSIBLE_KINDS = %w[photographer website]
+  POSSIBLE_KINDS = %w(photographer website)
+
+  has_and_belongs_to_many :images, -> { uniq }
 
   validates :kind, presence: true,
                    inclusion: {
@@ -12,11 +14,17 @@ class Source < ActiveRecord::Base
   validates :name, presence: true,
                    uniqueness: { scope: :kind }
 
-  has_and_belongs_to_many :images, -> { uniq }
+  def self.of_kind(kind)
+    where(kind: kind)
+  end
 
-  scope :websites, -> { where(kind: 'website') }
+  def self.websites
+    of_kind('website')
+  end
 
-  scope :photographers, -> { where(kind: 'photographer') }
+  def self.photographers
+    of_kind('photographers')
+  end
 
   def self.merge!(source_ids)
     sources = where(id: source_ids).order(:created_at)

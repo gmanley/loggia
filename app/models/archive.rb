@@ -3,7 +3,7 @@ class Archive < ActiveRecord::Base
 
   mount_uploader :file, ArchiveUploader
 
-  validates_presence_of :archivable
+  validates :archivable, presence: true
 
   def archive_album
     return file.url unless outdated?

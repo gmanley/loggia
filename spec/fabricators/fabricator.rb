@@ -32,6 +32,6 @@ Fabricator(:image) do
 end
 
 Fabricator(:source) do
-  kind { %w[photographer website].sample }
+  kind { %w(photographer website).sample }
   name { |attrs| sequence(:name) { |i| "#{attrs[:kind]}#{i}" } }
 end

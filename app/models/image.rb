@@ -1,19 +1,24 @@
 class Image < ActiveRecord::Base
   belongs_to :album, counter_cache: true
+
   belongs_to :uploader, class_name: 'User', inverse_of: :uploads
+
   has_and_belongs_to_many :sources, -> { order(:name).uniq }
 
   mount_uploader :image, ImageUploader
-
-  paginates_per 20
 
   validates :md5, on: :create,
                   uniqueness: { scope: :album_id }
 
   before_validation :set_md5
-  after_commit :async_set_thumbnails, on: :create
+
   before_create :set_store_dir
+
+  after_commit :async_set_thumbnails, on: :create
+
   after_commit(on: :create) { album.touch(:contents_updated_at) }
+
+  paginates_per 20
 
   def set_thumbnails
     if album

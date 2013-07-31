@@ -10,7 +10,7 @@ module ApplicationHelper
   }
 
   def bootstrap_flash_class(type)
-    BOOTSTRAP_FLASH_CLASS[type] || type.to_s
+    BOOTSTRAP_FLASH_CLASS.fetch(type, type.to_s)
   end
 
   def flash_messages
@@ -30,6 +30,7 @@ module ApplicationHelper
 
   def breadcrumbs
     return if current_page?(root_path)
+
     haml_tag 'ul.breadcrumb' do
       breadcrumb('Home', root_path)
 
@@ -52,7 +53,7 @@ module ApplicationHelper
 
   def time_ago(datetime)
     capture_haml do
-      haml_tag 'time.timeago', datetime: datetime.iso8601 { datetime }
+      haml_tag('time.timeago', datetime: datetime.iso8601) { datetime }
     end
   end
 
@@ -88,6 +89,7 @@ module ApplicationHelper
 
   def resources # Possibly rename...  specific to breadcrumbs
     return [] unless current_resource
+
     if current_resource.is_a?(Album)
       current_resource.self_and_ancestors.reverse
     else

@@ -1,5 +1,6 @@
 class Album < ActiveRecord::Base
-  has_many :images, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :images, -> { order(created_at: :desc) },
+                    dependent: :destroy
 
   has_many :comments, -> { order(:created_at) },
                       as: :commentable,
@@ -8,9 +9,11 @@ class Album < ActiveRecord::Base
   has_many :favorites, as: :favoritable,
                        dependent: :destroy
 
-  has_many :sources, -> { uniq }, through: :images
+  has_many :sources, -> { uniq },
+                     through: :images
 
-  has_many :uploaders, -> { uniq }, through: :images
+  has_many :uploaders, -> { uniq },
+                       through: :images
 
   has_one :archive, as: :archivable,
                     dependent: :destroy
@@ -25,13 +28,15 @@ class Album < ActiveRecord::Base
                       case_sensitive: false
                     }
 
-  scope :with_images, -> { where.not(images_count: 0) }
+  before_create :set_slug
+
+  def self.with_images
+    where.not(images_count: 0)
+  end
 
   def self.recently_updated(date = 1.month.ago)
     where('contents_updated_at > ?', date).order(contents_updated_at: :desc)
   end
-
-  before_create :set_slug
 
   def set_contents_updated_at
     self.contents_updated_at = images.maximum(:created_at)
