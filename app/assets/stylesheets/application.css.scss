@@ -13,7 +13,7 @@ section { padding-top: 60px }
 #content { min-width: 920px }
 
 .navbar-inverse .navbar-inner {
-  @include linear-gradient(#686765, #313131);
+  @include gradient-vertical(#686765, #313131);
   border-radius: 0px;
   .brand { color: #fff } }
 
