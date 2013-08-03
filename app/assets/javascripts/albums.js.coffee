@@ -1,22 +1,3 @@
-setupInfiniteScroll = ->
-  $imagesContainer = $('#images')
-  $.waypoints('destroy')
-  $paginationContainer = $('.pagination')
-  if $paginationContainer.exists
-    $paginationContainer.hide()
-    $imagesContainer.waypoint 'infinite',
-      items: '.image'
-      more: '.pagination .next a'
-      onBeforePageLoad: ->
-        App.LoadingIndicator.show()
-      onAfterPageLoad: ($newImages) ->
-        $newImages.hide().imagesLoaded ->
-          $newImages.fadeIn()
-          $imagesContainer.masonry('appended', $newImages)
-          App.LoadingIndicator.hide()
-          $.waypoints('refresh')
-          $('.pagination').hide()
-
 setupMasonry = ->
   $container = $('.grid-container').masonry
     itemSelector: '.grid-item'
@@ -26,7 +7,10 @@ setupMasonry = ->
 
   $container.imagesLoaded ->
     $container.masonry()
-    setupInfiniteScroll()
+    if App.infinitescrollEnabled
+      new App.InfiniteScroll
+        container: '#images'
+        itemsEl: '.image'
 
 # Fixes an issue where masonry images overlap after hitting the back button.
 document.addEventListener 'page:restore', ->
