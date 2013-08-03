@@ -54,7 +54,7 @@ albumUrl = ->
 handleSlideChange = (index) ->
   $slide = $('.image a').eq(index)
   imageId = $slide.data('image-id')
-  app.setLocation("#/images/#{imageId}")
+  hasher.setHash "images/#{imageId}"
 
 loadSlide = (slide) ->
   options =
@@ -66,7 +66,7 @@ loadSlide = (slide) ->
     onslide: (index, slide) ->
       handleSlideChange(index)
     onclose: ->
-      app.setLocation("#/")
+      hasher.setHash ''
       $modalContainer.removeData 'gallery'
 
   links = $('.image a')
@@ -81,23 +81,20 @@ $imagesContainer.on 'click', '.image a', (e) ->
   loadSlide(this)
   e.preventDefault()
 
-# initialize the application
-window.app = Sammy('#images', ->
-  @get '#/', ->
-    $modalContainer.data('gallery')?.close()
-
-  @get '#/images/:imageId', ->
-    newIndex = $("#image_#{@params.imageId}").index('.image a')
+handleHashChange = (newHash) ->
+  if imageId = newHash.match(/images\/(\d+)/)?[1]
+    newIndex = $("#image_#{imageId}").index('.image a')
     if gallery = $modalContainer.data('gallery')
       if newIndex != gallery.getIndex()
         gallery.slide(newIndex)
     else
       loadSlide(newIndex)
-)
+
+hasher.changed.add handleHashChange
+hasher.initialized.add handleHashChange
+hasher.init()
 
 $ ->
-  app.run('#/')
-
   $('#toggle_selection').click (e) ->
     e.preventDefault()
     if $(this).hasClass('active')

@@ -36,6 +36,7 @@
 //= require outlayer-item
 //= require outlayer
 //= require masonry
-//= require sammy
+//= require signals
+//= require hasher
 //= require waypoints
 //= require waypoints-infinite
