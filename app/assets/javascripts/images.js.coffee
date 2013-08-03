@@ -1,3 +1,6 @@
+$imagesContainer = $('#images')
+$modalContainer = $('#gallery-modal')
+
 window.tmpl = (id) ->
   if id is 'template-upload'
     return (data) -> JST['templates/file'](data)
@@ -74,13 +77,6 @@ loadSlide = (slide) ->
 
   $modalContainer.data 'gallery', gallery
 
-$imagesContainer = $('#images')
-$modalContainer = $('#gallery-modal')
-
-$imagesContainer.on 'click', '.image a', (e) ->
-  loadSlide(this)
-  e.preventDefault()
-
 handleHashChange = (newHash) ->
   if imageId = newHash.match(/images\/(\d+)/)?[1]
     newIndex = $("#image_#{imageId}").index('.image a')
@@ -95,6 +91,13 @@ hasher.initialized.add handleHashChange
 hasher.init()
 
 $ ->
+  $imagesContainer = $('#images')
+  $modalContainer = $('#gallery-modal')
+
+  $imagesContainer.on 'click', '.image a', (e) ->
+    loadSlide(this)
+    e.preventDefault()
+
   $('#toggle_selection').click (e) ->
     e.preventDefault()
     if $(this).hasClass('active')
