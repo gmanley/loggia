@@ -15,6 +15,7 @@
 .grid-container { margin: 0 auto }
 
 .grid-item {
+  float: left;
   margin-bottom: 15px;
   width: 285px;
   border: 1px solid #e8e8e8;
@@ -76,7 +77,11 @@
 
   #filter_album_images .checkbox { font-weight: bold }
 
-  button [class^="icon-"] { padding-right: 5px }
+  button [class^='icon-'] { padding-right: 5px }
+
+  .pagination {
+    float: left;
+    clear: both }
 
   #thumbnails-wrapper {
     border-bottom: 1px solid #EEE;
