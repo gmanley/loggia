@@ -1,11 +1,17 @@
 setupMasonry = ->
+  App.LoadingIndicator.show()
   $container = $('.grid-container').masonry
     itemSelector: '.grid-item'
     transitionDuration: '0.5s'
     isFitWidth: true
     gutter: 15
+    containerStyle:
+      position: 'relative'
+      display: 'none'
 
   $container.imagesLoaded ->
+    App.LoadingIndicator.hide()
+    $container.show()
     $container.masonry()
     if App.infinitescrollEnabled
       new App.InfiniteScroll

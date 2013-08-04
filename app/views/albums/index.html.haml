@@ -5,10 +5,10 @@
   %header
     %h3 Recent
 
-  .grid-container
+  .grid-container{style: 'display:none'}
     = render partial: @recent_albums, cache: true
 
-#albums.grid-container
+#albums.grid-container{style: 'display:none'}
   = render partial: @albums, cache: true
 
 - if can?(:create, Album)

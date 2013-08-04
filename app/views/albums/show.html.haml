@@ -11,10 +11,10 @@
 = render('view_options', album: @album)
 
 #thumbnails-wrapper.row-fluid
-  #albums.grid-container
+  #albums.grid-container{style: 'display:none;'}
     = render partial: @children, cache: true
 
-  #images.grid-container
+  #images.grid-container{style: 'display:none;'}
     = render partial: @images, cache: true
   = paginate @images
   - unless @images.empty?

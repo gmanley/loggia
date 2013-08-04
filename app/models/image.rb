@@ -18,7 +18,7 @@ class Image < ActiveRecord::Base
 
   after_commit(on: :create) { album.touch(:contents_updated_at) }
 
-  paginates_per 20
+  paginates_per 100
 
   def set_thumbnails
     if album
