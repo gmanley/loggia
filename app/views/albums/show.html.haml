@@ -12,10 +12,10 @@
 
 #thumbnails-wrapper.row-fluid
   #albums.grid-container{style: 'display:none;'}
-    = render partial: @children, cache: true
+    = render @children
 
   #images.grid-container{style: 'display:none;'}
-    = render partial: @images, cache: true
+    = render @images
   = paginate @images
   - unless @images.empty?
     .pagination.muted= page_entries_info(@images)

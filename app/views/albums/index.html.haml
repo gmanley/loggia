@@ -6,10 +6,10 @@
     %h3 Recent
 
   .grid-container{style: 'display:none'}
-    = render partial: @recent_albums, cache: true
+    = render @recent_albums
 
 #albums.grid-container{style: 'display:none'}
-  = render partial: @albums, cache: true
+  = render @albums
 
 - if can?(:create, Album)
   = link_to('New Album', new_album_path, class: 'btn btn-primary')
