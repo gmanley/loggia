@@ -37,7 +37,7 @@ class Image < ActiveRecord::Base
       sources << Source.find(source_id)
     else
       unless attrs.values_at(:name, :kind).any?(&:blank?)
-        sources << Source.find_or_initialize_by(attrs)
+        sources << Source.find_or_create_by(attrs)
       end
     end
   end
