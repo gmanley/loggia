@@ -11,10 +11,10 @@
 = render('view_options', album: @album)
 
 #thumbnails-wrapper.row-fluid
-  #albums.grid-container{style: 'display:none;'}
+  #albums.grid-container
     = render @children
 
-  #images.grid-container{style: 'display:none;'}
+  #images.grid-container
     = render @images
   = paginate @images
   - unless @images.empty?

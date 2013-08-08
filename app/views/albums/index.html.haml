@@ -5,10 +5,10 @@
   %header
     %h3 Recent
 
-  .grid-container{style: 'display:none'}
+  .grid-container
     = render @recent_albums
 
-#albums.grid-container{style: 'display:none'}
+#albums.grid-container
   = render @albums
 
 - if can?(:create, Album)

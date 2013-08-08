@@ -2,6 +2,7 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require jquery_ujs
+//= require underscore
 //= require bootstrap-alert
 //= require bootstrap-dropdown
 //= require bootstrap-modal

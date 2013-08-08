@@ -1,5 +1,5 @@
-.album.grid-item
-  .cover= link_to(image_tag(album.thumbnail_url), album)
+.album.grid-item{style: 'display:none'}
+  = link_to(image_tag(album.thumbnail_url), album, class: 'cover')
   .info
     = link_to(album.display_name, album, class: 'item-link')
     - if album.images_count > 0

@@ -1,5 +1,5 @@
 /*!
- * Outlayer v1.1.0
+ * Outlayer v1.1.2
  * the brains and guts of a layout library
  */
 
@@ -37,7 +37,7 @@ function makeArray( obj ) {
   if ( isArray( obj ) ) {
     // use object if already an array
     ary = obj;
-  } else if ( typeof obj.length === 'number' ) {
+  } else if ( obj && typeof obj.length === 'number' ) {
     // convert nodeList to array
     for ( var i=0, len = obj.length; i < len; i++ ) {
       ary.push( obj[i] );
@@ -800,6 +800,10 @@ Outlayer.prototype.remove = function( elems ) {
   elems = makeArray( elems );
 
   var removeItems = this.getItems( elems );
+  // bail if no items to remove
+  if ( !removeItems || !removeItems.length ) {
+    return;
+  }
 
   this._itemsOn( removeItems, 'remove', function() {
     this.emitEvent( 'removeComplete', [ this, removeItems ] );
@@ -832,6 +836,11 @@ Outlayer.prototype.destroy = function() {
   this.unbindResize();
 
   delete this.element.outlayerGUID;
+  // remove data for jQuery
+  if ( jQuery ) {
+    jQuery.removeData( this.element, this.settings.namespace );
+  }
+
 };
 
 // -------------------------- data -------------------------- //

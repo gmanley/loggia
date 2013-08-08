@@ -1,22 +1,43 @@
-setupMasonry = ->
-  App.LoadingIndicator.show()
-  $container = $('.grid-container').masonry
-    itemSelector: '.grid-item'
-    transitionDuration: '0.5s'
+class MasonrySetup
+  defaultOptions:
+    itemSelector: '.grid-item.is-shown'
+    transitionDuration: '0.3s'
     isFitWidth: true
     gutter: 15
-    containerStyle:
-      position: 'relative'
-      display: 'none'
 
-  $container.imagesLoaded ->
-    App.LoadingIndicator.hide()
-    $container.show()
-    $container.masonry()
-    if App.infinitescrollEnabled
-      new App.InfiniteScroll
-        container: '#images'
-        itemsEl: '.image'
+  prepended: =>
+    currentBatch = @queue.splice(0, @queue.length)
+    items = @processImgs(currentBatch)
+    @masonry.reloadItems()
+    @masonry.prepended(items)
+
+  processImgs: (imgs) ->
+    items = []
+    _(imgs).each (img) =>
+      $item = @$itemFromImg(img)
+      $item.addClass('is-shown')
+      items.push($item[0])
+    items
+
+  $itemFromImg: (img) ->
+    $(img).parents('.grid-item')
+
+  constructor: (args) ->
+    @queue = []
+    @completed = []
+    @container = args.container
+    @$container = $(@container).masonry(
+      _(args.options || {}).defaults(@defaultOptions)
+    )
+    @masonry = @$container.data('masonry')
+    throttledPrepended = _.throttle(@prepended, 300, leading: false)
+    @$container.imagesLoaded().progress (instance, image) =>
+      @queue.push(image.img)
+      throttledPrepended()
+
+setupMasonry = ->
+  _(['#images', '#albums']).each (container) ->
+    new MasonrySetup(container: container)
 
 # Fixes an issue where masonry images overlap after hitting the back button.
 document.addEventListener 'page:restore', ->
