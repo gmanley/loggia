@@ -9,4 +9,7 @@ RSpec.configure do |config|
   config.include(HelperMethods, type: :feature)
 end
 
-Capybara.javascript_driver = :poltergeist
+Capybara.configure do |config|
+  config.javascript_driver = :poltergeist
+  config.ignore_hidden_elements = false
+end

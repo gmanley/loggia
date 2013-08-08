@@ -30,12 +30,12 @@ describe Image do
       let(:attrs) { { name: 'Foo', kind: 'website' } }
 
       before do
-        Source.stub(find_or_initialize_by: source)
+        Source.stub(find_or_create_by: source)
         image.associate_source(attrs)
       end
 
       it 'finds or initializes a source with said fields' do
-        expect(Source).to have_received(:find_or_initialize_by).with(attrs)
+        expect(Source).to have_received(:find_or_create_by).with(attrs)
       end
 
       it 'adds new or found source to the sources association' do
