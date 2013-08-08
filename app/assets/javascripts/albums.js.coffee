@@ -36,7 +36,7 @@ class MasonrySetup
       throttledPrepended()
 
 setupMasonry = ->
-  _(['#images', '#albums']).each (container) ->
+  _(['#images', '#albums', '#recent-albums .grid-container']).each (container) ->
     new MasonrySetup(container: container)
 
 # Fixes an issue where masonry images overlap after hitting the back button.
