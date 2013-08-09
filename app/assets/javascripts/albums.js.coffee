@@ -6,27 +6,23 @@ class MasonrySetup
     gutter: 15
 
   prepended: =>
-    currentBatch = @queue.splice(0, @queue.length)
-    items = @processImgs(currentBatch)
+    items = @processImgs(@queue.splice(0, @queue.length))
     @masonry.reloadItems()
     @masonry.prepended(items)
+    @masonry.reloadItems()
 
   processImgs: (imgs) ->
-    items = []
-    _(imgs).each (img) =>
+    _(imgs).map (img) =>
       $item = @$itemFromImg(img)
       $item.addClass('is-shown')
-      items.push($item[0])
-    items
+      $item[0]
 
   $itemFromImg: (img) ->
     $(img).parents('.grid-item')
 
   constructor: (args) ->
     @queue = []
-    @completed = []
-    @container = args.container
-    @$container = $(@container).masonry(
+    @$container = $(args.container).masonry(
       _(args.options || {}).defaults(@defaultOptions)
     )
     @masonry = @$container.data('masonry')
