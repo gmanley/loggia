@@ -19,7 +19,6 @@ gem 'uglifier'
 gem 'devise' # Authentication
 gem 'cancan' # Authorization
 gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4' # Admin framework
-gem 'ransack', github: 'ernie/ransack', branch: 'rails-4' # Needed for activeadmin rails 4 support
 gem 'inherited_resources', github: 'josevalim/inherited_resources' # ditto
 gem 'formtastic', github: 'justinfrench/formtastic' # ditto
 

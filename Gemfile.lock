@@ -1,18 +1,8 @@
 GIT
   remote: git://github.com/bmabey/database_cleaner.git
-  revision: 0c053a75527b16765dac0b64e92a1cc35b6c529c
+  revision: e11d9f036e2390b1277f8c0c79312cc7ae79bce2
   specs:
     database_cleaner (1.1.1)
-
-GIT
-  remote: git://github.com/ernie/ransack.git
-  revision: 39244a3df1c29c86f85d338158d398b70f6e92e6
-  branch: rails-4
-  specs:
-    ransack (0.7.3)
-      actionpack (~> 4.0.0)
-      activerecord (~> 4.0.0)
-      polyamorous (~> 0.6.0)
 
 GIT
   remote: git://github.com/gmanley/shoulda-matchers.git
@@ -24,26 +14,26 @@ GIT
 
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: a9949c1524205928b18597f840e83478ba97c2ef
+  revision: 72a9c30cef47b3f38c38039de021aaa3194c188b
   branch: rails4
   specs:
     activeadmin (0.6.0)
       arbre (>= 1.0.1)
       bourbon (>= 1.0.0)
       coffee-rails (>= 3.2.0)
-      devise (>= 3.0.0.rc)
-      formtastic (>= 2.0.0)
-      inherited_resources (>= 1.3.1)
+      devise (>= 3.0.2)
+      formtastic (>= 2.3.0.rc2)
+      inherited_resources (>= 1.4.1)
       jquery-rails (>= 3.0.0)
       jquery-ui-rails (>= 4.0.0)
       kaminari (>= 0.13.0)
       rails (>= 3.2.0)
-      ransack (>= 0.7.0)
+      ransack (>= 1.0.0)
       sass-rails (>= 3.2.0)
 
 GIT
   remote: git://github.com/josevalim/inherited_resources.git
-  revision: ae1516a3f1a01f98beac3334f76831a1c793c521
+  revision: fdc9de6ca213ab8f3b97f37e5d071363198e018a
   specs:
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
@@ -65,7 +55,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 73005f4fc8b0b4934b2fbe9dd54ea35a1692c84a
+  revision: 359606f222fa0972a4a14ec70140ac00f7c80839
   specs:
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0, < 4.1)
@@ -102,7 +92,7 @@ GEM
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (4.0.0)
-    atomic (1.1.12)
+    atomic (1.1.13)
     bcrypt-ruby (3.1.1)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -144,7 +134,7 @@ GEM
     connection_pool (1.1.0)
     daemons (1.1.9)
     debug_inspector (0.0.2)
-    devise (3.0.1)
+    devise (3.0.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -153,14 +143,13 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     excon (0.25.3)
-    execjs (1.4.0)
-      multi_json (~> 1.0)
+    execjs (2.0.0)
     fabrication (2.7.2)
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
-    ffaker (1.16.2)
+    ffaker (1.18.0)
     ffi (1.9.0)
-    fog (1.14.0)
+    fog (1.15.0)
       builder
       excon (~> 0.25.0)
       formatador (~> 0.2.0)
@@ -187,7 +176,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
-    haml_coffee_assets (1.12.0)
+    haml_coffee_assets (1.13.2)
       coffee-script (>= 1.0.0)
       sprockets (>= 2.0.3)
       tilt (>= 1.3.3)
@@ -196,14 +185,14 @@ GEM
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
     http_parser.rb (0.5.3)
-    i18n (0.6.4)
+    i18n (0.6.5)
     jquery-fileupload-rails (0.4.1)
       actionpack (>= 3.1)
       railties (>= 3.1)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-turbolinks (1.0.0)
+    jquery-turbolinks (2.0.0)
       railties (>= 3.1.0)
       turbolinks
     jquery-ui-rails (4.0.4)
@@ -215,7 +204,7 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.3.0)
       addressable (~> 2.3)
-    listen (1.2.2)
+    listen (1.3.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
@@ -224,13 +213,13 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.2)
-    mime-types (1.23)
+    mime-types (1.24)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
     mini_portile (0.5.1)
     minitest (4.7.5)
     multi_fetch_fragments (0.0.17)
-    multi_json (1.7.7)
+    multi_json (1.7.9)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.8)
@@ -275,8 +264,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.0)
+    ransack (1.0.0)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      polyamorous (~> 0.6.0)
     rb-fsevent (0.9.3)
-    rb-inotify (0.9.0)
+    rb-inotify (0.9.1)
       ffi (>= 0.5.0)
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
@@ -289,10 +282,10 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.4)
-    rspec-expectations (2.14.0)
+    rspec-core (2.14.5)
+    rspec-expectations (2.14.2)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.2)
+    rspec-mocks (2.14.3)
     rspec-rails (2.14.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -307,7 +300,7 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    sidekiq (2.13.0)
+    sidekiq (2.13.1)
       celluloid (>= 0.14.1)
       connection_pool (>= 1.0.0)
       json
@@ -353,7 +346,7 @@ GEM
       atomic
     tilt (1.4.1)
     timers (1.1.0)
-    treetop (1.4.14)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     turbolinks (1.3.0)
@@ -412,7 +405,6 @@ DEPENDENCIES
   quiet_assets
   rack-contrib
   rails (= 4.0.0)
-  ransack!
   redis-objects
   responders!
   rspec-rails
