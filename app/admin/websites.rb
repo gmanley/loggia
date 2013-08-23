@@ -19,9 +19,8 @@ ActiveAdmin.register Source, as: 'Website' do
 
   form do |f|
     f.inputs do
-      f.input :name
+      f.input :name, as: :string
       f.input :url
-      f.input :kind, as: :select, collection: Source::POSSIBLE_KINDS, include_blank: false
     end
 
     f.actions
@@ -35,9 +34,17 @@ ActiveAdmin.register Source, as: 'Website' do
     end
   end
 
+  show do
+    attributes_table :name, :url, :created_at, :updated_at
+  end
+
   controller do
     def scoped_collection
       Source.websites
+    end
+
+    def permitted_params
+      params.permit website: [:name, :url]
     end
   end
 end

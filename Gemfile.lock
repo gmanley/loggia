@@ -32,21 +32,6 @@ GIT
       sass-rails (>= 3.2.0)
 
 GIT
-  remote: git://github.com/josevalim/inherited_resources.git
-  revision: fdc9de6ca213ab8f3b97f37e5d071363198e018a
-  specs:
-    inherited_resources (1.4.1)
-      has_scope (~> 0.6.0.rc)
-      responders (~> 1.0.0.rc)
-
-GIT
-  remote: git://github.com/justinfrench/formtastic.git
-  revision: cd6cb88f28ea7444267802ced8e5ec0f5cfd0f90
-  specs:
-    formtastic (2.3.0.rc2)
-      actionpack (>= 3.0)
-
-GIT
   remote: git://github.com/plataformatec/responders.git
   revision: 6b57da9efb85c79157434a85c1bc34b2b4231aaa
   specs:
@@ -160,6 +145,8 @@ GEM
       nokogiri (~> 1.5)
       ruby-hmac
     formatador (0.2.4)
+    formtastic (2.3.0.rc2)
+      actionpack (>= 3.0)
     guard (1.8.2)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -186,6 +173,9 @@ GEM
     hike (1.2.3)
     http_parser.rb (0.5.3)
     i18n (0.6.5)
+    inherited_resources (1.4.1)
+      has_scope (~> 0.6.0.rc)
+      responders (~> 1.0.0.rc)
     jquery-fileupload-rails (0.4.1)
       actionpack (>= 3.1)
       railties (>= 3.1)
@@ -385,12 +375,10 @@ DEPENDENCIES
   fabrication
   ffaker
   fog
-  formtastic!
   guard
   guard-rspec
   haml-rails
   haml_coffee_assets
-  inherited_resources!
   jquery-fileupload-rails
   jquery-rails
   jquery-turbolinks
