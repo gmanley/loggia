@@ -4,10 +4,9 @@ class ImagesController < ApplicationController
   def show
     album = Album.find_by_slug(params[:album_id])
     image = album.images.find(params[:id])
-    page_number = image.album_page_num
     authorize!(:show, image)
 
-    redirect_to paginated_album_path(album, page_number,
+    redirect_to paginated_album_path(album, image.album_page_num,
       anchor: "/images/#{params[:id]}"
     )
   end
