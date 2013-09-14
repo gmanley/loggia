@@ -1,5 +1,5 @@
 class Thumbnailer
-  include Sidekiq::Worker
+  include BaseWorker
 
   def perform(image_id)
     image = Image.find(image_id)

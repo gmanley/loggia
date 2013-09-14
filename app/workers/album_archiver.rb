@@ -1,5 +1,5 @@
 class AlbumArchiver
-  include Sidekiq::Worker
+  include BaseWorker
 
   def perform(album_slug, user_id)
     album = Album.find_by_slug!(album_slug)
