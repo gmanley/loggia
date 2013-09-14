@@ -51,14 +51,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     model.md5 || calculate_md5
   end
 
-  def cached_master
-    @cached_master ||= CarrierWave::SanitizedFile.new(
-      tempfile: StringIO.new(file.read),
-      filename: File.basename(path),
-      content_type: file.content_type
-    )
-  end
-
   def url(options = {})
     URI.encode(URI.decode(super))
   end
