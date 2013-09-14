@@ -7,18 +7,19 @@ class Image < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  validates :md5, on: :create,
-                  uniqueness: { scope: :album_id }
-
-  before_validation :set_md5
-
   before_create :set_store_dir
 
   after_commit :async_set_thumbnails, on: :create
 
+  after_commit :async_set_md5, on: :create
+
   after_commit(on: :create) { album.touch(:contents_updated_at) }
 
   paginates_per 100
+
+  def set_md5
+    self.md5 = image.md5
+  end
 
   def set_thumbnails
     if album
@@ -32,6 +33,11 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def album_page_num
+    album.images.index(self) / self.class.default_per_page + 1
+  end
+
+  private
   def associate_source(attrs)
     if source_id = attrs.delete(:id).presence
       sources << Source.find(source_id)
@@ -42,24 +48,15 @@ class Image < ActiveRecord::Base
     end
   end
 
-  def album_page_num
-    album.images.index(self) / self.class.default_per_page + 1
-  end
-
-  private
-  def set_md5
-    self.md5 = image.md5
-  end
-
   def set_store_dir
     self.store_dir = image.store_dir
   end
 
+  def async_set_md5
+    ImageChecksumer.perform_async(id)
+  end
+
   def async_set_thumbnails
-    if Rails.env.production?
-      Thumbnailer.perform_async(id)
-    else
-      set_thumbnails
-    end
+    Thumbnailer.perform_async(id)
   end
 end
