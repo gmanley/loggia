@@ -43,7 +43,7 @@ gem 'slim' # Ditto
 gem 'pry-rails' # Replaces regular rails console with a pry session
 
 group :development do
-  gem 'thin', platform: :ruby # Asynchronous ruby server
+  gem 'puma' # Ruby app server
   gem 'guard' # Trigger tasks on file system events
   gem 'guard-rspec' # Allows for autotest like functionality
   gem 'ruby_gntp' # Cross-platform growl notification triggering from ruby
