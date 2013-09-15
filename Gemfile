@@ -33,6 +33,7 @@ gem 'soulmate', require: 'soulmate/server' # Autocomplete endpoint using Redis
 gem 'rack-contrib' # Needed by soulmate
 gem 'stringex' # Various string helpers... used in slug generation
 
+gem 'zipruby' # C extensions for libzip (Has bad memory leaks)
 gem 'redis-objects', require: 'redis/list' # Ruby data types to redis mapping
 
 gem 'sidekiq' # Background jobs

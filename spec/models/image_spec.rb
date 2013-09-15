@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Image do
 
-  describe '#associate_source' do
+  describe '#sources_attributes=' do
     let(:image) { Image.new }
     let(:source) { double(:source) }
 
@@ -14,7 +14,7 @@ describe Image do
     context 'when passed a hash with an id key' do
       before do
         Source.stub(find: source)
-        image.associate_source(id: 1)
+        image.sources_attributes = { 1 => { id: 1 } }
       end
 
       it 'attempts to find a source with that id' do
@@ -31,7 +31,7 @@ describe Image do
 
       before do
         Source.stub(find_or_create_by: source)
-        image.associate_source(attrs)
+        image.sources_attributes = { 1 => attrs }
       end
 
       it 'finds or initializes a source with said fields' do
