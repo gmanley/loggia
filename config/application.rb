@@ -11,6 +11,10 @@ module Soshigal
   class Application < Rails::Application
 
     # Add lib to autoloaded files
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(
+      #{config.root}/lib
+      #{config.root}/app/services
+      #{config.root}/app/models/queries
+    )
   end
 end

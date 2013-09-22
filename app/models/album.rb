@@ -60,17 +60,7 @@ class Album < ActiveRecord::Base
   end
 
   def set_thumbnail_url
-    if images.empty?
-      descendants_with_images = descendants.with_images
-      unless descendants_with_images.empty?
-        thumbnail_url = descendants_with_images
-                        .offset(rand(descendants_with_images.count))
-                        .first.thumbnail_url
-      end
-    else
-      thumbnail_url = images.offset(rand(images.count)).first.image_url(:square)
-    end
-
+    thumbnail_url = RandomAlbumThumbnail.new(album).perform
     update(thumbnail_url: thumbnail_url)
   end
 
