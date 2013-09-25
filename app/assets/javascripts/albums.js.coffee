@@ -42,8 +42,6 @@ document.addEventListener 'page:restore', ->
 $ ->
   setupMasonry()
 
-  $('.datepicker').datepicker(format: 'yyyy.mm.dd')
-
   $('#clear-images-filter').on 'click', (e) ->
     $('#album_source_ids').val([]).trigger('liszt:updated')
     e.preventDefault()

@@ -17,3 +17,5 @@
       %footer
         %p © Gray 2013
     = javascript_include_tag 'application', data: { turbolinks_eval: false }
+    - if current_user.try(:admin?)
+      = javascript_include_tag 'admin', data: { turbolinks_eval: false }
