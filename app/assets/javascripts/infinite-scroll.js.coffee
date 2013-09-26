@@ -1,3 +1,6 @@
+#= require waypoints
+#= require waypoints-infinite
+
 class App.InfiniteScroll
   constructor: (options) ->
     @$container = $(options.container)
