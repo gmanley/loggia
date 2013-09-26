@@ -19,7 +19,7 @@ gem 'uglifier'
 
 gem 'devise' # Authentication
 gem 'cancan' # Authorization
-gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4' # Admin framework
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'carrierwave' # File uploading
 gem 'mini_magick' # Image processing (rmagick alternative)
