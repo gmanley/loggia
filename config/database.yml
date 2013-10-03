@@ -1,12 +1,13 @@
 development:
   adapter: postgresql
-  database: soshigal_development
+  database: loggia_development
+  host: localhost
 
 test:
   adapter: postgresql
-  database: soshigal_test
+  database: loggia_test
   <%= 'username: postgres' if ENV['travis'] %>
 
 production:
   adapter: postgresql
-  database: soshigal_production
+  database: loggia_production

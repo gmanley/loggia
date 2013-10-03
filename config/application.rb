@@ -7,7 +7,7 @@ require 'sprockets/railtie'
 
 Bundler.require(:default, Rails.env)
 
-module Soshigal
+module Loggia
   class Application < Rails::Application
 
     # Add lib to autoloaded files

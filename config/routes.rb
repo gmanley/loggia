@@ -1,4 +1,4 @@
-Soshigal::Application.routes.draw do
+Loggia::Application.routes.draw do
 
   root to: 'albums#index'
 

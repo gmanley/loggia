@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-Soshigal::Application.config.session_store :cookie_store, key: '_soshigal_session'
+Loggia::Application.config.session_store :cookie_store, key: '_loggia_session'

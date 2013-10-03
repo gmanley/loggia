@@ -1,10 +1,10 @@
-Soshigal
+Loggia
 ========
 
-Soshigal is a photo gallery built with Rails.
+Loggia is a photo gallery built with Rails.
 
-[![Build Status](https://travis-ci.org/gmanley/soshigal.png?branch=master)](https://travis-ci.org/gmanley/soshigal)
-[![Code Climate](https://codeclimate.com/github/gmanley/soshigal.png)](https://codeclimate.com/github/gmanley/soshigal)
+[![Build Status](https://travis-ci.org/gmanley/loggia.png?branch=master)](https://travis-ci.org/gmanley/loggia)
+[![Code Climate](https://codeclimate.com/github/gmanley/loggia.png)](https://codeclimate.com/github/gmanley/loggia)
 
 Features
 -------

@@ -1,4 +1,4 @@
-namespace :soshigal do
+namespace :loggia do
   desc 'Recache the number of images per album'
   task :recache_image_count => :environment do
     Album.skip_callback(:save, :before, :set_thumbnail_url)

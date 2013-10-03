@@ -3,4 +3,4 @@ ipgallery:
   password:
   adapter: mysql
   host: localhost
-  database: soshigal_legacy
+  database: loggia_legacy

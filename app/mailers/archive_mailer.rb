@@ -1,5 +1,5 @@
 class ArchiveMailer < ActionMailer::Base
-  default from: 'soshigal@example.com'
+  default from: 'loggia@example.com'
 
   def archive_completion(archive, user_id)
     @archive = archive
