@@ -62,3 +62,7 @@ License
 Licensed under the [MIT License](http://creativecommons.org/licenses/MIT/)
 
 Copyright 2013 [Grayson Manley](https://github.com/gmanley)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gmanley/loggia/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
